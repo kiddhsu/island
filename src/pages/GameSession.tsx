@@ -1,6 +1,5 @@
 import { useCallback, useMemo, useState } from 'react'
 import { Link, Navigate, useNavigate, useParams } from 'react-router-dom'
-import { SoundToggle } from '../components/SoundToggle'
 import { useAuthProfile } from '../context/AuthProfileContext'
 import { getBank } from '../data/banks'
 import { getIsland } from '../data/islands'
@@ -149,11 +148,7 @@ export function GameSession() {
           STAGE {index + 1}/{total}
         </div>
         <div className="lives">♥×{Math.max(0, lives)}</div>
-        <div>
-          SCORE {correctCount}
-          <br />
-          <SoundToggle />
-        </div>
+        <div>SCORE {correctCount}</div>
       </header>
 
       <div style={{ padding: 10 }}>

@@ -1,7 +1,6 @@
 import { useMemo, useState } from 'react'
 import { Link, Navigate } from 'react-router-dom'
 import { IslandWorld3D } from '../components/IslandWorld3D'
-import { SoundToggle } from '../components/SoundToggle'
 import { useAuthProfile } from '../context/AuthProfileContext'
 import { ISLANDS } from '../data/islands'
 import { getIslandStars } from '../lib/progress'
@@ -24,33 +23,21 @@ export function HomeMap() {
   if (!activeProfile) return <Navigate to="/profiles" replace />
 
   return (
-    <div className="nes-frame">
-      <header className="nes-hud">
+    <div className="map-shell">
+      <header className="map-topbar">
         <div>
-          <div className="nes-title">ISLAND QUEST</div>
-          學習島 3D
+          <p className="map-kicker">學習島</p>
+          <h1 className="map-heading">今天想去哪一座？</h1>
+          <p className="map-sub">
+            {activeProfile.emoji} {activeProfile.name}・小
+            {activeProfile.grade === 1 ? '一' : '二'}
+            {cloudEnabled && user ? '・已同步' : ''}
+          </p>
         </div>
-        <div>
-          {activeProfile.emoji} {activeProfile.name}
-          <br />
-          小{activeProfile.grade === 1 ? '一' : '二'}
-          {cloudEnabled && user ? ' · CLOUD' : ''}
-        </div>
-        <div style={{ display: 'grid', gap: 8 }}>
-          <SoundToggle />
+        <div className="map-top-actions">
           <button
             type="button"
-            className="nes-btn soft"
-            onClick={() => {
-              playSfx('tap', 0.35)
-              setListOpen((v) => !v)
-            }}
-          >
-            {listOpen ? '關清單' : '清單'}
-          </button>
-          <button
-            type="button"
-            className="nes-btn ghost"
+            className="map-tool"
             onClick={() => {
               playSfx('tap', 0.3)
               clearActiveProfile()
@@ -61,30 +48,53 @@ export function HomeMap() {
         </div>
       </header>
 
-      <div style={{ padding: 10 }}>
-        <IslandWorld3D starsMap={starsMap} />
-        {listOpen ? (
-          <div className="island-list-nes" aria-label="島嶼清單">
-            {ISLANDS.map((island) => (
-              <Link
-                key={island.id}
-                to={`/island/${island.id}`}
-                onClick={() => playSfx('enter', 0.4)}
-              >
-                <span className="dot" style={{ background: island.accent }} />
-                <span>
-                  {island.name}
-                  <br />
-                  <span style={{ opacity: 0.75 }}>{island.short}</span>
-                </span>
-                <span style={{ marginLeft: 'auto' }}>
-                  ★{starsMap[island.id] ?? 0}
-                </span>
-              </Link>
-            ))}
+      <IslandWorld3D
+        starsMap={starsMap}
+        listOpen={listOpen}
+        onToggleList={() => {
+          playSfx('tap', 0.35)
+          setListOpen((v) => !v)
+        }}
+      />
+
+      {listOpen ? (
+        <aside className="map-list-panel" aria-label="島嶼清單">
+          <div className="map-list-head">
+            <h2>全部小島</h2>
+            <button
+              type="button"
+              className="map-tool"
+              onClick={() => {
+                playSfx('tap', 0.3)
+                setListOpen(false)
+              }}
+            >
+              關閉
+            </button>
           </div>
-        ) : null}
-      </div>
+          <ul>
+            {ISLANDS.map((island, i) => (
+              <li key={island.id}>
+                <Link
+                  to={`/island/${island.id}`}
+                  onClick={() => playSfx('enter', 0.4)}
+                >
+                  <span className="map-list-num" style={{ color: island.accent }}>
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <span>
+                    <strong>{island.name}</strong>
+                    <small>{island.short}</small>
+                  </span>
+                  <span className="map-list-stars">
+                    ★{starsMap[island.id] ?? 0}
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </aside>
+      ) : null}
     </div>
   )
 }

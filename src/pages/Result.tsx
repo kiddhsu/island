@@ -1,5 +1,4 @@
 import { Link, Navigate, useLocation, useNavigate, useParams } from 'react-router-dom'
-import { SoundToggle } from '../components/SoundToggle'
 import { useAuthProfile } from '../context/AuthProfileContext'
 import { getIsland } from '../data/islands'
 import { playSfx } from '../lib/sfx'
@@ -27,7 +26,6 @@ export function Result() {
     <div className="nes-frame">
       <header className="nes-hud">
         <div>STAGE CLEAR</div>
-        <SoundToggle />
       </header>
       <div className="result-nes">
         <div className="nes-panel">

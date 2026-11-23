@@ -88,22 +88,6 @@ h2 {
   align-items: center;
 }
 
-.sound-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  min-height: 44px;
-  padding: 0 14px;
-  border-radius: 0;
-  border: 3px solid #fff;
-  background: #111;
-  color: #fff;
-  font-family: var(--font-pixel, monospace);
-  font-size: 8px;
-  font-weight: 700;
-  cursor: pointer;
-}
-
 .game-top-right,
 .hub-top,
 .profiles-header {

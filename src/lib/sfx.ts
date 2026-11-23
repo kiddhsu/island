@@ -1,7 +1,5 @@
 export type SfxName = 'tap' | 'correct' | 'wrong' | 'success' | 'enter'
 
-const MUTE_KEY = 'island-sfx-muted-v1'
-
 const FILES: Record<SfxName, string> = {
   tap: 'tap.mp3',
   correct: 'correct.mp3',
@@ -11,23 +9,6 @@ const FILES: Record<SfxName, string> = {
 }
 
 const cache = new Map<SfxName, HTMLAudioElement>()
-
-export function isSfxMuted() {
-  try {
-    return localStorage.getItem(MUTE_KEY) === '1'
-  } catch {
-    return false
-  }
-}
-
-export function setSfxMuted(muted: boolean) {
-  try {
-    localStorage.setItem(MUTE_KEY, muted ? '1' : '0')
-  } catch {
-    /* ignore */
-  }
-  window.dispatchEvent(new CustomEvent('island-sfx-mute', { detail: muted }))
-}
 
 function urlFor(name: SfxName) {
   return `${import.meta.env.BASE_URL}sounds/${FILES[name]}`
@@ -43,8 +24,9 @@ function getAudio(name: SfxName) {
   return audio
 }
 
-/** 預載常用音效（靜音時仍可載入，之後開聲較不卡） */
-export function preloadSfx(names: SfxName[] = ['tap', 'correct', 'wrong', 'success', 'enter']) {
+export function preloadSfx(
+  names: SfxName[] = ['tap', 'correct', 'wrong', 'success', 'enter'],
+) {
   for (const name of names) {
     try {
       getAudio(name)
@@ -56,7 +38,6 @@ export function preloadSfx(names: SfxName[] = ['tap', 'correct', 'wrong', 'succe
 
 export function playSfx(name: SfxName, volume = 0.55) {
   if (typeof window === 'undefined') return
-  if (isSfxMuted()) return
   try {
     const base = getAudio(name)
     const node = base.cloneNode(true) as HTMLAudioElement

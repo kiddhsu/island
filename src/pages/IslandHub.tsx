@@ -1,5 +1,4 @@
 import { Link, Navigate, useNavigate, useParams } from 'react-router-dom'
-import { SoundToggle } from '../components/SoundToggle'
 import { useAuthProfile } from '../context/AuthProfileContext'
 import { getIsland } from '../data/islands'
 import { getIslandClears, getIslandStars } from '../lib/progress'
@@ -30,8 +29,9 @@ export function IslandHub() {
     <div className="nes-frame">
       <header className="nes-hud">
         <div>{island.name}</div>
-        <div>★{stars}/3 · CLEAR {clears}</div>
-        <SoundToggle />
+        <div>
+          ★{stars}/3 · CLEAR {clears}
+        </div>
       </header>
       <div className="hub-nes">
         <Link

@@ -33,12 +33,12 @@ https://kiddhsu.github.io/island/
 
 介面與答題回饋音來自 [卡斯伯免費音效庫](https://www.casper.tw/sound-effects/zh-tw/)，可自由使用（[授權說明](https://www.casper.tw/sound-effects/zh-tw/license)）。
 
-| 檔案 | 用途 | 來源名稱 |
-|------|------|----------|
-| `public/sounds/tap.mp3` | 按鈕輕點 | Click Crisp |
-| `public/sounds/correct.mp3` | 答對 | Confirm Bright |
-| `public/sounds/wrong.mp3` | 答錯（柔和） | Error Blip Low |
-| `public/sounds/success.mp3` | 回合結束 | Confirm Sparkle |
-| `public/sounds/enter.mp3` | 進島／開始 | Dialog Pop |
+| 檔案                        | 用途         | 來源名稱        |
+| --------------------------- | ------------ | --------------- |
+| `public/sounds/tap.mp3`     | 按鈕輕點     | Click Crisp     |
+| `public/sounds/correct.mp3` | 答對         | Confirm Bright  |
+| `public/sounds/wrong.mp3`   | 答錯（柔和） | Error Blip Low  |
+| `public/sounds/success.mp3` | 回合結束     | Confirm Sparkle |
+| `public/sounds/enter.mp3`   | 進島／開始   | Dialog Pop      |
 
-畫面上有「音效開／關」開關，偏好存在本機 `localStorage`。
+音量請用裝置自行調整。

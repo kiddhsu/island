@@ -8,7 +8,6 @@ import {
 } from '../lib/profiles'
 import type { Grade } from '../types'
 import { BigButton } from '../components/BigButton'
-import { SoundToggle } from '../components/SoundToggle'
 import { playSfx } from '../lib/sfx'
 
 export function Profiles() {
@@ -80,7 +79,6 @@ export function Profiles() {
           <div className="nes-title">PLAYER SELECT</div>
           選探險家・年級決定題庫
         </div>
-        <SoundToggle />
       </header>
       <div style={{ padding: 12 }}>
 
