@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import type { OrderQuestion } from '../../types'
 import { playSfx } from '../../lib/sfx'
 import { shuffle } from '../../lib/shuffle'
+import { PlayBurst } from './PlayBurst'
 import type { PlayResultHandler } from './types'
 
 type Props = {
@@ -14,6 +15,7 @@ export function PipePlay({ question, onResult }: Props) {
   const [filled, setFilled] = useState<string[]>([])
   const [remain, setRemain] = useState(pool)
   const [locked, setLocked] = useState(false)
+  const [burst, setBurst] = useState<boolean | null>(null)
 
   function pick(item: string) {
     if (locked) return
@@ -21,8 +23,9 @@ export function PipePlay({ question, onResult }: Props) {
     playSfx('tap', 0.3)
     if (item !== expect) {
       playSfx('wrong', 0.45)
+      setBurst(false)
       setLocked(true)
-      window.setTimeout(() => onResult(false), 500)
+      window.setTimeout(() => onResult(false), 700)
       return
     }
     playSfx('correct', 0.4)
@@ -30,9 +33,10 @@ export function PipePlay({ question, onResult }: Props) {
     setFilled(nextFilled)
     setRemain((r) => r.filter((x) => x !== item))
     if (nextFilled.length >= question.correctOrder.length) {
+      setBurst(true)
       setLocked(true)
       playSfx('success', 0.55)
-      window.setTimeout(() => onResult(true), 500)
+      window.setTimeout(() => onResult(true), 700)
     }
   }
 
@@ -62,6 +66,7 @@ export function PipePlay({ question, onResult }: Props) {
           ))}
         </div>
       </div>
+      {burst != null ? <PlayBurst ok={burst} /> : null}
     </div>
   )
 }

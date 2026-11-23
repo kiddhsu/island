@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import type { ChoiceQuestion } from '../../types'
 import { playSfx } from '../../lib/sfx'
 import { pickPlayChoices } from './choiceUtils'
+import { PlayBurst } from './PlayBurst'
 import type { PlayResultHandler } from './types'
 
 type Props = {
@@ -17,6 +18,7 @@ export function RevealPlay({ question, onResult }: Props) {
   const cards = useMemo(() => pickPlayChoices(question, 4), [question])
   const [picked, setPicked] = useState<number | null>(null)
   const [locked, setLocked] = useState(false)
+  const [burst, setBurst] = useState<boolean | null>(null)
 
   function open(i: number) {
     if (locked) return
@@ -25,8 +27,9 @@ export function RevealPlay({ question, onResult }: Props) {
     playSfx('tap', 0.35)
     const ok = cards[i]?.correct ?? false
     window.setTimeout(() => {
+      setBurst(ok)
       playSfx(ok ? 'correct' : 'wrong', ok ? 0.55 : 0.45)
-      window.setTimeout(() => onResult(ok), 550)
+      window.setTimeout(() => onResult(ok), 700)
     }, 220)
   }
 
@@ -51,6 +54,7 @@ export function RevealPlay({ question, onResult }: Props) {
           </button>
         ))}
       </div>
+      {burst != null ? <PlayBurst ok={burst} /> : null}
     </div>
   )
 }

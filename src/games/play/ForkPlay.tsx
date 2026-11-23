@@ -2,6 +2,8 @@ import { useMemo, useState } from 'react'
 import type { ChoiceQuestion } from '../../types'
 import { playSfx } from '../../lib/sfx'
 import { pickPlayChoices } from './choiceUtils'
+import { PlayBurst } from './PlayBurst'
+import { PlayHero } from './PlayHero'
 import type { PlayResultHandler } from './types'
 
 type Props = {
@@ -15,18 +17,23 @@ export function ForkPlay({ question, onResult }: Props) {
   const [hero, setHero] = useState({ left: '50%', bottom: '22%' })
   const [locked, setLocked] = useState(false)
   const [flash, setFlash] = useState<number | null>(null)
+  const [burst, setBurst] = useState<{ ok: boolean; x: string; y: string } | null>(
+    null,
+  )
 
   function pick(i: number) {
     if (locked) return
     setLocked(true)
     const lefts = ['18%', '50%', '82%']
-    setHero({ left: lefts[i] ?? '50%', bottom: '48%' })
+    const left = lefts[i] ?? '50%'
+    setHero({ left, bottom: '48%' })
     playSfx('tap', 0.35)
     window.setTimeout(() => {
       setFlash(i)
       const ok = roads[i]?.correct ?? false
+      setBurst({ ok, x: left, y: '40%' })
       playSfx(ok ? 'correct' : 'wrong', ok ? 0.55 : 0.45)
-      window.setTimeout(() => onResult(ok), 650)
+      window.setTimeout(() => onResult(ok), 750)
     }, 320)
   }
 
@@ -37,7 +44,7 @@ export function ForkPlay({ question, onResult }: Props) {
         {question.prompt}
         {'\n'}選正確的路前進
       </p>
-      <div className="fork-hero" style={hero} />
+      <PlayHero pose="fork" style={hero} />
       {roads.map((r, i) => (
         <button
           key={`${question.id}-fork-${i}-${r.label}`}
@@ -59,6 +66,7 @@ export function ForkPlay({ question, onResult }: Props) {
           {r.label}
         </button>
       ))}
+      {burst ? <PlayBurst ok={burst.ok} x={burst.x} y={burst.y} /> : null}
     </div>
   )
 }

@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import type { MatchQuestion } from '../../types'
 import { playSfx } from '../../lib/sfx'
 import { shuffle } from '../../lib/shuffle'
+import { PlayBurst } from './PlayBurst'
 import type { PlayResultHandler } from './types'
 
 type Card = {
@@ -35,9 +36,11 @@ export function FlipPlay({ question, onResult }: Props) {
   const [matched, setMatched] = useState<string[]>([])
   const [misses, setMisses] = useState(0)
   const [locked, setLocked] = useState(false)
+  const [burst, setBurst] = useState<boolean | null>(null)
 
   function finish(ok: boolean) {
-    window.setTimeout(() => onResult(ok), 400)
+    setBurst(ok)
+    window.setTimeout(() => onResult(ok), 700)
   }
 
   function click(card: Card) {
@@ -59,19 +62,25 @@ export function FlipPlay({ question, onResult }: Props) {
     setLocked(true)
     if (a.pairId === b.pairId) {
       playSfx('correct', 0.5)
+      setBurst(true)
       const nextMatched = [...matched, a.pairId]
       setMatched(nextMatched)
       setOpen([])
-      setLocked(false)
-      if (nextMatched.length >= need) {
-        playSfx('success', 0.5)
-        finish(true)
-      }
+      window.setTimeout(() => {
+        setBurst(null)
+        setLocked(false)
+        if (nextMatched.length >= need) {
+          playSfx('success', 0.5)
+          finish(true)
+        }
+      }, 500)
     } else {
       playSfx('wrong', 0.4)
+      setBurst(false)
       const nextMisses = misses + 1
       setMisses(nextMisses)
       window.setTimeout(() => {
+        setBurst(null)
         setOpen([])
         setLocked(false)
         if (nextMisses >= MAX_MISSES) finish(false)
@@ -102,6 +111,7 @@ export function FlipPlay({ question, onResult }: Props) {
           )
         })}
       </div>
+      {burst != null ? <PlayBurst ok={burst} /> : null}
     </div>
   )
 }

@@ -2,6 +2,8 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import type { ChoiceQuestion } from '../../types'
 import { playSfx } from '../../lib/sfx'
 import { pickPlayChoices } from './choiceUtils'
+import { PlayBurst } from './PlayBurst'
+import { PlayHero } from './PlayHero'
 import type { PlayResultHandler } from './types'
 
 type Falling = {
@@ -21,6 +23,9 @@ export function CatchPlay({ question, onResult }: Props) {
   const [heroX, setHeroX] = useState(50)
   const [items, setItems] = useState<Falling[]>([])
   const [locked, setLocked] = useState(false)
+  const [burst, setBurst] = useState<{ ok: boolean; x: string; y: string } | null>(
+    null,
+  )
   const ended = useRef(false)
   const onResultRef = useRef(onResult)
   onResultRef.current = onResult
@@ -30,6 +35,7 @@ export function CatchPlay({ question, onResult }: Props) {
   useEffect(() => {
     ended.current = false
     setLocked(false)
+    setBurst(null)
     setHeroX(50)
     setItems(
       pack.map((p, i) => ({
@@ -50,26 +56,29 @@ export function CatchPlay({ question, onResult }: Props) {
     return () => window.clearInterval(timer)
   }, [locked, question.id])
 
+  function finish(ok: boolean, x: number, y: number) {
+    if (ended.current) return
+    ended.current = true
+    setLocked(true)
+    setBurst({
+      ok,
+      x: `${x}%`,
+      y: `${Math.min(78, Math.max(28, y))}%`,
+    })
+    playSfx(ok ? 'correct' : 'wrong', ok ? 0.55 : 0.45)
+    window.setTimeout(() => onResultRef.current(ok), ok ? 700 : 750)
+  }
+
   useEffect(() => {
     if (locked || ended.current) return
 
     for (const it of items) {
-      // 角色在底部約 78~88% 高度帶接住
       if (it.y < 74 || it.y > 90) continue
       if (Math.abs(it.x - heroX) > 16) continue
-      ended.current = true
-      setLocked(true)
-      if (it.correct) {
-        playSfx('correct', 0.55)
-        window.setTimeout(() => onResultRef.current(true), 400)
-      } else {
-        playSfx('wrong', 0.45)
-        window.setTimeout(() => onResultRef.current(false), 450)
-      }
+      finish(it.correct, it.x, it.y)
       return
     }
 
-    // 全部掉出畫面：重掉一次，不直接判錯（避免操作來不及）
     if (items.length && items.every((it) => it.y > 108) && !ended.current) {
       setItems((prev) =>
         prev.map((it, i) => ({
@@ -89,18 +98,9 @@ export function CatchPlay({ question, onResult }: Props) {
 
   function tapItem(it: Falling) {
     if (locked || ended.current) return
-    // 點擊掉落物也可接住（平板較好操作）
     if (it.y < 20 || it.y > 95) return
-    ended.current = true
-    setLocked(true)
     playSfx('tap', 0.3)
-    if (it.correct) {
-      playSfx('correct', 0.55)
-      window.setTimeout(() => onResultRef.current(true), 400)
-    } else {
-      playSfx('wrong', 0.45)
-      window.setTimeout(() => onResultRef.current(false), 450)
-    }
+    finish(it.correct, it.x, it.y)
   }
 
   return (
@@ -122,7 +122,11 @@ export function CatchPlay({ question, onResult }: Props) {
             {it.label}
           </button>
         ))}
-        <div className="catch-hero" style={{ left: `calc(${heroX}% - 24px)` }} />
+        <PlayHero
+          pose="catch"
+          style={{ left: `calc(${heroX}% - 28px)` }}
+        />
+        {burst ? <PlayBurst ok={burst.ok} x={burst.x} y={burst.y} /> : null}
       </div>
       <div className="ctrl-bar">
         <button type="button" className="ctrl-pad" onClick={() => move(-14)}>

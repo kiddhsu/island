@@ -206,9 +206,10 @@ function IslandMesh({
           </mesh>
         ) : null}
         <Html
-          position={[0, 1.75, 0]}
+          position={[0, 2.35, 0]}
           center
-          distanceFactor={9}
+          sprite
+          distanceFactor={10}
           zIndexRange={[8, 0]}
           style={{ pointerEvents: 'none' }}
         >
