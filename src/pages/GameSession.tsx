@@ -22,10 +22,39 @@ export function GameSession() {
     if (!island || !activeProfile) return []
     const progress = loadProgress()
     const bank = getBank(island.id, activeProfile.grade)
-    return drawRound(bank, ROUND_SIZE, {
+    const opts = {
       wrongIds: progress.wrongIds,
       recentCorrectIds: progress.recentCorrectIds,
-    })
+    }
+    const isChoiceLike = (q: (typeof bank)[number]) =>
+      q.engine === 'choice' || q.engine === 'scenario'
+
+    // 依玩法抽對應題型，避免出現「此題暫不支援」
+    if (island.playMode === 'flip') {
+      const matches = bank.filter((q) => q.engine === 'match')
+      const others = bank.filter(isChoiceLike)
+      const matchPick = drawRound(matches, Math.min(3, matches.length), opts)
+      const otherPick = drawRound(
+        others,
+        Math.max(0, ROUND_SIZE - matchPick.length),
+        opts,
+      )
+      return [...matchPick, ...otherPick]
+    }
+    if (island.playMode === 'pipe') {
+      const orders = bank.filter((q) => q.engine === 'order')
+      const others = bank.filter(isChoiceLike)
+      const orderPick = drawRound(orders, Math.min(4, orders.length), opts)
+      const otherPick = drawRound(
+        others,
+        Math.max(0, ROUND_SIZE - orderPick.length),
+        opts,
+      )
+      return [...orderPick, ...otherPick]
+    }
+    // jump / catch / fork：只用選擇／情境題
+    const playable = bank.filter(isChoiceLike)
+    return drawRound(playable.length ? playable : bank, ROUND_SIZE, opts)
   }, [roundKey, island, activeProfile])
 
   const [index, setIndex] = useState(0)

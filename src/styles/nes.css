@@ -287,6 +287,8 @@ body.nes-world {
   line-height: 1.35;
   text-align: center;
   transform: translateX(-50%);
+  cursor: pointer;
+  z-index: 2;
 }
 
 .fork-road {
@@ -355,6 +357,10 @@ body.nes-world {
 
 .flip-card.matched {
   background: #00a800;
+}
+
+.flip-card.missed {
+  background: #e52521;
 }
 
 .pipe-track {

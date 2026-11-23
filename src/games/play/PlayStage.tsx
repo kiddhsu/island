@@ -21,20 +21,26 @@ type Props = {
 export function PlayStage({ mode, question, onResult }: Props) {
   if (mode === 'jump') {
     const q = asChoice(question)
-    if (!q) return <Fallback modeHint="跳躍" onResult={onResult} />
-    return <JumpPlay key={q.id} question={q} onResult={onResult} />
+    if (q) return <JumpPlay key={q.id} question={q} onResult={onResult} />
+    if (asMatch(question))
+      return <FlipPlay key={question.id} question={asMatch(question)!} onResult={onResult} />
+    return <Fallback modeHint="跳躍" onResult={onResult} />
   }
 
   if (mode === 'catch') {
     const q = asChoice(question)
-    if (!q) return <Fallback modeHint="接物" onResult={onResult} />
-    return <CatchPlay key={q.id} question={q} onResult={onResult} />
+    if (q) return <CatchPlay key={q.id} question={q} onResult={onResult} />
+    const match = asMatch(question)
+    if (match) return <FlipPlay key={match.id} question={match} onResult={onResult} />
+    return <Fallback modeHint="接物" onResult={onResult} />
   }
 
   if (mode === 'fork') {
     const q = asChoice(question)
-    if (!q) return <Fallback modeHint="岔路" onResult={onResult} />
-    return <ForkPlay key={q.id} question={q} onResult={onResult} />
+    if (q) return <ForkPlay key={q.id} question={q} onResult={onResult} />
+    if (asMatch(question))
+      return <FlipPlay key={question.id} question={asMatch(question)!} onResult={onResult} />
+    return <Fallback modeHint="岔路" onResult={onResult} />
   }
 
   if (mode === 'flip') {

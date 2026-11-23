@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import type { ChoiceQuestion } from '../../types'
 import { playSfx } from '../../lib/sfx'
+import { pickPlayChoices } from './choiceUtils'
 import type { PlayResultHandler } from './types'
 
 type Props = {
@@ -10,10 +11,12 @@ type Props = {
 
 export function JumpPlay({ question, onResult }: Props) {
   const slots = useMemo(() => {
-    return question.choices.map((label, i) => ({
-      label,
-      correct: i === question.answerIndex,
-      left: `${8 + i * 24}%`,
+    const picks = pickPlayChoices(question, 4)
+    const n = Math.max(picks.length, 1)
+    return picks.map((p, i) => ({
+      ...p,
+      left: `${6 + (i * 88) / n}%`,
+      width: `${Math.min(24, 80 / n)}%`,
     }))
   }, [question])
 
@@ -47,16 +50,17 @@ export function JumpPlay({ question, onResult }: Props) {
     <div className="play-stage grounded">
       <p className="nes-prompt" style={{ margin: 8 }}>
         {question.prompt}
+        {'\n'}跳上正確的平台！
       </p>
       <div className="jump-hero" style={{ left: heroLeft, bottom: heroBottom }} />
       {slots.map((s, i) => (
         <button
-          key={`${question.id}-${i}`}
+          key={`${question.id}-${i}-${s.label}`}
           type="button"
           className={`jump-platform ${
             flash === i ? (s.correct ? 'correct-flash' : 'wrong-flash') : ''
           }`}
-          style={{ left: s.left }}
+          style={{ left: s.left, width: s.width, minWidth: s.width }}
           disabled={locked}
           onClick={() => jumpTo(i)}
         >
