@@ -1,7 +1,11 @@
 .env
+.env.local
 .venv/
 venv/
 node_modules/
 __pycache__/
 *.log
 .cursor/
+dist/
+.DS_Store
+*.local

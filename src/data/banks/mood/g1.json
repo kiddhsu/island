@@ -1,0 +1,587 @@
+[
+  {
+    "id": "mood-1-1",
+    "engine": "scenario",
+    "prompt": "和好朋友搶同一個玩具，你可以？",
+    "choices": [
+      "商量輪流玩",
+      "搶過來打人",
+      "偷偷藏起來永不給",
+      "罵很難聽的話"
+    ],
+    "answerIndex": 0,
+    "explain": "輪流與商量比較好。"
+  },
+  {
+    "id": "mood-1-2",
+    "engine": "scenario",
+    "prompt": "考試考不好很難過，可以？",
+    "choices": [
+      "再也不學習",
+      "告訴信任的大人並再練習",
+      "撕考卷發脾氣砸東西",
+      "欺負分數高的同學"
+    ],
+    "answerIndex": 1,
+    "explain": "情緒可以說出來，再一起想辦法。"
+  },
+  {
+    "id": "mood-1-3",
+    "engine": "scenario",
+    "prompt": "想加入別人的遊戲，較好的說法是？",
+    "choices": [
+      "直接搶器材",
+      "生悶氣不說話卻推人",
+      "請問我可以一起玩嗎？",
+      "大叫你們必須讓我"
+    ],
+    "answerIndex": 2,
+    "explain": "用有禮貌的話表達。"
+  },
+  {
+    "id": "mood-1-4",
+    "engine": "scenario",
+    "prompt": "被同學誤會時？",
+    "choices": [
+      "立刻動手",
+      "在背後說壞話",
+      "冷靜說明或請老師幫忙",
+      "整天不說話報復"
+    ],
+    "answerIndex": 2,
+    "explain": "溝通與求助比打架好。"
+  },
+  {
+    "id": "mood-1-5",
+    "engine": "scenario",
+    "prompt": "輪到別人發言時，你應該？",
+    "choices": [
+      "走开大吵",
+      "一直插話",
+      "嘲笑他",
+      "安靜聽完再舉手"
+    ],
+    "answerIndex": 3,
+    "explain": "學會等待與尊重。"
+  },
+  {
+    "id": "mood-1-6",
+    "engine": "scenario",
+    "prompt": "開心的時候可以？",
+    "choices": [
+      "破壞東西",
+      "故意弄疼別人才開心",
+      "不理會任何人永遠",
+      "分享給家人朋友"
+    ],
+    "answerIndex": 3,
+    "explain": "正向情緒也可以好好表達。"
+  },
+  {
+    "id": "mood-1-7",
+    "engine": "scenario",
+    "prompt": "和好朋友搶同一個玩具，你可以？",
+    "choices": [
+      "偷偷藏起來永不給",
+      "搶過來打人",
+      "商量輪流玩",
+      "罵很難聽的話"
+    ],
+    "answerIndex": 2,
+    "explain": "輪流與商量比較好。"
+  },
+  {
+    "id": "mood-1-8",
+    "engine": "scenario",
+    "prompt": "考試考不好很難過，可以？",
+    "choices": [
+      "告訴信任的大人並再練習",
+      "撕考卷發脾氣砸東西",
+      "再也不學習",
+      "欺負分數高的同學"
+    ],
+    "answerIndex": 0,
+    "explain": "情緒可以說出來，再一起想辦法。"
+  },
+  {
+    "id": "mood-1-9",
+    "engine": "scenario",
+    "prompt": "想加入別人的遊戲，較好的說法是？",
+    "choices": [
+      "直接搶器材",
+      "大叫你們必須讓我",
+      "生悶氣不說話卻推人",
+      "請問我可以一起玩嗎？"
+    ],
+    "answerIndex": 3,
+    "explain": "用有禮貌的話表達。"
+  },
+  {
+    "id": "mood-1-10",
+    "engine": "scenario",
+    "prompt": "被同學誤會時？",
+    "choices": [
+      "整天不說話報復",
+      "在背後說壞話",
+      "立刻動手",
+      "冷靜說明或請老師幫忙"
+    ],
+    "answerIndex": 3,
+    "explain": "溝通與求助比打架好。"
+  },
+  {
+    "id": "mood-1-11",
+    "engine": "scenario",
+    "prompt": "輪到別人發言時，你應該？",
+    "choices": [
+      "安靜聽完再舉手",
+      "走开大吵",
+      "一直插話",
+      "嘲笑他"
+    ],
+    "answerIndex": 0,
+    "explain": "學會等待與尊重。"
+  },
+  {
+    "id": "mood-1-12",
+    "engine": "scenario",
+    "prompt": "開心的時候可以？",
+    "choices": [
+      "不理會任何人永遠",
+      "分享給家人朋友",
+      "故意弄疼別人才開心",
+      "破壞東西"
+    ],
+    "answerIndex": 1,
+    "explain": "正向情緒也可以好好表達。"
+  },
+  {
+    "id": "mood-1-13",
+    "engine": "scenario",
+    "prompt": "和好朋友搶同一個玩具，你可以？",
+    "choices": [
+      "搶過來打人",
+      "商量輪流玩",
+      "罵很難聽的話",
+      "偷偷藏起來永不給"
+    ],
+    "answerIndex": 1,
+    "explain": "輪流與商量比較好。"
+  },
+  {
+    "id": "mood-1-14",
+    "engine": "scenario",
+    "prompt": "考試考不好很難過，可以？",
+    "choices": [
+      "告訴信任的大人並再練習",
+      "欺負分數高的同學",
+      "再也不學習",
+      "撕考卷發脾氣砸東西"
+    ],
+    "answerIndex": 0,
+    "explain": "情緒可以說出來，再一起想辦法。"
+  },
+  {
+    "id": "mood-1-15",
+    "engine": "scenario",
+    "prompt": "想加入別人的遊戲，較好的說法是？",
+    "choices": [
+      "大叫你們必須讓我",
+      "直接搶器材",
+      "請問我可以一起玩嗎？",
+      "生悶氣不說話卻推人"
+    ],
+    "answerIndex": 2,
+    "explain": "用有禮貌的話表達。"
+  },
+  {
+    "id": "mood-1-16",
+    "engine": "scenario",
+    "prompt": "被同學誤會時？",
+    "choices": [
+      "在背後說壞話",
+      "冷靜說明或請老師幫忙",
+      "立刻動手",
+      "整天不說話報復"
+    ],
+    "answerIndex": 1,
+    "explain": "溝通與求助比打架好。"
+  },
+  {
+    "id": "mood-1-17",
+    "engine": "scenario",
+    "prompt": "輪到別人發言時，你應該？",
+    "choices": [
+      "安靜聽完再舉手",
+      "一直插話",
+      "嘲笑他",
+      "走开大吵"
+    ],
+    "answerIndex": 0,
+    "explain": "學會等待與尊重。"
+  },
+  {
+    "id": "mood-1-18",
+    "engine": "scenario",
+    "prompt": "開心的時候可以？",
+    "choices": [
+      "故意弄疼別人才開心",
+      "分享給家人朋友",
+      "破壞東西",
+      "不理會任何人永遠"
+    ],
+    "answerIndex": 1,
+    "explain": "正向情緒也可以好好表達。"
+  },
+  {
+    "id": "mood-1-19",
+    "engine": "scenario",
+    "prompt": "和好朋友搶同一個玩具，你可以？",
+    "choices": [
+      "罵很難聽的話",
+      "搶過來打人",
+      "商量輪流玩",
+      "偷偷藏起來永不給"
+    ],
+    "answerIndex": 2,
+    "explain": "輪流與商量比較好。"
+  },
+  {
+    "id": "mood-1-20",
+    "engine": "scenario",
+    "prompt": "考試考不好很難過，可以？",
+    "choices": [
+      "欺負分數高的同學",
+      "告訴信任的大人並再練習",
+      "再也不學習",
+      "撕考卷發脾氣砸東西"
+    ],
+    "answerIndex": 1,
+    "explain": "情緒可以說出來，再一起想辦法。"
+  },
+  {
+    "id": "mood-1-21",
+    "engine": "scenario",
+    "prompt": "想加入別人的遊戲，較好的說法是？",
+    "choices": [
+      "大叫你們必須讓我",
+      "直接搶器材",
+      "生悶氣不說話卻推人",
+      "請問我可以一起玩嗎？"
+    ],
+    "answerIndex": 3,
+    "explain": "用有禮貌的話表達。"
+  },
+  {
+    "id": "mood-1-22",
+    "engine": "scenario",
+    "prompt": "被同學誤會時？",
+    "choices": [
+      "在背後說壞話",
+      "立刻動手",
+      "冷靜說明或請老師幫忙",
+      "整天不說話報復"
+    ],
+    "answerIndex": 2,
+    "explain": "溝通與求助比打架好。"
+  },
+  {
+    "id": "mood-1-23",
+    "engine": "scenario",
+    "prompt": "輪到別人發言時，你應該？",
+    "choices": [
+      "安靜聽完再舉手",
+      "一直插話",
+      "嘲笑他",
+      "走开大吵"
+    ],
+    "answerIndex": 0,
+    "explain": "學會等待與尊重。"
+  },
+  {
+    "id": "mood-1-24",
+    "engine": "scenario",
+    "prompt": "開心的時候可以？",
+    "choices": [
+      "故意弄疼別人才開心",
+      "不理會任何人永遠",
+      "分享給家人朋友",
+      "破壞東西"
+    ],
+    "answerIndex": 2,
+    "explain": "正向情緒也可以好好表達。"
+  },
+  {
+    "id": "mood-1-25",
+    "engine": "scenario",
+    "prompt": "和好朋友搶同一個玩具，你可以？",
+    "choices": [
+      "偷偷藏起來永不給",
+      "罵很難聽的話",
+      "商量輪流玩",
+      "搶過來打人"
+    ],
+    "answerIndex": 2,
+    "explain": "輪流與商量比較好。"
+  },
+  {
+    "id": "mood-1-26",
+    "engine": "scenario",
+    "prompt": "考試考不好很難過，可以？",
+    "choices": [
+      "欺負分數高的同學",
+      "撕考卷發脾氣砸東西",
+      "告訴信任的大人並再練習",
+      "再也不學習"
+    ],
+    "answerIndex": 2,
+    "explain": "情緒可以說出來，再一起想辦法。"
+  },
+  {
+    "id": "mood-1-27",
+    "engine": "scenario",
+    "prompt": "想加入別人的遊戲，較好的說法是？",
+    "choices": [
+      "大叫你們必須讓我",
+      "請問我可以一起玩嗎？",
+      "直接搶器材",
+      "生悶氣不說話卻推人"
+    ],
+    "answerIndex": 1,
+    "explain": "用有禮貌的話表達。"
+  },
+  {
+    "id": "mood-1-28",
+    "engine": "scenario",
+    "prompt": "被同學誤會時？",
+    "choices": [
+      "冷靜說明或請老師幫忙",
+      "整天不說話報復",
+      "在背後說壞話",
+      "立刻動手"
+    ],
+    "answerIndex": 0,
+    "explain": "溝通與求助比打架好。"
+  },
+  {
+    "id": "mood-1-29",
+    "engine": "scenario",
+    "prompt": "輪到別人發言時，你應該？",
+    "choices": [
+      "走开大吵",
+      "安靜聽完再舉手",
+      "一直插話",
+      "嘲笑他"
+    ],
+    "answerIndex": 1,
+    "explain": "學會等待與尊重。"
+  },
+  {
+    "id": "mood-1-30",
+    "engine": "scenario",
+    "prompt": "開心的時候可以？",
+    "choices": [
+      "故意弄疼別人才開心",
+      "不理會任何人永遠",
+      "破壞東西",
+      "分享給家人朋友"
+    ],
+    "answerIndex": 3,
+    "explain": "正向情緒也可以好好表達。"
+  },
+  {
+    "id": "mood-1-31",
+    "engine": "scenario",
+    "prompt": "和好朋友搶同一個玩具，你可以？",
+    "choices": [
+      "偷偷藏起來永不給",
+      "商量輪流玩",
+      "搶過來打人",
+      "罵很難聽的話"
+    ],
+    "answerIndex": 1,
+    "explain": "輪流與商量比較好。"
+  },
+  {
+    "id": "mood-1-32",
+    "engine": "scenario",
+    "prompt": "考試考不好很難過，可以？",
+    "choices": [
+      "欺負分數高的同學",
+      "再也不學習",
+      "撕考卷發脾氣砸東西",
+      "告訴信任的大人並再練習"
+    ],
+    "answerIndex": 3,
+    "explain": "情緒可以說出來，再一起想辦法。"
+  },
+  {
+    "id": "mood-1-33",
+    "engine": "scenario",
+    "prompt": "想加入別人的遊戲，較好的說法是？",
+    "choices": [
+      "請問我可以一起玩嗎？",
+      "直接搶器材",
+      "大叫你們必須讓我",
+      "生悶氣不說話卻推人"
+    ],
+    "answerIndex": 0,
+    "explain": "用有禮貌的話表達。"
+  },
+  {
+    "id": "mood-1-34",
+    "engine": "scenario",
+    "prompt": "被同學誤會時？",
+    "choices": [
+      "冷靜說明或請老師幫忙",
+      "立刻動手",
+      "在背後說壞話",
+      "整天不說話報復"
+    ],
+    "answerIndex": 0,
+    "explain": "溝通與求助比打架好。"
+  },
+  {
+    "id": "mood-1-35",
+    "engine": "scenario",
+    "prompt": "輪到別人發言時，你應該？",
+    "choices": [
+      "嘲笑他",
+      "走开大吵",
+      "安靜聽完再舉手",
+      "一直插話"
+    ],
+    "answerIndex": 2,
+    "explain": "學會等待與尊重。"
+  },
+  {
+    "id": "mood-1-36",
+    "engine": "scenario",
+    "prompt": "開心的時候可以？",
+    "choices": [
+      "分享給家人朋友",
+      "不理會任何人永遠",
+      "破壞東西",
+      "故意弄疼別人才開心"
+    ],
+    "answerIndex": 0,
+    "explain": "正向情緒也可以好好表達。"
+  },
+  {
+    "id": "mood-1-37",
+    "engine": "scenario",
+    "prompt": "和好朋友搶同一個玩具，你可以？",
+    "choices": [
+      "商量輪流玩",
+      "搶過來打人",
+      "罵很難聽的話",
+      "偷偷藏起來永不給"
+    ],
+    "answerIndex": 0,
+    "explain": "輪流與商量比較好。"
+  },
+  {
+    "id": "mood-1-38",
+    "engine": "scenario",
+    "prompt": "考試考不好很難過，可以？",
+    "choices": [
+      "欺負分數高的同學",
+      "再也不學習",
+      "告訴信任的大人並再練習",
+      "撕考卷發脾氣砸東西"
+    ],
+    "answerIndex": 2,
+    "explain": "情緒可以說出來，再一起想辦法。"
+  },
+  {
+    "id": "mood-1-39",
+    "engine": "scenario",
+    "prompt": "想加入別人的遊戲，較好的說法是？",
+    "choices": [
+      "直接搶器材",
+      "大叫你們必須讓我",
+      "生悶氣不說話卻推人",
+      "請問我可以一起玩嗎？"
+    ],
+    "answerIndex": 3,
+    "explain": "用有禮貌的話表達。"
+  },
+  {
+    "id": "mood-1-40",
+    "engine": "scenario",
+    "prompt": "被同學誤會時？",
+    "choices": [
+      "整天不說話報復",
+      "冷靜說明或請老師幫忙",
+      "在背後說壞話",
+      "立刻動手"
+    ],
+    "answerIndex": 1,
+    "explain": "溝通與求助比打架好。"
+  },
+  {
+    "id": "mood-1-41",
+    "engine": "scenario",
+    "prompt": "輪到別人發言時，你應該？",
+    "choices": [
+      "走开大吵",
+      "一直插話",
+      "嘲笑他",
+      "安靜聽完再舉手"
+    ],
+    "answerIndex": 3,
+    "explain": "學會等待與尊重。"
+  },
+  {
+    "id": "mood-1-42",
+    "engine": "scenario",
+    "prompt": "開心的時候可以？",
+    "choices": [
+      "破壞東西",
+      "分享給家人朋友",
+      "故意弄疼別人才開心",
+      "不理會任何人永遠"
+    ],
+    "answerIndex": 1,
+    "explain": "正向情緒也可以好好表達。"
+  },
+  {
+    "id": "mood-1-43",
+    "engine": "scenario",
+    "prompt": "和好朋友搶同一個玩具，你可以？",
+    "choices": [
+      "商量輪流玩",
+      "罵很難聽的話",
+      "偷偷藏起來永不給",
+      "搶過來打人"
+    ],
+    "answerIndex": 0,
+    "explain": "輪流與商量比較好。"
+  },
+  {
+    "id": "mood-1-44",
+    "engine": "scenario",
+    "prompt": "考試考不好很難過，可以？",
+    "choices": [
+      "告訴信任的大人並再練習",
+      "再也不學習",
+      "欺負分數高的同學",
+      "撕考卷發脾氣砸東西"
+    ],
+    "answerIndex": 0,
+    "explain": "情緒可以說出來，再一起想辦法。"
+  },
+  {
+    "id": "mood-1-45",
+    "engine": "scenario",
+    "prompt": "想加入別人的遊戲，較好的說法是？",
+    "choices": [
+      "直接搶器材",
+      "大叫你們必須讓我",
+      "請問我可以一起玩嗎？",
+      "生悶氣不說話卻推人"
+    ],
+    "answerIndex": 2,
+    "explain": "用有禮貌的話表達。"
+  }
+]

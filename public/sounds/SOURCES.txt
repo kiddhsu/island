@@ -1,0 +1,8 @@
+音效：www.casper.tw/sound-effects
+授權：https://www.casper.tw/sound-effects/zh-tw/license
+
+tap.mp3      <- ui-click-crisp（Click Crisp）
+correct.mp3  <- ui-confirm-bright（Confirm Bright / 明亮答對音）
+wrong.mp3    <- ui-error-blip-low（Error Blip Low / 低沉錯誤提示音）
+success.mp3  <- ui-confirm-sparkle（Confirm Sparkle / 閃爍答對音）
+enter.mp3    <- pop-dialog-open-close（Dialog Pop Open Close）

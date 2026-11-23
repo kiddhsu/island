@@ -1,0 +1,747 @@
+[
+  {
+    "id": "chars-2-1",
+    "engine": "choice",
+    "prompt": "哪一個字「像人張開雙手」？",
+    "choices": [
+      "雲",
+      "晚",
+      "大",
+      "足"
+    ],
+    "answerIndex": 2,
+    "explain": "正確是「大」"
+  },
+  {
+    "id": "chars-2-2",
+    "engine": "choice",
+    "prompt": "哪一個字「中間一豎兩點」？",
+    "choices": [
+      "雨",
+      "目",
+      "小",
+      "下"
+    ],
+    "answerIndex": 2,
+    "explain": "正確是「小」"
+  },
+  {
+    "id": "chars-2-3",
+    "engine": "choice",
+    "prompt": "請選出「多」字",
+    "choices": [
+      "多",
+      "鳥",
+      "室",
+      "區"
+    ],
+    "answerIndex": 0,
+    "explain": "正確是「多」"
+  },
+  {
+    "id": "chars-2-4",
+    "engine": "choice",
+    "prompt": "請選出「少」字",
+    "choices": [
+      "通",
+      "謝",
+      "木",
+      "少"
+    ],
+    "answerIndex": 3,
+    "explain": "正確是「少」"
+  },
+  {
+    "id": "chars-2-5",
+    "engine": "choice",
+    "prompt": "請選出「上」字",
+    "choices": [
+      "上",
+      "觀",
+      "蟲",
+      "車"
+    ],
+    "answerIndex": 0,
+    "explain": "正確是「上」"
+  },
+  {
+    "id": "chars-2-6",
+    "engine": "choice",
+    "prompt": "請選出「下」字",
+    "choices": [
+      "多",
+      "謝",
+      "下",
+      "康"
+    ],
+    "answerIndex": 2,
+    "explain": "正確是「下」"
+  },
+  {
+    "id": "chars-2-7",
+    "engine": "choice",
+    "prompt": "請選出「中」字",
+    "choices": [
+      "木",
+      "紙",
+      "中",
+      "求"
+    ],
+    "answerIndex": 2,
+    "explain": "正確是「中」"
+  },
+  {
+    "id": "chars-2-8",
+    "engine": "choice",
+    "prompt": "請選出「左」字",
+    "choices": [
+      "雨",
+      "早",
+      "左",
+      "友"
+    ],
+    "answerIndex": 2,
+    "explain": "正確是「左」"
+  },
+  {
+    "id": "chars-2-9",
+    "engine": "choice",
+    "prompt": "請選出「右」字",
+    "choices": [
+      "右",
+      "水",
+      "左",
+      "星"
+    ],
+    "answerIndex": 0,
+    "explain": "正確是「右」"
+  },
+  {
+    "id": "chars-2-10",
+    "engine": "choice",
+    "prompt": "請選出「來」字",
+    "choices": [
+      "蟲",
+      "入",
+      "來",
+      "故"
+    ],
+    "answerIndex": 2,
+    "explain": "正確是「來」"
+  },
+  {
+    "id": "chars-2-11",
+    "engine": "choice",
+    "prompt": "請選出「去」字",
+    "choices": [
+      "魚",
+      "飯",
+      "整",
+      "去"
+    ],
+    "answerIndex": 3,
+    "explain": "正確是「去」"
+  },
+  {
+    "id": "chars-2-12",
+    "engine": "choice",
+    "prompt": "請選出「出」字",
+    "choices": [
+      "日",
+      "火",
+      "出",
+      "待"
+    ],
+    "answerIndex": 2,
+    "explain": "正確是「出」"
+  },
+  {
+    "id": "chars-2-13",
+    "engine": "choice",
+    "prompt": "請選出「入」字",
+    "choices": [
+      "晚",
+      "入",
+      "母",
+      "觀"
+    ],
+    "answerIndex": 1,
+    "explain": "正確是「入」"
+  },
+  {
+    "id": "chars-2-14",
+    "engine": "choice",
+    "prompt": "請選出「早」字",
+    "choices": [
+      "來",
+      "早",
+      "輪",
+      "流"
+    ],
+    "answerIndex": 1,
+    "explain": "正確是「早」"
+  },
+  {
+    "id": "chars-2-15",
+    "engine": "choice",
+    "prompt": "請選出「晚」字",
+    "choices": [
+      "音",
+      "快",
+      "多",
+      "晚"
+    ],
+    "answerIndex": 3,
+    "explain": "正確是「晚」"
+  },
+  {
+    "id": "chars-2-16",
+    "engine": "choice",
+    "prompt": "請選出「父」字",
+    "choices": [
+      "溝",
+      "車",
+      "父",
+      "謝"
+    ],
+    "answerIndex": 2,
+    "explain": "正確是「父」"
+  },
+  {
+    "id": "chars-2-17",
+    "engine": "choice",
+    "prompt": "請選出「母」字",
+    "choices": [
+      "教",
+      "火",
+      "流",
+      "母"
+    ],
+    "answerIndex": 3,
+    "explain": "正確是「母」"
+  },
+  {
+    "id": "chars-2-18",
+    "engine": "choice",
+    "prompt": "請選出「子」字",
+    "choices": [
+      "流",
+      "書",
+      "子",
+      "日"
+    ],
+    "answerIndex": 2,
+    "explain": "正確是「子」"
+  },
+  {
+    "id": "chars-2-19",
+    "engine": "choice",
+    "prompt": "請選出「女」字",
+    "choices": [
+      "女",
+      "助",
+      "車",
+      "左"
+    ],
+    "answerIndex": 0,
+    "explain": "正確是「女」"
+  },
+  {
+    "id": "chars-2-20",
+    "engine": "choice",
+    "prompt": "哪一個字「五筆，像手掌」？",
+    "choices": [
+      "溝",
+      "長",
+      "手",
+      "故"
+    ],
+    "answerIndex": 2,
+    "explain": "正確是「手」"
+  },
+  {
+    "id": "chars-2-21",
+    "engine": "choice",
+    "prompt": "請選出「足」字",
+    "choices": [
+      "音",
+      "社",
+      "多",
+      "足"
+    ],
+    "answerIndex": 3,
+    "explain": "正確是「足」"
+  },
+  {
+    "id": "chars-2-22",
+    "engine": "choice",
+    "prompt": "哪一個字「正方形的嘴巴」？",
+    "choices": [
+      "左",
+      "口",
+      "溝",
+      "步"
+    ],
+    "answerIndex": 1,
+    "explain": "正確是「口」"
+  },
+  {
+    "id": "chars-2-23",
+    "engine": "choice",
+    "prompt": "請選出「耳」字",
+    "choices": [
+      "多",
+      "安",
+      "耳",
+      "錄"
+    ],
+    "answerIndex": 2,
+    "explain": "正確是「耳」"
+  },
+  {
+    "id": "chars-2-24",
+    "engine": "choice",
+    "prompt": "哪一個字「像眼睛」？",
+    "choices": [
+      "朋",
+      "動",
+      "目",
+      "鳥"
+    ],
+    "answerIndex": 2,
+    "explain": "正確是「目」"
+  },
+  {
+    "id": "chars-2-25",
+    "engine": "choice",
+    "prompt": "哪一個字「像三座山峰」？",
+    "choices": [
+      "多",
+      "山",
+      "步",
+      "水"
+    ],
+    "answerIndex": 1,
+    "explain": "正確是「山」"
+  },
+  {
+    "id": "chars-2-26",
+    "engine": "choice",
+    "prompt": "哪一個字「中間一豎有水紋」？",
+    "choices": [
+      "師",
+      "早",
+      "水",
+      "筆"
+    ],
+    "answerIndex": 2,
+    "explain": "正確是「水」"
+  },
+  {
+    "id": "chars-2-27",
+    "engine": "choice",
+    "prompt": "哪一個字「像火焰往上」？",
+    "choices": [
+      "遊",
+      "山",
+      "少",
+      "火"
+    ],
+    "answerIndex": 3,
+    "explain": "正確是「火」"
+  },
+  {
+    "id": "chars-2-28",
+    "engine": "choice",
+    "prompt": "哪一個字「有樹幹與樹枝」？",
+    "choices": [
+      "女",
+      "溝",
+      "吃",
+      "木"
+    ],
+    "answerIndex": 3,
+    "explain": "正確是「木」"
+  },
+  {
+    "id": "chars-2-29",
+    "engine": "choice",
+    "prompt": "請選出「土」字",
+    "choices": [
+      "全",
+      "教",
+      "手",
+      "土"
+    ],
+    "answerIndex": 3,
+    "explain": "正確是「土」"
+  },
+  {
+    "id": "chars-2-30",
+    "engine": "choice",
+    "prompt": "哪一個字「像太陽窗口」？",
+    "choices": [
+      "日",
+      "上",
+      "教",
+      "父"
+    ],
+    "answerIndex": 0,
+    "explain": "正確是「日」"
+  },
+  {
+    "id": "chars-2-31",
+    "engine": "choice",
+    "prompt": "哪一個字「像彎彎的月亮」？",
+    "choices": [
+      "朋",
+      "雨",
+      "紙",
+      "月"
+    ],
+    "answerIndex": 3,
+    "explain": "正確是「月」"
+  },
+  {
+    "id": "chars-2-32",
+    "engine": "choice",
+    "prompt": "請選出「星」字",
+    "choices": [
+      "下",
+      "大",
+      "儕",
+      "星"
+    ],
+    "answerIndex": 3,
+    "explain": "正確是「星」"
+  },
+  {
+    "id": "chars-2-33",
+    "engine": "choice",
+    "prompt": "請選出「風」字",
+    "choices": [
+      "教",
+      "手",
+      "風",
+      "鳥"
+    ],
+    "answerIndex": 2,
+    "explain": "正確是「風」"
+  },
+  {
+    "id": "chars-2-34",
+    "engine": "choice",
+    "prompt": "請選出「雨」字",
+    "choices": [
+      "雨",
+      "區",
+      "小",
+      "日"
+    ],
+    "answerIndex": 0,
+    "explain": "正確是「雨」"
+  },
+  {
+    "id": "chars-2-35",
+    "engine": "choice",
+    "prompt": "請選出「雲」字",
+    "choices": [
+      "雲",
+      "入",
+      "通",
+      "理"
+    ],
+    "answerIndex": 0,
+    "explain": "正確是「雲」"
+  },
+  {
+    "id": "chars-2-36",
+    "engine": "choice",
+    "prompt": "請選出「花」字",
+    "choices": [
+      "土",
+      "花",
+      "母",
+      "車"
+    ],
+    "answerIndex": 1,
+    "explain": "正確是「花」"
+  },
+  {
+    "id": "chars-2-37",
+    "engine": "choice",
+    "prompt": "請選出「鳥」字",
+    "choices": [
+      "鳥",
+      "明",
+      "溝",
+      "木"
+    ],
+    "answerIndex": 0,
+    "explain": "正確是「鳥」"
+  },
+  {
+    "id": "chars-2-38",
+    "engine": "choice",
+    "prompt": "請選出「魚」字",
+    "choices": [
+      "子",
+      "來",
+      "紙",
+      "魚"
+    ],
+    "answerIndex": 3,
+    "explain": "正確是「魚」"
+  },
+  {
+    "id": "chars-2-39",
+    "engine": "choice",
+    "prompt": "請選出「蟲」字",
+    "choices": [
+      "教",
+      "蟲",
+      "故",
+      "明"
+    ],
+    "answerIndex": 1,
+    "explain": "正確是「蟲」"
+  },
+  {
+    "id": "chars-2-40",
+    "engine": "choice",
+    "prompt": "哪一個字「中間有車廂」？",
+    "choices": [
+      "車",
+      "音",
+      "樂",
+      "溝"
+    ],
+    "answerIndex": 0,
+    "explain": "正確是「車」"
+  },
+  {
+    "id": "chars-2-41",
+    "engine": "choice",
+    "prompt": "哪一個字「像兩扇門」？",
+    "choices": [
+      "教",
+      "待",
+      "門",
+      "公"
+    ],
+    "answerIndex": 2,
+    "explain": "正確是「門」"
+  },
+  {
+    "id": "chars-2-42",
+    "engine": "choice",
+    "prompt": "請選出「窗」字",
+    "choices": [
+      "教",
+      "園",
+      "大",
+      "窗"
+    ],
+    "answerIndex": 3,
+    "explain": "正確是「窗」"
+  },
+  {
+    "id": "chars-2-43",
+    "engine": "choice",
+    "prompt": "請選出「書」字",
+    "choices": [
+      "魚",
+      "待",
+      "書",
+      "晚"
+    ],
+    "answerIndex": 2,
+    "explain": "正確是「書」"
+  },
+  {
+    "id": "chars-2-44",
+    "engine": "choice",
+    "prompt": "請選出「筆」字",
+    "choices": [
+      "全",
+      "水",
+      "筆",
+      "子"
+    ],
+    "answerIndex": 2,
+    "explain": "正確是「筆」"
+  },
+  {
+    "id": "chars-2-45",
+    "engine": "choice",
+    "prompt": "請選出「紙」字",
+    "choices": [
+      "朋",
+      "紙",
+      "天",
+      "室"
+    ],
+    "answerIndex": 1,
+    "explain": "正確是「紙」"
+  },
+  {
+    "id": "chars-2-46",
+    "engine": "choice",
+    "prompt": "請選出「教」字",
+    "choices": [
+      "庭",
+      "謝",
+      "教",
+      "上"
+    ],
+    "answerIndex": 2,
+    "explain": "正確是「教」"
+  },
+  {
+    "id": "chars-2-47",
+    "engine": "choice",
+    "prompt": "請選出「室」字",
+    "choices": [
+      "土",
+      "樂",
+      "室",
+      "天"
+    ],
+    "answerIndex": 2,
+    "explain": "正確是「室」"
+  },
+  {
+    "id": "chars-2-48",
+    "engine": "choice",
+    "prompt": "請選出「公」字",
+    "choices": [
+      "土",
+      "天",
+      "助",
+      "公"
+    ],
+    "answerIndex": 3,
+    "explain": "正確是「公」"
+  },
+  {
+    "id": "chars-2-49",
+    "engine": "choice",
+    "prompt": "請選出「園」字",
+    "choices": [
+      "園",
+      "理",
+      "朋",
+      "大"
+    ],
+    "answerIndex": 0,
+    "explain": "正確是「園」"
+  },
+  {
+    "id": "chars-2-50",
+    "engine": "choice",
+    "prompt": "請選出「快」字",
+    "choices": [
+      "鳥",
+      "子",
+      "水",
+      "快"
+    ],
+    "answerIndex": 3,
+    "explain": "正確是「快」"
+  },
+  {
+    "id": "chars-2-match-0",
+    "engine": "match",
+    "prompt": "把左邊和右邊配成一組",
+    "pairs": [
+      {
+        "left": "上",
+        "right": "下"
+      },
+      {
+        "left": "大",
+        "right": "小"
+      },
+      {
+        "left": "左",
+        "right": "右"
+      }
+    ]
+  },
+  {
+    "id": "chars-2-match-1",
+    "engine": "match",
+    "prompt": "把左邊和右邊配成一組",
+    "pairs": [
+      {
+        "left": "早",
+        "right": "晚"
+      },
+      {
+        "left": "出",
+        "right": "入"
+      },
+      {
+        "left": "多",
+        "right": "少"
+      }
+    ]
+  },
+  {
+    "id": "chars-2-match-2",
+    "engine": "match",
+    "prompt": "把左邊和右邊配成一組",
+    "pairs": [
+      {
+        "left": "父",
+        "right": "母"
+      },
+      {
+        "left": "子",
+        "right": "女"
+      },
+      {
+        "left": "天",
+        "right": "地"
+      }
+    ]
+  },
+  {
+    "id": "chars-2-match-3",
+    "engine": "match",
+    "prompt": "把左邊和右邊配成一組",
+    "pairs": [
+      {
+        "left": "ㄅ",
+        "right": "玻"
+      },
+      {
+        "left": "ㄆ",
+        "right": "坡"
+      },
+      {
+        "left": "ㄇ",
+        "right": "摸"
+      }
+    ]
+  },
+  {
+    "id": "chars-2-match-4",
+    "engine": "match",
+    "prompt": "把左邊和右邊配成一組",
+    "pairs": [
+      {
+        "left": "春",
+        "right": "花開"
+      },
+      {
+        "left": "夏",
+        "right": "炎熱"
+      },
+      {
+        "left": "冬",
+        "right": "較冷"
+      }
+    ]
+  }
+]

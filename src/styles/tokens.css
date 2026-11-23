@@ -1,0 +1,46 @@
+:root {
+  --font-display: 'Fredoka', 'Noto Sans TC', sans-serif;
+  --font-body: 'Noto Sans TC', sans-serif;
+  --ink: #1c2a3a;
+  --muted: #5a6b7d;
+  --paper: #f7fbff;
+  --sea-1: #b8e4ff;
+  --sea-2: #dff3ff;
+  --sea-3: #9fd4f5;
+  --sand: #ffe8c2;
+  --card: rgba(255, 255, 255, 0.92);
+  --shadow: 0 14px 36px rgba(28, 64, 96, 0.16);
+  --radius: 22px;
+  --touch: 52px;
+  --island-accent: #2b8cff;
+  --island-soft: #d7ecff;
+  --island-deep: #0b4f9c;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--font-body);
+  background: var(--sea-2);
+  -webkit-tap-highlight-color: transparent;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+}

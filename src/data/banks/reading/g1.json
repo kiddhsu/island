@@ -1,0 +1,542 @@
+[
+  {
+    "id": "reading-1-1",
+    "engine": "choice",
+    "prompt": "小華早上起床，刷牙洗臉，背上書包去上學。\n\n問：小華早上要去哪裡？",
+    "choices": [
+      "上學",
+      "海邊",
+      "超市",
+      "公園"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "reading-1-2",
+    "engine": "choice",
+    "prompt": "貓咪在陽光下睡覺，老鼠輕輕走過。\n\n問：誰在睡覺？",
+    "choices": [
+      "小狗",
+      "貓咪",
+      "小鳥",
+      "老鼠"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "reading-1-3",
+    "engine": "choice",
+    "prompt": "下雨了，媽媽打開雨傘，牽著妹妹回家。\n\n問：天氣怎麼樣？",
+    "choices": [
+      "颳風",
+      "出太陽",
+      "下雨",
+      "下雪"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "reading-1-4",
+    "engine": "choice",
+    "prompt": "哥哥把積木堆很高，一下子倒下來，大家都笑了。\n\n問：積木後來怎麼了？",
+    "choices": [
+      "倒下來",
+      "變大了",
+      "不見了",
+      "飛走了"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "reading-1-5",
+    "engine": "choice",
+    "prompt": "老師說：「排隊要安靜。」小朋友都站好了。\n\n問：老師要大家怎麼做？",
+    "choices": [
+      "跑步",
+      "安靜排隊",
+      "坐下睡覺",
+      "大叫"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "reading-1-6",
+    "engine": "choice",
+    "prompt": "小華早上起床，刷牙洗臉，背上書包去上學。\n\n問：小華早上要去哪裡？",
+    "choices": [
+      "超市",
+      "公園",
+      "海邊",
+      "上學"
+    ],
+    "answerIndex": 3
+  },
+  {
+    "id": "reading-1-7",
+    "engine": "choice",
+    "prompt": "貓咪在陽光下睡覺，老鼠輕輕走過。\n\n問：誰在睡覺？",
+    "choices": [
+      "老鼠",
+      "貓咪",
+      "小狗",
+      "小鳥"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "reading-1-8",
+    "engine": "choice",
+    "prompt": "下雨了，媽媽打開雨傘，牽著妹妹回家。\n\n問：天氣怎麼樣？",
+    "choices": [
+      "下雨",
+      "下雪",
+      "颳風",
+      "出太陽"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "reading-1-9",
+    "engine": "choice",
+    "prompt": "哥哥把積木堆很高，一下子倒下來，大家都笑了。\n\n問：積木後來怎麼了？",
+    "choices": [
+      "倒下來",
+      "飛走了",
+      "變大了",
+      "不見了"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "reading-1-10",
+    "engine": "choice",
+    "prompt": "老師說：「排隊要安靜。」小朋友都站好了。\n\n問：老師要大家怎麼做？",
+    "choices": [
+      "安靜排隊",
+      "大叫",
+      "跑步",
+      "坐下睡覺"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "reading-1-11",
+    "engine": "choice",
+    "prompt": "小華早上起床，刷牙洗臉，背上書包去上學。\n\n問：小華早上要去哪裡？",
+    "choices": [
+      "超市",
+      "海邊",
+      "公園",
+      "上學"
+    ],
+    "answerIndex": 3
+  },
+  {
+    "id": "reading-1-12",
+    "engine": "choice",
+    "prompt": "貓咪在陽光下睡覺，老鼠輕輕走過。\n\n問：誰在睡覺？",
+    "choices": [
+      "老鼠",
+      "小鳥",
+      "小狗",
+      "貓咪"
+    ],
+    "answerIndex": 3
+  },
+  {
+    "id": "reading-1-13",
+    "engine": "choice",
+    "prompt": "下雨了，媽媽打開雨傘，牽著妹妹回家。\n\n問：天氣怎麼樣？",
+    "choices": [
+      "颳風",
+      "出太陽",
+      "下雨",
+      "下雪"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "reading-1-14",
+    "engine": "choice",
+    "prompt": "哥哥把積木堆很高，一下子倒下來，大家都笑了。\n\n問：積木後來怎麼了？",
+    "choices": [
+      "不見了",
+      "飛走了",
+      "變大了",
+      "倒下來"
+    ],
+    "answerIndex": 3
+  },
+  {
+    "id": "reading-1-15",
+    "engine": "choice",
+    "prompt": "老師說：「排隊要安靜。」小朋友都站好了。\n\n問：老師要大家怎麼做？",
+    "choices": [
+      "跑步",
+      "安靜排隊",
+      "大叫",
+      "坐下睡覺"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "reading-1-16",
+    "engine": "choice",
+    "prompt": "小華早上起床，刷牙洗臉，背上書包去上學。\n\n問：小華早上要去哪裡？",
+    "choices": [
+      "上學",
+      "公園",
+      "海邊",
+      "超市"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "reading-1-17",
+    "engine": "choice",
+    "prompt": "貓咪在陽光下睡覺，老鼠輕輕走過。\n\n問：誰在睡覺？",
+    "choices": [
+      "老鼠",
+      "小鳥",
+      "貓咪",
+      "小狗"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "reading-1-18",
+    "engine": "choice",
+    "prompt": "下雨了，媽媽打開雨傘，牽著妹妹回家。\n\n問：天氣怎麼樣？",
+    "choices": [
+      "出太陽",
+      "颳風",
+      "下雨",
+      "下雪"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "reading-1-19",
+    "engine": "choice",
+    "prompt": "哥哥把積木堆很高，一下子倒下來，大家都笑了。\n\n問：積木後來怎麼了？",
+    "choices": [
+      "不見了",
+      "變大了",
+      "飛走了",
+      "倒下來"
+    ],
+    "answerIndex": 3
+  },
+  {
+    "id": "reading-1-20",
+    "engine": "choice",
+    "prompt": "老師說：「排隊要安靜。」小朋友都站好了。\n\n問：老師要大家怎麼做？",
+    "choices": [
+      "安靜排隊",
+      "坐下睡覺",
+      "大叫",
+      "跑步"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "reading-1-21",
+    "engine": "choice",
+    "prompt": "小華早上起床，刷牙洗臉，背上書包去上學。\n\n問：小華早上要去哪裡？",
+    "choices": [
+      "公園",
+      "超市",
+      "海邊",
+      "上學"
+    ],
+    "answerIndex": 3
+  },
+  {
+    "id": "reading-1-22",
+    "engine": "choice",
+    "prompt": "貓咪在陽光下睡覺，老鼠輕輕走過。\n\n問：誰在睡覺？",
+    "choices": [
+      "老鼠",
+      "貓咪",
+      "小鳥",
+      "小狗"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "reading-1-23",
+    "engine": "choice",
+    "prompt": "下雨了，媽媽打開雨傘，牽著妹妹回家。\n\n問：天氣怎麼樣？",
+    "choices": [
+      "颳風",
+      "出太陽",
+      "下雨",
+      "下雪"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "reading-1-24",
+    "engine": "choice",
+    "prompt": "哥哥把積木堆很高，一下子倒下來，大家都笑了。\n\n問：積木後來怎麼了？",
+    "choices": [
+      "不見了",
+      "飛走了",
+      "倒下來",
+      "變大了"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "reading-1-25",
+    "engine": "choice",
+    "prompt": "老師說：「排隊要安靜。」小朋友都站好了。\n\n問：老師要大家怎麼做？",
+    "choices": [
+      "大叫",
+      "安靜排隊",
+      "跑步",
+      "坐下睡覺"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "reading-1-26",
+    "engine": "choice",
+    "prompt": "小華早上起床，刷牙洗臉，背上書包去上學。\n\n問：小華早上要去哪裡？",
+    "choices": [
+      "超市",
+      "公園",
+      "海邊",
+      "上學"
+    ],
+    "answerIndex": 3
+  },
+  {
+    "id": "reading-1-27",
+    "engine": "choice",
+    "prompt": "貓咪在陽光下睡覺，老鼠輕輕走過。\n\n問：誰在睡覺？",
+    "choices": [
+      "小狗",
+      "貓咪",
+      "老鼠",
+      "小鳥"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "reading-1-28",
+    "engine": "choice",
+    "prompt": "下雨了，媽媽打開雨傘，牽著妹妹回家。\n\n問：天氣怎麼樣？",
+    "choices": [
+      "颳風",
+      "下雨",
+      "下雪",
+      "出太陽"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "reading-1-29",
+    "engine": "choice",
+    "prompt": "哥哥把積木堆很高，一下子倒下來，大家都笑了。\n\n問：積木後來怎麼了？",
+    "choices": [
+      "飛走了",
+      "倒下來",
+      "變大了",
+      "不見了"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "reading-1-30",
+    "engine": "choice",
+    "prompt": "老師說：「排隊要安靜。」小朋友都站好了。\n\n問：老師要大家怎麼做？",
+    "choices": [
+      "安靜排隊",
+      "大叫",
+      "坐下睡覺",
+      "跑步"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "reading-1-31",
+    "engine": "choice",
+    "prompt": "小華早上起床，刷牙洗臉，背上書包去上學。\n\n問：小華早上要去哪裡？",
+    "choices": [
+      "海邊",
+      "上學",
+      "超市",
+      "公園"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "reading-1-32",
+    "engine": "choice",
+    "prompt": "貓咪在陽光下睡覺，老鼠輕輕走過。\n\n問：誰在睡覺？",
+    "choices": [
+      "老鼠",
+      "貓咪",
+      "小狗",
+      "小鳥"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "reading-1-33",
+    "engine": "choice",
+    "prompt": "下雨了，媽媽打開雨傘，牽著妹妹回家。\n\n問：天氣怎麼樣？",
+    "choices": [
+      "下雪",
+      "下雨",
+      "出太陽",
+      "颳風"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "reading-1-34",
+    "engine": "choice",
+    "prompt": "哥哥把積木堆很高，一下子倒下來，大家都笑了。\n\n問：積木後來怎麼了？",
+    "choices": [
+      "變大了",
+      "不見了",
+      "倒下來",
+      "飛走了"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "reading-1-35",
+    "engine": "choice",
+    "prompt": "老師說：「排隊要安靜。」小朋友都站好了。\n\n問：老師要大家怎麼做？",
+    "choices": [
+      "安靜排隊",
+      "跑步",
+      "大叫",
+      "坐下睡覺"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "reading-1-36",
+    "engine": "choice",
+    "prompt": "小華早上起床，刷牙洗臉，背上書包去上學。\n\n問：小華早上要去哪裡？",
+    "choices": [
+      "超市",
+      "公園",
+      "上學",
+      "海邊"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "reading-1-37",
+    "engine": "choice",
+    "prompt": "貓咪在陽光下睡覺，老鼠輕輕走過。\n\n問：誰在睡覺？",
+    "choices": [
+      "小狗",
+      "貓咪",
+      "老鼠",
+      "小鳥"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "reading-1-38",
+    "engine": "choice",
+    "prompt": "下雨了，媽媽打開雨傘，牽著妹妹回家。\n\n問：天氣怎麼樣？",
+    "choices": [
+      "出太陽",
+      "下雨",
+      "颳風",
+      "下雪"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "reading-1-39",
+    "engine": "choice",
+    "prompt": "哥哥把積木堆很高，一下子倒下來，大家都笑了。\n\n問：積木後來怎麼了？",
+    "choices": [
+      "不見了",
+      "變大了",
+      "倒下來",
+      "飛走了"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "reading-1-40",
+    "engine": "choice",
+    "prompt": "老師說：「排隊要安靜。」小朋友都站好了。\n\n問：老師要大家怎麼做？",
+    "choices": [
+      "大叫",
+      "跑步",
+      "坐下睡覺",
+      "安靜排隊"
+    ],
+    "answerIndex": 3
+  },
+  {
+    "id": "reading-1-41",
+    "engine": "choice",
+    "prompt": "小華早上起床，刷牙洗臉，背上書包去上學。\n\n問：小華早上要去哪裡？",
+    "choices": [
+      "超市",
+      "公園",
+      "上學",
+      "海邊"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "reading-1-42",
+    "engine": "choice",
+    "prompt": "貓咪在陽光下睡覺，老鼠輕輕走過。\n\n問：誰在睡覺？",
+    "choices": [
+      "小狗",
+      "貓咪",
+      "小鳥",
+      "老鼠"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "reading-1-43",
+    "engine": "choice",
+    "prompt": "下雨了，媽媽打開雨傘，牽著妹妹回家。\n\n問：天氣怎麼樣？",
+    "choices": [
+      "颳風",
+      "出太陽",
+      "下雪",
+      "下雨"
+    ],
+    "answerIndex": 3
+  },
+  {
+    "id": "reading-1-44",
+    "engine": "choice",
+    "prompt": "哥哥把積木堆很高，一下子倒下來，大家都笑了。\n\n問：積木後來怎麼了？",
+    "choices": [
+      "變大了",
+      "倒下來",
+      "不見了",
+      "飛走了"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "reading-1-45",
+    "engine": "choice",
+    "prompt": "老師說：「排隊要安靜。」小朋友都站好了。\n\n問：老師要大家怎麼做？",
+    "choices": [
+      "安靜排隊",
+      "跑步",
+      "坐下睡覺",
+      "大叫"
+    ],
+    "answerIndex": 0
+  }
+]

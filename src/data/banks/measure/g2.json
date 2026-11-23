@@ -1,0 +1,602 @@
+[
+  {
+    "id": "measure-2-time-1",
+    "engine": "choice",
+    "prompt": "時針指 1、分針指 12，現在幾點？",
+    "choices": [
+      "1 點 15 分",
+      "1 點整",
+      "1 點 45 分",
+      "1 點 30 分"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "measure-2-time-2",
+    "engine": "choice",
+    "prompt": "時針指 1、分針指 3，現在幾點？",
+    "choices": [
+      "1 點 15 分",
+      "1 點 30 分",
+      "1 點 10 分",
+      "1 點 45 分"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "measure-2-time-3",
+    "engine": "choice",
+    "prompt": "時針指 1、分針指 6，現在幾點？",
+    "choices": [
+      "1 點 15 分",
+      "1 點 10 分",
+      "1 點 45 分",
+      "1 點 30 分"
+    ],
+    "answerIndex": 3
+  },
+  {
+    "id": "measure-2-time-4",
+    "engine": "choice",
+    "prompt": "時針指 1、分針指 9，現在幾點？",
+    "choices": [
+      "1 點 10 分",
+      "1 點整",
+      "1 點 45 分",
+      "1 點 30 分"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "measure-2-time-5",
+    "engine": "choice",
+    "prompt": "時針指 2、分針指 12，現在幾點？",
+    "choices": [
+      "2 點整",
+      "2 點 15 分",
+      "2 點 30 分",
+      "2 點 45 分"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "measure-2-time-6",
+    "engine": "choice",
+    "prompt": "時針指 2、分針指 3，現在幾點？",
+    "choices": [
+      "2 點整",
+      "2 點 30 分",
+      "2 點 15 分",
+      "2 點 45 分"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "measure-2-time-7",
+    "engine": "choice",
+    "prompt": "時針指 2、分針指 6，現在幾點？",
+    "choices": [
+      "2 點 30 分",
+      "2 點 15 分",
+      "2 點 45 分",
+      "2 點 10 分"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "measure-2-time-8",
+    "engine": "choice",
+    "prompt": "時針指 2、分針指 9，現在幾點？",
+    "choices": [
+      "2 點整",
+      "2 點 10 分",
+      "2 點 45 分",
+      "2 點 15 分"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "measure-2-time-9",
+    "engine": "choice",
+    "prompt": "時針指 3、分針指 12，現在幾點？",
+    "choices": [
+      "3 點 15 分",
+      "3 點整",
+      "3 點 30 分",
+      "3 點 10 分"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "measure-2-time-10",
+    "engine": "choice",
+    "prompt": "時針指 3、分針指 3，現在幾點？",
+    "choices": [
+      "3 點 30 分",
+      "3 點 10 分",
+      "3 點 45 分",
+      "3 點 15 分"
+    ],
+    "answerIndex": 3
+  },
+  {
+    "id": "measure-2-time-11",
+    "engine": "choice",
+    "prompt": "時針指 3、分針指 6，現在幾點？",
+    "choices": [
+      "3 點 30 分",
+      "3 點 15 分",
+      "3 點 45 分",
+      "3 點 10 分"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "measure-2-time-12",
+    "engine": "choice",
+    "prompt": "時針指 3、分針指 9，現在幾點？",
+    "choices": [
+      "3 點 45 分",
+      "3 點 30 分",
+      "3 點 15 分",
+      "3 點 10 分"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "measure-2-time-13",
+    "engine": "choice",
+    "prompt": "時針指 4、分針指 12，現在幾點？",
+    "choices": [
+      "4 點 10 分",
+      "4 點整",
+      "4 點 45 分",
+      "4 點 15 分"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "measure-2-time-14",
+    "engine": "choice",
+    "prompt": "時針指 4、分針指 3，現在幾點？",
+    "choices": [
+      "4 點 30 分",
+      "4 點整",
+      "4 點 10 分",
+      "4 點 15 分"
+    ],
+    "answerIndex": 3
+  },
+  {
+    "id": "measure-2-time-15",
+    "engine": "choice",
+    "prompt": "時針指 4、分針指 6，現在幾點？",
+    "choices": [
+      "4 點 30 分",
+      "4 點整",
+      "4 點 10 分",
+      "4 點 45 分"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "measure-2-time-16",
+    "engine": "choice",
+    "prompt": "時針指 4、分針指 9，現在幾點？",
+    "choices": [
+      "4 點 15 分",
+      "4 點 45 分",
+      "4 點整",
+      "4 點 10 分"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "measure-2-time-17",
+    "engine": "choice",
+    "prompt": "時針指 5、分針指 12，現在幾點？",
+    "choices": [
+      "5 點 45 分",
+      "5 點整",
+      "5 點 10 分",
+      "5 點 15 分"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "measure-2-time-18",
+    "engine": "choice",
+    "prompt": "時針指 5、分針指 3，現在幾點？",
+    "choices": [
+      "5 點整",
+      "5 點 10 分",
+      "5 點 15 分",
+      "5 點 45 分"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "measure-2-time-19",
+    "engine": "choice",
+    "prompt": "時針指 5、分針指 6，現在幾點？",
+    "choices": [
+      "5 點 30 分",
+      "5 點整",
+      "5 點 10 分",
+      "5 點 15 分"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "measure-2-time-20",
+    "engine": "choice",
+    "prompt": "時針指 5、分針指 9，現在幾點？",
+    "choices": [
+      "5 點 15 分",
+      "5 點 10 分",
+      "5 點整",
+      "5 點 45 分"
+    ],
+    "answerIndex": 3
+  },
+  {
+    "id": "measure-2-time-21",
+    "engine": "choice",
+    "prompt": "時針指 6、分針指 12，現在幾點？",
+    "choices": [
+      "6 點 45 分",
+      "6 點整",
+      "6 點 10 分",
+      "6 點 15 分"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "measure-2-time-22",
+    "engine": "choice",
+    "prompt": "時針指 6、分針指 3，現在幾點？",
+    "choices": [
+      "6 點 15 分",
+      "6 點 30 分",
+      "6 點 10 分",
+      "6 點整"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "measure-2-time-23",
+    "engine": "choice",
+    "prompt": "時針指 6、分針指 6，現在幾點？",
+    "choices": [
+      "6 點 30 分",
+      "6 點整",
+      "6 點 15 分",
+      "6 點 45 分"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "measure-2-time-24",
+    "engine": "choice",
+    "prompt": "時針指 6、分針指 9，現在幾點？",
+    "choices": [
+      "6 點 45 分",
+      "6 點 15 分",
+      "6 點 10 分",
+      "6 點 30 分"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "measure-2-time-25",
+    "engine": "choice",
+    "prompt": "時針指 7、分針指 12，現在幾點？",
+    "choices": [
+      "7 點 15 分",
+      "7 點整",
+      "7 點 30 分",
+      "7 點 45 分"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "measure-2-time-26",
+    "engine": "choice",
+    "prompt": "時針指 7、分針指 3，現在幾點？",
+    "choices": [
+      "7 點整",
+      "7 點 15 分",
+      "7 點 10 分",
+      "7 點 30 分"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "measure-2-time-27",
+    "engine": "choice",
+    "prompt": "時針指 7、分針指 6，現在幾點？",
+    "choices": [
+      "7 點 30 分",
+      "7 點整",
+      "7 點 15 分",
+      "7 點 45 分"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "measure-2-time-28",
+    "engine": "choice",
+    "prompt": "時針指 7、分針指 9，現在幾點？",
+    "choices": [
+      "7 點整",
+      "7 點 15 分",
+      "7 點 10 分",
+      "7 點 45 分"
+    ],
+    "answerIndex": 3
+  },
+  {
+    "id": "measure-2-time-29",
+    "engine": "choice",
+    "prompt": "時針指 8、分針指 12，現在幾點？",
+    "choices": [
+      "8 點 15 分",
+      "8 點 45 分",
+      "8 點整",
+      "8 點 10 分"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "measure-2-time-30",
+    "engine": "choice",
+    "prompt": "時針指 8、分針指 3，現在幾點？",
+    "choices": [
+      "8 點 30 分",
+      "8 點整",
+      "8 點 15 分",
+      "8 點 10 分"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "measure-2-time-31",
+    "engine": "choice",
+    "prompt": "時針指 8、分針指 6，現在幾點？",
+    "choices": [
+      "8 點 30 分",
+      "8 點 15 分",
+      "8 點 45 分",
+      "8 點整"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "measure-2-time-32",
+    "engine": "choice",
+    "prompt": "時針指 8、分針指 9，現在幾點？",
+    "choices": [
+      "8 點 45 分",
+      "8 點 15 分",
+      "8 點 30 分",
+      "8 點 10 分"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "measure-2-time-33",
+    "engine": "choice",
+    "prompt": "時針指 9、分針指 12，現在幾點？",
+    "choices": [
+      "9 點 30 分",
+      "9 點 15 分",
+      "9 點 45 分",
+      "9 點整"
+    ],
+    "answerIndex": 3
+  },
+  {
+    "id": "measure-2-time-34",
+    "engine": "choice",
+    "prompt": "時針指 9、分針指 3，現在幾點？",
+    "choices": [
+      "9 點 10 分",
+      "9 點 45 分",
+      "9 點 15 分",
+      "9 點整"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "measure-2-time-35",
+    "engine": "choice",
+    "prompt": "時針指 9、分針指 6，現在幾點？",
+    "choices": [
+      "9 點 45 分",
+      "9 點 10 分",
+      "9 點 30 分",
+      "9 點整"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "measure-2-time-36",
+    "engine": "choice",
+    "prompt": "時針指 9、分針指 9，現在幾點？",
+    "choices": [
+      "9 點 15 分",
+      "9 點 30 分",
+      "9 點 10 分",
+      "9 點 45 分"
+    ],
+    "answerIndex": 3
+  },
+  {
+    "id": "measure-2-time-37",
+    "engine": "choice",
+    "prompt": "時針指 10、分針指 12，現在幾點？",
+    "choices": [
+      "10 點整",
+      "10 點 15 分",
+      "10 點 30 分",
+      "10 點 10 分"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "measure-2-time-38",
+    "engine": "choice",
+    "prompt": "時針指 10、分針指 3，現在幾點？",
+    "choices": [
+      "10 點 45 分",
+      "10 點 10 分",
+      "10 點 15 分",
+      "10 點 30 分"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "measure-2-time-39",
+    "engine": "choice",
+    "prompt": "時針指 10、分針指 6，現在幾點？",
+    "choices": [
+      "10 點 30 分",
+      "10 點 45 分",
+      "10 點 15 分",
+      "10 點整"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "measure-2-time-40",
+    "engine": "choice",
+    "prompt": "時針指 10、分針指 9，現在幾點？",
+    "choices": [
+      "10 點 30 分",
+      "10 點 45 分",
+      "10 點整",
+      "10 點 10 分"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "measure-2-time-41",
+    "engine": "choice",
+    "prompt": "時針指 11、分針指 12，現在幾點？",
+    "choices": [
+      "11 點 10 分",
+      "11 點 45 分",
+      "11 點 30 分",
+      "11 點整"
+    ],
+    "answerIndex": 3
+  },
+  {
+    "id": "measure-2-time-42",
+    "engine": "choice",
+    "prompt": "時針指 11、分針指 3，現在幾點？",
+    "choices": [
+      "11 點 15 分",
+      "11 點整",
+      "11 點 30 分",
+      "11 點 45 分"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "measure-2-time-43",
+    "engine": "choice",
+    "prompt": "時針指 11、分針指 6，現在幾點？",
+    "choices": [
+      "11 點 15 分",
+      "11 點 30 分",
+      "11 點 10 分",
+      "11 點整"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "measure-2-time-44",
+    "engine": "choice",
+    "prompt": "時針指 11、分針指 9，現在幾點？",
+    "choices": [
+      "11 點 10 分",
+      "11 點 45 分",
+      "11 點 15 分",
+      "11 點整"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "measure-2-time-45",
+    "engine": "choice",
+    "prompt": "時針指 12、分針指 12，現在幾點？",
+    "choices": [
+      "12 點 45 分",
+      "12 點 15 分",
+      "12 點 30 分",
+      "12 點整"
+    ],
+    "answerIndex": 3
+  },
+  {
+    "id": "measure-2-time-46",
+    "engine": "choice",
+    "prompt": "時針指 12、分針指 3，現在幾點？",
+    "choices": [
+      "12 點 30 分",
+      "12 點 15 分",
+      "12 點 10 分",
+      "12 點 45 分"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "measure-2-time-47",
+    "engine": "choice",
+    "prompt": "時針指 12、分針指 6，現在幾點？",
+    "choices": [
+      "12 點 10 分",
+      "12 點 30 分",
+      "12 點 15 分",
+      "12 點整"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "measure-2-time-48",
+    "engine": "choice",
+    "prompt": "時針指 12、分針指 9，現在幾點？",
+    "choices": [
+      "12 點 10 分",
+      "12 點 45 分",
+      "12 點 30 分",
+      "12 點整"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "measure-2-money-49",
+    "engine": "choice",
+    "prompt": "10 元＋5 元＝多少元？",
+    "choices": [
+      "10",
+      "15",
+      "5",
+      "10"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "measure-2-money-50",
+    "engine": "choice",
+    "prompt": "50 元＋10 元＝多少元？",
+    "choices": [
+      "10",
+      "50",
+      "70",
+      "60"
+    ],
+    "answerIndex": 3
+  }
+]

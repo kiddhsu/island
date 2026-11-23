@@ -1,0 +1,946 @@
+[
+  {
+    "id": "zhuyin-2-1",
+    "engine": "choice",
+    "prompt": "「貓」的注音是哪一個？",
+    "choices": [
+      "ㄇㄠ",
+      "ㄉㄧˋ",
+      "ㄕ",
+      "ㄅㄧˇ"
+    ],
+    "answerIndex": 0,
+    "explain": "貓 讀作 ㄇㄠ"
+  },
+  {
+    "id": "zhuyin-2-2",
+    "engine": "choice",
+    "prompt": "「狗」的注音是哪一個？",
+    "choices": [
+      "ㄏㄜ",
+      "ㄒㄧㄥ",
+      "ㄍㄡˇ",
+      "ㄉㄚˋ"
+    ],
+    "answerIndex": 2,
+    "explain": "狗 讀作 ㄍㄡˇ"
+  },
+  {
+    "id": "zhuyin-2-3",
+    "engine": "choice",
+    "prompt": "「花」的注音是哪一個？",
+    "choices": [
+      "ㄕ",
+      "ㄍㄨㄛˊ",
+      "ㄏㄨㄚ",
+      "ㄇㄣˊ"
+    ],
+    "answerIndex": 2,
+    "explain": "花 讀作 ㄏㄨㄚ"
+  },
+  {
+    "id": "zhuyin-2-4",
+    "engine": "choice",
+    "prompt": "「鳥」的注音是哪一個？",
+    "choices": [
+      "ㄕㄤˋ",
+      "ㄋㄧㄠˇ",
+      "ㄍㄨㄛˊ",
+      "ㄊㄧㄠˋ"
+    ],
+    "answerIndex": 1,
+    "explain": "鳥 讀作 ㄋㄧㄠˇ"
+  },
+  {
+    "id": "zhuyin-2-5",
+    "engine": "choice",
+    "prompt": "「山」的注音是哪一個？",
+    "choices": [
+      "ㄒㄧㄚˋ",
+      "ㄕㄤˋ",
+      "ㄏㄨㄛˇ",
+      "ㄕㄢ"
+    ],
+    "answerIndex": 3,
+    "explain": "山 讀作 ㄕㄢ"
+  },
+  {
+    "id": "zhuyin-2-6",
+    "engine": "choice",
+    "prompt": "「水」的注音是哪一個？",
+    "choices": [
+      "ㄕㄨㄟˇ",
+      "ㄖㄣˊ",
+      "ㄕㄢ",
+      "ㄉㄥ"
+    ],
+    "answerIndex": 0,
+    "explain": "水 讀作 ㄕㄨㄟˇ"
+  },
+  {
+    "id": "zhuyin-2-7",
+    "engine": "choice",
+    "prompt": "「火」的注音是哪一個？",
+    "choices": [
+      "ㄋㄧㄠˇ",
+      "ㄉㄚˋ",
+      "ㄏㄨㄛˇ",
+      "ㄕㄡˇ"
+    ],
+    "answerIndex": 2,
+    "explain": "火 讀作 ㄏㄨㄛˇ"
+  },
+  {
+    "id": "zhuyin-2-8",
+    "engine": "choice",
+    "prompt": "「人」的注音是哪一個？",
+    "choices": [
+      "ㄖㄣˊ",
+      "ㄏㄨㄚ",
+      "ㄔ",
+      "ㄏㄜ"
+    ],
+    "answerIndex": 0,
+    "explain": "人 讀作 ㄖㄣˊ"
+  },
+  {
+    "id": "zhuyin-2-9",
+    "engine": "choice",
+    "prompt": "「手」的注音是哪一個？",
+    "choices": [
+      "ㄍㄡˇ",
+      "ㄔㄜ",
+      "ㄕㄡˇ",
+      "ㄒㄧㄥ"
+    ],
+    "answerIndex": 2,
+    "explain": "手 讀作 ㄕㄡˇ"
+  },
+  {
+    "id": "zhuyin-2-10",
+    "engine": "choice",
+    "prompt": "「腳」的注音是哪一個？",
+    "choices": [
+      "ㄉㄨㄛ",
+      "ㄐㄧㄠˇ",
+      "ㄕㄡˇ",
+      "ㄒㄧㄥ"
+    ],
+    "answerIndex": 1,
+    "explain": "腳 讀作 ㄐㄧㄠˇ"
+  },
+  {
+    "id": "zhuyin-2-11",
+    "engine": "choice",
+    "prompt": "「天」的注音是哪一個？",
+    "choices": [
+      "ㄒㄩㄝˊ",
+      "ㄕㄨ",
+      "ㄌㄠˇ",
+      "ㄊㄧㄢ"
+    ],
+    "answerIndex": 3,
+    "explain": "天 讀作 ㄊㄧㄢ"
+  },
+  {
+    "id": "zhuyin-2-12",
+    "engine": "choice",
+    "prompt": "「地」的注音是哪一個？",
+    "choices": [
+      "ㄉㄧˋ",
+      "ㄇㄟˋ",
+      "ㄖㄣˊ",
+      "ㄈㄥ"
+    ],
+    "answerIndex": 0,
+    "explain": "地 讀作 ㄉㄧˋ"
+  },
+  {
+    "id": "zhuyin-2-13",
+    "engine": "choice",
+    "prompt": "「大」的注音是哪一個？",
+    "choices": [
+      "ㄏㄨㄚ",
+      "ㄊㄧㄠˋ",
+      "ㄉㄚˋ",
+      "ㄩㄣˊ"
+    ],
+    "answerIndex": 2,
+    "explain": "大 讀作 ㄉㄚˋ"
+  },
+  {
+    "id": "zhuyin-2-14",
+    "engine": "choice",
+    "prompt": "「小」的注音是哪一個？",
+    "choices": [
+      "ㄅㄧˇ",
+      "ㄕㄨ",
+      "ㄒㄧㄠˇ",
+      "ㄕㄨㄟˇ"
+    ],
+    "answerIndex": 2,
+    "explain": "小 讀作 ㄒㄧㄠˇ"
+  },
+  {
+    "id": "zhuyin-2-15",
+    "engine": "choice",
+    "prompt": "「多」的注音是哪一個？",
+    "choices": [
+      "ㄊㄧㄠˋ",
+      "ㄒㄩㄝˊ",
+      "ㄉㄨㄛ",
+      "ㄍㄡˇ"
+    ],
+    "answerIndex": 2,
+    "explain": "多 讀作 ㄉㄨㄛ"
+  },
+  {
+    "id": "zhuyin-2-16",
+    "engine": "choice",
+    "prompt": "「少」的注音是哪一個？",
+    "choices": [
+      "ㄕㄠˇ",
+      "ㄍㄡˇ",
+      "ㄆㄠˇ",
+      "ㄊㄨㄥˊ"
+    ],
+    "answerIndex": 0,
+    "explain": "少 讀作 ㄕㄠˇ"
+  },
+  {
+    "id": "zhuyin-2-17",
+    "engine": "choice",
+    "prompt": "「上」的注音是哪一個？",
+    "choices": [
+      "ㄕㄤˋ",
+      "ㄒㄧㄠˇ",
+      "ㄊㄧㄠˋ",
+      "ㄩˇ"
+    ],
+    "answerIndex": 0,
+    "explain": "上 讀作 ㄕㄤˋ"
+  },
+  {
+    "id": "zhuyin-2-18",
+    "engine": "choice",
+    "prompt": "「下」的注音是哪一個？",
+    "choices": [
+      "ㄊㄨㄥˊ",
+      "ㄩㄝˋ",
+      "ㄒㄧㄚˋ",
+      "ㄉㄧˋ"
+    ],
+    "answerIndex": 2,
+    "explain": "下 讀作 ㄒㄧㄚˋ"
+  },
+  {
+    "id": "zhuyin-2-19",
+    "engine": "choice",
+    "prompt": "「中」的注音是哪一個？",
+    "choices": [
+      "ㄏㄜ",
+      "ㄓㄨㄥ",
+      "ㄉㄨㄛ",
+      "ㄇㄠ"
+    ],
+    "answerIndex": 1,
+    "explain": "中 讀作 ㄓㄨㄥ"
+  },
+  {
+    "id": "zhuyin-2-20",
+    "engine": "choice",
+    "prompt": "「國」的注音是哪一個？",
+    "choices": [
+      "ㄏㄨㄛˇ",
+      "ㄏㄜ",
+      "ㄍㄨㄛˊ",
+      "ㄕㄤˋ"
+    ],
+    "answerIndex": 2,
+    "explain": "國 讀作 ㄍㄨㄛˊ"
+  },
+  {
+    "id": "zhuyin-2-21",
+    "engine": "choice",
+    "prompt": "「學」的注音是哪一個？",
+    "choices": [
+      "ㄊㄧㄠˋ",
+      "ㄇㄚ",
+      "ㄇㄠ",
+      "ㄒㄩㄝˊ"
+    ],
+    "answerIndex": 3,
+    "explain": "學 讀作 ㄒㄩㄝˊ"
+  },
+  {
+    "id": "zhuyin-2-22",
+    "engine": "choice",
+    "prompt": "「校」的注音是哪一個？",
+    "choices": [
+      "ㄒㄧㄠˋ",
+      "ㄕㄤˋ",
+      "ㄇㄟˋ",
+      "ㄕㄡˇ"
+    ],
+    "answerIndex": 0,
+    "explain": "校 讀作 ㄒㄧㄠˋ"
+  },
+  {
+    "id": "zhuyin-2-23",
+    "engine": "choice",
+    "prompt": "「老」的注音是哪一個？",
+    "choices": [
+      "ㄌㄠˇ",
+      "ㄍㄨㄛˊ",
+      "ㄒㄧㄥ",
+      "ㄉㄥ"
+    ],
+    "answerIndex": 0,
+    "explain": "老 讀作 ㄌㄠˇ"
+  },
+  {
+    "id": "zhuyin-2-24",
+    "engine": "choice",
+    "prompt": "「師」的注音是哪一個？",
+    "choices": [
+      "ㄉㄧˋ",
+      "ㄕ",
+      "ㄕㄠˇ",
+      "ㄌㄠˇ"
+    ],
+    "answerIndex": 1,
+    "explain": "師 讀作 ㄕ"
+  },
+  {
+    "id": "zhuyin-2-25",
+    "engine": "choice",
+    "prompt": "「同」的注音是哪一個？",
+    "choices": [
+      "ㄉㄥ",
+      "ㄊㄨㄥˊ",
+      "ㄕㄨ",
+      "ㄊㄧㄠˋ"
+    ],
+    "answerIndex": 1,
+    "explain": "同 讀作 ㄊㄨㄥˊ"
+  },
+  {
+    "id": "zhuyin-2-26",
+    "engine": "choice",
+    "prompt": "「學」的注音是哪一個？",
+    "choices": [
+      "ㄒㄧㄠˋ",
+      "ㄇㄚ",
+      "ㄉㄚˋ",
+      "ㄒㄩㄝˊ"
+    ],
+    "answerIndex": 3,
+    "explain": "學 讀作 ㄒㄩㄝˊ"
+  },
+  {
+    "id": "zhuyin-2-27",
+    "engine": "choice",
+    "prompt": "「爸」的注音是哪一個？",
+    "choices": [
+      "ㄅㄧˇ",
+      "ㄩㄣˊ",
+      "ㄩㄝˋ",
+      "ㄅㄚˋ"
+    ],
+    "answerIndex": 3,
+    "explain": "爸 讀作 ㄅㄚˋ"
+  },
+  {
+    "id": "zhuyin-2-28",
+    "engine": "choice",
+    "prompt": "「媽」的注音是哪一個？",
+    "choices": [
+      "ㄖㄣˊ",
+      "ㄒㄧㄠˋ",
+      "ㄏㄨㄛˇ",
+      "ㄇㄚ"
+    ],
+    "answerIndex": 3,
+    "explain": "媽 讀作 ㄇㄚ"
+  },
+  {
+    "id": "zhuyin-2-29",
+    "engine": "choice",
+    "prompt": "「弟」的注音是哪一個？",
+    "choices": [
+      "ㄉㄧˋ",
+      "ㄕㄨ",
+      "ㄊㄨㄥˊ",
+      "ㄒㄩㄝˊ"
+    ],
+    "answerIndex": 0,
+    "explain": "弟 讀作 ㄉㄧˋ"
+  },
+  {
+    "id": "zhuyin-2-30",
+    "engine": "choice",
+    "prompt": "「妹」的注音是哪一個？",
+    "choices": [
+      "ㄒㄧㄚˋ",
+      "ㄇㄟˋ",
+      "ㄊㄨㄥˊ",
+      "ㄉㄨㄛ"
+    ],
+    "answerIndex": 1,
+    "explain": "妹 讀作 ㄇㄟˋ"
+  },
+  {
+    "id": "zhuyin-2-31",
+    "engine": "choice",
+    "prompt": "「吃」的注音是哪一個？",
+    "choices": [
+      "ㄉㄚˋ",
+      "ㄕㄨㄟˇ",
+      "ㄔ",
+      "ㄇㄚ"
+    ],
+    "answerIndex": 2,
+    "explain": "吃 讀作 ㄔ"
+  },
+  {
+    "id": "zhuyin-2-32",
+    "engine": "choice",
+    "prompt": "「喝」的注音是哪一個？",
+    "choices": [
+      "ㄒㄧㄠˇ",
+      "ㄅㄧˇ",
+      "ㄊㄨㄥˊ",
+      "ㄏㄜ"
+    ],
+    "answerIndex": 3,
+    "explain": "喝 讀作 ㄏㄜ"
+  },
+  {
+    "id": "zhuyin-2-33",
+    "engine": "choice",
+    "prompt": "「跑」的注音是哪一個？",
+    "choices": [
+      "ㄕㄨㄟˇ",
+      "ㄆㄠˇ",
+      "ㄖㄣˊ",
+      "ㄔㄜ"
+    ],
+    "answerIndex": 1,
+    "explain": "跑 讀作 ㄆㄠˇ"
+  },
+  {
+    "id": "zhuyin-2-34",
+    "engine": "choice",
+    "prompt": "「跳」的注音是哪一個？",
+    "choices": [
+      "ㄊㄧㄠˋ",
+      "ㄒㄧㄠˇ",
+      "ㄩㄝˋ",
+      "ㄍㄡˇ"
+    ],
+    "answerIndex": 0,
+    "explain": "跳 讀作 ㄊㄧㄠˋ"
+  },
+  {
+    "id": "zhuyin-2-35",
+    "engine": "choice",
+    "prompt": "「書」的注音是哪一個？",
+    "choices": [
+      "ㄇㄟˋ",
+      "ㄇㄠ",
+      "ㄕㄨ",
+      "ㄕㄤˋ"
+    ],
+    "answerIndex": 2,
+    "explain": "書 讀作 ㄕㄨ"
+  },
+  {
+    "id": "zhuyin-2-36",
+    "engine": "choice",
+    "prompt": "「筆」的注音是哪一個？",
+    "choices": [
+      "ㄩㄣˊ",
+      "ㄉㄧˋ",
+      "ㄅㄧˇ",
+      "ㄉㄚˋ"
+    ],
+    "answerIndex": 2,
+    "explain": "筆 讀作 ㄅㄧˇ"
+  },
+  {
+    "id": "zhuyin-2-37",
+    "engine": "choice",
+    "prompt": "「車」的注音是哪一個？",
+    "choices": [
+      "ㄓㄨㄥ",
+      "ㄒㄧㄥ",
+      "ㄍㄡˇ",
+      "ㄔㄜ"
+    ],
+    "answerIndex": 3,
+    "explain": "車 讀作 ㄔㄜ"
+  },
+  {
+    "id": "zhuyin-2-38",
+    "engine": "choice",
+    "prompt": "「門」的注音是哪一個？",
+    "choices": [
+      "ㄇㄣˊ",
+      "ㄊㄧㄠˋ",
+      "ㄒㄧㄠˇ",
+      "ㄉㄥ"
+    ],
+    "answerIndex": 0,
+    "explain": "門 讀作 ㄇㄣˊ"
+  },
+  {
+    "id": "zhuyin-2-39",
+    "engine": "choice",
+    "prompt": "「窗」的注音是哪一個？",
+    "choices": [
+      "ㄔㄨㄤ",
+      "ㄊㄧㄢ",
+      "ㄇㄠ",
+      "ㄐㄧㄠˇ"
+    ],
+    "answerIndex": 0,
+    "explain": "窗 讀作 ㄔㄨㄤ"
+  },
+  {
+    "id": "zhuyin-2-40",
+    "engine": "choice",
+    "prompt": "「燈」的注音是哪一個？",
+    "choices": [
+      "ㄕㄤˋ",
+      "ㄕㄠˇ",
+      "ㄉㄥ",
+      "ㄍㄡˇ"
+    ],
+    "answerIndex": 2,
+    "explain": "燈 讀作 ㄉㄥ"
+  },
+  {
+    "id": "zhuyin-2-41",
+    "engine": "choice",
+    "prompt": "「雨」的注音是哪一個？",
+    "choices": [
+      "ㄩˇ",
+      "ㄅㄚˋ",
+      "ㄆㄠˇ",
+      "ㄍㄨㄛˊ"
+    ],
+    "answerIndex": 0,
+    "explain": "雨 讀作 ㄩˇ"
+  },
+  {
+    "id": "zhuyin-2-42",
+    "engine": "choice",
+    "prompt": "「風」的注音是哪一個？",
+    "choices": [
+      "ㄈㄥ",
+      "ㄔ",
+      "ㄊㄨㄥˊ",
+      "ㄕㄢ"
+    ],
+    "answerIndex": 0,
+    "explain": "風 讀作 ㄈㄥ"
+  },
+  {
+    "id": "zhuyin-2-43",
+    "engine": "choice",
+    "prompt": "「雲」的注音是哪一個？",
+    "choices": [
+      "ㄕㄡˇ",
+      "ㄕㄨ",
+      "ㄏㄨㄚ",
+      "ㄩㄣˊ"
+    ],
+    "answerIndex": 3,
+    "explain": "雲 讀作 ㄩㄣˊ"
+  },
+  {
+    "id": "zhuyin-2-44",
+    "engine": "choice",
+    "prompt": "「月」的注音是哪一個？",
+    "choices": [
+      "ㄕㄤˋ",
+      "ㄕㄢ",
+      "ㄒㄧㄠˋ",
+      "ㄩㄝˋ"
+    ],
+    "answerIndex": 3,
+    "explain": "月 讀作 ㄩㄝˋ"
+  },
+  {
+    "id": "zhuyin-2-45",
+    "engine": "choice",
+    "prompt": "「星」的注音是哪一個？",
+    "choices": [
+      "ㄅㄧˇ",
+      "ㄒㄧㄥ",
+      "ㄕㄢ",
+      "ㄇㄠ"
+    ],
+    "answerIndex": 1,
+    "explain": "星 讀作 ㄒㄧㄥ"
+  },
+  {
+    "id": "zhuyin-2-init-0",
+    "engine": "choice",
+    "prompt": "哪一個是聲母？找出「ㄅ」",
+    "choices": [
+      "ㄑ",
+      "ㄕ",
+      "ㄅ",
+      "ㄍ"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "zhuyin-2-init-1",
+    "engine": "choice",
+    "prompt": "哪一個是聲母？找出「ㄆ」",
+    "choices": [
+      "ㄘ",
+      "ㄎ",
+      "ㄈ",
+      "ㄆ"
+    ],
+    "answerIndex": 3
+  },
+  {
+    "id": "zhuyin-2-init-2",
+    "engine": "choice",
+    "prompt": "哪一個是聲母？找出「ㄇ」",
+    "choices": [
+      "ㄊ",
+      "ㄑ",
+      "ㄇ",
+      "ㄕ"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "zhuyin-2-init-3",
+    "engine": "choice",
+    "prompt": "哪一個是聲母？找出「ㄈ」",
+    "choices": [
+      "ㄎ",
+      "ㄈ",
+      "ㄐ",
+      "ㄗ"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "zhuyin-2-init-4",
+    "engine": "choice",
+    "prompt": "哪一個是聲母？找出「ㄉ」",
+    "choices": [
+      "ㄉ",
+      "ㄗ",
+      "ㄒ",
+      "ㄑ"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "zhuyin-2-init-5",
+    "engine": "choice",
+    "prompt": "哪一個是聲母？找出「ㄊ」",
+    "choices": [
+      "ㄗ",
+      "ㄊ",
+      "ㄌ",
+      "ㄒ"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "zhuyin-2-init-6",
+    "engine": "choice",
+    "prompt": "哪一個是聲母？找出「ㄋ」",
+    "choices": [
+      "ㄎ",
+      "ㄋ",
+      "ㄊ",
+      "ㄈ"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "zhuyin-2-init-7",
+    "engine": "choice",
+    "prompt": "哪一個是聲母？找出「ㄌ」",
+    "choices": [
+      "ㄘ",
+      "ㄉ",
+      "ㄓ",
+      "ㄌ"
+    ],
+    "answerIndex": 3
+  },
+  {
+    "id": "zhuyin-2-init-8",
+    "engine": "choice",
+    "prompt": "哪一個是聲母？找出「ㄍ」",
+    "choices": [
+      "ㄆ",
+      "ㄖ",
+      "ㄍ",
+      "ㄒ"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "zhuyin-2-init-9",
+    "engine": "choice",
+    "prompt": "哪一個是聲母？找出「ㄎ」",
+    "choices": [
+      "ㄖ",
+      "ㄇ",
+      "ㄗ",
+      "ㄎ"
+    ],
+    "answerIndex": 3
+  },
+  {
+    "id": "zhuyin-2-tone-0",
+    "engine": "choice",
+    "prompt": "注音符號「ˊ」是什麼聲？",
+    "choices": [
+      "輕聲",
+      "二聲",
+      "三聲",
+      "四聲"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "zhuyin-2-tone-1",
+    "engine": "choice",
+    "prompt": "注音符號「ˇ」是什麼聲？",
+    "choices": [
+      "輕聲",
+      "二聲",
+      "三聲",
+      "四聲"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "zhuyin-2-tone-2",
+    "engine": "choice",
+    "prompt": "注音符號「ˋ」是什麼聲？",
+    "choices": [
+      "輕聲",
+      "三聲",
+      "四聲",
+      "二聲"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "zhuyin-2-tone-3",
+    "engine": "choice",
+    "prompt": "注音符號「˙」是什麼聲？",
+    "choices": [
+      "三聲",
+      "輕聲",
+      "二聲",
+      "四聲"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "zhuyin-2-word-明天",
+    "engine": "choice",
+    "prompt": "「明天」怎麼拼？",
+    "choices": [
+      "ㄒㄩㄝˊ ㄒㄧㄠˋ",
+      "ㄇㄧㄥˊ ㄊㄧㄢ",
+      "ㄔ ㄈㄢˋ",
+      "ㄒㄧㄝˋ ㄒㄧㄝˋ"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "zhuyin-2-word-謝謝",
+    "engine": "choice",
+    "prompt": "「謝謝」怎麼拼？",
+    "choices": [
+      "ㄐㄧㄠˋ ㄕˋ",
+      "ㄇㄧㄥˊ ㄊㄧㄢ",
+      "ㄒㄧㄝˋ ㄒㄧㄝˋ",
+      "ㄆㄥˊ ㄧㄡˇ"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "zhuyin-2-word-朋友",
+    "engine": "choice",
+    "prompt": "「朋友」怎麼拼？",
+    "choices": [
+      "ㄒㄧㄝˋ ㄒㄧㄝˋ",
+      "ㄐㄧㄠˋ ㄕˋ",
+      "ㄆㄥˊ ㄧㄡˇ",
+      "ㄒㄩㄝˊ ㄒㄧㄠˋ"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "zhuyin-2-word-快樂",
+    "engine": "choice",
+    "prompt": "「快樂」怎麼拼？",
+    "choices": [
+      "ㄔ ㄈㄢˋ",
+      "ㄎㄨㄞˋ ㄌㄜˋ",
+      "ㄐㄧㄠˋ ㄕˋ",
+      "ㄒㄧㄝˋ ㄒㄧㄝˋ"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "zhuyin-2-word-學校",
+    "engine": "choice",
+    "prompt": "「學校」怎麼拼？",
+    "choices": [
+      "ㄒㄩㄝˊ ㄒㄧㄠˋ",
+      "ㄍㄨㄥ ㄩㄢˊ",
+      "ㄆㄥˊ ㄧㄡˇ",
+      "ㄒㄧㄝˋ ㄒㄧㄝˋ"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "zhuyin-2-word-教室",
+    "engine": "choice",
+    "prompt": "「教室」怎麼拼？",
+    "choices": [
+      "ㄒㄧㄝˋ ㄒㄧㄝˋ",
+      "ㄇㄧㄥˊ ㄊㄧㄢ",
+      "ㄎㄨㄞˋ ㄌㄜˋ",
+      "ㄐㄧㄠˋ ㄕˋ"
+    ],
+    "answerIndex": 3
+  },
+  {
+    "id": "zhuyin-2-word-公園",
+    "engine": "choice",
+    "prompt": "「公園」怎麼拼？",
+    "choices": [
+      "ㄐㄧㄠˋ ㄕˋ",
+      "ㄔ ㄈㄢˋ",
+      "ㄍㄨㄥ ㄩㄢˊ",
+      "ㄆㄥˊ ㄧㄡˇ"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "zhuyin-2-word-吃飯",
+    "engine": "choice",
+    "prompt": "「吃飯」怎麼拼？",
+    "choices": [
+      "ㄍㄨㄥ ㄩㄢˊ",
+      "ㄆㄥˊ ㄧㄡˇ",
+      "ㄐㄧㄠˋ ㄕˋ",
+      "ㄔ ㄈㄢˋ"
+    ],
+    "answerIndex": 3
+  },
+  {
+    "id": "zhuyin-2-match-0",
+    "engine": "match",
+    "prompt": "把左邊和右邊配成一組",
+    "pairs": [
+      {
+        "left": "上",
+        "right": "下"
+      },
+      {
+        "left": "大",
+        "right": "小"
+      },
+      {
+        "left": "左",
+        "right": "右"
+      }
+    ]
+  },
+  {
+    "id": "zhuyin-2-match-1",
+    "engine": "match",
+    "prompt": "把左邊和右邊配成一組",
+    "pairs": [
+      {
+        "left": "早",
+        "right": "晚"
+      },
+      {
+        "left": "出",
+        "right": "入"
+      },
+      {
+        "left": "多",
+        "right": "少"
+      }
+    ]
+  },
+  {
+    "id": "zhuyin-2-match-2",
+    "engine": "match",
+    "prompt": "把左邊和右邊配成一組",
+    "pairs": [
+      {
+        "left": "父",
+        "right": "母"
+      },
+      {
+        "left": "子",
+        "right": "女"
+      },
+      {
+        "left": "天",
+        "right": "地"
+      }
+    ]
+  },
+  {
+    "id": "zhuyin-2-match-3",
+    "engine": "match",
+    "prompt": "把左邊和右邊配成一組",
+    "pairs": [
+      {
+        "left": "ㄅ",
+        "right": "玻"
+      },
+      {
+        "left": "ㄆ",
+        "right": "坡"
+      },
+      {
+        "left": "ㄇ",
+        "right": "摸"
+      }
+    ]
+  },
+  {
+    "id": "zhuyin-2-match-4",
+    "engine": "match",
+    "prompt": "把左邊和右邊配成一組",
+    "pairs": [
+      {
+        "left": "春",
+        "right": "花開"
+      },
+      {
+        "left": "夏",
+        "right": "炎熱"
+      },
+      {
+        "left": "冬",
+        "right": "較冷"
+      }
+    ]
+  }
+]

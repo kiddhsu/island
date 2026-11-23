@@ -1,0 +1,506 @@
+[
+  {
+    "id": "measure-1-time-1",
+    "engine": "choice",
+    "prompt": "時針指 1、分針指 12，現在幾點？",
+    "choices": [
+      "1 點 15 分",
+      "1 點整",
+      "1 點 30 分",
+      "1 點 45 分"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "measure-1-time-2",
+    "engine": "choice",
+    "prompt": "時針指 1、分針指 6，現在幾點？",
+    "choices": [
+      "1 點 45 分",
+      "1 點 10 分",
+      "1 點 15 分",
+      "1 點 30 分"
+    ],
+    "answerIndex": 3
+  },
+  {
+    "id": "measure-1-time-3",
+    "engine": "choice",
+    "prompt": "時針指 2、分針指 12，現在幾點？",
+    "choices": [
+      "2 點 45 分",
+      "2 點整",
+      "2 點 30 分",
+      "2 點 15 分"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "measure-1-time-4",
+    "engine": "choice",
+    "prompt": "時針指 2、分針指 6，現在幾點？",
+    "choices": [
+      "2 點 30 分",
+      "2 點 15 分",
+      "2 點整",
+      "2 點 10 分"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "measure-1-time-5",
+    "engine": "choice",
+    "prompt": "時針指 3、分針指 12，現在幾點？",
+    "choices": [
+      "3 點 10 分",
+      "3 點整",
+      "3 點 15 分",
+      "3 點 45 分"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "measure-1-time-6",
+    "engine": "choice",
+    "prompt": "時針指 3、分針指 6，現在幾點？",
+    "choices": [
+      "3 點整",
+      "3 點 30 分",
+      "3 點 15 分",
+      "3 點 45 分"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "measure-1-time-7",
+    "engine": "choice",
+    "prompt": "時針指 4、分針指 12，現在幾點？",
+    "choices": [
+      "4 點 10 分",
+      "4 點 45 分",
+      "4 點整",
+      "4 點 15 分"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "measure-1-time-8",
+    "engine": "choice",
+    "prompt": "時針指 4、分針指 6，現在幾點？",
+    "choices": [
+      "4 點 45 分",
+      "4 點整",
+      "4 點 10 分",
+      "4 點 30 分"
+    ],
+    "answerIndex": 3
+  },
+  {
+    "id": "measure-1-time-9",
+    "engine": "choice",
+    "prompt": "時針指 5、分針指 12，現在幾點？",
+    "choices": [
+      "5 點整",
+      "5 點 15 分",
+      "5 點 30 分",
+      "5 點 10 分"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "measure-1-time-10",
+    "engine": "choice",
+    "prompt": "時針指 5、分針指 6，現在幾點？",
+    "choices": [
+      "5 點 15 分",
+      "5 點 45 分",
+      "5 點 30 分",
+      "5 點 10 分"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "measure-1-time-11",
+    "engine": "choice",
+    "prompt": "時針指 6、分針指 12，現在幾點？",
+    "choices": [
+      "6 點 30 分",
+      "6 點 10 分",
+      "6 點 45 分",
+      "6 點整"
+    ],
+    "answerIndex": 3
+  },
+  {
+    "id": "measure-1-time-12",
+    "engine": "choice",
+    "prompt": "時針指 6、分針指 6，現在幾點？",
+    "choices": [
+      "6 點 15 分",
+      "6 點 10 分",
+      "6 點 30 分",
+      "6 點 45 分"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "measure-1-time-13",
+    "engine": "choice",
+    "prompt": "時針指 7、分針指 12，現在幾點？",
+    "choices": [
+      "7 點整",
+      "7 點 45 分",
+      "7 點 30 分",
+      "7 點 10 分"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "measure-1-time-14",
+    "engine": "choice",
+    "prompt": "時針指 7、分針指 6，現在幾點？",
+    "choices": [
+      "7 點整",
+      "7 點 30 分",
+      "7 點 15 分",
+      "7 點 10 分"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "measure-1-time-15",
+    "engine": "choice",
+    "prompt": "時針指 8、分針指 12，現在幾點？",
+    "choices": [
+      "8 點 10 分",
+      "8 點 15 分",
+      "8 點 30 分",
+      "8 點整"
+    ],
+    "answerIndex": 3
+  },
+  {
+    "id": "measure-1-time-16",
+    "engine": "choice",
+    "prompt": "時針指 8、分針指 6，現在幾點？",
+    "choices": [
+      "8 點 30 分",
+      "8 點 45 分",
+      "8 點 10 分",
+      "8 點整"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "measure-1-time-17",
+    "engine": "choice",
+    "prompt": "時針指 9、分針指 12，現在幾點？",
+    "choices": [
+      "9 點 10 分",
+      "9 點 30 分",
+      "9 點 45 分",
+      "9 點整"
+    ],
+    "answerIndex": 3
+  },
+  {
+    "id": "measure-1-time-18",
+    "engine": "choice",
+    "prompt": "時針指 9、分針指 6，現在幾點？",
+    "choices": [
+      "9 點 10 分",
+      "9 點 15 分",
+      "9 點整",
+      "9 點 30 分"
+    ],
+    "answerIndex": 3
+  },
+  {
+    "id": "measure-1-time-19",
+    "engine": "choice",
+    "prompt": "時針指 10、分針指 12，現在幾點？",
+    "choices": [
+      "10 點 45 分",
+      "10 點 15 分",
+      "10 點 30 分",
+      "10 點整"
+    ],
+    "answerIndex": 3
+  },
+  {
+    "id": "measure-1-time-20",
+    "engine": "choice",
+    "prompt": "時針指 10、分針指 6，現在幾點？",
+    "choices": [
+      "10 點 15 分",
+      "10 點 30 分",
+      "10 點 10 分",
+      "10 點 45 分"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "measure-1-time-21",
+    "engine": "choice",
+    "prompt": "時針指 11、分針指 12，現在幾點？",
+    "choices": [
+      "11 點 10 分",
+      "11 點 45 分",
+      "11 點整",
+      "11 點 15 分"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "measure-1-time-22",
+    "engine": "choice",
+    "prompt": "時針指 11、分針指 6，現在幾點？",
+    "choices": [
+      "11 點 30 分",
+      "11 點 10 分",
+      "11 點整",
+      "11 點 45 分"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "measure-1-time-23",
+    "engine": "choice",
+    "prompt": "時針指 12、分針指 12，現在幾點？",
+    "choices": [
+      "12 點整",
+      "12 點 10 分",
+      "12 點 30 分",
+      "12 點 45 分"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "measure-1-time-24",
+    "engine": "choice",
+    "prompt": "時針指 12、分針指 6，現在幾點？",
+    "choices": [
+      "12 點 15 分",
+      "12 點整",
+      "12 點 30 分",
+      "12 點 45 分"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "measure-1-money-25",
+    "engine": "choice",
+    "prompt": "10 元＋5 元＝多少元？",
+    "choices": [
+      "15",
+      "5",
+      "10",
+      "10"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "measure-1-money-26",
+    "engine": "choice",
+    "prompt": "50 元＋10 元＝多少元？",
+    "choices": [
+      "60",
+      "55",
+      "70",
+      "10"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "measure-1-money-27",
+    "engine": "choice",
+    "prompt": "100 元＋50 元＝多少元？",
+    "choices": [
+      "145",
+      "50",
+      "150",
+      "160"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "measure-1-money-28",
+    "engine": "choice",
+    "prompt": "20 元＋20 元＝多少元？",
+    "choices": [
+      "20",
+      "20",
+      "35",
+      "40"
+    ],
+    "answerIndex": 3
+  },
+  {
+    "id": "measure-1-money-29",
+    "engine": "choice",
+    "prompt": "5 元＋5 元＝多少元？",
+    "choices": [
+      "20",
+      "10",
+      "5",
+      "5"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "measure-1-money-30",
+    "engine": "choice",
+    "prompt": "100 元＋10 元＝多少元？",
+    "choices": [
+      "105",
+      "120",
+      "110",
+      "10"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "measure-1-shape-圓形",
+    "engine": "choice",
+    "prompt": "像球、像輪子，沒有角，這是什麼形狀？",
+    "choices": [
+      "三角形",
+      "長方形",
+      "圓形",
+      "正方形"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "measure-1-shape-三角形",
+    "engine": "choice",
+    "prompt": "有三個角、三邊，這是什麼形狀？",
+    "choices": [
+      "圓形",
+      "三角形",
+      "正方形",
+      "長方形"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "measure-1-shape-正方形",
+    "engine": "choice",
+    "prompt": "四邊一樣長，四個直角，這是什麼形狀？",
+    "choices": [
+      "長方形",
+      "圓形",
+      "三角形",
+      "正方形"
+    ],
+    "answerIndex": 3
+  },
+  {
+    "id": "measure-1-shape-長方形",
+    "engine": "choice",
+    "prompt": "對邊相等，四個直角，這是什麼形狀？",
+    "choices": [
+      "正方形",
+      "圓形",
+      "長方形",
+      "三角形"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "measure-1-len-5",
+    "engine": "choice",
+    "prompt": "一支鉛筆大約 5 公分，正確數字是？",
+    "choices": [
+      "10",
+      "6",
+      "5",
+      "4"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "measure-1-len-10",
+    "engine": "choice",
+    "prompt": "一支鉛筆大約 10 公分，正確數字是？",
+    "choices": [
+      "10",
+      "9",
+      "11",
+      "15"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "measure-1-len-15",
+    "engine": "choice",
+    "prompt": "一支鉛筆大約 15 公分，正確數字是？",
+    "choices": [
+      "20",
+      "15",
+      "30",
+      "16"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "measure-1-len-20",
+    "engine": "choice",
+    "prompt": "一支鉛筆大約 20 公分，正確數字是？",
+    "choices": [
+      "20",
+      "40",
+      "19",
+      "25"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "measure-1-len-25",
+    "engine": "choice",
+    "prompt": "一支鉛筆大約 25 公分，正確數字是？",
+    "choices": [
+      "25",
+      "26",
+      "24",
+      "50"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "measure-1-len-30",
+    "engine": "choice",
+    "prompt": "一支鉛筆大約 30 公分，正確數字是？",
+    "choices": [
+      "60",
+      "30",
+      "31",
+      "35"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "measure-1-len-35",
+    "engine": "choice",
+    "prompt": "一支鉛筆大約 35 公分，正確數字是？",
+    "choices": [
+      "70",
+      "35",
+      "36",
+      "40"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "measure-1-len-40",
+    "engine": "choice",
+    "prompt": "一支鉛筆大約 40 公分，正確數字是？",
+    "choices": [
+      "40",
+      "41",
+      "45",
+      "80"
+    ],
+    "answerIndex": 0
+  }
+]
