@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import type { OrderQuestion } from '../../types'
 import { playSfx } from '../../lib/sfx'
 import { shuffle } from '../../lib/shuffle'
@@ -11,11 +11,24 @@ type Props = {
 }
 
 export function PipePlay({ question, onResult }: Props) {
-  const pool = useMemo(() => shuffle(question.items), [question])
+  const steps = question.items
+  const pool = useMemo(
+    () => shuffle(steps),
+    // 每題重洗一次
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [question.id],
+  )
   const [filled, setFilled] = useState<string[]>([])
-  const [remain, setRemain] = useState(pool)
+  const [remain, setRemain] = useState<string[]>(pool)
   const [locked, setLocked] = useState(false)
   const [burst, setBurst] = useState<boolean | null>(null)
+
+  useEffect(() => {
+    setFilled([])
+    setRemain(shuffle(steps))
+    setLocked(false)
+    setBurst(null)
+  }, [question.id, steps])
 
   function pick(item: string) {
     if (locked) return
@@ -40,18 +53,41 @@ export function PipePlay({ question, onResult }: Props) {
     }
   }
 
+  const nextHint = question.correctOrder[filled.length]
+
   return (
-    <div className="play-stage grounded">
-      <p className="app-prompt" style={{ margin: 8 }}>
-        {question.prompt}
-        {'\n'}依序把步驟推進水管！
-      </p>
-      <div className="pipe-track">
-        {question.correctOrder.map((_, i) => (
-          <div key={i} className="pipe-slot">
-            {i + 1}. {filled[i] ?? '（空）'}
-          </div>
-        ))}
+    <div className="pipe-play">
+      <div className="play-stage grounded pipe-stage">
+        <p className="app-prompt" style={{ margin: 8 }}>
+          {question.prompt}
+          {'\n'}依順序點下方步驟，填進水管！
+        </p>
+        <div className="pipe-track">
+          {question.correctOrder.map((_, i) => (
+            <div
+              key={i}
+              className={`pipe-slot ${filled[i] ? 'is-filled' : ''} ${
+                i === filled.length && !locked ? 'is-next' : ''
+              }`}
+            >
+              <span className="pipe-slot-num">{i + 1}</span>
+              <span className="pipe-slot-text">
+                {filled[i] ?? (i === filled.length ? '下一個 →' : '（空）')}
+              </span>
+            </div>
+          ))}
+        </div>
+        {burst != null ? <PlayBurst ok={burst} y="55%" /> : null}
+      </div>
+
+      <div className="pipe-pick-panel">
+        <p className="pipe-pick-hint">
+          {locked
+            ? burst
+              ? '完成！'
+              : '順序錯了'
+            : `點選第 ${filled.length + 1} 步${nextHint ? `（想想：什麼要先做？）` : ''}`}
+        </p>
         <div className="pipe-options">
           {remain.map((item) => (
             <button
@@ -66,7 +102,6 @@ export function PipePlay({ question, onResult }: Props) {
           ))}
         </div>
       </div>
-      {burst != null ? <PlayBurst ok={burst} /> : null}
     </div>
   )
 }
