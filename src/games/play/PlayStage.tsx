@@ -72,9 +72,9 @@ function Fallback({
   onResult: PlayResultHandler
 }) {
   return (
-    <div className="play-stage grounded">
-      <p className="app-prompt">此題暫不支援「{modeHint}」玩法。</p>
-      <button type="button" className="app-btn" onClick={() => onResult(false)}>
+    <div className="play-wrap">
+      <p className="play-prompt">此題暫不支援「{modeHint}」玩法。</p>
+      <button type="button" className="app-btn block" onClick={() => onResult(false)}>
         跳過
       </button>
     </div>

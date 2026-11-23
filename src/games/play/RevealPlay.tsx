@@ -12,7 +12,6 @@ type Props = {
 
 /**
  * 翻牌尋寶：選項一律正面可見（避免盲猜），點正確的那張即可。
- * 保留卡牌／紅白機造型，解題靠知識不是靠運氣。
  */
 export function RevealPlay({ question, onResult }: Props) {
   const cards = useMemo(() => pickPlayChoices(question, 4), [question])
@@ -34,27 +33,26 @@ export function RevealPlay({ question, onResult }: Props) {
   }
 
   return (
-    <div className="play-stage" style={{ background: 'transparent' }}>
-      <p className="app-prompt" style={{ margin: 8 }}>
-        {question.prompt}
-        {'\n'}點選正確的卡牌！
-      </p>
-      <div className="flip-board">
-        {cards.map((c, i) => (
-          <button
-            key={`${question.id}-rev-${i}-${c.label}`}
-            type="button"
-            className={`flip-card open ${
-              picked === i ? (c.correct ? 'matched' : 'missed') : ''
-            }`}
-            disabled={locked}
-            onClick={() => open(i)}
-          >
-            {c.label}
-          </button>
-        ))}
+    <div className="play-wrap">
+      <p className="play-prompt">{question.prompt}</p>
+      <div className="play-stage play-stage-cards">
+        <div className="flip-board cols-2">
+          {cards.map((c, i) => (
+            <button
+              key={`${question.id}-rev-${i}-${c.label}`}
+              type="button"
+              className={`flip-card open ${
+                picked === i ? (c.correct ? 'matched' : 'missed') : ''
+              }`}
+              disabled={locked}
+              onClick={() => open(i)}
+            >
+              {c.label}
+            </button>
+          ))}
+        </div>
+        {burst != null ? <PlayBurst ok={burst} /> : null}
       </div>
-      {burst != null ? <PlayBurst ok={burst} /> : null}
     </div>
   )
 }

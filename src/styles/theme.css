@@ -16,7 +16,9 @@
   --shadow: 0 14px 36px rgba(40, 80, 120, 0.16);
   --radius: 22px;
   --font-body: 'Noto Sans TC', sans-serif;
+  /* 手機／平板共用最小觸控高度（建議 ≥ 44~48px） */
   --touch: 48px;
+  --touch-lg: 56px;
 }
 
 * {
@@ -187,12 +189,48 @@ a {
   box-shadow: 0 8px 18px rgba(30, 60, 90, 0.08);
 }
 
-.play-stage {
-  position: relative;
+/* 關卡外殼：題目在上、舞台在中、可點選項在下（避免被 overflow 裁切） */
+.play-wrap {
   width: min(960px, 100%);
   margin: 0 auto;
+}
+
+.play-prompt {
+  white-space: pre-wrap;
+  font-weight: 800;
+  font-size: clamp(0.95rem, 2.8vw, 1.15rem);
+  line-height: 1.5;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  padding: 10px 14px;
+  margin: 0 0 10px;
+  box-shadow: 0 8px 18px rgba(30, 60, 90, 0.08);
+}
+
+.play-stage-tip {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  top: 10px;
+  z-index: 3;
+  margin: 0;
+  padding: 8px 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.88);
+  color: var(--muted);
+  font-weight: 800;
+  font-size: 0.82rem;
+  line-height: 1.4;
+  pointer-events: none;
+  text-align: center;
+}
+
+.play-stage {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
   aspect-ratio: 4 / 3;
-  max-height: min(68dvh, 620px);
+  max-height: min(52dvh, 520px);
   background:
     linear-gradient(
       180deg,
@@ -203,13 +241,28 @@ a {
   border: 1px solid rgba(255, 255, 255, 0.85);
   box-shadow: var(--shadow);
   overflow: hidden;
-  touch-action: none;
+  touch-action: manipulation;
   user-select: none;
+}
+
+.play-stage.is-drag {
+  touch-action: none;
+  cursor: grab;
+}
+
+.play-stage.is-drag:active {
+  cursor: grabbing;
 }
 
 .play-stage.grounded {
   background:
     linear-gradient(#9fd4ff 0 58%, #7dce8e 58% 68%, #d8a06a 68% 100%);
+}
+
+.play-stage-cards {
+  aspect-ratio: auto;
+  min-height: min(42dvh, 360px);
+  max-height: min(56dvh, 520px);
 }
 
 .play-help {
@@ -219,24 +272,79 @@ a {
   line-height: 1.55;
 }
 
+.play-pick-panel {
+  margin-top: 10px;
+  padding: 12px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: var(--shadow);
+}
+
+.play-pick-hint {
+  margin: 0 0 10px;
+  font-weight: 800;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.play-pick-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.play-pick-grid.cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.play-pick-btn {
+  min-height: var(--touch-lg);
+  border: 0;
+  border-radius: 16px;
+  padding: 10px 12px;
+  background: color-mix(in srgb, var(--accent) 88%, white);
+  color: #fff;
+  font-weight: 800;
+  font-size: clamp(0.85rem, 2.4vw, 1rem);
+  line-height: 1.35;
+  cursor: pointer;
+  box-shadow: 0 8px 16px rgba(30, 60, 90, 0.14);
+  touch-action: manipulation;
+}
+
+.play-pick-btn.is-ok {
+  background: var(--ok);
+}
+
+.play-pick-btn.is-bad {
+  background: var(--danger);
+}
+
+.play-pick-btn:disabled {
+  opacity: 0.7;
+  cursor: default;
+}
+
 .jump-platform {
   position: absolute;
   bottom: 16%;
-  min-height: 64px;
+  min-height: var(--touch-lg);
   padding: 8px;
   border: 0;
   border-radius: 16px;
   background: rgba(255, 255, 255, 0.95);
   color: var(--ink);
   font-weight: 800;
-  font-size: clamp(0.85rem, 2.2vw, 1rem);
-  line-height: 1.35;
+  font-size: clamp(0.78rem, 2vw, 0.95rem);
+  line-height: 1.3;
   cursor: pointer;
   display: grid;
   place-items: center;
   text-align: center;
   box-shadow: 0 10px 20px rgba(30, 60, 90, 0.14);
   border: 3px solid color-mix(in srgb, var(--accent) 55%, white);
+  touch-action: manipulation;
+  z-index: 2;
 }
 
 .jump-platform.correct-flash {
@@ -587,21 +695,23 @@ a {
 
 .catch-item {
   position: absolute;
-  min-width: 76px;
-  max-width: 130px;
-  padding: 10px;
+  min-width: 88px;
+  max-width: 140px;
+  min-height: var(--touch);
+  padding: 10px 12px;
   border: 0;
   border-radius: 14px;
   background: rgba(255, 255, 255, 0.95);
   color: var(--ink);
   font-weight: 800;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   line-height: 1.35;
   text-align: center;
   transform: translateX(-50%);
   cursor: pointer;
-  z-index: 2;
+  z-index: 5;
   box-shadow: 0 8px 16px rgba(30, 60, 90, 0.14);
+  touch-action: manipulation;
 }
 
 .fork-road {
@@ -612,19 +722,31 @@ a {
 
 .fork-choice {
   position: absolute;
-  bottom: 42%;
+  bottom: 38%;
   width: 28%;
-  min-height: 72px;
+  min-height: var(--touch-lg);
   border: 0;
   border-radius: 16px;
   background: rgba(255, 255, 255, 0.95);
   color: var(--ink);
   font-weight: 800;
-  font-size: 0.85rem;
-  line-height: 1.4;
+  font-size: clamp(0.75rem, 2vw, 0.9rem);
+  line-height: 1.35;
   padding: 10px;
   cursor: pointer;
   box-shadow: 0 10px 20px rgba(30, 60, 90, 0.14);
+  touch-action: manipulation;
+  z-index: 2;
+}
+
+.fork-choice.is-ok {
+  background: var(--ok);
+  color: #fff;
+}
+
+.fork-choice.is-bad {
+  background: var(--danger);
+  color: #fff;
 }
 
 .flip-board {
@@ -637,8 +759,17 @@ a {
   align-content: center;
 }
 
+.flip-board.cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.flip-board.cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .flip-card {
   aspect-ratio: 3 / 4;
+  min-height: 88px;
   border: 0;
   border-radius: 16px;
   background: color-mix(in srgb, var(--accent) 70%, var(--deep));
@@ -648,9 +779,10 @@ a {
   display: grid;
   place-items: center;
   text-align: center;
-  padding: 8px;
+  padding: 10px;
   cursor: pointer;
   box-shadow: 0 10px 18px rgba(30, 60, 90, 0.16);
+  touch-action: manipulation;
 }
 
 .flip-card.open {
@@ -668,16 +800,11 @@ a {
   color: #fff;
 }
 
-.pipe-play {
-  width: min(960px, 100%);
-  margin: 0 auto;
-}
-
 .pipe-stage {
   /* 水管槽位較多，略壓低高度把選項留給下方面板 */
-  max-height: min(48dvh, 420px);
+  max-height: min(40dvh, 360px);
   aspect-ratio: auto;
-  min-height: 280px;
+  min-height: 220px;
 }
 
 .pipe-track {
@@ -728,21 +855,6 @@ a {
   line-height: 1.3;
 }
 
-.pipe-pick-panel {
-  margin-top: 10px;
-  padding: 12px;
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.95);
-  box-shadow: var(--shadow);
-}
-
-.pipe-pick-hint {
-  margin: 0 0 10px;
-  font-weight: 800;
-  color: var(--muted);
-  font-size: 0.9rem;
-}
-
 .pipe-options {
   display: flex;
   flex-wrap: wrap;
@@ -755,10 +867,11 @@ a {
   background: var(--accent);
   color: #fff;
   font-weight: 800;
-  padding: 12px 14px;
-  min-height: 48px;
+  padding: 12px 16px;
+  min-height: var(--touch-lg);
   cursor: pointer;
   box-shadow: 0 8px 16px rgba(30, 60, 90, 0.14);
+  touch-action: manipulation;
 }
 
 .pipe-chip:disabled {
@@ -769,21 +882,107 @@ a {
 .ctrl-bar {
   display: flex;
   justify-content: center;
-  gap: 12px;
+  gap: 16px;
   padding: 12px 0 0;
 }
 
 .ctrl-pad {
-  width: 64px;
-  height: 64px;
-  border-radius: 18px;
+  width: 72px;
+  height: 72px;
+  border-radius: 20px;
   border: 0;
   background: rgba(255, 255, 255, 0.95);
   color: var(--ink);
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 900;
   cursor: pointer;
   box-shadow: var(--shadow);
+  touch-action: manipulation;
+}
+
+.ctrl-pad:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+/* 接物：左右鍵貼在舞台兩側下方，拇指最好按 */
+.play-stage.has-side-ctrl {
+  /* 底部留白給側鍵，避免擋到角色 */
+  padding-bottom: 4px;
+}
+
+.ctrl-pad-side {
+  position: absolute;
+  bottom: max(10px, env(safe-area-inset-bottom, 0px));
+  z-index: 9;
+  width: 76px;
+  height: 76px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.96);
+  border: 3px solid color-mix(in srgb, var(--accent) 45%, white);
+  box-shadow: 0 10px 22px rgba(30, 60, 90, 0.22);
+}
+
+.ctrl-pad-side.left {
+  left: 10px;
+}
+
+.ctrl-pad-side.right {
+  right: 10px;
+}
+
+.play-countdown {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  background: rgba(28, 42, 58, 0.28);
+  backdrop-filter: blur(2px);
+  pointer-events: auto;
+}
+
+.play-countdown-card {
+  min-width: min(220px, 70%);
+  padding: 18px 22px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.97);
+  box-shadow: 0 16px 36px rgba(20, 40, 70, 0.28);
+  text-align: center;
+}
+
+.play-countdown-label {
+  margin: 0;
+  font-weight: 800;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+}
+
+.play-countdown-num {
+  margin: 6px 0 4px;
+  font-size: clamp(2.6rem, 10vw, 3.6rem);
+  font-weight: 900;
+  color: var(--accent);
+  line-height: 1;
+  animation: countdown-pop 0.35s ease;
+}
+
+.play-countdown-hint {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+@keyframes countdown-pop {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .hub-wrap,
@@ -924,17 +1123,137 @@ a {
   font-weight: 700;
 }
 
+.session-topbar {
+  margin-bottom: 8px;
+}
+
 @media (max-width: 640px) {
-  .play-stage {
-    aspect-ratio: 3 / 4;
-    max-height: 66dvh;
+  :root {
+    --touch: 48px;
+    --touch-lg: 52px;
   }
 
-  .flip-board {
-    grid-template-columns: repeat(3, 1fr);
+  .app-shell {
+    padding: 10px 10px calc(14px + env(safe-area-inset-bottom));
+  }
+
+  .session-topbar .app-heading {
+    font-size: 1.25rem;
+  }
+
+  .session-topbar .app-sub {
+    font-size: 0.85rem;
+  }
+
+  .session-help {
+    display: none;
+  }
+
+  .play-stage {
+    aspect-ratio: 5 / 4;
+    max-height: min(42dvh, 360px);
+  }
+
+  .play-stage-cards {
+    min-height: 240px;
+    max-height: min(48dvh, 400px);
+  }
+
+  .pipe-stage {
+    min-height: 180px;
+    max-height: min(34dvh, 280px);
   }
 
   .fork-choice {
-    font-size: 0.78rem;
+    /* 手機改以下方大按鈕為主，舞台內按鈕縮小避免擠壓 */
+    min-height: 48px;
+    font-size: 0.72rem;
+    padding: 6px;
+  }
+
+  .jump-platform {
+    min-height: 48px;
+    font-size: 0.72rem;
+  }
+
+  .play-pick-grid.cols-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .ctrl-pad {
+    width: 68px;
+    height: 68px;
+  }
+
+  .ctrl-pad-side {
+    width: 72px;
+    height: 72px;
+    bottom: 8px;
+  }
+
+  .ctrl-pad-side.left {
+    left: 8px;
+  }
+
+  .ctrl-pad-side.right {
+    right: 8px;
+  }
+
+  .profiles-wrap .swatch {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+/* 平板直向／中等寬度 */
+@media (min-width: 641px) and (max-width: 1024px) {
+  :root {
+    --touch: 52px;
+    --touch-lg: 60px;
+  }
+
+  .play-stage {
+    max-height: min(50dvh, 480px);
+  }
+
+  .play-pick-btn,
+  .pipe-chip {
+    min-height: 60px;
+    font-size: 1.05rem;
+  }
+
+  .ctrl-pad {
+    width: 80px;
+    height: 80px;
+  }
+
+  .ctrl-pad-side {
+    width: 88px;
+    height: 88px;
+    bottom: 14px;
+  }
+
+  .ctrl-pad-side.left {
+    left: 14px;
+  }
+
+  .ctrl-pad-side.right {
+    right: 14px;
+  }
+
+  .flip-card {
+    min-height: 110px;
+  }
+}
+
+/* 平板橫向：舞台可稍高，選項維持大觸控 */
+@media (min-width: 900px) and (orientation: landscape) {
+  .play-stage {
+    max-height: min(58dvh, 460px);
+    aspect-ratio: 16 / 9;
+  }
+
+  .session-help {
+    display: block;
   }
 }

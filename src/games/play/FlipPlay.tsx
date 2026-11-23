@@ -89,29 +89,31 @@ export function FlipPlay({ question, onResult }: Props) {
   }
 
   return (
-    <div className="play-stage" style={{ background: 'transparent' }}>
-      <p className="app-prompt" style={{ margin: 8 }}>
-        翻開兩張「成對」的牌（例如 上↔下、大↔小）
+    <div className="play-wrap">
+      <p className="play-prompt">
+        翻開兩張成對的牌
         {'\n'}已配對 {matched.length}/{need}　失誤 {misses}/{MAX_MISSES}
       </p>
-      <div className="flip-board">
-        {cards.map((c) => {
-          const shown = open.includes(c.id) || matched.includes(c.pairId)
-          return (
-            <button
-              key={c.id}
-              type="button"
-              className={`flip-card ${shown ? 'open' : ''} ${
-                matched.includes(c.pairId) ? 'matched' : ''
-              }`}
-              onClick={() => click(c)}
-            >
-              {shown ? c.text : '?'}
-            </button>
-          )
-        })}
+      <div className="play-stage play-stage-cards">
+        <div className="flip-board cols-3">
+          {cards.map((c) => {
+            const shown = open.includes(c.id) || matched.includes(c.pairId)
+            return (
+              <button
+                key={c.id}
+                type="button"
+                className={`flip-card ${shown ? 'open' : ''} ${
+                  matched.includes(c.pairId) ? 'matched' : ''
+                }`}
+                onClick={() => click(c)}
+              >
+                {shown ? c.text : '?'}
+              </button>
+            )
+          })}
+        </div>
+        {burst != null ? <PlayBurst ok={burst} /> : null}
       </div>
-      {burst != null ? <PlayBurst ok={burst} /> : null}
     </div>
   )
 }

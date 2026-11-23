@@ -56,12 +56,9 @@ export function PipePlay({ question, onResult }: Props) {
   const nextHint = question.correctOrder[filled.length]
 
   return (
-    <div className="pipe-play">
+    <div className="play-wrap">
+      <p className="play-prompt">{question.prompt}</p>
       <div className="play-stage grounded pipe-stage">
-        <p className="app-prompt" style={{ margin: 8 }}>
-          {question.prompt}
-          {'\n'}依順序點下方步驟，填進水管！
-        </p>
         <div className="pipe-track">
           {question.correctOrder.map((_, i) => (
             <div
@@ -80,13 +77,13 @@ export function PipePlay({ question, onResult }: Props) {
         {burst != null ? <PlayBurst ok={burst} y="55%" /> : null}
       </div>
 
-      <div className="pipe-pick-panel">
-        <p className="pipe-pick-hint">
+      <div className="play-pick-panel">
+        <p className="play-pick-hint">
           {locked
             ? burst
               ? '完成！'
               : '順序錯了'
-            : `點選第 ${filled.length + 1} 步${nextHint ? `（想想：什麼要先做？）` : ''}`}
+            : `點選第 ${filled.length + 1} 步${nextHint ? '（想想：什麼要先做？）' : ''}`}
         </p>
         <div className="pipe-options">
           {remain.map((item) => (

@@ -1,9 +1,17 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import {
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type PointerEvent as ReactPointerEvent,
+} from 'react'
 import type { ChoiceQuestion } from '../../types'
 import { playSfx } from '../../lib/sfx'
 import { pickPlayChoices } from './choiceUtils'
 import { PlayBurst } from './PlayBurst'
+import { PlayCountdown } from './PlayCountdown'
 import { PlayHero } from './PlayHero'
+import { usePlayReady } from './usePlayReady'
 import type { PlayResultHandler } from './types'
 
 type Falling = {
@@ -20,6 +28,7 @@ type Props = {
 }
 
 export function CatchPlay({ question, onResult }: Props) {
+  const { ready, onReady } = usePlayReady(question.id)
   const [heroX, setHeroX] = useState(50)
   const [items, setItems] = useState<Falling[]>([])
   const [locked, setLocked] = useState(false)
@@ -27,10 +36,13 @@ export function CatchPlay({ question, onResult }: Props) {
     null,
   )
   const ended = useRef(false)
+  const dragging = useRef(false)
+  const stageRef = useRef<HTMLDivElement>(null)
   const onResultRef = useRef(onResult)
   onResultRef.current = onResult
 
   const pack = useMemo(() => pickPlayChoices(question, 4), [question])
+  const busy = !ready || locked
 
   useEffect(() => {
     ended.current = false
@@ -43,23 +55,25 @@ export function CatchPlay({ question, onResult }: Props) {
         label: p.label,
         correct: p.correct,
         x: 15 + i * 22,
+        // 倒數期間停在畫面上方外側，開始後才落下
         y: -8 - i * 28,
       })),
     )
   }, [pack, question.id])
 
   useEffect(() => {
-    if (locked) return
+    if (!ready || locked) return
     const timer = window.setInterval(() => {
       setItems((prev) => prev.map((it) => ({ ...it, y: it.y + 0.75 })))
     }, 50)
     return () => window.clearInterval(timer)
-  }, [locked, question.id])
+  }, [ready, locked, question.id])
 
   function finish(ok: boolean, x: number, y: number) {
     if (ended.current) return
     ended.current = true
     setLocked(true)
+    dragging.current = false
     setBurst({
       ok,
       x: `${x}%`,
@@ -70,11 +84,11 @@ export function CatchPlay({ question, onResult }: Props) {
   }
 
   useEffect(() => {
-    if (locked || ended.current) return
+    if (!ready || locked || ended.current) return
 
     for (const it of items) {
-      if (it.y < 74 || it.y > 90) continue
-      if (Math.abs(it.x - heroX) > 16) continue
+      if (it.y < 72 || it.y > 92) continue
+      if (Math.abs(it.x - heroX) > 18) continue
       finish(it.correct, it.x, it.y)
       return
     }
@@ -88,27 +102,72 @@ export function CatchPlay({ question, onResult }: Props) {
         })),
       )
     }
-  }, [items, heroX, locked])
+  }, [items, heroX, locked, ready])
+
+  function setHeroFromClientX(clientX: number) {
+    const el = stageRef.current
+    if (!el) return
+    const rect = el.getBoundingClientRect()
+    if (rect.width <= 0) return
+    const pct = ((clientX - rect.left) / rect.width) * 100
+    setHeroX(Math.min(88, Math.max(12, pct)))
+  }
 
   function move(dx: number) {
-    if (locked) return
+    if (busy) return
     playSfx('tap', 0.2)
     setHeroX((x) => Math.min(88, Math.max(12, x + dx)))
   }
 
   function tapItem(it: Falling) {
-    if (locked || ended.current) return
-    if (it.y < 20 || it.y > 95) return
+    if (busy || ended.current) return
+    if (it.y < 8 || it.y > 98) return
     playSfx('tap', 0.3)
     finish(it.correct, it.x, it.y)
   }
 
+  function onPointerDown(e: ReactPointerEvent<HTMLDivElement>) {
+    if (busy) return
+    const target = e.target as HTMLElement
+    if (
+      target.closest('.catch-item') ||
+      target.closest('.play-stage-tip') ||
+      target.closest('.ctrl-pad')
+    ) {
+      return
+    }
+    dragging.current = true
+    stageRef.current?.setPointerCapture(e.pointerId)
+    setHeroFromClientX(e.clientX)
+  }
+
+  function onPointerMove(e: ReactPointerEvent<HTMLDivElement>) {
+    if (!dragging.current || busy) return
+    setHeroFromClientX(e.clientX)
+  }
+
+  function onPointerUp(e: ReactPointerEvent<HTMLDivElement>) {
+    dragging.current = false
+    try {
+      stageRef.current?.releasePointerCapture(e.pointerId)
+    } catch {
+      /* ignore */
+    }
+  }
+
   return (
-    <div>
-      <div className="play-stage grounded">
-        <p className="app-prompt" style={{ margin: 8 }}>
-          {question.prompt}
-          {'\n'}左右移動接住正確答案，或直接點它！
+    <div className="play-wrap">
+      <p className="play-prompt">{question.prompt}</p>
+      <div
+        ref={stageRef}
+        className="play-stage grounded is-drag has-side-ctrl"
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={onPointerUp}
+        onPointerCancel={onPointerUp}
+      >
+        <p className="play-stage-tip">
+          {ready ? '拖移／點掉落物，或按左右鍵' : '倒數結束後開始接！'}
         </p>
         {items.map((it) => (
           <button
@@ -116,7 +175,7 @@ export function CatchPlay({ question, onResult }: Props) {
             type="button"
             className="catch-item"
             style={{ left: `${it.x}%`, top: `${it.y}%` }}
-            disabled={locked}
+            disabled={busy}
             onClick={() => tapItem(it)}
           >
             {it.label}
@@ -126,15 +185,30 @@ export function CatchPlay({ question, onResult }: Props) {
           pose="catch"
           style={{ left: `calc(${heroX}% - 28px)` }}
         />
-        {burst ? <PlayBurst ok={burst.ok} x={burst.x} y={burst.y} /> : null}
-      </div>
-      <div className="ctrl-bar">
-        <button type="button" className="ctrl-pad" onClick={() => move(-14)}>
+        <button
+          type="button"
+          className="ctrl-pad ctrl-pad-side left"
+          aria-label="向左"
+          disabled={busy}
+          onPointerDown={(e) => e.stopPropagation()}
+          onClick={() => move(-16)}
+        >
           ◀
         </button>
-        <button type="button" className="ctrl-pad" onClick={() => move(14)}>
+        <button
+          type="button"
+          className="ctrl-pad ctrl-pad-side right"
+          aria-label="向右"
+          disabled={busy}
+          onPointerDown={(e) => e.stopPropagation()}
+          onClick={() => move(16)}
+        >
           ▶
         </button>
+        {burst ? <PlayBurst ok={burst.ok} x={burst.x} y={burst.y} /> : null}
+        {!ready ? (
+          <PlayCountdown resetKey={question.id} onReady={onReady} />
+        ) : null}
       </div>
     </div>
   )

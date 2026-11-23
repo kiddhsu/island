@@ -143,7 +143,7 @@ export function GameSession() {
         ['--deep' as string]: island.deep,
       }}
     >
-      <header className="app-topbar">
+      <header className="app-topbar session-topbar">
         <div>
           <p className="app-kicker">{island.short}</p>
           <h1 className="app-heading">{island.name}</h1>
@@ -165,7 +165,7 @@ export function GameSession() {
       </header>
 
       <PlayStage mode={island.playMode} question={q} onResult={onResult} />
-      <p className="play-help">{island.howToPlay}</p>
+      <p className="play-help session-help">{island.howToPlay}</p>
     </div>
   )
 }
