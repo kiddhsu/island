@@ -23,14 +23,23 @@ export function Result() {
   if (!state) return <Navigate to={`/island/${island.id}`} replace />
 
   return (
-    <div className="nes-frame">
-      <header className="nes-hud">
-        <div>STAGE CLEAR</div>
-      </header>
-      <div className="result-nes">
-        <div className="nes-panel">
-          <p className="nes-title">{island.name}</p>
-          <p style={{ fontSize: 28, color: '#f8d878', letterSpacing: '0.2em' }}>
+    <div
+      className="app-shell"
+      style={{
+        ['--accent' as string]: island.accent,
+        ['--soft' as string]: island.soft,
+        ['--deep' as string]: island.deep,
+      }}
+    >
+      <div className="result-wrap">
+        <header className="app-topbar">
+          <div>
+            <p className="app-kicker">本回合結束</p>
+            <h1 className="app-heading">{island.name}</h1>
+          </div>
+        </header>
+        <div className="app-card">
+          <p className="result-stars">
             {'★'.repeat(state.stars)}
             {'☆'.repeat(3 - state.stars)}
           </p>
@@ -40,7 +49,7 @@ export function Result() {
           <div style={{ display: 'grid', gap: 10, marginTop: 16 }}>
             <button
               type="button"
-              className="nes-btn"
+              className="app-btn block"
               onClick={() => {
                 playSfx('enter', 0.45)
                 navigate(`/island/${island.id}/play`)
@@ -50,7 +59,7 @@ export function Result() {
             </button>
             <button
               type="button"
-              className="nes-btn soft"
+              className="app-btn soft block"
               onClick={() => {
                 playSfx('tap', 0.4)
                 navigate('/')
@@ -58,7 +67,7 @@ export function Result() {
             >
               回地圖
             </button>
-            <Link to={`/island/${island.id}`} style={{ color: '#fff' }}>
+            <Link to={`/island/${island.id}`} className="app-btn ghost block">
               回關卡介紹
             </Link>
           </div>

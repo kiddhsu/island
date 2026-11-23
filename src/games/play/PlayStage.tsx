@@ -73,8 +73,8 @@ function Fallback({
 }) {
   return (
     <div className="play-stage grounded">
-      <p className="nes-prompt">此題暫不支援「{modeHint}」玩法。</p>
-      <button type="button" className="nes-btn" onClick={() => onResult(false)}>
+      <p className="app-prompt">此題暫不支援「{modeHint}」玩法。</p>
+      <button type="button" className="app-btn" onClick={() => onResult(false)}>
         跳過
       </button>
     </div>

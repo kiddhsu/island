@@ -106,7 +106,7 @@ export function CatchPlay({ question, onResult }: Props) {
   return (
     <div>
       <div className="play-stage grounded">
-        <p className="nes-prompt" style={{ margin: 8 }}>
+        <p className="app-prompt" style={{ margin: 8 }}>
           {question.prompt}
           {'\n'}左右移動接住正確答案，或直接點它！
         </p>

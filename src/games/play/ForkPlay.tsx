@@ -33,7 +33,7 @@ export function ForkPlay({ question, onResult }: Props) {
   return (
     <div className="play-stage">
       <div className="fork-road" />
-      <p className="nes-prompt" style={{ margin: 8, position: 'relative', zIndex: 2 }}>
+      <p className="app-prompt" style={{ margin: 8, position: 'relative', zIndex: 2 }}>
         {question.prompt}
         {'\n'}選正確的路前進
       </p>
@@ -46,7 +46,12 @@ export function ForkPlay({ question, onResult }: Props) {
           style={{
             left: `${10 + i * 30}%`,
             background:
-              flash === i ? (r.correct ? '#00a800' : '#e52521') : '#2038ec',
+              flash === i
+                ? r.correct
+                  ? '#2f9e5b'
+                  : '#e4572e'
+                : 'rgba(255,255,255,0.95)',
+            color: flash === i ? '#fff' : '#1c2a3a',
           }}
           disabled={locked}
           onClick={() => pick(i)}

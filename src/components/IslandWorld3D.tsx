@@ -205,8 +205,23 @@ function IslandMesh({
             />
           </mesh>
         ) : null}
-        <Html position={[0, 1.75, 0]} center distanceFactor={9} zIndexRange={[20, 0]}>
-          <div className={`map-pill ${selected ? 'is-on' : ''}`}>
+        <Html
+          position={[0, 1.75, 0]}
+          center
+          distanceFactor={9}
+          zIndexRange={[8, 0]}
+          style={{ pointerEvents: 'none' }}
+        >
+          <button
+            type="button"
+            className={`map-pill ${selected ? 'is-on' : ''}`}
+            style={{ pointerEvents: 'auto' }}
+            onPointerDown={(e) => e.stopPropagation()}
+            onClick={(e) => {
+              e.stopPropagation()
+              onSelect()
+            }}
+          >
             <span className="map-pill-num" style={{ color: island.accent }}>
               {indexLabel}
             </span>
@@ -217,7 +232,7 @@ function IslandMesh({
                 {'☆'.repeat(Math.max(0, 3 - stars))}
               </small>
             </span>
-          </div>
+          </button>
         </Html>
       </group>
     </Float>
@@ -450,15 +465,13 @@ export function IslandWorld3D({
         <span>一座島一種冒險</span>
       </div>
 
-      <div className="map-hint">
-        拖曳旋轉・捏合縮放・點島探索
-        {!selected ? (
-          <>
-            <br />
-            點一座有趣的小島開始
-          </>
-        ) : null}
-      </div>
+      {!selected ? (
+        <div className="map-hint">
+          拖曳旋轉・捏合縮放
+          <br />
+          點小島或上方標題即可選擇
+        </div>
+      ) : null}
 
       {selected ? (
         <aside className="map-detail" style={{ borderColor: selected.accent }}>
@@ -466,10 +479,21 @@ export function IslandWorld3D({
             <span className="map-pill-num" style={{ color: selected.accent }}>
               {ISLAND_INDEX[selected.id]}
             </span>
-            <div>
+            <div className="map-detail-copy">
               <h2>{selected.name}</h2>
               <p>{selected.blurb}</p>
             </div>
+            <button
+              type="button"
+              className="map-detail-close"
+              aria-label="關閉"
+              onClick={() => {
+                playSfx('tap', 0.3)
+                setSelectedId(null)
+              }}
+            >
+              ×
+            </button>
           </div>
           <p className="map-detail-meta">
             {selected.howToPlay}
@@ -477,8 +501,8 @@ export function IslandWorld3D({
           </p>
           <button
             type="button"
-            className="nes-btn"
-            style={{ width: '100%', background: selected.accent }}
+            className="app-btn block"
+            style={{ background: selected.accent }}
             onClick={() => {
               playSfx('enter', 0.45)
               navigate(`/island/${selected.id}`)

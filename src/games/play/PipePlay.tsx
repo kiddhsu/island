@@ -38,7 +38,7 @@ export function PipePlay({ question, onResult }: Props) {
 
   return (
     <div className="play-stage grounded">
-      <p className="nes-prompt" style={{ margin: 8 }}>
+      <p className="app-prompt" style={{ margin: 8 }}>
         {question.prompt}
         {'\n'}依序把步驟推進水管！
       </p>

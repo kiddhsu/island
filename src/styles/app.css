@@ -298,9 +298,15 @@ h2 {
   gap: 8px;
   margin: 12px 0;
   font-weight: 700;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .field input {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
   min-height: var(--touch);
   border-radius: 14px;
   border: 2px solid rgba(0, 0, 0, 0.08);

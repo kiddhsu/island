@@ -26,26 +26,35 @@ export function IslandHub() {
   const clears = getIslandClears(island.id)
 
   return (
-    <div className="nes-frame">
-      <header className="nes-hud">
-        <div>{island.name}</div>
-        <div>
-          ★{stars}/3 · CLEAR {clears}
-        </div>
-      </header>
-      <div className="hub-nes">
-        <Link
-          to="/"
-          className="nes-btn ghost"
-          style={{ textDecoration: 'none', display: 'inline-block' }}
-          onClick={() => playSfx('tap', 0.3)}
-        >
-          ← 地圖
-        </Link>
-        <div className="nes-panel" style={{ marginTop: 14 }}>
-          <p className="nes-title">{island.name}</p>
-          <p style={{ lineHeight: 1.7 }}>{island.blurb}</p>
-          <p style={{ opacity: 0.85 }}>
+    <div
+      className="app-shell"
+      style={{
+        ['--accent' as string]: island.accent,
+        ['--soft' as string]: island.soft,
+        ['--deep' as string]: island.deep,
+      }}
+    >
+      <div className="hub-wrap">
+        <header className="app-topbar">
+          <div>
+            <p className="app-kicker">{island.short}</p>
+            <h1 className="app-heading">{island.name}</h1>
+            <p className="app-sub">
+              ★{stars}/3 · 完成 {clears} 次
+            </p>
+          </div>
+          <Link
+            to="/"
+            className="app-btn soft"
+            onClick={() => playSfx('tap', 0.3)}
+          >
+            ← 地圖
+          </Link>
+        </header>
+
+        <div className="app-card">
+          <p style={{ lineHeight: 1.7, marginTop: 0 }}>{island.blurb}</p>
+          <p className="app-muted">
             玩法：{MODE_LABEL[island.playMode] ?? island.playMode}
             <br />
             {island.howToPlay}
@@ -54,14 +63,14 @@ export function IslandHub() {
           </p>
           <button
             type="button"
-            className="nes-btn"
-            style={{ marginTop: 12, width: '100%' }}
+            className="app-btn block"
+            style={{ marginTop: 14 }}
             onClick={() => {
               playSfx('enter', 0.5)
               navigate(`/island/${island.id}/play`)
             }}
           >
-            PRESS START
+            開始探險
           </button>
         </div>
       </div>

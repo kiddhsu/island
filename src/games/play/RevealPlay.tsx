@@ -31,8 +31,8 @@ export function RevealPlay({ question, onResult }: Props) {
   }
 
   return (
-    <div className="play-stage" style={{ background: '#143c8c' }}>
-      <p className="nes-prompt" style={{ margin: 8 }}>
+    <div className="play-stage" style={{ background: 'transparent' }}>
+      <p className="app-prompt" style={{ margin: 8 }}>
         {question.prompt}
         {'\n'}點選正確的卡牌！
       </p>

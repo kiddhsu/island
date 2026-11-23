@@ -48,7 +48,7 @@ export function JumpPlay({ question, onResult }: Props) {
 
   return (
     <div className="play-stage grounded">
-      <p className="nes-prompt" style={{ margin: 8 }}>
+      <p className="app-prompt" style={{ margin: 8 }}>
         {question.prompt}
         {'\n'}跳上正確的平台！
       </p>

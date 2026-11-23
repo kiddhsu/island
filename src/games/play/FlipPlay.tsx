@@ -80,8 +80,8 @@ export function FlipPlay({ question, onResult }: Props) {
   }
 
   return (
-    <div className="play-stage" style={{ background: '#143c8c' }}>
-      <p className="nes-prompt" style={{ margin: 8 }}>
+    <div className="play-stage" style={{ background: 'transparent' }}>
+      <p className="app-prompt" style={{ margin: 8 }}>
         翻開兩張「成對」的牌（例如 上↔下、大↔小）
         {'\n'}已配對 {matched.length}/{need}　失誤 {misses}/{MAX_MISSES}
       </p>

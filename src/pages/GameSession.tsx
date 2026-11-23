@@ -28,7 +28,6 @@ export function GameSession() {
     const isChoiceLike = (q: (typeof bank)[number]) =>
       q.engine === 'choice' || q.engine === 'scenario'
 
-    // 依玩法抽對應題型，避免出現「此題暫不支援」
     if (island.playMode === 'flip') {
       const matches = bank.filter((q) => q.engine === 'match')
       const others = bank.filter(isChoiceLike)
@@ -51,7 +50,6 @@ export function GameSession() {
       )
       return [...orderPick, ...otherPick]
     }
-    // jump / catch / fork：只用選擇／情境題
     const playable = bank.filter(isChoiceLike)
     return drawRound(playable.length ? playable : bank, ROUND_SIZE, opts)
   }, [roundKey, island, activeProfile])
@@ -124,9 +122,11 @@ export function GameSession() {
   if (!island) return <Navigate to="/" replace />
   if (questions.length === 0) {
     return (
-      <div className="nes-frame page center">
+      <div className="app-shell page center">
         <p>這座島還沒有題目。</p>
-        <Link to="/">回地圖</Link>
+        <Link to="/" className="app-btn soft">
+          回地圖
+        </Link>
       </div>
     )
   }
@@ -136,43 +136,36 @@ export function GameSession() {
 
   return (
     <div
-      className="nes-frame"
+      className="app-shell"
       style={{
-        ['--island-accent' as string]: island.accent,
+        ['--accent' as string]: island.accent,
+        ['--soft' as string]: island.soft,
+        ['--deep' as string]: island.deep,
       }}
     >
-      <header className="nes-hud">
+      <header className="app-topbar">
         <div>
-          {island.name}
-          <br />
-          STAGE {index + 1}/{total}
+          <p className="app-kicker">{island.short}</p>
+          <h1 className="app-heading">{island.name}</h1>
+          <p className="app-sub">
+            第 {index + 1} / {total} 題
+          </p>
         </div>
-        <div className="lives">♥×{Math.max(0, lives)}</div>
-        <div>SCORE {correctCount}</div>
+        <div className="app-chip-row">
+          <span className="app-chip lives">♥ {Math.max(0, lives)}</span>
+          <span className="app-chip score">得分 {correctCount}</span>
+          <Link
+            to={`/island/${island.id}`}
+            className="app-btn soft"
+            onClick={() => playSfx('tap', 0.3)}
+          >
+            離開
+          </Link>
+        </div>
       </header>
 
-      <div style={{ padding: 10 }}>
-        <Link
-          to={`/island/${island.id}`}
-          className="nes-btn ghost"
-          style={{ display: 'inline-block', textDecoration: 'none', marginBottom: 10 }}
-          onClick={() => playSfx('tap', 0.3)}
-        >
-          EXIT
-        </Link>
-        <PlayStage mode={island.playMode} question={q} onResult={onResult} />
-        <p
-          style={{
-            fontFamily: 'var(--font-pixel)',
-            fontSize: 8,
-            lineHeight: 1.6,
-            marginTop: 10,
-            opacity: 0.85,
-          }}
-        >
-          {island.howToPlay}
-        </p>
-      </div>
+      <PlayStage mode={island.playMode} question={q} onResult={onResult} />
+      <p className="play-help">{island.howToPlay}</p>
     </div>
   )
 }

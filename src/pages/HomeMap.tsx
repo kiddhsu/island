@@ -23,7 +23,7 @@ export function HomeMap() {
   if (!activeProfile) return <Navigate to="/profiles" replace />
 
   return (
-    <div className="map-shell">
+    <div className="app-shell map-shell">
       <header className="map-topbar">
         <div>
           <p className="map-kicker">學習島</p>
