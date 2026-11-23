@@ -5,7 +5,9 @@ import App from './App'
 import { preloadSfx } from './lib/sfx'
 import './styles/tokens.css'
 import './styles/app.css'
+import './styles/nes.css'
 
+document.body.classList.add('nes-world')
 preloadSfx()
 
 createRoot(document.getElementById('root')!).render(

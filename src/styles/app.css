@@ -94,9 +94,12 @@ h2 {
   gap: 6px;
   min-height: 44px;
   padding: 0 14px;
-  border-radius: 999px;
-  border: 2px solid rgba(28, 42, 58, 0.12);
-  background: rgba(255, 255, 255, 0.9);
+  border-radius: 0;
+  border: 3px solid #fff;
+  background: #111;
+  color: #fff;
+  font-family: var(--font-pixel, monospace);
+  font-size: 8px;
   font-weight: 700;
   cursor: pointer;
 }

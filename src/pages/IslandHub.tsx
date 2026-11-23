@@ -1,10 +1,17 @@
 import { Link, Navigate, useNavigate, useParams } from 'react-router-dom'
-import { BigButton } from '../components/BigButton'
 import { SoundToggle } from '../components/SoundToggle'
 import { useAuthProfile } from '../context/AuthProfileContext'
 import { getIsland } from '../data/islands'
 import { getIslandClears, getIslandStars } from '../lib/progress'
 import { playSfx } from '../lib/sfx'
+
+const MODE_LABEL: Record<string, string> = {
+  jump: '跳躍選台',
+  catch: '接住答案',
+  fork: '岔路冒險',
+  flip: '翻牌配對',
+  pipe: '水管排序',
+}
 
 export function IslandHub() {
   const { islandId = '' } = useParams()
@@ -20,36 +27,43 @@ export function IslandHub() {
   const clears = getIslandClears(island.id)
 
   return (
-    <div
-      className="page island-hub"
-      style={{
-        ['--island-accent' as string]: island.accent,
-        ['--island-soft' as string]: island.soft,
-        ['--island-deep' as string]: island.deep,
-      }}
-    >
-      <div className="hub-top">
-        <Link to="/" className="back-link" onClick={() => playSfx('tap', 0.35)}>
-          ← 回地圖
-        </Link>
+    <div className="nes-frame">
+      <header className="nes-hud">
+        <div>{island.name}</div>
+        <div>★{stars}/3 · CLEAR {clears}</div>
         <SoundToggle />
-      </div>
-      <div className="hub-card">
-        <p className="eyebrow">{island.short}</p>
-        <h1>{island.name}</h1>
-        <p>{island.blurb}</p>
-        <p className="hub-meta">
-          目前 ★ {stars}/3 ・ 完成 {clears} 次 ・ 小
-          {activeProfile.grade === 1 ? '一' : '二'}題庫
-        </p>
-        <BigButton
-          onClick={() => {
-            playSfx('enter', 0.5)
-            navigate(`/island/${island.id}/play`)
-          }}
+      </header>
+      <div className="hub-nes">
+        <Link
+          to="/"
+          className="nes-btn ghost"
+          style={{ textDecoration: 'none', display: 'inline-block' }}
+          onClick={() => playSfx('tap', 0.3)}
         >
-          開始探險
-        </BigButton>
+          ← 地圖
+        </Link>
+        <div className="nes-panel" style={{ marginTop: 14 }}>
+          <p className="nes-title">{island.name}</p>
+          <p style={{ lineHeight: 1.7 }}>{island.blurb}</p>
+          <p style={{ opacity: 0.85 }}>
+            玩法：{MODE_LABEL[island.playMode] ?? island.playMode}
+            <br />
+            {island.howToPlay}
+            <br />
+            年級：小{activeProfile.grade === 1 ? '一' : '二'}題庫
+          </p>
+          <button
+            type="button"
+            className="nes-btn"
+            style={{ marginTop: 12, width: '100%' }}
+            onClick={() => {
+              playSfx('enter', 0.5)
+              navigate(`/island/${island.id}/play`)
+            }}
+          >
+            PRESS START
+          </button>
+        </div>
       </div>
     </div>
   )

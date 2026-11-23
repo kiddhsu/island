@@ -1,0 +1,68 @@
+import { useMemo, useState } from 'react'
+import type { ChoiceQuestion } from '../../types'
+import { playSfx } from '../../lib/sfx'
+import type { PlayResultHandler } from './types'
+
+type Props = {
+  question: ChoiceQuestion
+  onResult: PlayResultHandler
+}
+
+export function JumpPlay({ question, onResult }: Props) {
+  const slots = useMemo(() => {
+    return question.choices.map((label, i) => ({
+      label,
+      correct: i === question.answerIndex,
+      left: `${8 + i * 24}%`,
+    }))
+  }, [question])
+
+  const [heroLeft, setHeroLeft] = useState('50%')
+  const [heroBottom, setHeroBottom] = useState('28%')
+  const [flash, setFlash] = useState<number | null>(null)
+  const [locked, setLocked] = useState(false)
+
+  function jumpTo(i: number) {
+    if (locked) return
+    setLocked(true)
+    const slot = slots[i]!
+    setHeroLeft(slot.left)
+    setHeroBottom('38%')
+    playSfx('tap', 0.35)
+    window.setTimeout(() => {
+      setFlash(i)
+      if (slot.correct) {
+        playSfx('correct', 0.55)
+        setHeroBottom('48%')
+        window.setTimeout(() => onResult(true), 650)
+      } else {
+        playSfx('wrong', 0.45)
+        setHeroBottom('8%')
+        window.setTimeout(() => onResult(false), 700)
+      }
+    }, 280)
+  }
+
+  return (
+    <div className="play-stage grounded">
+      <p className="nes-prompt" style={{ margin: 8 }}>
+        {question.prompt}
+      </p>
+      <div className="jump-hero" style={{ left: heroLeft, bottom: heroBottom }} />
+      {slots.map((s, i) => (
+        <button
+          key={`${question.id}-${i}`}
+          type="button"
+          className={`jump-platform ${
+            flash === i ? (s.correct ? 'correct-flash' : 'wrong-flash') : ''
+          }`}
+          style={{ left: s.left }}
+          disabled={locked}
+          onClick={() => jumpTo(i)}
+        >
+          {s.label}
+        </button>
+      ))}
+    </div>
+  )
+}

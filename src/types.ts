@@ -12,6 +12,9 @@ export type IslandId =
   | 'selfcare'
   | 'mood'
 
+/** 紅白機風格互動玩法（題庫內容融進操作） */
+export type PlayMode = 'jump' | 'catch' | 'fork' | 'flip' | 'pipe'
+
 export type EngineKind = 'choice' | 'match' | 'order' | 'scenario'
 
 export type ChoiceQuestion = {
@@ -36,7 +39,6 @@ export type OrderQuestion = {
   engine: 'order'
   prompt: string
   items: string[]
-  /** 正確順序的 items 內容 */
   correctOrder: string[]
 }
 

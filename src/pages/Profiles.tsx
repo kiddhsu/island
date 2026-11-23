@@ -74,14 +74,15 @@ export function Profiles() {
   }
 
   return (
-    <div className="page profiles-page">
-      <header className="page-header profiles-header">
+    <div className="nes-frame profiles-nes">
+      <header className="nes-hud">
         <div>
-          <h1>誰要去探險？</h1>
-          <p>選一個小朋友檔案，或新增一位。年級會決定題目難度。</p>
+          <div className="nes-title">PLAYER SELECT</div>
+          選探險家・年級決定題庫
         </div>
         <SoundToggle />
       </header>
+      <div style={{ padding: 12 }}>
 
       {cloudEnabled ? (
         <section className="card-block auth-block">
@@ -214,6 +215,7 @@ export function Profiles() {
       </section>
 
       {err ? <p className="error">{err}</p> : null}
+      </div>
     </div>
   )
 }

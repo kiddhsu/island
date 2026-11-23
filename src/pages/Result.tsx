@@ -1,5 +1,4 @@
 import { Link, Navigate, useLocation, useNavigate, useParams } from 'react-router-dom'
-import { BigButton } from '../components/BigButton'
 import { SoundToggle } from '../components/SoundToggle'
 import { useAuthProfile } from '../context/AuthProfileContext'
 import { getIsland } from '../data/islands'
@@ -25,48 +24,46 @@ export function Result() {
   if (!state) return <Navigate to={`/island/${island.id}`} replace />
 
   return (
-    <div
-      className="page result-page"
-      style={{
-        ['--island-accent' as string]: island.accent,
-        ['--island-soft' as string]: island.soft,
-      }}
-    >
-      <div className="hub-top">
-        <span />
+    <div className="nes-frame">
+      <header className="nes-hud">
+        <div>STAGE CLEAR</div>
         <SoundToggle />
-      </div>
-      <div className="result-card">
-        <p className="eyebrow">{island.name}</p>
-        <h1>本回合結束！</h1>
-        <p className="result-stars">
-          {'★'.repeat(state.stars)}
-          {'☆'.repeat(3 - state.stars)}
-        </p>
-        <p>
-          答對 {state.correct} / {state.total} 題
-        </p>
-        <div className="result-actions">
-          <BigButton
-            onClick={() => {
-              playSfx('enter', 0.45)
-              navigate(`/island/${island.id}/play`)
-            }}
-          >
-            再玩一次
-          </BigButton>
-          <BigButton
-            variant="soft"
-            onClick={() => {
-              playSfx('tap', 0.4)
-              navigate('/')
-            }}
-          >
-            回地圖
-          </BigButton>
-          <Link to={`/island/${island.id}`} className="text-link">
-            回島嶼介紹
-          </Link>
+      </header>
+      <div className="result-nes">
+        <div className="nes-panel">
+          <p className="nes-title">{island.name}</p>
+          <p style={{ fontSize: 28, color: '#f8d878', letterSpacing: '0.2em' }}>
+            {'★'.repeat(state.stars)}
+            {'☆'.repeat(3 - state.stars)}
+          </p>
+          <p>
+            答對 {state.correct} / {state.total}
+          </p>
+          <div style={{ display: 'grid', gap: 10, marginTop: 16 }}>
+            <button
+              type="button"
+              className="nes-btn"
+              onClick={() => {
+                playSfx('enter', 0.45)
+                navigate(`/island/${island.id}/play`)
+              }}
+            >
+              再玩一次
+            </button>
+            <button
+              type="button"
+              className="nes-btn soft"
+              onClick={() => {
+                playSfx('tap', 0.4)
+                navigate('/')
+              }}
+            >
+              回地圖
+            </button>
+            <Link to={`/island/${island.id}`} style={{ color: '#fff' }}>
+              回關卡介紹
+            </Link>
+          </div>
         </div>
       </div>
     </div>

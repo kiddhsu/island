@@ -1,17 +1,18 @@
-import type { EngineKind, IslandId } from '../types'
+import type { IslandId, PlayMode } from '../types'
 
 export type IslandMeta = {
   id: IslandId
   name: string
   short: string
   blurb: string
-  /** 地圖上的位置 % */
-  x: number
-  y: number
+  howToPlay: string
+  /** 3D 地圖極座標：角度（度）、半徑 */
+  angle: number
+  radius: number
   accent: string
   soft: string
   deep: string
-  engine: EngineKind
+  playMode: PlayMode
 }
 
 export const ISLANDS: IslandMeta[] = [
@@ -19,124 +20,139 @@ export const ISLANDS: IslandMeta[] = [
     id: 'zhuyin',
     name: '注音島',
     short: '拼讀聲調',
-    blurb: '練注音符號與聲調，把字音念準。',
-    x: 18,
-    y: 28,
+    blurb: '接住正確注音！像紅白機接金幣一樣練拼讀。',
+    howToPlay: '左右移動角色，接住正確答案；接到錯的會扣命。',
+    angle: 20,
+    radius: 4.2,
     accent: '#2b8cff',
     soft: '#d7ecff',
     deep: '#0b4f9c',
-    engine: 'choice',
+    playMode: 'catch',
   },
   {
     id: 'chars',
     name: '識字島',
     short: '常用國字',
-    blurb: '認識常用字、筆順與部件。',
-    x: 42,
-    y: 18,
+    blurb: '翻牌配對，把國字與線索配起來。',
+    howToPlay: '點兩張牌配對；配對成功得分，錯了會蓋回去。',
+    angle: 55,
+    radius: 4.6,
     accent: '#f08a24',
     soft: '#ffe6c8',
     deep: '#9a4b05',
-    engine: 'choice',
+    playMode: 'flip',
   },
   {
     id: 'reading',
     name: '閱讀島',
     short: '短文大意',
-    blurb: '看短文與圖文，找出大意與句型。',
-    x: 68,
-    y: 24,
+    blurb: '讀完短文，在岔路選正確方向繼續冒險。',
+    howToPlay: '看上方故事，點左／中／右路前進。',
+    angle: 90,
+    radius: 4.1,
     accent: '#2f9e5b',
     soft: '#d9f5e4',
     deep: '#146338',
-    engine: 'choice',
+    playMode: 'fork',
   },
   {
     id: 'number',
     name: '數感島',
     short: '加減位值',
-    blurb: '認識數字、位值與加減（二年級含九九入門）。',
-    x: 82,
-    y: 46,
+    blurb: '跳上正確答案平台，像瑪利歐過關。',
+    howToPlay: '點要跳的平台；跳對加分，跳錯掉下去。',
+    angle: 125,
+    radius: 4.5,
     accent: '#e6b800',
     soft: '#fff3b0',
     deep: '#8a6a00',
-    engine: 'choice',
+    playMode: 'jump',
   },
   {
     id: 'measure',
     name: '量尺島',
     short: '時間錢幣',
-    blurb: '時間、錢幣、長度與圖形特徵。',
-    x: 70,
-    y: 68,
+    blurb: '時間與量感關卡：跳上正確的答案台。',
+    howToPlay: '看題目後點正確平台。',
+    angle: 160,
+    radius: 4.0,
     accent: '#1aa6a0',
     soft: '#d4f5f3',
     deep: '#0b6b67',
-    engine: 'choice',
+    playMode: 'jump',
   },
   {
     id: 'safety',
     name: '安全島',
     short: '交通校園',
-    blurb: '交通與校園安全，做對選擇保護自己。',
-    x: 46,
-    y: 78,
+    blurb: '到路口選安全的路，過關保命。',
+    howToPlay: '角色跑到岔路時，選最安全的方向。',
+    angle: 200,
+    radius: 4.4,
     accent: '#e4572e',
     soft: '#ffd8cc',
     deep: '#8f2a10',
-    engine: 'scenario',
+    playMode: 'fork',
   },
   {
     id: 'nature',
     name: '自然島',
     short: '四季觀察',
-    blurb: '四季、動植物與日常自然現象。',
-    x: 22,
-    y: 70,
+    blurb: '接住正確的自然知識掉落物。',
+    howToPlay: '左右移動接住正確答案。',
+    angle: 235,
+    radius: 4.2,
     accent: '#4caf50',
     soft: '#dff5e0',
     deep: '#1b5e20',
-    engine: 'choice',
+    playMode: 'catch',
   },
   {
     id: 'health',
     name: '健康島',
     short: '衛生習慣',
-    blurb: '洗手、刷牙與健康生活小習慣。',
-    x: 12,
-    y: 48,
+    blurb: '把步驟依序推進水管，完成洗手／刷牙關。',
+    howToPlay: '依正確順序點選下一步推進。',
+    angle: 270,
+    radius: 3.9,
     accent: '#00a896',
     soft: '#d2f5ef',
     deep: '#06685d',
-    engine: 'order',
+    playMode: 'pipe',
   },
   {
     id: 'selfcare',
     name: '自理島',
     short: '生活自理',
-    blurb: '整理書包、聯絡簿與生活自理情境。',
-    x: 34,
-    y: 48,
+    blurb: '生活岔路：選對習慣繼續前進。',
+    howToPlay: '情境出現時點正確的路。',
+    angle: 305,
+    radius: 4.3,
     accent: '#c4a484',
     soft: '#f3ebe1',
     deep: '#6d5238',
-    engine: 'scenario',
+    playMode: 'fork',
   },
   {
     id: 'mood',
     name: '心情島',
     short: '情緒社交',
-    blurb: '認識情緒、輪流等待，用說的解決衝突。',
-    x: 56,
-    y: 50,
+    blurb: '情緒冒險：用對的選擇化解衝突。',
+    howToPlay: '到岔路選溫柔又清楚的做法。',
+    angle: 340,
+    radius: 4.0,
     accent: '#c77dff',
     soft: '#f0e0ff',
     deep: '#6b2d9b',
-    engine: 'scenario',
+    playMode: 'fork',
   },
 ]
 
 export function getIsland(id: string): IslandMeta | undefined {
   return ISLANDS.find((i) => i.id === id)
+}
+
+export function islandPosition(island: IslandMeta): [number, number, number] {
+  const rad = (island.angle * Math.PI) / 180
+  return [Math.cos(rad) * island.radius, 0.35, Math.sin(rad) * island.radius]
 }

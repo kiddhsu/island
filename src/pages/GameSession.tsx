@@ -1,38 +1,15 @@
-import { useMemo, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import { Link, Navigate, useNavigate, useParams } from 'react-router-dom'
-import { ChoiceEngine } from '../games/engines/ChoiceEngine'
-import { MatchEngine } from '../games/engines/MatchEngine'
-import { OrderEngine } from '../games/engines/OrderEngine'
+import { SoundToggle } from '../components/SoundToggle'
 import { useAuthProfile } from '../context/AuthProfileContext'
 import { getBank } from '../data/banks'
 import { getIsland } from '../data/islands'
-import { SoundToggle } from '../components/SoundToggle'
+import { PlayStage } from '../games/play/PlayStage'
 import { loadProgress, recordRoundResult } from '../lib/progress'
 import { playSfx } from '../lib/sfx'
 import { drawRound } from '../lib/shuffle'
-import type {
-  ChoiceQuestion,
-  MatchQuestion,
-  OrderQuestion,
-  Question,
-} from '../types'
 
 const ROUND_SIZE = 8
-
-function isChoice(q: Question): q is ChoiceQuestion {
-  return q.engine === 'choice' || q.engine === 'scenario'
-}
-
-function checkMatch(q: MatchQuestion, mapping: Record<string, string>) {
-  return q.pairs.every((p) => mapping[p.left] === p.right)
-}
-
-function checkOrder(q: OrderQuestion, order: string[]) {
-  return (
-    order.length === q.correctOrder.length &&
-    order.every((item, i) => item === q.correctOrder[i])
-  )
-}
 
 export function GameSession() {
   const { islandId = '' } = useParams()
@@ -55,16 +32,71 @@ export function GameSession() {
   const [correctCount, setCorrectCount] = useState(0)
   const [wrongIds, setWrongIds] = useState<string[]>([])
   const [correctIds, setCorrectIds] = useState<string[]>([])
-  const [selected, setSelected] = useState<number | null>(null)
-  const [reveal, setReveal] = useState(false)
-  const [locked, setLocked] = useState(false)
+  const [lives, setLives] = useState(3)
+
+  const finishRound = useCallback(
+    (nextCorrect: number, nextWrong: string[], nextOk: string[]) => {
+      if (!island) return
+      const { earned } = recordRoundResult({
+        islandId: island.id,
+        correct: nextCorrect,
+        total: questions.length,
+        wrongQuestionIds: nextWrong,
+        correctQuestionIds: nextOk,
+      })
+      playSfx('success', 0.6)
+      navigate(`/island/${island.id}/result`, {
+        replace: true,
+        state: { correct: nextCorrect, total: questions.length, stars: earned },
+      })
+    },
+    [island, navigate, questions.length],
+  )
+
+  const onResult = useCallback(
+    (ok: boolean) => {
+      if (!island) return
+      const q = questions[index]
+      if (!q) return
+
+      const nextCorrect = correctCount + (ok ? 1 : 0)
+      const nextWrong = ok ? wrongIds : [...wrongIds, q.id]
+      const nextOk = ok ? [...correctIds, q.id] : correctIds
+      const nextLives = ok ? lives : lives - 1
+
+      setCorrectCount(nextCorrect)
+      setWrongIds(nextWrong)
+      setCorrectIds(nextOk)
+      setLives(nextLives)
+
+      if (nextLives <= 0) {
+        finishRound(nextCorrect, nextWrong, nextOk)
+        return
+      }
+      if (index + 1 >= questions.length) {
+        finishRound(nextCorrect, nextWrong, nextOk)
+        return
+      }
+      setIndex((i) => i + 1)
+    },
+    [
+      island,
+      questions,
+      index,
+      correctCount,
+      wrongIds,
+      correctIds,
+      lives,
+      finishRound,
+    ],
+  )
 
   if (!ready) return <div className="page center">載入中…</div>
   if (!activeProfile) return <Navigate to="/profiles" replace />
   if (!island) return <Navigate to="/" replace />
   if (questions.length === 0) {
     return (
-      <div className="page center">
+      <div className="nes-frame page center">
         <p>這座島還沒有題目。</p>
         <Link to="/">回地圖</Link>
       </div>
@@ -74,120 +106,48 @@ export function GameSession() {
   const q = questions[index]!
   const total = questions.length
 
-  function finishRound(nextCorrect: number, nextWrong: string[], nextOk: string[]) {
-    const { earned } = recordRoundResult({
-      islandId: island!.id,
-      correct: nextCorrect,
-      total,
-      wrongQuestionIds: nextWrong,
-      correctQuestionIds: nextOk,
-    })
-    playSfx('success', 0.6)
-    navigate(`/island/${island!.id}/result`, {
-      replace: true,
-      state: { correct: nextCorrect, total, stars: earned },
-    })
-  }
-
-  function advance(isCorrect: boolean) {
-    const nextCorrect = correctCount + (isCorrect ? 1 : 0)
-    const nextWrong = isCorrect ? wrongIds : [...wrongIds, q.id]
-    const nextOk = isCorrect ? [...correctIds, q.id] : correctIds
-    setCorrectCount(nextCorrect)
-    setWrongIds(nextWrong)
-    setCorrectIds(nextOk)
-
-    if (index + 1 >= total) {
-      finishRound(nextCorrect, nextWrong, nextOk)
-      return
-    }
-    setIndex((i) => i + 1)
-    setSelected(null)
-    setReveal(false)
-    setLocked(false)
-  }
-
-  function feedback(ok: boolean) {
-    playSfx(ok ? 'correct' : 'wrong', ok ? 0.55 : 0.45)
-  }
-
-  function afterChoice(i: number) {
-    if (locked || !isChoice(q)) return
-    setSelected(i)
-    setLocked(true)
-    setReveal(true)
-    const ok = i === q.answerIndex
-    feedback(ok)
-    window.setTimeout(() => advance(ok), 900)
-  }
-
-  function afterMatch(mapping: Record<string, string>) {
-    if (locked || q.engine !== 'match') return
-    setLocked(true)
-    setReveal(true)
-    const ok = checkMatch(q, mapping)
-    feedback(ok)
-    window.setTimeout(() => advance(ok), 1100)
-  }
-
-  function afterOrder(order: string[]) {
-    if (locked || q.engine !== 'order') return
-    setLocked(true)
-    setReveal(true)
-    const ok = checkOrder(q, order)
-    feedback(ok)
-    window.setTimeout(() => advance(ok), 1100)
-  }
-
   return (
     <div
-      className="page game-page"
+      className="nes-frame"
       style={{
         ['--island-accent' as string]: island.accent,
-        ['--island-soft' as string]: island.soft,
-        ['--island-deep' as string]: island.deep,
       }}
     >
-      <header className="game-top">
-        <Link to={`/island/${island.id}`} className="back-link">
-          ← 離開
-        </Link>
-        <div className="game-top-right">
+      <header className="nes-hud">
+        <div>
+          {island.name}
+          <br />
+          STAGE {index + 1}/{total}
+        </div>
+        <div className="lives">♥×{Math.max(0, lives)}</div>
+        <div>
+          SCORE {correctCount}
+          <br />
           <SoundToggle />
-          <div className="progress-pill">
-            {index + 1} / {total}
-          </div>
         </div>
       </header>
 
-      <div className="game-card">
-        <h1>{island.name}</h1>
-        {isChoice(q) ? (
-          <ChoiceEngine
-            question={q}
-            selected={selected}
-            reveal={reveal}
-            disabled={locked}
-            onSelect={afterChoice}
-          />
-        ) : null}
-        {q.engine === 'match' ? (
-          <MatchEngine
-            question={q}
-            reveal={reveal}
-            disabled={locked}
-            onSubmit={afterMatch}
-          />
-        ) : null}
-        {q.engine === 'order' ? (
-          <OrderEngine
-            key={q.id}
-            question={q}
-            reveal={reveal}
-            disabled={locked}
-            onSubmit={afterOrder}
-          />
-        ) : null}
+      <div style={{ padding: 10 }}>
+        <Link
+          to={`/island/${island.id}`}
+          className="nes-btn ghost"
+          style={{ display: 'inline-block', textDecoration: 'none', marginBottom: 10 }}
+          onClick={() => playSfx('tap', 0.3)}
+        >
+          EXIT
+        </Link>
+        <PlayStage mode={island.playMode} question={q} onResult={onResult} />
+        <p
+          style={{
+            fontFamily: 'var(--font-pixel)',
+            fontSize: 8,
+            lineHeight: 1.6,
+            marginTop: 10,
+            opacity: 0.85,
+          }}
+        >
+          {island.howToPlay}
+        </p>
       </div>
     </div>
   )

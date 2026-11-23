@@ -1,7 +1,6 @@
 import { useMemo, useState } from 'react'
 import { Link, Navigate } from 'react-router-dom'
-import { IslandMarker } from '../components/IslandMarker'
-import { BigButton } from '../components/BigButton'
+import { IslandWorld3D } from '../components/IslandWorld3D'
 import { SoundToggle } from '../components/SoundToggle'
 import { useAuthProfile } from '../context/AuthProfileContext'
 import { ISLANDS } from '../data/islands'
@@ -25,74 +24,67 @@ export function HomeMap() {
   if (!activeProfile) return <Navigate to="/profiles" replace />
 
   return (
-    <div className="page home-page">
-      <header className="map-top">
+    <div className="nes-frame">
+      <header className="nes-hud">
         <div>
-          <p className="brand">Island 學習島</p>
-          <h1>今天要去哪一座島？</h1>
-          <p className="sub">
-            {activeProfile.emoji} {activeProfile.name}・小
-            {activeProfile.grade === 1 ? '一' : '二'}
-            {cloudEnabled && user ? '・已同步' : ''}
-          </p>
+          <div className="nes-title">ISLAND QUEST</div>
+          學習島 3D
         </div>
-        <div className="map-actions">
+        <div>
+          {activeProfile.emoji} {activeProfile.name}
+          <br />
+          小{activeProfile.grade === 1 ? '一' : '二'}
+          {cloudEnabled && user ? ' · CLOUD' : ''}
+        </div>
+        <div style={{ display: 'grid', gap: 8 }}>
           <SoundToggle />
-          <BigButton
-            variant="soft"
+          <button
+            type="button"
+            className="nes-btn soft"
             onClick={() => {
-              playSfx('tap', 0.4)
+              playSfx('tap', 0.35)
               setListOpen((v) => !v)
             }}
           >
-            {listOpen ? '關閉清單' : '島嶼清單'}
-          </BigButton>
-          <BigButton
-            variant="ghost"
+            {listOpen ? '關清單' : '清單'}
+          </button>
+          <button
+            type="button"
+            className="nes-btn ghost"
             onClick={() => {
-              playSfx('tap', 0.35)
+              playSfx('tap', 0.3)
               clearActiveProfile()
             }}
           >
             換人
-          </BigButton>
+          </button>
         </div>
       </header>
 
-      <div className="map-stage" aria-label="學習小島地圖">
-        <div className="map-sea" />
-        <div className="map-glow" />
-        {ISLANDS.map((island) => (
-          <IslandMarker
-            key={island.id}
-            island={island}
-            stars={starsMap[island.id] ?? 0}
-          />
-        ))}
-      </div>
-
-      {listOpen ? (
-        <aside className="island-list" aria-label="島嶼清單">
-          <h2>全部小島</h2>
-          <ul>
+      <div style={{ padding: 10 }}>
+        <IslandWorld3D starsMap={starsMap} />
+        {listOpen ? (
+          <div className="island-list-nes" aria-label="島嶼清單">
             {ISLANDS.map((island) => (
-              <li key={island.id}>
-                <Link
-                  to={`/island/${island.id}`}
-                  onClick={() => playSfx('enter', 0.4)}
-                >
-                  <span
-                    className="dot"
-                    style={{ background: island.accent }}
-                  />
+              <Link
+                key={island.id}
+                to={`/island/${island.id}`}
+                onClick={() => playSfx('enter', 0.4)}
+              >
+                <span className="dot" style={{ background: island.accent }} />
+                <span>
                   {island.name}
-                  <small>{island.short}</small>
-                </Link>
-              </li>
+                  <br />
+                  <span style={{ opacity: 0.75 }}>{island.short}</span>
+                </span>
+                <span style={{ marginLeft: 'auto' }}>
+                  ★{starsMap[island.id] ?? 0}
+                </span>
+              </Link>
             ))}
-          </ul>
-        </aside>
-      ) : null}
+          </div>
+        ) : null}
+      </div>
     </div>
   )
 }

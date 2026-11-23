@@ -1,0 +1,423 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Noto+Sans+TC:wght@700;900&display=swap');
+
+:root {
+  --nes-black: #0f0f1a;
+  --nes-navy: #1a1c4b;
+  --nes-red: #e52521;
+  --nes-cream: #fcfcfc;
+  --nes-sky: #5c94fc;
+  --nes-ground: #c84c0c;
+  --nes-pipe: #00a800;
+  --nes-coin: #f8d878;
+  --nes-pixel: 4px;
+  --font-pixel: 'Press Start 2P', 'Noto Sans TC', monospace;
+  --font-body: 'Noto Sans TC', sans-serif;
+}
+
+body.nes-world {
+  background: var(--nes-navy);
+  color: var(--nes-cream);
+  font-family: var(--font-body);
+  image-rendering: pixelated;
+}
+
+.nes-frame {
+  position: relative;
+  min-height: 100dvh;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.08) 2px,
+      rgba(0, 0, 0, 0.08) 4px
+    ),
+    radial-gradient(ellipse at center, #2a2f7a 0%, var(--nes-black) 75%);
+}
+
+.nes-frame::after {
+  content: '';
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.55);
+  z-index: 40;
+}
+
+.nes-hud {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 10px 12px;
+  background: #000;
+  border-bottom: 4px solid #fff;
+  font-family: var(--font-pixel);
+  font-size: clamp(8px, 2.2vw, 11px);
+  line-height: 1.6;
+  letter-spacing: 0.04em;
+  z-index: 5;
+  position: relative;
+}
+
+.nes-title {
+  font-family: var(--font-pixel);
+  font-size: clamp(12px, 3.2vw, 18px);
+  line-height: 1.5;
+  text-shadow: 3px 3px 0 #000;
+  margin: 0;
+}
+
+.nes-btn {
+  font-family: var(--font-pixel);
+  font-size: clamp(8px, 2vw, 10px);
+  min-height: 48px;
+  padding: 10px 14px;
+  border: 4px solid #fff;
+  background: var(--nes-red);
+  color: #fff;
+  box-shadow: 0 4px 0 #7a1010;
+  cursor: pointer;
+  image-rendering: pixelated;
+}
+
+.nes-btn:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 #7a1010;
+}
+
+.nes-btn.soft {
+  background: var(--nes-sky);
+  box-shadow: 0 4px 0 #1b4ea8;
+}
+
+.nes-btn.ghost {
+  background: #444;
+  box-shadow: 0 4px 0 #222;
+}
+
+.nes-panel {
+  background: #000;
+  border: 4px solid #fff;
+  box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.45);
+  padding: 14px;
+}
+
+.nes-prompt {
+  font-family: var(--font-pixel);
+  font-size: clamp(9px, 2.4vw, 12px);
+  line-height: 1.7;
+  white-space: pre-wrap;
+  background: rgba(0, 0, 0, 0.72);
+  border: 4px solid #fff;
+  padding: 12px;
+  margin: 0 0 12px;
+}
+
+.play-stage {
+  position: relative;
+  width: min(960px, 100%);
+  margin: 0 auto;
+  aspect-ratio: 4 / 3;
+  max-height: min(72dvh, 640px);
+  background: var(--nes-sky);
+  border: 4px solid #fff;
+  overflow: hidden;
+  touch-action: none;
+  user-select: none;
+}
+
+.play-stage.grounded {
+  background: linear-gradient(#5c94fc 0 62%, #00a800 62% 70%, #c84c0c 70% 100%);
+}
+
+.lives {
+  color: var(--nes-coin);
+}
+
+.map-3d-wrap {
+  position: relative;
+  height: min(78dvh, 720px);
+  border: 4px solid #fff;
+  background: #000;
+  overflow: hidden;
+}
+
+.map-3d-wrap canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+  touch-action: none;
+}
+
+.map-hint {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  z-index: 3;
+  font-family: var(--font-pixel);
+  font-size: 8px;
+  line-height: 1.6;
+  background: rgba(0, 0, 0, 0.75);
+  border: 3px solid #fff;
+  padding: 8px 10px;
+  max-width: 70%;
+}
+
+.island-list-nes {
+  margin-top: 12px;
+  display: grid;
+  gap: 8px;
+}
+
+.island-list-nes a {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  text-decoration: none;
+  color: #fff;
+  font-family: var(--font-pixel);
+  font-size: 9px;
+  line-height: 1.5;
+  padding: 12px;
+  border: 3px solid #fff;
+  background: #111;
+}
+
+.island-list-nes .dot {
+  width: 14px;
+  height: 14px;
+  border: 2px solid #fff;
+}
+
+.hub-nes,
+.result-nes,
+.profiles-nes {
+  padding: 14px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.profiles-nes .profile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 10px;
+}
+
+.profiles-nes .profile-card {
+  border: 4px solid #fff;
+  background: #111;
+  padding: 10px;
+}
+
+.profiles-nes .profile-main {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  display: grid;
+  gap: 6px;
+  justify-items: center;
+  cursor: pointer;
+  font-family: var(--font-pixel);
+  font-size: 9px;
+}
+
+.jump-platform {
+  position: absolute;
+  bottom: 18%;
+  min-width: 22%;
+  max-width: 28%;
+  min-height: 64px;
+  padding: 8px;
+  border: 4px solid #fff;
+  background: #b84c0c;
+  color: #fff;
+  font-family: var(--font-pixel);
+  font-size: clamp(8px, 2vw, 11px);
+  line-height: 1.4;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  box-shadow: 0 6px 0 #6b2500;
+}
+
+.jump-platform.correct-flash {
+  background: #00a800;
+}
+
+.jump-platform.wrong-flash {
+  background: #e52521;
+}
+
+.jump-hero {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  background: var(--nes-red);
+  border: 3px solid #fff;
+  bottom: 28%;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: left 0.28s steps(4), bottom 0.28s steps(4);
+  z-index: 2;
+}
+
+.catch-hero {
+  position: absolute;
+  bottom: 12%;
+  width: 48px;
+  height: 28px;
+  background: #fc9838;
+  border: 3px solid #fff;
+  z-index: 3;
+}
+
+.catch-item {
+  position: absolute;
+  min-width: 72px;
+  max-width: 120px;
+  padding: 8px;
+  border: 3px solid #fff;
+  background: #000;
+  color: #fff;
+  font-family: var(--font-pixel);
+  font-size: 8px;
+  line-height: 1.35;
+  text-align: center;
+  transform: translateX(-50%);
+}
+
+.fork-road {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(#5c94fc, #5c94fc 55%, #7bce7b 55%),
+    #5c94fc;
+}
+
+.fork-hero {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: #fc9838;
+  border: 3px solid #fff;
+  left: 50%;
+  bottom: 22%;
+  transform: translateX(-50%);
+  transition: left 0.35s steps(5), bottom 0.35s steps(5);
+}
+
+.fork-choice {
+  position: absolute;
+  bottom: 42%;
+  width: 28%;
+  min-height: 70px;
+  border: 4px solid #fff;
+  background: #2038ec;
+  color: #fff;
+  font-family: var(--font-pixel);
+  font-size: 8px;
+  line-height: 1.4;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.flip-board {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  padding: 12px;
+  height: 100%;
+  box-sizing: border-box;
+  align-content: center;
+}
+
+.flip-card {
+  aspect-ratio: 3 / 4;
+  border: 4px solid #fff;
+  background: #2038ec;
+  color: #fff;
+  font-family: var(--font-pixel);
+  font-size: clamp(8px, 2vw, 11px);
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 6px;
+  cursor: pointer;
+}
+
+.flip-card.open,
+.flip-card.matched {
+  background: #000;
+}
+
+.flip-card.matched {
+  background: #00a800;
+}
+
+.pipe-track {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+  height: 100%;
+  justify-content: center;
+}
+
+.pipe-slot {
+  min-height: 52px;
+  border: 4px dashed rgba(255, 255, 255, 0.5);
+  background: rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  font-family: var(--font-pixel);
+  font-size: 9px;
+}
+
+.pipe-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pipe-chip {
+  border: 3px solid #fff;
+  background: var(--nes-pipe);
+  color: #fff;
+  font-family: var(--font-pixel);
+  font-size: 9px;
+  padding: 12px 10px;
+  cursor: pointer;
+}
+
+.ctrl-bar {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  padding: 10px;
+}
+
+.ctrl-pad {
+  width: 64px;
+  height: 64px;
+  border: 4px solid #fff;
+  background: #222;
+  color: #fff;
+  font-size: 22px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+@media (max-width: 640px) {
+  .play-stage {
+    aspect-ratio: 3 / 4;
+    max-height: 70dvh;
+  }
+
+  .flip-board {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
