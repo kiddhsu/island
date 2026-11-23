@@ -6,7 +6,7 @@ import { getIsland } from '../data/islands'
 import { PlayStage } from '../games/play/PlayStage'
 import { loadProgress, recordRoundResult } from '../lib/progress'
 import { playSfx } from '../lib/sfx'
-import { drawRound } from '../lib/shuffle'
+import { drawRound, drawRoundDiversePrompt } from '../lib/shuffle'
 
 const ROUND_SIZE = 8
 
@@ -42,7 +42,12 @@ export function GameSession() {
     if (island.playMode === 'pipe') {
       const orders = bank.filter((q) => q.engine === 'order')
       const others = bank.filter(isChoiceLike)
-      const orderPick = drawRound(orders, Math.min(4, orders.length), opts)
+      // 順序題優先抽不同情境，避免整輪都是刷牙／洗手
+      const orderPick = drawRoundDiversePrompt(
+        orders,
+        Math.min(6, orders.length),
+        opts,
+      )
       const otherPick = drawRound(
         others,
         Math.max(0, ROUND_SIZE - orderPick.length),
@@ -51,7 +56,9 @@ export function GameSession() {
       return [...orderPick, ...otherPick]
     }
     const playable = bank.filter(isChoiceLike)
-    return drawRound(playable.length ? playable : bank, ROUND_SIZE, opts)
+    const pool = playable.length ? playable : bank
+    // 情境／選擇題也優先換不同題幹，避免同一輪感覺都在刷同一題
+    return drawRoundDiversePrompt(pool, ROUND_SIZE, opts)
   }, [roundKey, island, activeProfile])
 
   const [index, setIndex] = useState(0)

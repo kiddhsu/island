@@ -78,510 +78,185 @@
     "explain": "安全裝備與禮讓很重要。"
   },
   {
-    "id": "safety-2-7",
+    "id": "safety-2-x1",
     "engine": "scenario",
-    "prompt": "紅燈亮了，你要過马路時應該？",
+    "prompt": "網路認識的人約見面，應該？",
     "choices": [
-      "快跑過去",
-      "停下來等待",
-      "閉眼走",
-      "跟著大人衝"
+      "自己去",
+      "拒絕或一定要告知家人並結伴／拒絕單獨赴約",
+      "給家庭住址",
+      "帶貴重物品炫耀"
     ],
     "answerIndex": 1,
-    "explain": "紅燈停、綠燈行。"
+    "explain": "網友見面有風險。"
   },
   {
-    "id": "safety-2-8",
+    "id": "safety-2-x2",
     "engine": "scenario",
-    "prompt": "過马路要走哪裡最安全？",
+    "prompt": "發現同學帶危險物品到校，應該？",
     "choices": [
-      "高速公路",
-      "斑馬線／行人穿越道",
-      "圓環中央",
-      "車縫中間"
+      "一起玩",
+      "立刻告訴老師",
+      "幫他藏",
+      "拿去恐嚇別人"
     ],
     "answerIndex": 1,
-    "explain": "走人行穿越道最安全。"
+    "explain": "危險物品要通報。"
   },
   {
-    "id": "safety-2-9",
+    "id": "safety-2-x3",
     "engine": "scenario",
-    "prompt": "在校園走廊應該怎麼走？",
+    "prompt": "騎車转弯前應該？",
     "choices": [
-      "滑跪前進",
-      "靠右慢慢走",
-      "跑步追逐",
-      "推擠同學"
+      "突然切過去",
+      "減速並打方向燈／做手勢",
+      "閉眼加速",
+      "邊滑手機"
     ],
     "answerIndex": 1,
-    "explain": "走廊不奔跑，避免碰撞。"
+    "explain": "先示意再轉彎。"
   },
   {
-    "id": "safety-2-10",
+    "id": "safety-2-x4",
     "engine": "scenario",
-    "prompt": "陌生人給糖果要你跟他走，你要？",
+    "prompt": "登山迷路時，較好的做法？",
     "choices": [
-      "拒絕並找老師或家長",
-      "自己去找他",
-      "收下並保密",
-      "跟他走"
-    ],
-    "answerIndex": 0,
-    "explain": "不跟陌生人走，立刻求助。"
-  },
-  {
-    "id": "safety-2-11",
-    "engine": "scenario",
-    "prompt": "地震演習時，教室裡要先？",
-    "choices": [
-      "站在窗邊看",
-      "大叫不動",
-      "趴下、掩護、穩住",
-      "衝出門外"
-    ],
-    "answerIndex": 2,
-    "explain": "先保護頭，聽老師指示。"
-  },
-  {
-    "id": "safety-2-12",
-    "engine": "scenario",
-    "prompt": "騎腳踏車在社區，要記得？",
-    "choices": [
-      "兩人共乘把手",
-      "邊騎邊滑手機",
-      "逆向超快衝",
-      "戴安全帽、注意來車"
-    ],
-    "answerIndex": 3,
-    "explain": "安全裝備與禮讓很重要。"
-  },
-  {
-    "id": "safety-2-13",
-    "engine": "scenario",
-    "prompt": "紅燈亮了，你要過马路時應該？",
-    "choices": [
-      "跟著大人衝",
-      "停下來等待",
-      "閉眼走",
-      "快跑過去"
+      "一直往沒路的地方衝",
+      "停在原地或原路折返並求救",
+      "把手機丟掉省電不管",
+      "分開找路"
     ],
     "answerIndex": 1,
-    "explain": "紅燈停、綠燈行。"
+    "explain": "迷路先求穩。"
   },
   {
-    "id": "safety-2-14",
+    "id": "safety-2-x5",
     "engine": "scenario",
-    "prompt": "過马路要走哪裡最安全？",
+    "prompt": "使用瓦斯爐後離開，應該？",
     "choices": [
-      "圓環中央",
-      "斑馬線／行人穿越道",
-      "高速公路",
-      "車縫中間"
+      "不管",
+      "確認關閉火源",
+      "開到最大",
+      "用布蓋住爐火"
     ],
     "answerIndex": 1,
-    "explain": "走人行穿越道最安全。"
+    "explain": "關閉火源。"
   },
   {
-    "id": "safety-2-15",
+    "id": "safety-2-x6",
     "engine": "scenario",
-    "prompt": "在校園走廊應該怎麼走？",
+    "prompt": "雷雨天氣在空曠處，應該？",
     "choices": [
-      "推擠同學",
-      "跑步追逐",
-      "靠右慢慢走",
-      "滑跪前進"
-    ],
-    "answerIndex": 2,
-    "explain": "走廊不奔跑，避免碰撞。"
-  },
-  {
-    "id": "safety-2-16",
-    "engine": "scenario",
-    "prompt": "陌生人給糖果要你跟他走，你要？",
-    "choices": [
-      "收下並保密",
-      "自己去找他",
-      "拒絕並找老師或家長",
-      "跟他走"
-    ],
-    "answerIndex": 2,
-    "explain": "不跟陌生人走，立刻求助。"
-  },
-  {
-    "id": "safety-2-17",
-    "engine": "scenario",
-    "prompt": "地震演習時，教室裡要先？",
-    "choices": [
-      "站在窗邊看",
-      "大叫不動",
-      "衝出門外",
-      "趴下、掩護、穩住"
-    ],
-    "answerIndex": 3,
-    "explain": "先保護頭，聽老師指示。"
-  },
-  {
-    "id": "safety-2-18",
-    "engine": "scenario",
-    "prompt": "騎腳踏車在社區，要記得？",
-    "choices": [
-      "兩人共乘把手",
-      "邊騎邊滑手機",
-      "戴安全帽、注意來車",
-      "逆向超快衝"
-    ],
-    "answerIndex": 2,
-    "explain": "安全裝備與禮讓很重要。"
-  },
-  {
-    "id": "safety-2-19",
-    "engine": "scenario",
-    "prompt": "紅燈亮了，你要過马路時應該？",
-    "choices": [
-      "跟著大人衝",
-      "停下來等待",
-      "閉眼走",
-      "快跑過去"
+      "站在樹下躲",
+      "遠離大樹與金屬，盡快到室內",
+      "拿雨傘當避雷針高舉",
+      "躺平在水坑"
     ],
     "answerIndex": 1,
-    "explain": "紅燈停、綠燈行。"
+    "explain": "防雷擊。"
   },
   {
-    "id": "safety-2-20",
+    "id": "safety-2-x7",
     "engine": "scenario",
-    "prompt": "過马路要走哪裡最安全？",
+    "prompt": "藥品看起來像糖果，應該？",
     "choices": [
-      "圓環中央",
-      "斑馬線／行人穿越道",
-      "高速公路",
-      "車縫中間"
+      "當糖吃",
+      "不亂吃，問大人",
+      "分給同學",
+      "藏起來以後吃"
     ],
     "answerIndex": 1,
-    "explain": "走人行穿越道最安全。"
+    "explain": "藥不是糖。"
   },
   {
-    "id": "safety-2-21",
+    "id": "safety-2-x8",
     "engine": "scenario",
-    "prompt": "在校園走廊應該怎麼走？",
+    "prompt": "火災濃煙時逃生姿勢？",
     "choices": [
-      "推擠同學",
-      "跑步追逐",
-      "滑跪前進",
-      "靠右慢慢走"
-    ],
-    "answerIndex": 3,
-    "explain": "走廊不奔跑，避免碰撞。"
-  },
-  {
-    "id": "safety-2-22",
-    "engine": "scenario",
-    "prompt": "陌生人給糖果要你跟他走，你要？",
-    "choices": [
-      "自己去找他",
-      "拒絕並找老師或家長",
-      "跟他走",
-      "收下並保密"
+      "直立奔跑大口吸氣",
+      "低姿前進，用濕布掩口鼻",
+      "躲進衣櫃不出來也不求救",
+      "搭電梯下樓"
     ],
     "answerIndex": 1,
-    "explain": "不跟陌生人走，立刻求助。"
+    "explain": "低姿避煙。"
   },
   {
-    "id": "safety-2-23",
+    "id": "safety-2-x9",
     "engine": "scenario",
-    "prompt": "地震演習時，教室裡要先？",
+    "prompt": "過馬路低頭滑手機，風險是？",
     "choices": [
-      "趴下、掩護、穩住",
-      "大叫不動",
-      "衝出門外",
-      "站在窗邊看"
-    ],
-    "answerIndex": 0,
-    "explain": "先保護頭，聽老師指示。"
-  },
-  {
-    "id": "safety-2-24",
-    "engine": "scenario",
-    "prompt": "騎腳踏車在社區，要記得？",
-    "choices": [
-      "邊騎邊滑手機",
-      "兩人共乘把手",
-      "戴安全帽、注意來車",
-      "逆向超快衝"
-    ],
-    "answerIndex": 2,
-    "explain": "安全裝備與禮讓很重要。"
-  },
-  {
-    "id": "safety-2-25",
-    "engine": "scenario",
-    "prompt": "紅燈亮了，你要過马路時應該？",
-    "choices": [
-      "停下來等待",
-      "快跑過去",
-      "跟著大人衝",
-      "閉眼走"
-    ],
-    "answerIndex": 0,
-    "explain": "紅燈停、綠燈行。"
-  },
-  {
-    "id": "safety-2-26",
-    "engine": "scenario",
-    "prompt": "過马路要走哪裡最安全？",
-    "choices": [
-      "高速公路",
-      "圓環中央",
-      "車縫中間",
-      "斑馬線／行人穿越道"
-    ],
-    "answerIndex": 3,
-    "explain": "走人行穿越道最安全。"
-  },
-  {
-    "id": "safety-2-27",
-    "engine": "scenario",
-    "prompt": "在校園走廊應該怎麼走？",
-    "choices": [
-      "跑步追逐",
-      "靠右慢慢走",
-      "滑跪前進",
-      "推擠同學"
+      "比較帥",
+      "注意不到來車",
+      "比較快",
+      "沒差"
     ],
     "answerIndex": 1,
-    "explain": "走廊不奔跑，避免碰撞。"
+    "explain": "分心過馬路危險。"
   },
   {
-    "id": "safety-2-28",
+    "id": "safety-2-x10",
     "engine": "scenario",
-    "prompt": "陌生人給糖果要你跟他走，你要？",
+    "prompt": "發現河水暴漲想去看，應該？",
     "choices": [
-      "拒絕並找老師或家長",
-      "收下並保密",
-      "跟他走",
-      "自己去找他"
-    ],
-    "answerIndex": 0,
-    "explain": "不跟陌生人走，立刻求助。"
-  },
-  {
-    "id": "safety-2-29",
-    "engine": "scenario",
-    "prompt": "地震演習時，教室裡要先？",
-    "choices": [
-      "衝出門外",
-      "大叫不動",
-      "趴下、掩護、穩住",
-      "站在窗邊看"
-    ],
-    "answerIndex": 2,
-    "explain": "先保護頭，聽老師指示。"
-  },
-  {
-    "id": "safety-2-30",
-    "engine": "scenario",
-    "prompt": "騎腳踏車在社區，要記得？",
-    "choices": [
-      "戴安全帽、注意來車",
-      "邊騎邊滑手機",
-      "逆向超快衝",
-      "兩人共乘把手"
-    ],
-    "answerIndex": 0,
-    "explain": "安全裝備與禮讓很重要。"
-  },
-  {
-    "id": "safety-2-31",
-    "engine": "scenario",
-    "prompt": "紅燈亮了，你要過马路時應該？",
-    "choices": [
-      "停下來等待",
-      "快跑過去",
-      "跟著大人衝",
-      "閉眼走"
-    ],
-    "answerIndex": 0,
-    "explain": "紅燈停、綠燈行。"
-  },
-  {
-    "id": "safety-2-32",
-    "engine": "scenario",
-    "prompt": "過马路要走哪裡最安全？",
-    "choices": [
-      "圓環中央",
-      "斑馬線／行人穿越道",
-      "高速公路",
-      "車縫中間"
+      "靠近岸邊拍照",
+      "遠離並聽從管制",
+      "下水試深淺",
+      "叫同學比賽誰敢站近"
     ],
     "answerIndex": 1,
-    "explain": "走人行穿越道最安全。"
+    "explain": "暴漲水域危險。"
   },
   {
-    "id": "safety-2-33",
+    "id": "safety-2-x11",
     "engine": "scenario",
-    "prompt": "在校園走廊應該怎麼走？",
+    "prompt": "教室插座冒火花，應該？",
     "choices": [
-      "靠右慢慢走",
-      "推擠同學",
-      "跑步追逐",
-      "滑跪前進"
-    ],
-    "answerIndex": 0,
-    "explain": "走廊不奔跑，避免碰撞。"
-  },
-  {
-    "id": "safety-2-34",
-    "engine": "scenario",
-    "prompt": "陌生人給糖果要你跟他走，你要？",
-    "choices": [
-      "自己去找他",
-      "拒絕並找老師或家長",
-      "跟他走",
-      "收下並保密"
+      "繼續充電",
+      "拔掉電源並告訴老師",
+      "用水潑",
+      "用手摸看熱不熱"
     ],
     "answerIndex": 1,
-    "explain": "不跟陌生人走，立刻求助。"
+    "explain": "先斷電再通報。"
   },
   {
-    "id": "safety-2-35",
+    "id": "safety-2-x12",
     "engine": "scenario",
-    "prompt": "地震演習時，教室裡要先？",
+    "prompt": "夜間騎車裝備，較重要的是？",
     "choices": [
-      "站在窗邊看",
-      "大叫不動",
-      "衝出門外",
-      "趴下、掩護、穩住"
-    ],
-    "answerIndex": 3,
-    "explain": "先保護頭，聽老師指示。"
-  },
-  {
-    "id": "safety-2-36",
-    "engine": "scenario",
-    "prompt": "騎腳踏車在社區，要記得？",
-    "choices": [
-      "戴安全帽、注意來車",
-      "逆向超快衝",
-      "兩人共乘把手",
-      "邊騎邊滑手機"
-    ],
-    "answerIndex": 0,
-    "explain": "安全裝備與禮讓很重要。"
-  },
-  {
-    "id": "safety-2-37",
-    "engine": "scenario",
-    "prompt": "紅燈亮了，你要過马路時應該？",
-    "choices": [
-      "閉眼走",
-      "快跑過去",
-      "停下來等待",
-      "跟著大人衝"
-    ],
-    "answerIndex": 2,
-    "explain": "紅燈停、綠燈行。"
-  },
-  {
-    "id": "safety-2-38",
-    "engine": "scenario",
-    "prompt": "過马路要走哪裡最安全？",
-    "choices": [
-      "車縫中間",
-      "高速公路",
-      "斑馬線／行人穿越道",
-      "圓環中央"
-    ],
-    "answerIndex": 2,
-    "explain": "走人行穿越道最安全。"
-  },
-  {
-    "id": "safety-2-39",
-    "engine": "scenario",
-    "prompt": "在校園走廊應該怎麼走？",
-    "choices": [
-      "推擠同學",
-      "跑步追逐",
-      "靠右慢慢走",
-      "滑跪前進"
-    ],
-    "answerIndex": 2,
-    "explain": "走廊不奔跑，避免碰撞。"
-  },
-  {
-    "id": "safety-2-40",
-    "engine": "scenario",
-    "prompt": "陌生人給糖果要你跟他走，你要？",
-    "choices": [
-      "收下並保密",
-      "拒絕並找老師或家長",
-      "自己去找他",
-      "跟他走"
+      "關掉車燈省電",
+      "燈光／反光配件讓人看見",
+      "不戴安全帽比較涼",
+      "兩邊耳機大聲聽音樂"
     ],
     "answerIndex": 1,
-    "explain": "不跟陌生人走，立刻求助。"
+    "explain": "被看見才安全。"
   },
   {
-    "id": "safety-2-41",
+    "id": "safety-2-x13",
     "engine": "scenario",
-    "prompt": "地震演習時，教室裡要先？",
+    "prompt": "校園施工圍籬倒塌缺口，應該？",
     "choices": [
-      "衝出門外",
-      "站在窗邊看",
-      "大叫不動",
-      "趴下、掩護、穩住"
-    ],
-    "answerIndex": 3,
-    "explain": "先保護頭，聽老師指示。"
-  },
-  {
-    "id": "safety-2-42",
-    "engine": "scenario",
-    "prompt": "騎腳踏車在社區，要記得？",
-    "choices": [
-      "逆向超快衝",
-      "戴安全帽、注意來車",
-      "邊騎邊滑手機",
-      "兩人共乘把手"
+      "鑽進去玩",
+      "遠離並通報師長",
+      "拍照挑戰",
+      "搬材料回家"
     ],
     "answerIndex": 1,
-    "explain": "安全裝備與禮讓很重要。"
+    "explain": "工地危險勿入。"
   },
   {
-    "id": "safety-2-43",
+    "id": "safety-2-x14",
     "engine": "scenario",
-    "prompt": "紅燈亮了，你要過马路時應該？",
+    "prompt": "朋友慫恿翻牆進出校園，應該？",
     "choices": [
-      "閉眼走",
-      "停下來等待",
-      "跟著大人衝",
-      "快跑過去"
+      "一起翻",
+      "拒絕，走正規出入口",
+      "當風把風",
+      "錄影上傳"
     ],
     "answerIndex": 1,
-    "explain": "紅燈停、綠燈行。"
-  },
-  {
-    "id": "safety-2-44",
-    "engine": "scenario",
-    "prompt": "過马路要走哪裡最安全？",
-    "choices": [
-      "圓環中央",
-      "斑馬線／行人穿越道",
-      "車縫中間",
-      "高速公路"
-    ],
-    "answerIndex": 1,
-    "explain": "走人行穿越道最安全。"
-  },
-  {
-    "id": "safety-2-45",
-    "engine": "scenario",
-    "prompt": "在校園走廊應該怎麼走？",
-    "choices": [
-      "靠右慢慢走",
-      "推擠同學",
-      "滑跪前進",
-      "跑步追逐"
-    ],
-    "answerIndex": 0,
-    "explain": "走廊不奔跑，避免碰撞。"
+    "explain": "遵守校園規範。"
   }
 ]

@@ -78,510 +78,185 @@
     "explain": "用合適方法解決問題。"
   },
   {
-    "id": "selfcare-2-7",
+    "id": "selfcare-2-x1",
     "engine": "scenario",
-    "prompt": "明天要上學，今晚書包應該？",
+    "prompt": "一週功課表變更，你應該？",
     "choices": [
-      "丟在門口不管",
-      "全部倒在床上睡",
-      "叫同學隔天借",
-      "自己檢查並整理好"
-    ],
-    "answerIndex": 3,
-    "explain": "養成自己整理書包的習慣。"
-  },
-  {
-    "id": "selfcare-2-8",
-    "engine": "scenario",
-    "prompt": "聯絡簿寫完了要？",
-    "choices": [
-      "藏起來不給看",
-      "放回書包並交給家長看",
-      "丟在教室",
-      "撕掉"
+      "不理會",
+      "更新到聯絡簿／日曆並準備用品",
+      "靠同學提醒每次",
+      "請假不去"
     ],
     "answerIndex": 1,
-    "explain": "聯絡簿是家和學校的橋樑。"
+    "explain": "自己更新行程。"
   },
   {
-    "id": "selfcare-2-9",
+    "id": "selfcare-2-x2",
     "engine": "scenario",
-    "prompt": "吃完點心，餐具水壺要？",
+    "prompt": "發現水壺發霉，應該？",
     "choices": [
-      "送給陌生人",
-      "丟在沙發",
-      "不洗放回書包",
-      "清洗乾淨"
-    ],
-    "answerIndex": 3,
-    "explain": "自己的東西自己清。"
-  },
-  {
-    "id": "selfcare-2-10",
-    "engine": "scenario",
-    "prompt": "功課還沒寫完，想先玩遊戲，較好的做法是？",
-    "choices": [
-      "謊稱寫完",
-      "把功課丟掉",
-      "一直玩不管",
-      "先寫完再玩"
-    ],
-    "answerIndex": 3,
-    "explain": "先完成責任再玩。"
-  },
-  {
-    "id": "selfcare-2-11",
-    "engine": "scenario",
-    "prompt": "廁所使用後要？",
-    "choices": [
-      "在牆上亂畫",
-      "把紙扔滿地",
-      "洗手並保持整潔",
-      "不沖水就走"
-    ],
-    "answerIndex": 2,
-    "explain": "衛生習慣保護自己也尊重別人。"
-  },
-  {
-    "id": "selfcare-2-12",
-    "engine": "scenario",
-    "prompt": "找不到橡皮擦時？",
-    "choices": [
-      "冷靜找過或跟老師說",
-      "把桌子掀翻",
-      "搶同學的",
-      "大哭怪別人"
-    ],
-    "answerIndex": 0,
-    "explain": "用合適方法解決問題。"
-  },
-  {
-    "id": "selfcare-2-13",
-    "engine": "scenario",
-    "prompt": "明天要上學，今晚書包應該？",
-    "choices": [
-      "叫同學隔天借",
-      "丟在門口不管",
-      "自己檢查並整理好",
-      "全部倒在床上睡"
-    ],
-    "answerIndex": 2,
-    "explain": "養成自己整理書包的習慣。"
-  },
-  {
-    "id": "selfcare-2-14",
-    "engine": "scenario",
-    "prompt": "聯絡簿寫完了要？",
-    "choices": [
-      "丟在教室",
-      "撕掉",
-      "放回書包並交給家長看",
-      "藏起來不給看"
-    ],
-    "answerIndex": 2,
-    "explain": "聯絡簿是家和學校的橋樑。"
-  },
-  {
-    "id": "selfcare-2-15",
-    "engine": "scenario",
-    "prompt": "吃完點心，餐具水壺要？",
-    "choices": [
-      "丟在沙發",
-      "清洗乾淨",
-      "送給陌生人",
-      "不洗放回書包"
+      "繼續用",
+      "清洗晾乾或更換",
+      "加香味蓋過",
+      "借同學的不還"
     ],
     "answerIndex": 1,
-    "explain": "自己的東西自己清。"
+    "explain": "清潔再使用。"
   },
   {
-    "id": "selfcare-2-16",
+    "id": "selfcare-2-x3",
     "engine": "scenario",
-    "prompt": "功課還沒寫完，想先玩遊戲，較好的做法是？",
+    "prompt": "考試前一晚，較好的安排？",
     "choices": [
-      "謊稱寫完",
-      "一直玩不管",
-      "把功課丟掉",
-      "先寫完再玩"
-    ],
-    "answerIndex": 3,
-    "explain": "先完成責任再玩。"
-  },
-  {
-    "id": "selfcare-2-17",
-    "engine": "scenario",
-    "prompt": "廁所使用後要？",
-    "choices": [
-      "在牆上亂畫",
-      "洗手並保持整潔",
-      "不沖水就走",
-      "把紙扔滿地"
+      "通宵玩遊戲",
+      "複習重點並準時睡",
+      "猛灌飲料不睡",
+      "抄答案準備"
     ],
     "answerIndex": 1,
-    "explain": "衛生習慣保護自己也尊重別人。"
+    "explain": "休息也是準備。"
   },
   {
-    "id": "selfcare-2-18",
+    "id": "selfcare-2-x4",
     "engine": "scenario",
-    "prompt": "找不到橡皮擦時？",
+    "prompt": "手機／平板用太久眼睛痠，應該？",
     "choices": [
-      "把桌子掀翻",
-      "冷靜找過或跟老師說",
-      "搶同學的",
-      "大哭怪別人"
+      "再滑一小時",
+      "休息遠眺，調整距離",
+      "貼著螢幕看",
+      "關燈繼續看"
     ],
     "answerIndex": 1,
-    "explain": "用合適方法解決問題。"
+    "explain": "保護視力。"
   },
   {
-    "id": "selfcare-2-19",
+    "id": "selfcare-2-x5",
     "engine": "scenario",
-    "prompt": "明天要上學，今晚書包應該？",
+    "prompt": "社團服裝洗好，應該？",
     "choices": [
-      "叫同學隔天借",
-      "丟在門口不管",
-      "全部倒在床上睡",
-      "自己檢查並整理好"
-    ],
-    "answerIndex": 3,
-    "explain": "養成自己整理書包的習慣。"
-  },
-  {
-    "id": "selfcare-2-20",
-    "engine": "scenario",
-    "prompt": "聯絡簿寫完了要？",
-    "choices": [
-      "撕掉",
-      "放回書包並交給家長看",
-      "丟在教室",
-      "藏起來不給看"
+      "皺巴巴塞包",
+      "晾乾摺好放定位",
+      "濕的直接穿",
+      "借別人的不還"
     ],
     "answerIndex": 1,
-    "explain": "聯絡簿是家和學校的橋樑。"
+    "explain": "衣物整理。"
   },
   {
-    "id": "selfcare-2-21",
+    "id": "selfcare-2-x6",
     "engine": "scenario",
-    "prompt": "吃完點心，餐具水壺要？",
+    "prompt": "零錢很多很亂，應該？",
     "choices": [
-      "清洗乾淨",
-      "送給陌生人",
-      "不洗放回書包",
-      "丟在沙發"
-    ],
-    "answerIndex": 0,
-    "explain": "自己的東西自己清。"
-  },
-  {
-    "id": "selfcare-2-22",
-    "engine": "scenario",
-    "prompt": "功課還沒寫完，想先玩遊戲，較好的做法是？",
-    "choices": [
-      "謊稱寫完",
-      "把功課丟掉",
-      "一直玩不管",
-      "先寫完再玩"
-    ],
-    "answerIndex": 3,
-    "explain": "先完成責任再玩。"
-  },
-  {
-    "id": "selfcare-2-23",
-    "engine": "scenario",
-    "prompt": "廁所使用後要？",
-    "choices": [
-      "洗手並保持整潔",
-      "把紙扔滿地",
-      "在牆上亂畫",
-      "不沖水就走"
-    ],
-    "answerIndex": 0,
-    "explain": "衛生習慣保護自己也尊重別人。"
-  },
-  {
-    "id": "selfcare-2-24",
-    "engine": "scenario",
-    "prompt": "找不到橡皮擦時？",
-    "choices": [
-      "搶同學的",
-      "冷靜找過或跟老師說",
-      "把桌子掀翻",
-      "大哭怪別人"
+      "灑滿書包",
+      "用零錢包分類收好",
+      "放桌上給人拿",
+      "丟進水溝"
     ],
     "answerIndex": 1,
-    "explain": "用合適方法解決問題。"
+    "explain": "金錢收納。"
   },
   {
-    "id": "selfcare-2-25",
+    "id": "selfcare-2-x7",
     "engine": "scenario",
-    "prompt": "明天要上學，今晚書包應該？",
+    "prompt": "長期忘記帶用具，可以？",
     "choices": [
-      "叫同學隔天借",
-      "自己檢查並整理好",
-      "全部倒在床上睡",
-      "丟在門口不管"
+      "怪爸媽",
+      "前一晚用檢核表自己檢查",
+      "每天跟同學借",
+      "不寫作業"
     ],
     "answerIndex": 1,
-    "explain": "養成自己整理書包的習慣。"
+    "explain": "建立檢查習慣。"
   },
   {
-    "id": "selfcare-2-26",
+    "id": "selfcare-2-x8",
     "engine": "scenario",
-    "prompt": "聯絡簿寫完了要？",
+    "prompt": "廚餘與回收混在一起，應該？",
     "choices": [
-      "丟在教室",
-      "藏起來不給看",
-      "放回書包並交給家長看",
-      "撕掉"
-    ],
-    "answerIndex": 2,
-    "explain": "聯絡簿是家和學校的橋樑。"
-  },
-  {
-    "id": "selfcare-2-27",
-    "engine": "scenario",
-    "prompt": "吃完點心，餐具水壺要？",
-    "choices": [
-      "丟在沙發",
-      "清洗乾淨",
-      "送給陌生人",
-      "不洗放回書包"
+      "繼續混",
+      "分開投放",
+      "全倒馬桶",
+      "藏抽屜"
     ],
     "answerIndex": 1,
-    "explain": "自己的東西自己清。"
+    "explain": "垃圾分類。"
   },
   {
-    "id": "selfcare-2-28",
+    "id": "selfcare-2-x9",
     "engine": "scenario",
-    "prompt": "功課還沒寫完，想先玩遊戲，較好的做法是？",
+    "prompt": "感冒還沒好就想上游泳課，應該？",
     "choices": [
-      "謊稱寫完",
-      "把功課丟掉",
-      "先寫完再玩",
-      "一直玩不管"
-    ],
-    "answerIndex": 2,
-    "explain": "先完成責任再玩。"
-  },
-  {
-    "id": "selfcare-2-29",
-    "engine": "scenario",
-    "prompt": "廁所使用後要？",
-    "choices": [
-      "把紙扔滿地",
-      "洗手並保持整潔",
-      "不沖水就走",
-      "在牆上亂畫"
+      "硬游",
+      "告訴老師身體狀況，聽指導",
+      "假裝沒病",
+      "下水泡澡"
     ],
     "answerIndex": 1,
-    "explain": "衛生習慣保護自己也尊重別人。"
+    "explain": "身體不適要說。"
   },
   {
-    "id": "selfcare-2-30",
+    "id": "selfcare-2-x10",
     "engine": "scenario",
-    "prompt": "找不到橡皮擦時？",
+    "prompt": "房間燈光很暗寫字，應該？",
     "choices": [
-      "冷靜找過或跟老師說",
-      "搶同學的",
-      "大哭怪別人",
-      "把桌子掀翻"
-    ],
-    "answerIndex": 0,
-    "explain": "用合適方法解決問題。"
-  },
-  {
-    "id": "selfcare-2-31",
-    "engine": "scenario",
-    "prompt": "明天要上學，今晚書包應該？",
-    "choices": [
-      "自己檢查並整理好",
-      "丟在門口不管",
-      "叫同學隔天借",
-      "全部倒在床上睡"
-    ],
-    "answerIndex": 0,
-    "explain": "養成自己整理書包的習慣。"
-  },
-  {
-    "id": "selfcare-2-32",
-    "engine": "scenario",
-    "prompt": "聯絡簿寫完了要？",
-    "choices": [
-      "丟在教室",
-      "放回書包並交給家長看",
-      "藏起來不給看",
-      "撕掉"
+      "繼續寫",
+      "打開足夠燈光",
+      "用手機閃光燈貼很近",
+      "閉眼寫"
     ],
     "answerIndex": 1,
-    "explain": "聯絡簿是家和學校的橋樑。"
+    "explain": "光線充足。"
   },
   {
-    "id": "selfcare-2-33",
+    "id": "selfcare-2-x11",
     "engine": "scenario",
-    "prompt": "吃完點心，餐具水壺要？",
+    "prompt": "社團活動要自備材料，你應該？",
     "choices": [
-      "清洗乾淨",
-      "丟在沙發",
-      "送給陌生人",
-      "不洗放回書包"
-    ],
-    "answerIndex": 0,
-    "explain": "自己的東西自己清。"
-  },
-  {
-    "id": "selfcare-2-34",
-    "engine": "scenario",
-    "prompt": "功課還沒寫完，想先玩遊戲，較好的做法是？",
-    "choices": [
-      "把功課丟掉",
-      "謊稱寫完",
-      "先寫完再玩",
-      "一直玩不管"
-    ],
-    "answerIndex": 2,
-    "explain": "先完成責任再玩。"
-  },
-  {
-    "id": "selfcare-2-35",
-    "engine": "scenario",
-    "prompt": "廁所使用後要？",
-    "choices": [
-      "把紙扔滿地",
-      "在牆上亂畫",
-      "不沖水就走",
-      "洗手並保持整潔"
-    ],
-    "answerIndex": 3,
-    "explain": "衛生習慣保護自己也尊重別人。"
-  },
-  {
-    "id": "selfcare-2-36",
-    "engine": "scenario",
-    "prompt": "找不到橡皮擦時？",
-    "choices": [
-      "把桌子掀翻",
-      "搶同學的",
-      "冷靜找過或跟老師說",
-      "大哭怪別人"
-    ],
-    "answerIndex": 2,
-    "explain": "用合適方法解決問題。"
-  },
-  {
-    "id": "selfcare-2-37",
-    "engine": "scenario",
-    "prompt": "明天要上學，今晚書包應該？",
-    "choices": [
-      "自己檢查並整理好",
-      "叫同學隔天借",
-      "全部倒在床上睡",
-      "丟在門口不管"
-    ],
-    "answerIndex": 0,
-    "explain": "養成自己整理書包的習慣。"
-  },
-  {
-    "id": "selfcare-2-38",
-    "engine": "scenario",
-    "prompt": "聯絡簿寫完了要？",
-    "choices": [
-      "放回書包並交給家長看",
-      "撕掉",
-      "丟在教室",
-      "藏起來不給看"
-    ],
-    "answerIndex": 0,
-    "explain": "聯絡簿是家和學校的橋樑。"
-  },
-  {
-    "id": "selfcare-2-39",
-    "engine": "scenario",
-    "prompt": "吃完點心，餐具水壺要？",
-    "choices": [
-      "清洗乾淨",
-      "不洗放回書包",
-      "送給陌生人",
-      "丟在沙發"
-    ],
-    "answerIndex": 0,
-    "explain": "自己的東西自己清。"
-  },
-  {
-    "id": "selfcare-2-40",
-    "engine": "scenario",
-    "prompt": "功課還沒寫完，想先玩遊戲，較好的做法是？",
-    "choices": [
-      "把功課丟掉",
-      "謊稱寫完",
-      "先寫完再玩",
-      "一直玩不管"
-    ],
-    "answerIndex": 2,
-    "explain": "先完成責任再玩。"
-  },
-  {
-    "id": "selfcare-2-41",
-    "engine": "scenario",
-    "prompt": "廁所使用後要？",
-    "choices": [
-      "在牆上亂畫",
-      "不沖水就走",
-      "洗手並保持整潔",
-      "把紙扔滿地"
-    ],
-    "answerIndex": 2,
-    "explain": "衛生習慣保護自己也尊重別人。"
-  },
-  {
-    "id": "selfcare-2-42",
-    "engine": "scenario",
-    "prompt": "找不到橡皮擦時？",
-    "choices": [
-      "冷靜找過或跟老師說",
-      "搶同學的",
-      "把桌子掀翻",
-      "大哭怪別人"
-    ],
-    "answerIndex": 0,
-    "explain": "用合適方法解決問題。"
-  },
-  {
-    "id": "selfcare-2-43",
-    "engine": "scenario",
-    "prompt": "明天要上學，今晚書包應該？",
-    "choices": [
-      "全部倒在床上睡",
-      "自己檢查並整理好",
-      "叫同學隔天借",
-      "丟在門口不管"
+      "到場再借",
+      "前一晚準備齊全",
+      "空著手怪老師",
+      "叫家長衝去買遲到"
     ],
     "answerIndex": 1,
-    "explain": "養成自己整理書包的習慣。"
+    "explain": "事前準備。"
   },
   {
-    "id": "selfcare-2-44",
+    "id": "selfcare-2-x12",
     "engine": "scenario",
-    "prompt": "聯絡簿寫完了要？",
+    "prompt": "鞋子進水濕透，應該？",
     "choices": [
-      "藏起來不給看",
-      "放回書包並交給家長看",
-      "撕掉",
-      "丟在教室"
+      "濕穿上學",
+      "換乾鞋並晾濕鞋",
+      "用吹風機對著腳燙",
+      "丟教室角落"
     ],
     "answerIndex": 1,
-    "explain": "聯絡簿是家和學校的橋樑。"
+    "explain": "換乾鞋。"
   },
   {
-    "id": "selfcare-2-45",
+    "id": "selfcare-2-x13",
     "engine": "scenario",
-    "prompt": "吃完點心，餐具水壺要？",
+    "prompt": "時間管理：作業與玩樂，可以？",
     "choices": [
-      "送給陌生人",
-      "丟在沙發",
-      "清洗乾淨",
-      "不洗放回書包"
+      "先玩到很晚再趕",
+      "先完成該做的再休息玩",
+      "完全不休息",
+      "抄同學交差"
     ],
-    "answerIndex": 2,
-    "explain": "自己的東西自己清。"
+    "answerIndex": 1,
+    "explain": "先盡責再休息。"
+  },
+  {
+    "id": "selfcare-2-x14",
+    "engine": "scenario",
+    "prompt": "個人衛生用品用完，應該？",
+    "choices": [
+      "不管",
+      "放入購物清單請家人補或告知",
+      "用同學的不說",
+      "用衛生紙替代亂丟"
+    ],
+    "answerIndex": 1,
+    "explain": "及時補充。"
   }
 ]

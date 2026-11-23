@@ -39,6 +39,16 @@ export function HomeMap() {
             type="button"
             className="map-tool"
             onClick={() => {
+              playSfx('tap', 0.35)
+              setListOpen((v) => !v)
+            }}
+          >
+            {listOpen ? '收合' : '清單'}
+          </button>
+          <button
+            type="button"
+            className="map-tool"
+            onClick={() => {
               playSfx('tap', 0.3)
               clearActiveProfile()
             }}
@@ -48,14 +58,7 @@ export function HomeMap() {
         </div>
       </header>
 
-      <IslandWorld3D
-        starsMap={starsMap}
-        listOpen={listOpen}
-        onToggleList={() => {
-          playSfx('tap', 0.35)
-          setListOpen((v) => !v)
-        }}
-      />
+      <IslandWorld3D starsMap={starsMap} />
 
       {listOpen ? (
         <aside className="map-list-panel" aria-label="島嶼清單">

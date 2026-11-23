@@ -1,6 +1,7 @@
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Float, Html, Line, OrbitControls, Sky, Sparkles } from '@react-three/drei'
 import {
+  useEffect,
   useMemo,
   useRef,
   useState,
@@ -378,23 +379,37 @@ function CameraRig({
   )
 }
 
-export function IslandWorld3D({
-  starsMap,
-  listOpen,
-  onToggleList,
-}: {
-  starsMap: Record<string, number>
-  listOpen: boolean
-  onToggleList: () => void
-}) {
+function timeFromLocalClock(date = new Date()): TimeMode {
+  const h = date.getHours()
+  if (h >= 5 && h < 8) return 'dawn'
+  if (h >= 8 && h < 17) return 'day'
+  if (h >= 17 && h < 19) return 'dusk'
+  return 'night'
+}
+
+export function IslandWorld3D({ starsMap }: { starsMap: Record<string, number> }) {
   const navigate = useNavigate()
   const [selectedId, setSelectedId] = useState<string | null>(null)
-  const [time, setTime] = useState<TimeMode>('day')
+  const [time, setTime] = useState<TimeMode>(() => timeFromLocalClock())
   const controlsRef = useRef<ControlsApi | null>(null)
   const selected = ISLANDS.find((i) => i.id === selectedId) ?? null
   const preset = TIME_PRESETS[time]
   const seaTint =
     time === 'night' ? '#243a7a' : time === 'dusk' ? '#4f7db8' : time === 'dawn' ? '#6ea7d8' : '#3f8fe0'
+
+  useEffect(() => {
+    const sync = () => setTime(timeFromLocalClock())
+    sync()
+    const timer = window.setInterval(sync, 60_000)
+    const onVis = () => {
+      if (document.visibilityState === 'visible') sync()
+    }
+    document.addEventListener('visibilitychange', onVis)
+    return () => {
+      window.clearInterval(timer)
+      document.removeEventListener('visibilitychange', onVis)
+    }
+  }, [])
 
   function resetView() {
     playSfx('tap', 0.3)
@@ -403,13 +418,6 @@ export function IslandWorld3D({
     c.object.position.set(0, 7.8, 10.2)
     c.target.set(0, 0.5, 0)
     c.update()
-  }
-
-  function cycleTime() {
-    playSfx('tap', 0.3)
-    const order: TimeMode[] = ['dawn', 'day', 'dusk', 'night']
-    const i = order.indexOf(time)
-    setTime(order[(i + 1) % order.length]!)
   }
 
   return (
@@ -453,17 +461,11 @@ export function IslandWorld3D({
         <button type="button" className="map-tool" onClick={resetView}>
           全景
         </button>
-        <button type="button" className="map-tool" onClick={onToggleList}>
-          {listOpen ? '收合' : '清單'}
-        </button>
-        <button type="button" className="map-tool" onClick={cycleTime}>
-          {preset.label}
-        </button>
       </div>
 
       <div className="map-brand-chip">
         <strong>ISLAND QUEST</strong>
-        <span>一座島一種冒險</span>
+        <span>一座島一種冒險・{preset.label}</span>
       </div>
 
       {!selected ? (

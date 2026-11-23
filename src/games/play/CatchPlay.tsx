@@ -160,14 +160,14 @@ export function CatchPlay({ question, onResult }: Props) {
       <p className="play-prompt">{question.prompt}</p>
       <div
         ref={stageRef}
-        className="play-stage grounded is-drag has-side-ctrl"
+        className="play-stage grounded is-drag"
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
         onPointerCancel={onPointerUp}
       >
         <p className="play-stage-tip">
-          {ready ? '拖移／點掉落物，或按左右鍵' : '倒數結束後開始接！'}
+          {ready ? '拖移畫面或點掉落物；也可按下方左右鍵' : '倒數結束後開始接！'}
         </p>
         {items.map((it) => (
           <button
@@ -185,30 +185,32 @@ export function CatchPlay({ question, onResult }: Props) {
           pose="catch"
           style={{ left: `calc(${heroX}% - 28px)` }}
         />
-        <button
-          type="button"
-          className="ctrl-pad ctrl-pad-side left"
-          aria-label="向左"
-          disabled={busy}
-          onPointerDown={(e) => e.stopPropagation()}
-          onClick={() => move(-16)}
-        >
-          ◀
-        </button>
-        <button
-          type="button"
-          className="ctrl-pad ctrl-pad-side right"
-          aria-label="向右"
-          disabled={busy}
-          onPointerDown={(e) => e.stopPropagation()}
-          onClick={() => move(16)}
-        >
-          ▶
-        </button>
         {burst ? <PlayBurst ok={burst.ok} x={burst.x} y={burst.y} /> : null}
         {!ready ? (
           <PlayCountdown resetKey={question.id} onReady={onReady} />
         ) : null}
+      </div>
+      <div className="play-pick-panel catch-ctrl-panel">
+        <div className="ctrl-bar catch-ctrl-bar">
+          <button
+            type="button"
+            className="ctrl-pad"
+            aria-label="向左"
+            disabled={busy}
+            onClick={() => move(-16)}
+          >
+            ◀ 左
+          </button>
+          <button
+            type="button"
+            className="ctrl-pad"
+            aria-label="向右"
+            disabled={busy}
+            onClick={() => move(16)}
+          >
+            右 ▶
+          </button>
+        </div>
       </div>
     </div>
   )

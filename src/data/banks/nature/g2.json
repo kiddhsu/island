@@ -120,484 +120,244 @@
     "answerIndex": 1
   },
   {
-    "id": "nature-2-11",
+    "id": "nature-2-x1",
     "engine": "choice",
-    "prompt": "關於「春天」，哪一個敘述較正確？",
+    "prompt": "水在加熱到沸騰會變成？",
     "choices": [
-      "天黑最長",
-      "樹葉全黃掉光",
-      "花開、新葉",
-      "下雪很厚"
-    ],
-    "answerIndex": 2
-  },
-  {
-    "id": "nature-2-12",
-    "engine": "choice",
-    "prompt": "關於「夏天」，哪一個敘述較正確？",
-    "choices": [
-      "楓葉變紅為主",
-      "霜降結冰",
-      "天氣炎熱、白天長",
-      "穿很厚外套"
-    ],
-    "answerIndex": 2
-  },
-  {
-    "id": "nature-2-13",
-    "engine": "choice",
-    "prompt": "關於「秋天」，哪一個敘述較正確？",
-    "choices": [
-      "梅雨整月",
-      "葉子變色、涼爽",
-      "河水結厚冰",
-      "西瓜季最盛"
+      "冰塊",
+      "水蒸氣",
+      "沙子",
+      "油"
     ],
     "answerIndex": 1
   },
   {
-    "id": "nature-2-14",
+    "id": "nature-2-x2",
     "engine": "choice",
-    "prompt": "關於「冬天」，哪一個敘述較正確？",
+    "prompt": "晝夜長短隨季節改變，主要因為？",
     "choices": [
-      "芒果盛產",
-      "天氣較冷",
-      "短袖最剛好",
-      "蟬鳴整天"
+      "地球公轉與自轉傾角等現象",
+      "電燈公司決定",
+      "月亮心情",
+      "颱風"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "nature-2-x3",
+    "engine": "choice",
+    "prompt": "磁鐵比較容易吸住？",
+    "choices": [
+      "塑膠尺",
+      "鐵製品",
+      "橡皮擦",
+      "紙片"
     ],
     "answerIndex": 1
   },
   {
-    "id": "nature-2-15",
+    "id": "nature-2-x4",
     "engine": "choice",
-    "prompt": "關於「太陽」，哪一個敘述較正確？",
+    "prompt": "食物鏈中，草是？",
     "choices": [
-      "帶來光和熱",
-      "只有晚上出現",
-      "是一顆種子",
-      "會下雨"
+      "生產者",
+      "分解者汽車",
+      "消費者大樓",
+      "非生物椅子"
     ],
     "answerIndex": 0
   },
   {
-    "id": "nature-2-16",
+    "id": "nature-2-x5",
     "engine": "choice",
-    "prompt": "關於「風」，哪一個敘述較正確？",
+    "prompt": "潮汐漲退主要和什麼有關？",
     "choices": [
-      "空氣在流動",
-      "只在水裡",
-      "是一種石頭",
-      "是動物叫聲"
+      "月亮引力等作用",
+      "學校鐘聲",
+      "公車班次",
+      "電視節目"
     ],
     "answerIndex": 0
   },
   {
-    "id": "nature-2-17",
+    "id": "nature-2-x6",
     "engine": "choice",
-    "prompt": "關於「影子」，哪一個敘述較正確？",
+    "prompt": "土壤裡常見的小生物有助於？",
     "choices": [
-      "光被擋住形成",
-      "是水做的",
-      "晚上比較多太陽",
-      "會自己走路"
+      "分解落葉讓養分回到土中",
+      "製造塑膠",
+      "發電給城市",
+      "教書"
     ],
     "answerIndex": 0
   },
   {
-    "id": "nature-2-18",
+    "id": "nature-2-x7",
     "engine": "choice",
-    "prompt": "關於「種子」，哪一個敘述較正確？",
+    "prompt": "為何要關緊水龍頭？",
     "choices": [
-      "可以發芽長成植物",
-      "是動物骨頭",
-      "只會飛",
-      "是雲的名字"
+      "節省水資源",
+      "讓水壓消失全世界",
+      "罰抄",
+      "沒差"
     ],
     "answerIndex": 0
   },
   {
-    "id": "nature-2-19",
+    "id": "nature-2-x8",
     "engine": "choice",
-    "prompt": "關於「蝴蝶」，哪一個敘述較正確？",
+    "prompt": "颱風常帶來？",
     "choices": [
-      "昆蟲，會飛",
-      "四隻腳的哺乳類",
-      "是一種樹",
-      "生活在深海"
+      "強風豪雨",
+      "沙漠乾燥",
+      "極光",
+      "火山保證"
     ],
     "answerIndex": 0
   },
   {
-    "id": "nature-2-20",
+    "id": "nature-2-x9",
     "engine": "choice",
-    "prompt": "關於「魚」，哪一個敘述較正確？",
+    "prompt": "溫室裡種蔬菜，主要是為了？",
     "choices": [
-      "會開花",
-      "用肺在天空飛",
-      "用腮呼吸、住在水裡",
-      "長在土裡"
-    ],
-    "answerIndex": 2
-  },
-  {
-    "id": "nature-2-21",
-    "engine": "choice",
-    "prompt": "關於「春天」，哪一個敘述較正確？",
-    "choices": [
-      "花開、新葉",
-      "樹葉全黃掉光",
-      "下雪很厚",
-      "天黑最長"
+      "控制溫濕度利於生長",
+      "躲貓貓",
+      "養恐龍",
+      "開演唱會"
     ],
     "answerIndex": 0
   },
   {
-    "id": "nature-2-22",
+    "id": "nature-2-x10",
     "engine": "choice",
-    "prompt": "關於「夏天」，哪一個敘述較正確？",
+    "prompt": "影子方向會變，因為？",
     "choices": [
-      "穿很厚外套",
-      "天氣炎熱、白天長",
-      "霜降結冰",
-      "楓葉變紅為主"
-    ],
-    "answerIndex": 1
-  },
-  {
-    "id": "nature-2-23",
-    "engine": "choice",
-    "prompt": "關於「秋天」，哪一個敘述較正確？",
-    "choices": [
-      "西瓜季最盛",
-      "葉子變色、涼爽",
-      "梅雨整月",
-      "河水結厚冰"
-    ],
-    "answerIndex": 1
-  },
-  {
-    "id": "nature-2-24",
-    "engine": "choice",
-    "prompt": "關於「冬天」，哪一個敘述較正確？",
-    "choices": [
-      "蟬鳴整天",
-      "短袖最剛好",
-      "天氣較冷",
-      "芒果盛產"
-    ],
-    "answerIndex": 2
-  },
-  {
-    "id": "nature-2-25",
-    "engine": "choice",
-    "prompt": "關於「太陽」，哪一個敘述較正確？",
-    "choices": [
-      "是一顆種子",
-      "會下雨",
-      "帶來光和熱",
-      "只有晚上出現"
-    ],
-    "answerIndex": 2
-  },
-  {
-    "id": "nature-2-26",
-    "engine": "choice",
-    "prompt": "關於「風」，哪一個敘述較正確？",
-    "choices": [
-      "空氣在流動",
-      "只在水裡",
-      "是動物叫聲",
-      "是一種石頭"
+      "光源位置改變",
+      "影子自己走路",
+      "地面傾斜魔術",
+      "鞋子顏色"
     ],
     "answerIndex": 0
   },
   {
-    "id": "nature-2-27",
+    "id": "nature-2-x11",
     "engine": "choice",
-    "prompt": "關於「影子」，哪一個敘述較正確？",
+    "prompt": "哪一個是可再生能源例子？",
     "choices": [
-      "是水做的",
-      "晚上比較多太陽",
-      "會自己走路",
-      "光被擋住形成"
-    ],
-    "answerIndex": 3
-  },
-  {
-    "id": "nature-2-28",
-    "engine": "choice",
-    "prompt": "關於「種子」，哪一個敘述較正確？",
-    "choices": [
-      "只會飛",
-      "是雲的名字",
-      "是動物骨頭",
-      "可以發芽長成植物"
-    ],
-    "answerIndex": 3
-  },
-  {
-    "id": "nature-2-29",
-    "engine": "choice",
-    "prompt": "關於「蝴蝶」，哪一個敘述較正確？",
-    "choices": [
-      "是一種樹",
-      "昆蟲，會飛",
-      "生活在深海",
-      "四隻腳的哺乳類"
-    ],
-    "answerIndex": 1
-  },
-  {
-    "id": "nature-2-30",
-    "engine": "choice",
-    "prompt": "關於「魚」，哪一個敘述較正確？",
-    "choices": [
-      "用腮呼吸、住在水裡",
-      "會開花",
-      "用肺在天空飛",
-      "長在土裡"
+      "太陽能",
+      "用完的電池隨意埋",
+      "一次用炭隨便燒光森林",
+      "無限制抽地下水不管"
     ],
     "answerIndex": 0
   },
   {
-    "id": "nature-2-31",
+    "id": "nature-2-x12",
     "engine": "choice",
-    "prompt": "關於「春天」，哪一個敘述較正確？",
+    "prompt": "觀察紀錄最重要的是？",
     "choices": [
-      "花開、新葉",
-      "樹葉全黃掉光",
-      "天黑最長",
-      "下雪很厚"
+      "誠實寫下看到的現象",
+      "照抄同學並改數字",
+      "只寫想像",
+      "撕掉不喜歡的資料"
     ],
     "answerIndex": 0
   },
   {
-    "id": "nature-2-32",
+    "id": "nature-2-x13",
     "engine": "choice",
-    "prompt": "關於「夏天」，哪一個敘述較正確？",
+    "prompt": "塑膠進入海洋可能？",
     "choices": [
-      "霜降結冰",
-      "楓葉變紅為主",
-      "穿很厚外套",
-      "天氣炎熱、白天長"
-    ],
-    "answerIndex": 3
-  },
-  {
-    "id": "nature-2-33",
-    "engine": "choice",
-    "prompt": "關於「秋天」，哪一個敘述較正確？",
-    "choices": [
-      "梅雨整月",
-      "河水結厚冰",
-      "西瓜季最盛",
-      "葉子變色、涼爽"
-    ],
-    "answerIndex": 3
-  },
-  {
-    "id": "nature-2-34",
-    "engine": "choice",
-    "prompt": "關於「冬天」，哪一個敘述較正確？",
-    "choices": [
-      "短袖最剛好",
-      "蟬鳴整天",
-      "芒果盛產",
-      "天氣較冷"
-    ],
-    "answerIndex": 3
-  },
-  {
-    "id": "nature-2-35",
-    "engine": "choice",
-    "prompt": "關於「太陽」，哪一個敘述較正確？",
-    "choices": [
-      "會下雨",
-      "帶來光和熱",
-      "只有晚上出現",
-      "是一顆種子"
-    ],
-    "answerIndex": 1
-  },
-  {
-    "id": "nature-2-36",
-    "engine": "choice",
-    "prompt": "關於「風」，哪一個敘述較正確？",
-    "choices": [
-      "是動物叫聲",
-      "空氣在流動",
-      "只在水裡",
-      "是一種石頭"
-    ],
-    "answerIndex": 1
-  },
-  {
-    "id": "nature-2-37",
-    "engine": "choice",
-    "prompt": "關於「影子」，哪一個敘述較正確？",
-    "choices": [
-      "會自己走路",
-      "是水做的",
-      "光被擋住形成",
-      "晚上比較多太陽"
-    ],
-    "answerIndex": 2
-  },
-  {
-    "id": "nature-2-38",
-    "engine": "choice",
-    "prompt": "關於「種子」，哪一個敘述較正確？",
-    "choices": [
-      "是動物骨頭",
-      "是雲的名字",
-      "只會飛",
-      "可以發芽長成植物"
-    ],
-    "answerIndex": 3
-  },
-  {
-    "id": "nature-2-39",
-    "engine": "choice",
-    "prompt": "關於「蝴蝶」，哪一個敘述較正確？",
-    "choices": [
-      "是一種樹",
-      "生活在深海",
-      "四隻腳的哺乳類",
-      "昆蟲，會飛"
-    ],
-    "answerIndex": 3
-  },
-  {
-    "id": "nature-2-40",
-    "engine": "choice",
-    "prompt": "關於「魚」，哪一個敘述較正確？",
-    "choices": [
-      "長在土裡",
-      "用腮呼吸、住在水裡",
-      "會開花",
-      "用肺在天空飛"
-    ],
-    "answerIndex": 1
-  },
-  {
-    "id": "nature-2-41",
-    "engine": "choice",
-    "prompt": "關於「春天」，哪一個敘述較正確？",
-    "choices": [
-      "天黑最長",
-      "花開、新葉",
-      "下雪很厚",
-      "樹葉全黃掉光"
-    ],
-    "answerIndex": 1
-  },
-  {
-    "id": "nature-2-42",
-    "engine": "choice",
-    "prompt": "關於「夏天」，哪一個敘述較正確？",
-    "choices": [
-      "天氣炎熱、白天長",
-      "穿很厚外套",
-      "霜降結冰",
-      "楓葉變紅為主"
+      "傷害生物",
+      "變成魚的營養均衡餐",
+      "自動消失成氧氣",
+      "讓海變更藍無影響"
     ],
     "answerIndex": 0
   },
   {
-    "id": "nature-2-43",
+    "id": "nature-2-x14",
     "engine": "choice",
-    "prompt": "關於「秋天」，哪一個敘述較正確？",
+    "prompt": "為什麼登山要走指定步道？",
     "choices": [
-      "西瓜季最盛",
-      "梅雨整月",
-      "河水結厚冰",
-      "葉子變色、涼爽"
-    ],
-    "answerIndex": 3
-  },
-  {
-    "id": "nature-2-44",
-    "engine": "choice",
-    "prompt": "關於「冬天」，哪一個敘述較正確？",
-    "choices": [
-      "蟬鳴整天",
-      "天氣較冷",
-      "短袖最剛好",
-      "芒果盛產"
-    ],
-    "answerIndex": 1
-  },
-  {
-    "id": "nature-2-45",
-    "engine": "choice",
-    "prompt": "關於「太陽」，哪一個敘述較正確？",
-    "choices": [
-      "帶來光和熱",
-      "只有晚上出現",
-      "是一顆種子",
-      "會下雨"
+      "保護生態並較安全",
+      "比較近一定",
+      "可以丟垃圾",
+      "可以折花"
     ],
     "answerIndex": 0
   },
   {
-    "id": "nature-2-46",
+    "id": "nature-2-x15",
     "engine": "choice",
-    "prompt": "關於「風」，哪一個敘述較正確？",
+    "prompt": "雲是由什麼組成的常見說法？",
     "choices": [
-      "只在水裡",
-      "空氣在流動",
-      "是動物叫聲",
-      "是一種石頭"
-    ],
-    "answerIndex": 1
-  },
-  {
-    "id": "nature-2-47",
-    "engine": "choice",
-    "prompt": "關於「影子」，哪一個敘述較正確？",
-    "choices": [
-      "光被擋住形成",
-      "會自己走路",
-      "是水做的",
-      "晚上比較多太陽"
+      "水滴或冰晶等",
+      "棉花糖",
+      "煙霧彈",
+      "灰塵房子"
     ],
     "answerIndex": 0
   },
   {
-    "id": "nature-2-48",
+    "id": "nature-2-x16",
     "engine": "choice",
-    "prompt": "關於「種子」，哪一個敘述較正確？",
+    "prompt": "蚯蚓在土壤中的貢獻？",
     "choices": [
-      "是雲的名字",
-      "是動物骨頭",
-      "只會飛",
-      "可以發芽長成植物"
-    ],
-    "answerIndex": 3
-  },
-  {
-    "id": "nature-2-49",
-    "engine": "choice",
-    "prompt": "關於「蝴蝶」，哪一個敘述較正確？",
-    "choices": [
-      "昆蟲，會飛",
-      "生活在深海",
-      "是一種樹",
-      "四隻腳的哺乳類"
+      "疏鬆土壤",
+      "咬斷電線",
+      "寫作業",
+      "放風箏"
     ],
     "answerIndex": 0
   },
   {
-    "id": "nature-2-50",
+    "id": "nature-2-x17",
     "engine": "choice",
-    "prompt": "關於「魚」，哪一個敘述較正確？",
+    "prompt": "什麼情況適合看星星？",
     "choices": [
-      "長在土裡",
-      "會開花",
-      "用肺在天空飛",
-      "用腮呼吸、住在水裡"
+      "晴朗少雲的夜晚",
+      "大霧濃雲",
+      "正午強光",
+      "大雨打雷正中"
     ],
-    "answerIndex": 3
+    "answerIndex": 0
+  },
+  {
+    "id": "nature-2-x18",
+    "engine": "choice",
+    "prompt": "分類回收的玻璃瓶應該？",
+    "choices": [
+      "清空後投放",
+      "裝滿廚餘再丟",
+      "敲碎灑校園",
+      "藏抽屜"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "nature-2-x19",
+    "engine": "choice",
+    "prompt": "植物向光性指的是？",
+    "choices": [
+      "莖葉朝光源生長的傾向",
+      "根一定向上",
+      "葉子怕光逃走",
+      "花只在夜晚開永遠"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "nature-2-x20",
+    "engine": "choice",
+    "prompt": "地震時教室裡較安全的做法？",
+    "choices": [
+      "躲到堅固桌下護頭",
+      "衝去窗戶看熱鬧",
+      "搭電梯下樓",
+      "站在書櫃旁"
+    ],
+    "answerIndex": 0
   },
   {
     "id": "nature-2-match-0",
@@ -615,82 +375,6 @@
       {
         "left": "左",
         "right": "右"
-      }
-    ]
-  },
-  {
-    "id": "nature-2-match-1",
-    "engine": "match",
-    "prompt": "把左邊和右邊配成一組",
-    "pairs": [
-      {
-        "left": "早",
-        "right": "晚"
-      },
-      {
-        "left": "出",
-        "right": "入"
-      },
-      {
-        "left": "多",
-        "right": "少"
-      }
-    ]
-  },
-  {
-    "id": "nature-2-match-2",
-    "engine": "match",
-    "prompt": "把左邊和右邊配成一組",
-    "pairs": [
-      {
-        "left": "父",
-        "right": "母"
-      },
-      {
-        "left": "子",
-        "right": "女"
-      },
-      {
-        "left": "天",
-        "right": "地"
-      }
-    ]
-  },
-  {
-    "id": "nature-2-match-3",
-    "engine": "match",
-    "prompt": "把左邊和右邊配成一組",
-    "pairs": [
-      {
-        "left": "ㄅ",
-        "right": "玻"
-      },
-      {
-        "left": "ㄆ",
-        "right": "坡"
-      },
-      {
-        "left": "ㄇ",
-        "right": "摸"
-      }
-    ]
-  },
-  {
-    "id": "nature-2-match-4",
-    "engine": "match",
-    "prompt": "把左邊和右邊配成一組",
-    "pairs": [
-      {
-        "left": "春",
-        "right": "花開"
-      },
-      {
-        "left": "夏",
-        "right": "炎熱"
-      },
-      {
-        "left": "冬",
-        "right": "較冷"
       }
     ]
   }

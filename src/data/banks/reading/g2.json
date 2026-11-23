@@ -36,330 +36,6 @@
     "answerIndex": 0
   },
   {
-    "id": "reading-2-4",
-    "engine": "choice",
-    "prompt": "周末，爸媽帶小明去圖書館。小明選了一本橋梁書，坐在窗邊慢慢讀。回家路上，他跟媽媽分享故事裡的狐狸很聰明。\n\n問：小明在圖書館做什麼？",
-    "choices": [
-      "畫畫考試",
-      "看書",
-      "睡覺",
-      "打球"
-    ],
-    "answerIndex": 1
-  },
-  {
-    "id": "reading-2-5",
-    "engine": "choice",
-    "prompt": "下課時，兩位同學搶同一個球，後來他們決定輪流玩，每人五分鐘。\n\n問：他們最後怎麼解決？",
-    "choices": [
-      "丟掉球",
-      "打架",
-      "不去玩",
-      "輪流玩"
-    ],
-    "answerIndex": 3
-  },
-  {
-    "id": "reading-2-6",
-    "engine": "choice",
-    "prompt": "春天來了，校園的樹木長出新葉，花圃開滿小花，蜜蜂忙著採蜜。\n\n問：這段話主要在說什麼？",
-    "choices": [
-      "教室很安靜",
-      "春天的校園",
-      "晚上很黑",
-      "冬天很冷"
-    ],
-    "answerIndex": 1
-  },
-  {
-    "id": "reading-2-7",
-    "engine": "choice",
-    "prompt": "周末，爸媽帶小明去圖書館。小明選了一本橋梁書，坐在窗邊慢慢讀。回家路上，他跟媽媽分享故事裡的狐狸很聰明。\n\n問：小明在圖書館做什麼？",
-    "choices": [
-      "畫畫考試",
-      "看書",
-      "睡覺",
-      "打球"
-    ],
-    "answerIndex": 1
-  },
-  {
-    "id": "reading-2-8",
-    "engine": "choice",
-    "prompt": "下課時，兩位同學搶同一個球，後來他們決定輪流玩，每人五分鐘。\n\n問：他們最後怎麼解決？",
-    "choices": [
-      "不去玩",
-      "打架",
-      "丟掉球",
-      "輪流玩"
-    ],
-    "answerIndex": 3
-  },
-  {
-    "id": "reading-2-9",
-    "engine": "choice",
-    "prompt": "春天來了，校園的樹木長出新葉，花圃開滿小花，蜜蜂忙著採蜜。\n\n問：這段話主要在說什麼？",
-    "choices": [
-      "教室很安靜",
-      "冬天很冷",
-      "春天的校園",
-      "晚上很黑"
-    ],
-    "answerIndex": 2
-  },
-  {
-    "id": "reading-2-10",
-    "engine": "choice",
-    "prompt": "周末，爸媽帶小明去圖書館。小明選了一本橋梁書，坐在窗邊慢慢讀。回家路上，他跟媽媽分享故事裡的狐狸很聰明。\n\n問：小明在圖書館做什麼？",
-    "choices": [
-      "畫畫考試",
-      "打球",
-      "看書",
-      "睡覺"
-    ],
-    "answerIndex": 2
-  },
-  {
-    "id": "reading-2-11",
-    "engine": "choice",
-    "prompt": "下課時，兩位同學搶同一個球，後來他們決定輪流玩，每人五分鐘。\n\n問：他們最後怎麼解決？",
-    "choices": [
-      "打架",
-      "丟掉球",
-      "不去玩",
-      "輪流玩"
-    ],
-    "answerIndex": 3
-  },
-  {
-    "id": "reading-2-12",
-    "engine": "choice",
-    "prompt": "春天來了，校園的樹木長出新葉，花圃開滿小花，蜜蜂忙著採蜜。\n\n問：這段話主要在說什麼？",
-    "choices": [
-      "冬天很冷",
-      "教室很安靜",
-      "春天的校園",
-      "晚上很黑"
-    ],
-    "answerIndex": 2
-  },
-  {
-    "id": "reading-2-13",
-    "engine": "choice",
-    "prompt": "周末，爸媽帶小明去圖書館。小明選了一本橋梁書，坐在窗邊慢慢讀。回家路上，他跟媽媽分享故事裡的狐狸很聰明。\n\n問：小明在圖書館做什麼？",
-    "choices": [
-      "打球",
-      "睡覺",
-      "看書",
-      "畫畫考試"
-    ],
-    "answerIndex": 2
-  },
-  {
-    "id": "reading-2-14",
-    "engine": "choice",
-    "prompt": "下課時，兩位同學搶同一個球，後來他們決定輪流玩，每人五分鐘。\n\n問：他們最後怎麼解決？",
-    "choices": [
-      "輪流玩",
-      "丟掉球",
-      "打架",
-      "不去玩"
-    ],
-    "answerIndex": 0
-  },
-  {
-    "id": "reading-2-15",
-    "engine": "choice",
-    "prompt": "春天來了，校園的樹木長出新葉，花圃開滿小花，蜜蜂忙著採蜜。\n\n問：這段話主要在說什麼？",
-    "choices": [
-      "晚上很黑",
-      "春天的校園",
-      "教室很安靜",
-      "冬天很冷"
-    ],
-    "answerIndex": 1
-  },
-  {
-    "id": "reading-2-16",
-    "engine": "choice",
-    "prompt": "周末，爸媽帶小明去圖書館。小明選了一本橋梁書，坐在窗邊慢慢讀。回家路上，他跟媽媽分享故事裡的狐狸很聰明。\n\n問：小明在圖書館做什麼？",
-    "choices": [
-      "看書",
-      "睡覺",
-      "畫畫考試",
-      "打球"
-    ],
-    "answerIndex": 0
-  },
-  {
-    "id": "reading-2-17",
-    "engine": "choice",
-    "prompt": "下課時，兩位同學搶同一個球，後來他們決定輪流玩，每人五分鐘。\n\n問：他們最後怎麼解決？",
-    "choices": [
-      "不去玩",
-      "打架",
-      "輪流玩",
-      "丟掉球"
-    ],
-    "answerIndex": 2
-  },
-  {
-    "id": "reading-2-18",
-    "engine": "choice",
-    "prompt": "春天來了，校園的樹木長出新葉，花圃開滿小花，蜜蜂忙著採蜜。\n\n問：這段話主要在說什麼？",
-    "choices": [
-      "晚上很黑",
-      "冬天很冷",
-      "春天的校園",
-      "教室很安靜"
-    ],
-    "answerIndex": 2
-  },
-  {
-    "id": "reading-2-19",
-    "engine": "choice",
-    "prompt": "周末，爸媽帶小明去圖書館。小明選了一本橋梁書，坐在窗邊慢慢讀。回家路上，他跟媽媽分享故事裡的狐狸很聰明。\n\n問：小明在圖書館做什麼？",
-    "choices": [
-      "打球",
-      "看書",
-      "畫畫考試",
-      "睡覺"
-    ],
-    "answerIndex": 1
-  },
-  {
-    "id": "reading-2-20",
-    "engine": "choice",
-    "prompt": "下課時，兩位同學搶同一個球，後來他們決定輪流玩，每人五分鐘。\n\n問：他們最後怎麼解決？",
-    "choices": [
-      "不去玩",
-      "輪流玩",
-      "打架",
-      "丟掉球"
-    ],
-    "answerIndex": 1
-  },
-  {
-    "id": "reading-2-21",
-    "engine": "choice",
-    "prompt": "春天來了，校園的樹木長出新葉，花圃開滿小花，蜜蜂忙著採蜜。\n\n問：這段話主要在說什麼？",
-    "choices": [
-      "冬天很冷",
-      "教室很安靜",
-      "春天的校園",
-      "晚上很黑"
-    ],
-    "answerIndex": 2
-  },
-  {
-    "id": "reading-2-22",
-    "engine": "choice",
-    "prompt": "周末，爸媽帶小明去圖書館。小明選了一本橋梁書，坐在窗邊慢慢讀。回家路上，他跟媽媽分享故事裡的狐狸很聰明。\n\n問：小明在圖書館做什麼？",
-    "choices": [
-      "打球",
-      "畫畫考試",
-      "睡覺",
-      "看書"
-    ],
-    "answerIndex": 3
-  },
-  {
-    "id": "reading-2-23",
-    "engine": "choice",
-    "prompt": "下課時，兩位同學搶同一個球，後來他們決定輪流玩，每人五分鐘。\n\n問：他們最後怎麼解決？",
-    "choices": [
-      "輪流玩",
-      "不去玩",
-      "打架",
-      "丟掉球"
-    ],
-    "answerIndex": 0
-  },
-  {
-    "id": "reading-2-24",
-    "engine": "choice",
-    "prompt": "春天來了，校園的樹木長出新葉，花圃開滿小花，蜜蜂忙著採蜜。\n\n問：這段話主要在說什麼？",
-    "choices": [
-      "春天的校園",
-      "晚上很黑",
-      "冬天很冷",
-      "教室很安靜"
-    ],
-    "answerIndex": 0
-  },
-  {
-    "id": "reading-2-25",
-    "engine": "choice",
-    "prompt": "周末，爸媽帶小明去圖書館。小明選了一本橋梁書，坐在窗邊慢慢讀。回家路上，他跟媽媽分享故事裡的狐狸很聰明。\n\n問：小明在圖書館做什麼？",
-    "choices": [
-      "打球",
-      "畫畫考試",
-      "看書",
-      "睡覺"
-    ],
-    "answerIndex": 2
-  },
-  {
-    "id": "reading-2-26",
-    "engine": "choice",
-    "prompt": "下課時，兩位同學搶同一個球，後來他們決定輪流玩，每人五分鐘。\n\n問：他們最後怎麼解決？",
-    "choices": [
-      "不去玩",
-      "打架",
-      "丟掉球",
-      "輪流玩"
-    ],
-    "answerIndex": 3
-  },
-  {
-    "id": "reading-2-27",
-    "engine": "choice",
-    "prompt": "春天來了，校園的樹木長出新葉，花圃開滿小花，蜜蜂忙著採蜜。\n\n問：這段話主要在說什麼？",
-    "choices": [
-      "冬天很冷",
-      "晚上很黑",
-      "春天的校園",
-      "教室很安靜"
-    ],
-    "answerIndex": 2
-  },
-  {
-    "id": "reading-2-28",
-    "engine": "choice",
-    "prompt": "周末，爸媽帶小明去圖書館。小明選了一本橋梁書，坐在窗邊慢慢讀。回家路上，他跟媽媽分享故事裡的狐狸很聰明。\n\n問：小明在圖書館做什麼？",
-    "choices": [
-      "畫畫考試",
-      "打球",
-      "看書",
-      "睡覺"
-    ],
-    "answerIndex": 2
-  },
-  {
-    "id": "reading-2-29",
-    "engine": "choice",
-    "prompt": "下課時，兩位同學搶同一個球，後來他們決定輪流玩，每人五分鐘。\n\n問：他們最後怎麼解決？",
-    "choices": [
-      "不去玩",
-      "打架",
-      "丟掉球",
-      "輪流玩"
-    ],
-    "answerIndex": 3
-  },
-  {
-    "id": "reading-2-30",
-    "engine": "choice",
-    "prompt": "春天來了，校園的樹木長出新葉，花圃開滿小花，蜜蜂忙著採蜜。\n\n問：這段話主要在說什麼？",
-    "choices": [
-      "教室很安靜",
-      "冬天很冷",
-      "晚上很黑",
-      "春天的校園"
-    ],
-    "answerIndex": 3
-  },
-  {
     "id": "reading-2-fill-我每天___刷牙。-0",
     "engine": "choice",
     "prompt": "選合適的詞：我每天___刷牙。",
@@ -370,30 +46,6 @@
       "從來不"
     ],
     "answerIndex": 2
-  },
-  {
-    "id": "reading-2-fill-我每天___刷牙。-1",
-    "engine": "choice",
-    "prompt": "選合適的詞：我每天___刷牙。",
-    "choices": [
-      "不要",
-      "忘記就",
-      "都要",
-      "從來不"
-    ],
-    "answerIndex": 2
-  },
-  {
-    "id": "reading-2-fill-我每天___刷牙。-2",
-    "engine": "choice",
-    "prompt": "選合適的詞：我每天___刷牙。",
-    "choices": [
-      "都要",
-      "從來不",
-      "忘記就",
-      "不要"
-    ],
-    "answerIndex": 0
   },
   {
     "id": "reading-2-fill-請___把門關上。-0",
@@ -408,30 +60,6 @@
     "answerIndex": 1
   },
   {
-    "id": "reading-2-fill-請___把門關上。-1",
-    "engine": "choice",
-    "prompt": "選合適的詞：請___把門關上。",
-    "choices": [
-      "輕輕",
-      "用力踢",
-      "大叫著",
-      "用跑的"
-    ],
-    "answerIndex": 0
-  },
-  {
-    "id": "reading-2-fill-請___把門關上。-2",
-    "engine": "choice",
-    "prompt": "選合適的詞：請___把門關上。",
-    "choices": [
-      "用跑的",
-      "大叫著",
-      "輕輕",
-      "用力踢"
-    ],
-    "answerIndex": 2
-  },
-  {
     "id": "reading-2-fill-弟弟比我___。-0",
     "engine": "choice",
     "prompt": "選合適的詞：弟弟比我___。",
@@ -444,30 +72,6 @@
     "answerIndex": 1
   },
   {
-    "id": "reading-2-fill-弟弟比我___。-1",
-    "engine": "choice",
-    "prompt": "選合適的詞：弟弟比我___。",
-    "choices": [
-      "小",
-      "教室",
-      "天空",
-      "雨傘"
-    ],
-    "answerIndex": 0
-  },
-  {
-    "id": "reading-2-fill-弟弟比我___。-2",
-    "engine": "choice",
-    "prompt": "選合適的詞：弟弟比我___。",
-    "choices": [
-      "教室",
-      "天空",
-      "小",
-      "雨傘"
-    ],
-    "answerIndex": 2
-  },
-  {
     "id": "reading-2-fill-媽媽做的菜很___。-0",
     "engine": "choice",
     "prompt": "選合適的詞：媽媽做的菜很___。",
@@ -476,30 +80,6 @@
       "好吃",
       "注音",
       "跑步"
-    ],
-    "answerIndex": 1
-  },
-  {
-    "id": "reading-2-fill-媽媽做的菜很___。-1",
-    "engine": "choice",
-    "prompt": "選合適的詞：媽媽做的菜很___。",
-    "choices": [
-      "好吃",
-      "注音",
-      "跑步",
-      "書包"
-    ],
-    "answerIndex": 0
-  },
-  {
-    "id": "reading-2-fill-媽媽做的菜很___。-2",
-    "engine": "choice",
-    "prompt": "選合適的詞：媽媽做的菜很___。",
-    "choices": [
-      "書包",
-      "好吃",
-      "跑步",
-      "注音"
     ],
     "answerIndex": 1
   },
@@ -516,26 +96,242 @@
     "answerIndex": 3
   },
   {
-    "id": "reading-2-fill-我們要___等紅燈。-1",
+    "id": "reading-2-x1",
     "engine": "choice",
-    "prompt": "選合適的詞：我們要___等紅燈。",
+    "prompt": "小華參加學校社團，每週三學直笛。第一次演奏會前他很緊張，但練習後愈來愈有信心。\n\n問：小華為什麼緊張？",
     "choices": [
-      "衝過",
-      "耐心",
-      "丟掉",
-      "關閉"
+      "考試",
+      "第一次演奏會",
+      "搬家",
+      "下雨"
     ],
     "answerIndex": 1
   },
   {
-    "id": "reading-2-fill-我們要___等紅燈。-2",
+    "id": "reading-2-x2",
     "engine": "choice",
-    "prompt": "選合適的詞：我們要___等紅燈。",
+    "prompt": "超市推車壞了一個輪子，爸爸改用籃子裝牛奶和麵包。\n\n問：他們最後怎麼裝東西？",
+    "choices": [
+      "推車",
+      "籃子",
+      "背包",
+      "口袋"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "reading-2-x3",
+    "engine": "choice",
+    "prompt": "社區舉辦淨灘活動，志工撿起塑膠瓶與菸蒂。\n\n問：活動目的比較接近？",
+    "choices": [
+      "比賽跑步",
+      "清理海灘垃圾",
+      "賣飲料",
+      "釣魚"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "reading-2-x4",
+    "engine": "choice",
+    "prompt": "科學課觀察豆子發芽，記錄每天高度變化。\n\n問：學生在做什麼？",
+    "choices": [
+      "畫畫比賽",
+      "觀察記錄",
+      "唱歌",
+      "午睡"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "reading-2-x5",
+    "engine": "choice",
+    "prompt": "颱風警報發布後，學校宣布明天停課。\n\n問：為什麼停課？",
+    "choices": [
+      "校慶",
+      "颱風",
+      "校外教學",
+      "補考"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "reading-2-x6",
+    "engine": "choice",
+    "prompt": "小美把舊玩具捐給社福單位，希望其他小朋友也能玩。\n\n問：小美怎麼處理舊玩具？",
     "choices": [
       "丟掉",
-      "耐心",
-      "關閉",
-      "衝過"
+      "捐出去",
+      "藏起來",
+      "燒掉"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "reading-2-x7",
+    "engine": "choice",
+    "prompt": "圖書館借書要在期限內歸還，逾時會有紀錄。\n\n問：借書要注意？",
+    "choices": [
+      "期限內歸還",
+      "可以撕頁",
+      "隨便丟地上",
+      "大聲討論"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "reading-2-x8",
+    "engine": "choice",
+    "prompt": "班會討論怎麼減少教室垃圾，最後決定自備環保杯。\n\n問：班會決定了什麼？",
+    "choices": [
+      "每天吃速食",
+      "自備環保杯",
+      "不掃地",
+      "關窗戶"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "reading-2-x9",
+    "engine": "choice",
+    "prompt": "媽媽教小明看食品標示，先看保存期限再購買。\n\n問：買東西先看什麼？",
+    "choices": [
+      "顏色",
+      "保存期限",
+      "廣告",
+      "包裝圖案"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "reading-2-x10",
+    "engine": "choice",
+    "prompt": "校外教學到農場，大家體驗擠牛奶與餵羊。\n\n問：地點是？",
+    "choices": [
+      "農場",
+      "電影院",
+      "遊樂場",
+      "車站"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "reading-2-x11",
+    "engine": "choice",
+    "prompt": "弟弟發燒了，爸爸帶他看醫生並多休息。\n\n問：弟弟怎麼了？",
+    "choices": [
+      "肚餓",
+      "發燒",
+      "開心",
+      "遲到"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "reading-2-x12",
+    "engine": "choice",
+    "prompt": "作文課寫「我的家鄉」，小華描寫市場的聲音與味道。\n\n問：小華作文主題？",
+    "choices": [
+      "太空",
+      "家鄉",
+      "恐龍",
+      "魔法"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "reading-2-x13",
+    "engine": "choice",
+    "prompt": "消防演習時，大家依指示用濕毛巾、彎腰低姿前進。\n\n問：這是什麼演習？",
+    "choices": [
+      "地震",
+      "消防／火災",
+      "運動會",
+      "歌唱"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "reading-2-x14",
+    "engine": "choice",
+    "prompt": "同學辯論「要不要延長午休」，最後用投票決定。\n\n問：最後怎麼決定？",
+    "choices": [
+      "吵架",
+      "投票",
+      "老師獨斷不聽",
+      "擲筊"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "reading-2-x15",
+    "engine": "choice",
+    "prompt": "夜晚觀星活動取消，因為雲層太厚看不見星星。\n\n問：取消原因？",
+    "choices": [
+      "太熱",
+      "雲層太厚",
+      "沒興趣",
+      "忘了"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "reading-2-x16",
+    "engine": "choice",
+    "prompt": "小華用日記寫下今天幫助同學的事，覺得很開心。\n\n問：小華用什麼記錄？",
+    "choices": [
+      "日記",
+      "地圖",
+      "收據",
+      "菜單"
+    ],
+    "answerIndex": 0
+  },
+  {
+    "id": "reading-2-x17",
+    "engine": "choice",
+    "prompt": "校園菜園收成青菜，大家洗乾淨後送給社區長者。\n\n問：青菜最後？",
+    "choices": [
+      "丟掉",
+      "送給長者",
+      "埋起來",
+      "拿去玩"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "reading-2-x18",
+    "engine": "choice",
+    "prompt": "音樂課分聲部合唱，要聽指揮手勢才能整齊。\n\n問：合唱要注意？",
+    "choices": [
+      "各唱各的",
+      "看指揮",
+      "愈大聲愈好",
+      "不張嘴"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "reading-2-x19",
+    "engine": "choice",
+    "prompt": "車站大廳有失物招領處，小華把撿到的錢包送過去。\n\n問：小華怎麼做？",
+    "choices": [
+      "自己收起",
+      "送失物招領",
+      "丟掉",
+      "喊沒人管"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "reading-2-x20",
+    "engine": "choice",
+    "prompt": "班級公約寫著「說話前先舉手」，大家一起遵守。\n\n問：公約要大家？",
+    "choices": [
+      "搶話",
+      "先舉手",
+      "離開座位乱跑",
+      "吃東西"
     ],
     "answerIndex": 1
   }

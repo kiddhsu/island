@@ -37,6 +37,7 @@ export function FlipPlay({ question, onResult }: Props) {
   const [misses, setMisses] = useState(0)
   const [locked, setLocked] = useState(false)
   const [burst, setBurst] = useState<boolean | null>(null)
+  const [shakeIds, setShakeIds] = useState<string[]>([])
 
   function finish(ok: boolean) {
     setBurst(ok)
@@ -73,18 +74,20 @@ export function FlipPlay({ question, onResult }: Props) {
           playSfx('success', 0.5)
           finish(true)
         }
-      }, 500)
+      }, 550)
     } else {
       playSfx('wrong', 0.4)
       setBurst(false)
+      setShakeIds([a.id, b.id])
       const nextMisses = misses + 1
       setMisses(nextMisses)
       window.setTimeout(() => {
+        setShakeIds([])
         setBurst(null)
         setOpen([])
         setLocked(false)
         if (nextMisses >= MAX_MISSES) finish(false)
-      }, 700)
+      }, 780)
     }
   }
 
@@ -96,18 +99,31 @@ export function FlipPlay({ question, onResult }: Props) {
       </p>
       <div className="play-stage play-stage-cards">
         <div className="flip-board cols-3">
-          {cards.map((c) => {
+          {cards.map((c, i) => {
             const shown = open.includes(c.id) || matched.includes(c.pairId)
+            const isMatched = matched.includes(c.pairId)
+            const isShake = shakeIds.includes(c.id)
             return (
               <button
                 key={c.id}
                 type="button"
-                className={`flip-card ${shown ? 'open' : ''} ${
-                  matched.includes(c.pairId) ? 'matched' : ''
-                }`}
+                className={[
+                  'flip-card',
+                  shown ? 'is-flipped' : '',
+                  isMatched ? 'is-matched' : '',
+                  isShake ? 'is-shake' : '',
+                ]
+                  .filter(Boolean)
+                  .join(' ')}
+                style={{ animationDelay: `${i * 45}ms` }}
                 onClick={() => click(c)}
               >
-                {shown ? c.text : '?'}
+                <span className="flip-card-inner">
+                  <span className="flip-card-face back" aria-hidden>
+                    ?
+                  </span>
+                  <span className="flip-card-face front">{c.text}</span>
+                </span>
               </button>
             )
           })}

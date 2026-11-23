@@ -29,7 +29,7 @@ export function RevealPlay({ question, onResult }: Props) {
       setBurst(ok)
       playSfx(ok ? 'correct' : 'wrong', ok ? 0.55 : 0.45)
       window.setTimeout(() => onResult(ok), 700)
-    }, 220)
+    }, 320)
   }
 
   return (
@@ -37,19 +37,34 @@ export function RevealPlay({ question, onResult }: Props) {
       <p className="play-prompt">{question.prompt}</p>
       <div className="play-stage play-stage-cards">
         <div className="flip-board cols-2">
-          {cards.map((c, i) => (
-            <button
-              key={`${question.id}-rev-${i}-${c.label}`}
-              type="button"
-              className={`flip-card open ${
-                picked === i ? (c.correct ? 'matched' : 'missed') : ''
-              }`}
-              disabled={locked}
-              onClick={() => open(i)}
-            >
-              {c.label}
-            </button>
-          ))}
+          {cards.map((c, i) => {
+            const isPicked = picked === i
+            return (
+              <button
+                key={`${question.id}-rev-${i}-${c.label}`}
+                type="button"
+                className={[
+                  'flip-card',
+                  'is-flipped',
+                  'is-reveal',
+                  isPicked ? (c.correct ? 'is-matched' : 'is-missed') : '',
+                  isPicked ? 'is-pick-pop' : '',
+                ]
+                  .filter(Boolean)
+                  .join(' ')}
+                style={{ animationDelay: `${i * 50}ms` }}
+                disabled={locked}
+                onClick={() => open(i)}
+              >
+                <span className="flip-card-inner">
+                  <span className="flip-card-face back" aria-hidden>
+                    ?
+                  </span>
+                  <span className="flip-card-face front">{c.label}</span>
+                </span>
+              </button>
+            )
+          })}
         </div>
         {burst != null ? <PlayBurst ok={burst} /> : null}
       </div>
