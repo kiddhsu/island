@@ -1,10 +1,16 @@
-import type { PlayMode, Question } from '../../types'
+import type { ReactNode } from 'react'
+import type { ChoiceQuestion, PlayMode, Question } from '../../types'
+import { BinsPlay } from './BinsPlay'
 import { CatchPlay } from './CatchPlay'
 import { FlipPlay } from './FlipPlay'
 import { ForkPlay } from './ForkPlay'
+import { GaugePlay } from './GaugePlay'
 import { JumpPlay } from './JumpPlay'
+import { PackPlay } from './PackPlay'
 import { PipePlay } from './PipePlay'
+import { PopPlay } from './PopPlay'
 import { RevealPlay } from './RevealPlay'
+import { TrafficPlay } from './TrafficPlay'
 import {
   asChoice,
   asMatch,
@@ -18,29 +24,45 @@ type Props = {
   onResult: PlayResultHandler
 }
 
+function withChoice(
+  question: Question,
+  render: (q: ChoiceQuestion) => ReactNode,
+  modeHint: string,
+  onResult: PlayResultHandler,
+) {
+  const q = asChoice(question)
+  if (q) return render(q)
+  const match = asMatch(question)
+  if (match) return <FlipPlay key={match.id} question={match} onResult={onResult} />
+  return <Fallback modeHint={modeHint} onResult={onResult} />
+}
+
 export function PlayStage({ mode, question, onResult }: Props) {
   if (mode === 'jump') {
-    const q = asChoice(question)
-    if (q) return <JumpPlay key={q.id} question={q} onResult={onResult} />
-    if (asMatch(question))
-      return <FlipPlay key={question.id} question={asMatch(question)!} onResult={onResult} />
-    return <Fallback modeHint="跳躍" onResult={onResult} />
+    return withChoice(
+      question,
+      (q) => <JumpPlay key={q.id} question={q} onResult={onResult} />,
+      '跳躍',
+      onResult,
+    )
   }
 
   if (mode === 'catch') {
-    const q = asChoice(question)
-    if (q) return <CatchPlay key={q.id} question={q} onResult={onResult} />
-    const match = asMatch(question)
-    if (match) return <FlipPlay key={match.id} question={match} onResult={onResult} />
-    return <Fallback modeHint="接物" onResult={onResult} />
+    return withChoice(
+      question,
+      (q) => <CatchPlay key={q.id} question={q} onResult={onResult} />,
+      '接物',
+      onResult,
+    )
   }
 
   if (mode === 'fork') {
-    const q = asChoice(question)
-    if (q) return <ForkPlay key={q.id} question={q} onResult={onResult} />
-    if (asMatch(question))
-      return <FlipPlay key={question.id} question={asMatch(question)!} onResult={onResult} />
-    return <Fallback modeHint="岔路" onResult={onResult} />
+    return withChoice(
+      question,
+      (q) => <ForkPlay key={q.id} question={q} onResult={onResult} />,
+      '岔路',
+      onResult,
+    )
   }
 
   if (mode === 'flip') {
@@ -55,10 +77,53 @@ export function PlayStage({ mode, question, onResult }: Props) {
     const order = asOrder(question)
     if (order) return <PipePlay key={order.id} question={order} onResult={onResult} />
     const choice = asChoice(question)
-    if (choice) {
-      return <ForkPlay key={choice.id} question={choice} onResult={onResult} />
-    }
+    if (choice) return <ForkPlay key={choice.id} question={choice} onResult={onResult} />
     return <Fallback modeHint="水管" onResult={onResult} />
+  }
+
+  if (mode === 'gauge') {
+    return withChoice(
+      question,
+      (q) => <GaugePlay key={q.id} question={q} onResult={onResult} />,
+      '量尺',
+      onResult,
+    )
+  }
+
+  if (mode === 'traffic') {
+    return withChoice(
+      question,
+      (q) => <TrafficPlay key={q.id} question={q} onResult={onResult} />,
+      '紅綠燈',
+      onResult,
+    )
+  }
+
+  if (mode === 'bins') {
+    return withChoice(
+      question,
+      (q) => <BinsPlay key={q.id} question={q} onResult={onResult} />,
+      '分類桶',
+      onResult,
+    )
+  }
+
+  if (mode === 'pack') {
+    return withChoice(
+      question,
+      (q) => <PackPlay key={q.id} question={q} onResult={onResult} />,
+      '背包',
+      onResult,
+    )
+  }
+
+  if (mode === 'pop') {
+    return withChoice(
+      question,
+      (q) => <PopPlay key={q.id} question={q} onResult={onResult} />,
+      '氣球',
+      onResult,
+    )
   }
 
   return <Fallback modeHint="關卡" onResult={onResult} />

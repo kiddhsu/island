@@ -12,8 +12,18 @@ export type IslandId =
   | 'selfcare'
   | 'mood'
 
-/** 紅白機風格互動玩法（題庫內容融進操作） */
-export type PlayMode = 'jump' | 'catch' | 'fork' | 'flip' | 'pipe'
+/** 每座島一種玩法（題庫內容融進操作） */
+export type PlayMode =
+  | 'jump'
+  | 'catch'
+  | 'fork'
+  | 'flip'
+  | 'pipe'
+  | 'gauge'
+  | 'traffic'
+  | 'bins'
+  | 'pack'
+  | 'pop'
 
 export type EngineKind = 'choice' | 'match' | 'order' | 'scenario'
 
