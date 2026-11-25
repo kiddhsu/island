@@ -46,5 +46,3 @@ https://kiddhsu.github.io/island/
 ## 答題特效（tsParticles＋幾何光暈）
 
 關卡與結果頁用 `@tsparticles/slim` 做低飽和石材色方塊粒子，連擊／結算改 CSS 菱形光暈（等軸測幾何、柔霧色調）；地圖頁不載入。系統開啟「減少動態效果」時只保留 CSS 回饋。
-
-`src/assets/lottie/` 仍保留可商用 JSON（[Lottie Simple License](https://lottiefiles.com/page/license)），目前預設不播放。

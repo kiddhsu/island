@@ -19,16 +19,20 @@ export type ProfileStore = {
 const STORE_KEY = 'island-profiles-v1'
 const PROGRESS_PREFIX = 'island-progress-v1'
 
+/** 柔霧幾何選色（對齊 tokens） */
 export const PROFILE_COLORS = [
-  '#3aa0ff',
-  '#ffc107',
-  '#ff7eb3',
-  '#3dce9a',
-  '#9b7bff',
-  '#ff8a4c',
+  '#9bb8e8', // 霧藍
+  '#e07a5f', // 珊瑚
+  '#6fbfa0', // 薄荷
+  '#7b5ea7', // 梅紫
+  '#c4a890', // 石米
+  '#d4b86a', // 柔金
 ] as const
 
-export const PROFILE_EMOJIS = ['😊', '🦊', '🐰', '🐼', '🐯', '🐸', '🦄', '🌟'] as const
+/** 記號頭像：幾何符號，不再用表情／動物 emoji；仍存進 profile.emoji 欄位以相容舊資料 */
+export const PROFILE_MARKS = ['◆', '●', '▲', '■', '◈', '◇', '✦', '⬡'] as const
+/** @deprecated 改用 PROFILE_MARKS */
+export const PROFILE_EMOJIS = PROFILE_MARKS
 
 function defaultStore(): ProfileStore {
   return { profiles: [], activeProfileId: null }
@@ -101,7 +105,7 @@ export function ensureDefaultProfile() {
     id: createProfileId(),
     name: DEFAULT_PROFILE_NAME,
     color: PROFILE_COLORS[0],
-    emoji: PROFILE_EMOJIS[0],
+    emoji: PROFILE_MARKS[0],
     grade: 1,
     isDefault: true,
     createdAt: now,

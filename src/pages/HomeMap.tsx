@@ -29,7 +29,10 @@ export function HomeMap() {
           <p className="map-kicker">ISLAND QUEST</p>
           <h1 className="map-heading">今天想去哪一座？</h1>
           <p className="map-sub">
-            {activeProfile.emoji} {activeProfile.name}・小
+            <span className="map-profile-mark" aria-hidden>
+              {activeProfile.emoji}
+            </span>{' '}
+            {activeProfile.name}・小
             {activeProfile.grade === 1 ? '一' : '二'}
             {cloudEnabled && user ? '・已同步' : ''}
           </p>

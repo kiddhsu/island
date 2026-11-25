@@ -49,6 +49,7 @@
   --island-accent: var(--accent);
   --island-soft: var(--soft);
   --island-deep: var(--deep);
+  /* 舊 fallback 色一併指向柔霧票，避免殘留亮藍／橘紅 */
 
   --ease-mv: cubic-bezier(0.22, 1.2, 0.36, 1);
 }

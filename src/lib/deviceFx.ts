@@ -8,7 +8,6 @@ export type FxBudget = {
   streak5: number
   streak8: number
   result: (stars: number) => number
-  lottieMaxWidth: string
 }
 
 const OFF: FxBudget = {
@@ -19,7 +18,6 @@ const OFF: FxBudget = {
   streak5: 0,
   streak8: 0,
   result: () => 0,
-  lottieMaxWidth: '0px',
 }
 
 /** iPhone 17／iPad mini：柔霧幾何氣質——粒子更少、更短 */
@@ -36,7 +34,6 @@ const IOS_HIGH: FxBudget = {
     if (stars >= 1) return 56
     return 24
   },
-  lottieMaxWidth: 'min(280px, 52vw)',
 }
 
 function prefersReducedMotion() {

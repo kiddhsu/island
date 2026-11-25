@@ -36,6 +36,14 @@
   color: var(--muted);
 }
 
+.map-profile-mark {
+  display: inline-grid;
+  place-items: center;
+  min-width: 1.35em;
+  font-size: 0.95em;
+  color: var(--deep);
+}
+
 .map-top-actions {
   display: flex;
   gap: 8px;
@@ -69,6 +77,24 @@
   height: 100% !important;
   display: block;
   touch-action: none;
+}
+
+/* 2D 標籤層：跟正交相機脫鉤，避免 Html 爆縮放 */
+.map-label-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 25;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.map-pill-float {
+  position: absolute;
+  left: 0;
+  top: 0;
+  will-change: transform;
+  pointer-events: auto;
+  max-width: min(220px, 70vw);
 }
 
 .map-float-tools {

@@ -1,55 +1,64 @@
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import * as THREE from 'three'
 
-const vertexShader = /* glsl */ `
-varying vec3 vWorldNormal;
-void main() {
-  vWorldNormal = normalize(mat3(modelMatrix) * normal);
-  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-}
-`
-
-const fragmentShader = /* glsl */ `
-uniform vec3 uTopColor;
-uniform vec3 uLeftColor;
-uniform vec3 uRightColor;
-varying vec3 vWorldNormal;
-
-void main() {
-  vec3 n = normalize(vWorldNormal);
-  vec3 finalColor = uRightColor;
-  if (n.y > 0.55) {
-    finalColor = uTopColor;
-  } else if (n.x < -0.35 || n.z > 0.35) {
-    finalColor = uLeftColor;
-  }
-  gl_FragColor = vec4(finalColor, 1.0);
-}
-`
-
-type Props = {
+type BoxProps = {
+  args?: [number, number, number]
   top: string
   left: string
   right: string
+  position?: [number, number, number]
+  rotation?: [number, number, number]
+  castShadow?: boolean
+  receiveShadow?: boolean
 }
 
-/** 等軸測插畫式三面純色著色（頂／左／右） */
-export function ThreeToneMaterial({ top, left, right }: Props) {
-  const uniforms = useMemo(
-    () => ({
-      uTopColor: { value: new THREE.Color(top) },
-      uLeftColor: { value: new THREE.Color(left) },
-      uRightColor: { value: new THREE.Color(right) },
-    }),
-    [top, left, right],
-  )
+/**
+ * 分面著色方塊（非 GLSL）：六面材質陣列，Safari 相容。
+ * Box 面序：+x, -x, +y, -y, +z, -z
+ */
+export function ThreeToneBox({
+  args = [1, 1, 1],
+  top,
+  left,
+  right,
+  position,
+  rotation,
+  castShadow = true,
+  receiveShadow = false,
+}: BoxProps) {
+  const materials = useMemo(() => {
+    const mk = (color: string) =>
+      new THREE.MeshStandardMaterial({
+        color,
+        flatShading: true,
+        roughness: 0.84,
+        metalness: 0.02,
+      })
+    return [
+      mk(right), // +x
+      mk(left), // -x
+      mk(top), // +y
+      mk(right), // -y
+      mk(left), // +z
+      mk(right), // -z
+    ]
+  }, [top, left, right])
+
+  useEffect(() => {
+    return () => {
+      for (const m of materials) m.dispose()
+    }
+  }, [materials])
 
   return (
-    <shaderMaterial
-      key={`${top}-${left}-${right}`}
-      uniforms={uniforms}
-      vertexShader={vertexShader}
-      fragmentShader={fragmentShader}
-    />
+    <mesh
+      position={position}
+      rotation={rotation}
+      castShadow={castShadow}
+      receiveShadow={receiveShadow}
+      material={materials}
+    >
+      <boxGeometry args={args} />
+    </mesh>
   )
 }

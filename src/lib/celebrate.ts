@@ -116,9 +116,6 @@ export type CelebratePayload = {
   kind: CelebrateKind
   stars?: number
   options: ISourceOptions | null
-  /** 已改為 CSS 菱形光暈，不再載入街機風 Lottie */
-  showLottie: boolean
-  lottie: 'streak' | 'result' | null
   showGem: boolean
   durationMs: number
 }
@@ -129,8 +126,6 @@ export function buildCorrectBurst(): CelebratePayload {
     return {
       kind: 'correct',
       options: null,
-      showLottie: false,
-      lottie: null,
       showGem: false,
       durationMs: 0,
     }
@@ -138,8 +133,6 @@ export function buildCorrectBurst(): CelebratePayload {
   return {
     kind: 'correct',
     options: baseOptions(budget.correct, budget.fpsLimit),
-    showLottie: false,
-    lottie: null,
     showGem: false,
     durationMs: 700,
   }
@@ -153,8 +146,6 @@ export function buildStreakBurst(n: number): CelebratePayload | null {
     return {
       kind,
       options: null,
-      showLottie: false,
-      lottie: null,
       showGem: n >= 5,
       durationMs: 800,
     }
@@ -163,8 +154,6 @@ export function buildStreakBurst(n: number): CelebratePayload | null {
     return {
       kind: 'streak3',
       options: baseOptions(budget.streak3, budget.fpsLimit),
-      showLottie: false,
-      lottie: null,
       showGem: false,
       durationMs: 800,
     }
@@ -173,8 +162,6 @@ export function buildStreakBurst(n: number): CelebratePayload | null {
     return {
       kind: 'streak5',
       options: baseOptions(budget.streak5, budget.fpsLimit),
-      showLottie: false,
-      lottie: null,
       showGem: true,
       durationMs: 1000,
     }
@@ -182,8 +169,6 @@ export function buildStreakBurst(n: number): CelebratePayload | null {
   return {
     kind: 'streak8',
     options: dualEmitters(budget.streak8, budget.fpsLimit),
-    showLottie: false,
-    lottie: null,
     showGem: true,
     durationMs: 1100,
   }
@@ -196,8 +181,6 @@ export function buildResultBurst(stars: number): CelebratePayload {
       kind: 'result',
       stars,
       options: null,
-      showLottie: false,
-      lottie: null,
       showGem: stars >= 1,
       durationMs: 0,
     }
@@ -207,8 +190,6 @@ export function buildResultBurst(stars: number): CelebratePayload {
     kind: 'result',
     stars,
     options: resultOptions(count, budget.fpsLimit),
-    showLottie: false,
-    lottie: null,
     showGem: stars >= 1,
     durationMs: stars >= 2 ? 1200 : 900,
   }

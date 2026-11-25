@@ -3,7 +3,7 @@ import { Navigate, useNavigate } from 'react-router-dom'
 import { useAuthProfile } from '../context/AuthProfileContext'
 import {
   PROFILE_COLORS,
-  PROFILE_EMOJIS,
+  PROFILE_MARKS,
   isDefaultProfile,
 } from '../lib/profiles'
 import type { Grade } from '../types'
@@ -29,7 +29,7 @@ export function Profiles() {
 
   const [name, setName] = useState('')
   const [color, setColor] = useState<string>(PROFILE_COLORS[0])
-  const [emoji, setEmoji] = useState<string>(PROFILE_EMOJIS[0])
+  const [emoji, setEmoji] = useState<string>(PROFILE_MARKS[0])
   const [grade, setGrade] = useState<Grade>(1)
   const [busy, setBusy] = useState(false)
   const [err, setErr] = useState<string | null>(null)
@@ -203,16 +203,17 @@ export function Profiles() {
             </div>
           </div>
           <div className="field">
-            <span>頭像</span>
+            <span>記號</span>
             <div className="swatches">
-              {PROFILE_EMOJIS.map((e) => (
+              {PROFILE_MARKS.map((mark) => (
                 <button
-                  key={e}
+                  key={mark}
                   type="button"
-                  className={`emoji-pick ${emoji === e ? 'is-on' : ''}`}
-                  onClick={() => setEmoji(e)}
+                  className={`mark-pick ${emoji === mark ? 'is-on' : ''}`}
+                  onClick={() => setEmoji(mark)}
+                  aria-label={`記號 ${mark}`}
                 >
-                  {e}
+                  {mark}
                 </button>
               ))}
             </div>
