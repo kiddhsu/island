@@ -14,7 +14,6 @@
 
 .play-pick-btn,
 .pipe-chip,
-.bins-chip,
 .ctrl-pad,
 .gauge-mark,
 .jump-platform,
@@ -30,13 +29,11 @@
 }
 
 .play-pick-btn.is-ok,
-.pipe-chip.is-ok,
-.bins-chip.is-ok {
+.pipe-chip.is-ok {
   animation: play-ok-pulse 0.55s var(--play-pop);
 }
 
-.play-pick-btn.is-bad,
-.bins-chip.is-bad {
+.play-pick-btn.is-bad {
   animation: play-bad-shake 0.45s ease;
 }
 
@@ -48,6 +45,14 @@
   transition:
     left 0.45s var(--play-pop),
     bottom 0.45s var(--play-pop),
+    transform 0.35s var(--play-pop);
+}
+
+/* 閱讀島散步：左右跟手，不要用長 spring 過渡拖尾 */
+.play-hero--fork {
+  transition:
+    left 0.1s linear,
+    bottom 0.35s var(--play-pop),
     transform 0.35s var(--play-pop);
 }
 
@@ -129,28 +134,27 @@
   animation: pipe-chip-leave 0.28s ease forwards;
 }
 
-/* —— 分類桶投擲 —— */
-.bins-chip.is-tossing {
-  animation: bins-toss 0.5s var(--play-pop) forwards;
-  z-index: 6;
+/* —— 分類桶（同背包接住節奏） —— */
+.bins-target.is-catching {
+  animation: pack-catch 0.45s var(--play-pop);
 }
 
 .bins-target.is-catching .bins-target-lid {
   animation: bins-lid 0.45s var(--play-pop);
 }
 
-/* —— 氣球 —— */
-.pop-balloon {
-  transition: transform 0.2s var(--play-pop);
+.bins-target-item {
+  animation: play-pop-in 0.35s var(--play-pop) both;
 }
 
-.pop-balloon:not(:disabled):hover {
-  transform: scale(1.06);
+/* —— 氣球：飄動在 .pop-balloon-drift，外層勿再搶 transform —— */
+.pop-balloon:not(:disabled):hover .pop-balloon-body {
+  filter: brightness(1.06);
 }
 
-/* —— 翻牌入場 —— */
+/* —— 翻牌入場（勿對 .flip-card 做 transform 動畫，會弄壞 3D 翻面） —— */
 .flip-card {
-  animation: play-fade-up 0.35s var(--play-pop) both;
+  animation: flip-deal 0.35s ease both;
   animation-delay: calc(var(--i, 0) * 45ms);
 }
 
@@ -289,28 +293,13 @@
   }
 }
 
-@keyframes bins-toss {
-  0% {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
-  70% {
-    transform: translateY(72px) scale(0.85);
-    opacity: 0.85;
-  }
-  100% {
-    transform: translateY(96px) scale(0.5);
-    opacity: 0;
-  }
-}
-
 @keyframes bins-lid {
   0%,
   100% {
     transform: translateY(0);
   }
   40% {
-    transform: translateY(-8px);
+    transform: translateY(-10px) scaleY(0.92);
   }
 }
 
@@ -323,12 +312,16 @@
   .pack-bag-item,
   .pipe-slot.is-filled,
   .pipe-chip.is-leaving,
-  .bins-chip.is-tossing,
+  .bins-target.is-catching,
   .bins-target.is-catching .bins-target-lid,
+  .bins-target-item,
   .play-hero.is-leap .play-hero-figure,
   .play-hero.is-fall .play-hero-figure,
   .play-hero.is-cheer .play-hero-figure,
   .play-hero.is-oops .play-hero-figure,
+  .play-hero--fork.is-stroll .play-hero-leg.left,
+  .play-hero--fork.is-stroll .play-hero-leg.right,
+  .play-hero--fork.is-stroll .play-hero-figure,
   .play-pick-btn.is-ok,
   .play-pick-btn.is-bad {
     animation: none !important;
@@ -337,9 +330,10 @@
   .play-hero,
   .play-pick-btn,
   .pipe-chip,
-  .bins-chip,
   .jump-platform,
-  .fork-choice {
+  .fork-choice,
+  .pop-balloon-drift {
     transition: none !important;
+    animation: none !important;
   }
 }

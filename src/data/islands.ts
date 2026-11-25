@@ -102,7 +102,7 @@ export const ISLANDS: IslandMeta[] = [
     name: "自然島",
     short: "四季觀察",
     blurb: "觀察自然知識，把正確答案投進分類桶。",
-    howToPlay: "先點正確答案，再點分類桶投入。",
+    howToPlay: "想清楚後，點正確的選項投進分類桶。",
     angle: 60,
     radius: 4.2,
     accent: "#6fbfa0",

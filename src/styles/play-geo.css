@@ -375,8 +375,7 @@
   box-shadow: 4px 5px 0 color-mix(in srgb, var(--mv-ink) 10%, transparent);
 }
 
-/* 平台／岔路也統一石板切角 */
-.jump-platform,
+/* 岔路路牌：切角石板；數感平台改由 theme 三面體造型 */
 .fork-choice {
   border-radius: 0;
   clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
@@ -388,7 +387,6 @@
   box-shadow: 4px 5px 0 color-mix(in srgb, var(--mv-ink) 8%, transparent);
 }
 
-.jump-platform.correct-flash,
 .fork-choice.is-ok {
   background: linear-gradient(
     145deg,
@@ -397,7 +395,6 @@
   );
 }
 
-.jump-platform.wrong-flash,
 .fork-choice.is-bad {
   background: linear-gradient(
     145deg,
@@ -406,18 +403,4 @@
   );
 }
 
-.bins-target {
-  border-radius: 0;
-  clip-path: polygon(6% 0, 94% 0, 100% 14%, 100% 100%, 0 100%, 0 14%);
-  background: linear-gradient(
-    160deg,
-    color-mix(in srgb, var(--accent) 45%, var(--mv-paper)),
-    color-mix(in srgb, var(--deep) 65%, var(--accent))
-  );
-}
-
-.bins-target-lid {
-  border-radius: 0;
-  clip-path: polygon(4% 100%, 96% 100%, 100% 0, 0 0);
-  background: color-mix(in srgb, var(--mv-paper) 55%, transparent);
-}
+/* bins-target 造型已在 theme 與自理島背包對齊；此處只補蓋子動效層 */

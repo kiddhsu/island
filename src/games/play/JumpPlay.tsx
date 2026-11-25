@@ -15,6 +15,9 @@ type Props = {
   introCountdown?: boolean
 }
 
+/** 錯落高度，比較像浮空石台 */
+const PLATFORM_BOTTOM = ['12%', '22%', '10%', '20%'] as const
+
 export function JumpPlay({ question, onResult, introCountdown = false }: Props) {
   const { ready, onReady, countdown } = usePlayReady(question.id, introCountdown)
   const slots = useMemo(() => {
@@ -22,14 +25,15 @@ export function JumpPlay({ question, onResult, introCountdown = false }: Props) 
     const n = Math.max(picks.length, 1)
     return picks.map((p, i) => ({
       ...p,
-      left: `${6 + (i * 88) / n}%`,
-      width: `${Math.min(24, 80 / n)}%`,
-      mid: `${6 + (i * 88) / n + Math.min(24, 80 / n) / 2}%`,
+      left: `${5 + (i * 90) / n}%`,
+      width: `${Math.min(22, 78 / n)}%`,
+      mid: `${5 + (i * 90) / n + Math.min(22, 78 / n) / 2}%`,
+      bottom: PLATFORM_BOTTOM[i % PLATFORM_BOTTOM.length]!,
     }))
   }, [question])
 
   const [heroLeft, setHeroLeft] = useState('50%')
-  const [heroBottom, setHeroBottom] = useState('28%')
+  const [heroBottom, setHeroBottom] = useState('6%')
   const [mood, setMood] = useState<HeroMood>('idle')
   const [flash, setFlash] = useState<number | null>(null)
   const [locked, setLocked] = useState(false)
@@ -44,21 +48,23 @@ export function JumpPlay({ question, onResult, introCountdown = false }: Props) 
     const slot = slots[i]!
     setMood('leap')
     setHeroLeft(slot.mid)
-    setHeroBottom('42%')
+    // 跳到該平台略上方
+    const base = Number.parseFloat(slot.bottom)
+    setHeroBottom(`${base + 14}%`)
     playSfx('tap', 0.35)
     window.setTimeout(() => {
       setFlash(i)
       const ok = slot.correct
-      setBurst({ ok, x: slot.mid, y: '36%' })
+      setBurst({ ok, x: slot.mid, y: `${base + 20}%` })
       if (ok) {
         playSfx('correct', 0.55)
         setMood('cheer')
-        setHeroBottom('50%')
+        setHeroBottom(`${base + 18}%`)
         window.setTimeout(() => onResult(true), 820)
       } else {
         playSfx('wrong', 0.45)
         setMood('fall')
-        setHeroBottom('8%')
+        setHeroBottom('4%')
         window.setTimeout(() => onResult(false), 880)
       }
     }, 320)
@@ -67,7 +73,11 @@ export function JumpPlay({ question, onResult, introCountdown = false }: Props) 
   return (
     <div className="play-wrap">
       <p className="play-prompt">{question.prompt}</p>
-      <div className="play-stage grounded">
+      <div className="play-stage grounded jump-stage">
+        <div className="jump-sky" aria-hidden>
+          <span className="jump-mesa m1" />
+          <span className="jump-mesa m2" />
+        </div>
         <p className="play-stage-tip">
           {ready ? '點正確的平台跳上去' : '先看清楚再跳'}
         </p>
@@ -83,15 +93,21 @@ export function JumpPlay({ question, onResult, introCountdown = false }: Props) 
             className={`jump-platform ${
               flash === i ? (s.correct ? 'correct-flash' : 'wrong-flash') : ''
             }`}
-            style={{ left: s.left, width: s.width, minWidth: s.width }}
+            style={{ left: s.left, width: s.width, bottom: s.bottom }}
             disabled={busy}
             onClick={() => jumpTo(i)}
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.04 * i, type: 'spring', stiffness: 360, damping: 22 }}
+            transition={{ delay: 0.05 * i, type: 'spring', stiffness: 320, damping: 20 }}
             whileTap={{ scale: 0.97 }}
           >
-            {s.label}
+            <span className="jump-plat-leg" aria-hidden />
+            <span className="jump-plat-block" aria-hidden>
+              <span className="jump-plat-top" />
+              <span className="jump-plat-side-l" />
+              <span className="jump-plat-side-r" />
+            </span>
+            <span className="jump-plat-label">{s.label}</span>
           </motion.button>
         ))}
         {burst ? <PlayBurst ok={burst.ok} x={burst.x} y={burst.y} /> : null}

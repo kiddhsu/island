@@ -83,7 +83,8 @@ a {
     opacity: 0.85;
   }
   100% {
-    clip-path: circle(140% at 50% 42%);
+    /* 必須清掉 clip-path，否則 WebKit 會弄壞子層 preserve-3d 翻牌 */
+    clip-path: none;
     opacity: 1;
   }
 }
@@ -301,6 +302,14 @@ a {
   aspect-ratio: auto;
   min-height: min(42dvh, 360px);
   max-height: min(56dvh, 520px);
+  /* 翻牌 3D 旋轉時不要被舞台裁成點狀 */
+  overflow: visible;
+}
+
+.app-shell--session .play-stage-cards {
+  min-height: min(48dvh, 420px);
+  max-height: none;
+  overflow: visible;
 }
 
 .play-help {
@@ -364,37 +373,162 @@ a {
   cursor: default;
 }
 
+.jump-stage {
+  overflow: hidden;
+}
+
+.jump-sky {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--soft) 40%, var(--mv-sky-1)) 0%,
+    transparent 55%
+  );
+}
+
+.jump-mesa {
+  position: absolute;
+  left: -10%;
+  right: -10%;
+  height: 18%;
+  opacity: 0.35;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--deep) 30%, transparent),
+    color-mix(in srgb, var(--accent) 25%, transparent)
+  );
+  clip-path: polygon(0 55%, 22% 10%, 48% 40%, 72% 0, 100% 48%, 100% 100%, 0 100%);
+}
+
+.jump-mesa.m1 {
+  bottom: 0;
+  height: 20%;
+  opacity: 0.45;
+}
+
+.jump-mesa.m2 {
+  bottom: 12%;
+  height: 14%;
+  opacity: 0.28;
+  transform: scaleX(-1);
+}
+
 .jump-platform {
   position: absolute;
-  bottom: 16%;
-  min-height: var(--touch-lg);
-  padding: 8px;
-  border-radius: var(--radius-cut);
-  background: color-mix(in srgb, var(--mv-paper) 94%, white);
+  min-height: 72px;
+  padding: 0 0 18px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
   color: var(--ink);
   font-weight: 800;
-  font-size: clamp(0.78rem, 2vw, 0.95rem);
-  line-height: 1.3;
+  font-size: clamp(0.72rem, 1.9vw, 0.9rem);
+  line-height: 1.25;
   cursor: pointer;
-  display: grid;
-  place-items: center;
+  display: block;
   text-align: center;
-  box-shadow: var(--mv-shadow);
-  border: 2px solid color-mix(in srgb, var(--accent) 45%, var(--mv-stone));
+  box-shadow: none;
   touch-action: manipulation;
   z-index: 2;
+  filter: drop-shadow(4px 6px 0 color-mix(in srgb, var(--mv-ink) 10%, transparent));
 }
 
-.jump-platform.correct-flash {
-  background: var(--ok);
-  color: #fff;
-  border-color: var(--ok);
+.jump-plat-leg {
+  position: absolute;
+  left: 42%;
+  right: 42%;
+  top: 52%;
+  bottom: 0;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--deep) 70%, var(--accent)),
+    color-mix(in srgb, var(--deep) 55%, transparent)
+  );
+  clip-path: polygon(15% 0, 85% 0, 100% 100%, 0 100%);
+  z-index: 0;
 }
 
-.jump-platform.wrong-flash {
-  background: var(--danger);
+.jump-plat-block {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 52px;
+  z-index: 1;
+}
+
+.jump-plat-top {
+  position: absolute;
+  inset: 0 0 18px 0;
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--mv-paper) 92%, white) 0 45%,
+    color-mix(in srgb, var(--accent) 35%, var(--mv-stone)) 45% 100%
+  );
+  clip-path: polygon(8% 100%, 92% 100%, 100% 0, 0 0);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--mv-paper) 80%, white);
+}
+
+.jump-plat-side-l {
+  position: absolute;
+  left: 0;
+  right: 55%;
+  top: 34%;
+  bottom: 0;
+  background: color-mix(in srgb, var(--accent) 45%, var(--soft));
+  clip-path: polygon(0 0, 100% 18%, 100% 100%, 14% 100%);
+}
+
+.jump-plat-side-r {
+  position: absolute;
+  left: 45%;
+  right: 0;
+  top: 34%;
+  bottom: 0;
+  background: color-mix(in srgb, var(--deep) 65%, var(--accent));
+  clip-path: polygon(0 18%, 100% 0, 86% 100%, 0 100%);
+}
+
+.jump-plat-label {
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  top: 6px;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  min-height: 28px;
+  padding: 2px 4px;
+  color: var(--deep);
+  text-shadow: 0 1px 0 color-mix(in srgb, var(--mv-paper) 70%, white);
+}
+
+.jump-platform.correct-flash .jump-plat-top {
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--mv-mint) 45%, white),
+    var(--mv-mint)
+  );
+}
+
+.jump-platform.correct-flash .jump-plat-label {
   color: #fff;
-  border-color: var(--danger);
+  text-shadow: none;
+}
+
+.jump-platform.wrong-flash .jump-plat-top {
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--mv-coral) 40%, white),
+    var(--mv-coral)
+  );
+}
+
+.jump-platform.wrong-flash .jump-plat-label {
+  color: #fff;
+  text-shadow: none;
 }
 
 /* 探險小人 */
@@ -417,6 +551,11 @@ a {
 
 .play-hero--fork {
   transform: translateX(-50%);
+  z-index: 3;
+  /* 散步用短過渡，跳躍時 bottom 仍可彈 */
+  transition:
+    left 0.1s linear,
+    bottom 0.35s var(--ease-mv, ease);
 }
 
 .play-hero-shadow {
@@ -779,19 +918,24 @@ a {
   touch-action: manipulation;
 }
 
+.fork-stage {
+  overflow: hidden;
+}
+
 .fork-road {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     180deg,
-    transparent 0 50%,
-    color-mix(in srgb, var(--mv-mint) 32%, transparent) 50% 100%
+    transparent 0 42%,
+    color-mix(in srgb, var(--mv-mint) 22%, transparent) 42% 58%,
+    color-mix(in srgb, var(--mv-stone) 35%, transparent) 58% 100%
   );
 }
 
 .fork-choice {
   position: absolute;
-  bottom: 38%;
+  bottom: 42%;
   width: 28%;
   min-height: var(--touch-lg);
   border: 1px solid color-mix(in srgb, var(--mv-stone) 80%, white);
@@ -806,6 +950,38 @@ a {
   box-shadow: var(--mv-shadow);
   touch-action: manipulation;
   z-index: 2;
+}
+
+.play-hero--fork.is-stroll .play-hero-leg.left {
+  animation: hero-stroll-l 0.55s ease-in-out infinite;
+}
+
+.play-hero--fork.is-stroll .play-hero-leg.right {
+  animation: hero-stroll-r 0.55s ease-in-out infinite;
+}
+
+.play-hero--fork.is-stroll .play-hero-figure {
+  animation: hero-bob 0.55s ease-in-out infinite;
+}
+
+@keyframes hero-stroll-l {
+  0%,
+  100% {
+    transform: rotate(-8deg) translateY(0);
+  }
+  50% {
+    transform: rotate(10deg) translateY(-2px);
+  }
+}
+
+@keyframes hero-stroll-r {
+  0%,
+  100% {
+    transform: rotate(8deg) translateY(0);
+  }
+  50% {
+    transform: rotate(-10deg) translateY(-2px);
+  }
 }
 
 .fork-choice.is-ok {
@@ -824,9 +1000,13 @@ a {
   column-gap: 12px;
   row-gap: 18px;
   padding: 20px 14px 22px;
+  width: 100%;
   height: 100%;
+  min-height: 200px;
   box-sizing: border-box;
   align-content: center;
+  justify-items: stretch;
+  perspective: 900px;
 }
 
 .flip-board.cols-2 {
@@ -845,22 +1025,30 @@ a {
 
 .flip-card {
   position: relative;
+  display: block;
+  width: 100%;
+  max-width: 160px;
+  margin: 0 auto;
   aspect-ratio: 3 / 4;
-  min-height: 88px;
+  min-height: 100px;
+  height: auto;
   border: 0;
   padding: 0;
   background: transparent;
   cursor: pointer;
   touch-action: manipulation;
-  perspective: 900px;
+  appearance: none;
+  -webkit-appearance: none;
   animation: flip-deal 0.45s ease both;
 }
 
 .flip-card-inner {
-  position: relative;
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
   transition: transform 0.48s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
@@ -882,6 +1070,7 @@ a {
   font-size: clamp(0.85rem, 2.2vw, 1.05rem);
   line-height: 1.35;
   box-shadow: var(--mv-shadow);
+  box-sizing: border-box;
 }
 
 .flip-card-face.back {
@@ -928,13 +1117,12 @@ a {
 }
 
 @keyframes flip-deal {
+  /* 只用 opacity：父層若留下 transform，會壓平子層 preserve-3d，翻牌會失效 */
   0% {
     opacity: 0;
-    transform: translateY(12px) scale(0.92);
   }
   100% {
     opacity: 1;
-    transform: translateY(0) scale(1);
   }
 }
 
@@ -1403,73 +1591,190 @@ a {
 
 /* ---- 新玩法：量尺 / 紅綠燈 / 分類桶 / 背包 / 氣球 ---- */
 .pop-stage {
-  background: transparent;
+  position: relative;
+  background:
+    radial-gradient(
+      ellipse at 70% 18%,
+      color-mix(in srgb, var(--soft) 55%, transparent),
+      transparent 42%
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--soft) 35%, var(--mv-sky-1)) 0%,
+      color-mix(in srgb, var(--mv-sky-2) 80%, var(--accent)) 55%,
+      color-mix(in srgb, var(--deep) 22%, var(--mv-sky-3)) 100%
+    );
+  overflow: hidden;
+}
+
+.pop-sky {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.pop-terrace {
+  position: absolute;
+  left: -8%;
+  right: -8%;
+  height: 18%;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--deep) 28%, transparent),
+    color-mix(in srgb, var(--accent) 22%, transparent) 45%,
+    color-mix(in srgb, var(--mv-ink) 12%, transparent)
+  );
+  clip-path: polygon(0 40%, 18% 0, 42% 28%, 68% 8%, 100% 36%, 100% 100%, 0 100%);
+  opacity: 0.55;
+}
+
+.pop-terrace.t1 {
+  bottom: 0;
+  height: 22%;
+  opacity: 0.7;
+}
+
+.pop-terrace.t2 {
+  bottom: 14%;
+  height: 16%;
+  opacity: 0.4;
+  transform: scaleX(-1);
+}
+
+.pop-terrace.t3 {
+  bottom: 26%;
+  height: 12%;
+  opacity: 0.28;
 }
 
 .pop-balloon {
   position: absolute;
-  bottom: 12%;
-  width: min(26%, 120px);
+  width: min(28%, 128px);
   border: 0;
   background: transparent;
   padding: 0;
   cursor: pointer;
   z-index: 3;
   touch-action: manipulation;
+  transform-origin: center bottom;
 }
 
-.pop-balloon.n0 { left: 8%; }
-.pop-balloon.n1 { left: 30%; }
-.pop-balloon.n2 { left: 52%; }
-.pop-balloon.n3 { left: 74%; }
+/* 飄動做在內層，避免跟 motion 的 scale 搶 transform */
+.pop-balloon-drift {
+  display: block;
+  transform-origin: center bottom;
+}
 
-.pop-stage.is-floating .pop-balloon {
-  animation: pop-float 2.4s ease-in-out infinite;
-  animation-delay: calc(var(--i, 0) * 0.18s);
+.pop-stage.is-floating .pop-balloon-drift {
+  animation: pop-drift 3.2s ease-in-out infinite;
+  animation-delay: var(--float-delay, 0s);
 }
 
 .pop-balloon-body {
+  position: relative;
   display: grid;
   place-items: center;
-  min-height: 72px;
-  padding: 10px 8px;
-  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-  background: color-mix(in srgb, var(--accent) 55%, var(--mv-paper));
-  color: var(--deep);
+  min-height: 84px;
+  padding: 14px 10px 16px;
+  border-radius: 0;
+  /* 切角幾何球體，偏柔霧石材 */
+  clip-path: polygon(
+    50% 0%,
+    88% 12%,
+    100% 42%,
+    92% 78%,
+    50% 100%,
+    8% 78%,
+    0% 42%,
+    12% 12%
+  );
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--mv-paper) 88%, white) 0 38%,
+    color-mix(in srgb, var(--accent) 55%, var(--soft)) 38% 68%,
+    color-mix(in srgb, var(--deep) 70%, var(--accent)) 68% 100%
+  );
+  color: color-mix(in srgb, var(--mv-paper) 96%, white);
   font-weight: 800;
-  font-size: clamp(0.75rem, 2.2vw, 0.92rem);
+  font-size: clamp(0.72rem, 2.1vw, 0.9rem);
   line-height: 1.25;
-  border: 1px solid color-mix(in srgb, var(--deep) 18%, transparent);
-  box-shadow: var(--mv-shadow);
+  border: 0;
+  box-shadow:
+    5px 8px 0 color-mix(in srgb, var(--mv-ink) 10%, transparent),
+    var(--mv-shadow);
+}
+
+.pop-balloon-facet {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    115deg,
+    transparent 0 48%,
+    color-mix(in srgb, var(--mv-ink) 14%, transparent) 48% 100%
+  );
+  pointer-events: none;
+}
+
+.pop-balloon-label {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(42, 36, 56, 0.2);
+}
+
+.pop-balloon-knot {
+  display: block;
+  width: 12px;
+  height: 10px;
+  margin: -2px auto 0;
+  background: color-mix(in srgb, var(--deep) 75%, var(--accent));
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
 }
 
 .pop-balloon-string {
   display: block;
   width: 2px;
-  height: 28px;
+  height: 36px;
   margin: 0 auto;
-  background: rgba(28, 42, 58, 0.35);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--mv-ink) 35%, transparent),
+    transparent
+  );
 }
 
 .pop-balloon.is-ok .pop-balloon-body {
-  background: var(--ok);
-  color: #fff;
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--mv-mint) 40%, white),
+    var(--mv-mint)
+  );
   animation: pop-burst 0.35s ease;
 }
 
 .pop-balloon.is-bad .pop-balloon-body {
-  background: var(--danger);
-  color: #fff;
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--mv-coral) 40%, white),
+    var(--mv-coral)
+  );
   animation: pop-burst 0.35s ease;
 }
 
-@keyframes pop-float {
+@keyframes pop-drift {
   0%,
   100% {
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0) rotate(-2.5deg);
+  }
+  25% {
+    transform: translate3d(6px, -18px, 0) rotate(1.5deg);
   }
   50% {
-    transform: translateY(-14px);
+    transform: translate3d(-4px, -28px, 0) rotate(3deg);
+  }
+  75% {
+    transform: translate3d(5px, -12px, 0) rotate(-1deg);
   }
 }
 
@@ -1550,99 +1855,119 @@ a {
   opacity: 0.8;
 }
 
+/* 自然島：版型對齊自理島（舞台目標＋下方選項） */
 .bins-stage {
   background: transparent;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 12px;
-  padding: 48px 12px 16px;
-  box-sizing: border-box;
-}
-
-.bins-shelf {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  justify-content: center;
-  width: 100%;
-  z-index: 2;
-}
-
-.bins-chip {
-  min-height: var(--touch);
-  max-width: 46%;
-  padding: 10px 12px;
-  border: 1px solid color-mix(in srgb, var(--mv-stone) 80%, white);
-  border-radius: var(--radius-cut);
-  background: color-mix(in srgb, var(--mv-paper) 94%, white);
-  color: var(--ink);
-  font-weight: 800;
-  cursor: pointer;
-  box-shadow: var(--mv-shadow);
-  touch-action: manipulation;
-}
-
-.bins-chip.is-on {
-  outline: 2px solid var(--mv-coral);
-  outline-offset: 1px;
-}
-
-.bins-chip.is-ok {
-  background: var(--ok);
-  color: #fff;
-}
-
-.bins-chip.is-bad {
-  background: var(--danger);
-  color: #fff;
+  display: grid;
+  place-items: center;
+  padding-top: 36px;
+  position: relative;
 }
 
 .bins-target {
-  width: min(220px, 70%);
-  min-height: 88px;
-  border: 1px solid color-mix(in srgb, var(--deep) 25%, transparent);
-  border-radius: var(--radius-cut);
-  background: color-mix(in srgb, var(--accent) 70%, var(--deep));
-  color: #fff;
+  position: relative;
+  width: min(200px, 56%);
+  min-height: 148px;
+  border: 0;
+  border-radius: 0;
+  clip-path: polygon(8% 0, 92% 0, 100% 12%, 100% 100%, 0 100%, 0 12%);
+  background: linear-gradient(
+    160deg,
+    color-mix(in srgb, var(--accent) 45%, var(--mv-paper)) 0 40%,
+    color-mix(in srgb, var(--deep) 55%, var(--accent)) 40% 100%
+  );
+  color: color-mix(in srgb, var(--mv-paper) 94%, white);
   display: grid;
-  gap: 2px;
   place-items: center;
-  padding: 12px;
-  cursor: pointer;
-  box-shadow: var(--mv-shadow);
-  touch-action: manipulation;
+  padding: 28px 16px 16px;
+  box-shadow:
+    8px 10px 0 color-mix(in srgb, var(--mv-ink) 10%, transparent),
+    var(--mv-shadow);
+  transition: transform 0.35s var(--ease-mv);
+  pointer-events: none;
 }
 
-.bins-target:disabled {
-  opacity: 0.55;
-  cursor: default;
-}
-
-.bins-target.is-armed {
-  outline: 3px solid #fff;
-  transform: translateY(-2px);
+.bins-target.is-closed {
+  transform: scale(1.04);
 }
 
 .bins-target.is-ok {
-  background: var(--ok);
+  background: linear-gradient(
+    160deg,
+    color-mix(in srgb, var(--mv-mint) 40%, white),
+    var(--mv-mint)
+  );
 }
 
 .bins-target.is-bad {
-  background: var(--danger);
+  background: linear-gradient(
+    160deg,
+    color-mix(in srgb, var(--mv-coral) 40%, white),
+    var(--mv-coral)
+  );
 }
 
 .bins-target-lid {
-  width: 70%;
-  height: 10px;
-  border-radius: 8px;
-  background: color-mix(in srgb, var(--mv-paper) 35%, transparent);
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  top: 0;
+  width: auto;
+  height: 20px;
+  border-radius: 0;
+  clip-path: polygon(6% 100%, 94% 100%, 100% 0, 0 0);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--mv-paper) 70%, var(--accent)),
+    color-mix(in srgb, var(--accent) 55%, var(--deep))
+  );
+  z-index: 2;
 }
 
-.bins-target small {
+.bins-target-rim {
+  position: absolute;
+  left: 18%;
+  right: 18%;
+  top: 28px;
+  height: 14px;
+  background: color-mix(in srgb, var(--mv-ink) 14%, transparent);
+  clip-path: polygon(0 40%, 100% 40%, 100% 100%, 0 100%);
+  z-index: 1;
+}
+
+.bins-target-empty,
+.bins-target-item {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  gap: 2px;
+  place-items: center;
+  text-align: center;
+  font-weight: 800;
+  line-height: 1.35;
+  text-shadow: 0 1px 0 rgba(42, 36, 56, 0.22);
+}
+
+.bins-target-empty small {
   font-weight: 700;
-  opacity: 0.9;
+  opacity: 0.85;
+  font-size: 0.85em;
+}
+
+.bins-fly {
+  position: absolute;
+  left: 50%;
+  bottom: 8%;
+  z-index: 8;
+  transform: translateX(-50%);
+  padding: 10px 14px;
+  border-radius: 0;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+  background: color-mix(in srgb, var(--mv-paper) 96%, white);
+  border: 1px solid color-mix(in srgb, var(--mv-stone) 80%, white);
+  font-weight: 800;
+  box-shadow: var(--mv-shadow);
+  pointer-events: none;
 }
 
 .pack-stage {
@@ -1823,8 +2148,9 @@ a {
   }
 
   .app-shell--session .play-stage-cards {
-    min-height: 0;
+    min-height: min(46dvh, 380px);
     max-height: none;
+    overflow: visible;
   }
 
   .pipe-stage {
@@ -1845,8 +2171,12 @@ a {
   }
 
   .jump-platform {
-    min-height: 48px;
+    min-height: 64px;
     font-size: 0.72rem;
+  }
+
+  .jump-plat-block {
+    height: 48px;
   }
 
   .play-pick-grid.cols-3 {
@@ -2095,6 +2425,10 @@ a {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .pop-stage.is-floating .pop-balloon-drift {
+    animation: none !important;
+  }
+
   .app-shell,
   .fx-overlay,
   .fx-banner,

@@ -46,22 +46,51 @@ export function CatchPlay({ question, onResult, introCountdown = false }: Props)
   const pack = useMemo(() => pickPlayChoices(question, 4), [question])
   const busy = !ready || locked
 
+  /** 打亂水平航道，避免永遠左→右同一排 */
+  function shuffleLanes(count: number) {
+    const base = [14, 32, 50, 68, 84].slice(0, Math.max(count, 1))
+    while (base.length < count) base.push(20 + base.length * 15)
+    for (let i = base.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1))
+      const tmp = base[i]!
+      base[i] = base[j]!
+      base[j] = tmp
+    }
+    return base
+  }
+
+  function spawnItems(
+    source: typeof pack,
+    qid: string,
+  ): Falling[] {
+    const lanes = shuffleLanes(source.length)
+    const order = source.map((_, i) => i)
+    for (let i = order.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1))
+      const tmp = order[i]!
+      order[i] = order[j]!
+      order[j] = tmp
+    }
+    return order.map((idx, wave) => {
+      const p = source[idx]!
+      return {
+        id: `${qid}-${idx}-${wave}-${Math.random().toString(36).slice(2, 6)}`,
+        label: p.label,
+        correct: p.correct,
+        x: lanes[wave] ?? 50,
+        // 錯落高度，開始後才落下
+        y: -10 - wave * 22 - Math.floor(Math.random() * 10),
+      }
+    })
+  }
+
   useEffect(() => {
     ended.current = false
     setLocked(false)
     setBurst(null)
     setMood('idle')
     setHeroX(50)
-    setItems(
-      pack.map((p, i) => ({
-        id: `${question.id}-${i}`,
-        label: p.label,
-        correct: p.correct,
-        x: 15 + i * 22,
-        // 倒數期間停在畫面上方外側，開始後才落下
-        y: -8 - i * 28,
-      })),
-    )
+    setItems(spawnItems(pack, question.id))
   }, [pack, question.id])
 
   useEffect(() => {
@@ -98,15 +127,9 @@ export function CatchPlay({ question, onResult, introCountdown = false }: Props)
     }
 
     if (items.length && items.every((it) => it.y > 108) && !ended.current) {
-      setItems((prev) =>
-        prev.map((it, i) => ({
-          ...it,
-          y: -8 - i * 28,
-          x: 15 + i * 22,
-        })),
-      )
+      setItems(spawnItems(pack, question.id))
     }
-  }, [items, heroX, locked, ready])
+  }, [items, heroX, locked, ready, pack, question.id])
 
   function setHeroFromClientX(clientX: number) {
     const el = stageRef.current
