@@ -11,10 +11,11 @@ import type { PlayResultHandler } from './types'
 type Props = {
   question: ChoiceQuestion
   onResult: PlayResultHandler
+  introCountdown?: boolean
 }
 
-export function ForkPlay({ question, onResult }: Props) {
-  const { ready, onReady } = usePlayReady(question.id)
+export function ForkPlay({ question, onResult, introCountdown = false }: Props) {
+  const { ready, onReady, countdown } = usePlayReady(question.id, introCountdown)
   const roads = useMemo(() => pickPlayChoices(question, 3), [question])
 
   const [hero, setHero] = useState({ left: '50%', bottom: '22%' })
@@ -47,7 +48,7 @@ export function ForkPlay({ question, onResult }: Props) {
       <div className="play-stage">
         <div className="fork-road" />
         <p className="play-stage-tip">
-          {ready ? '選正確的路前進' : '先讀完題目再選路'}
+          {ready ? '點路上的答案前進' : '先讀完題目再選路'}
         </p>
         <PlayHero pose="fork" style={hero} />
         {roads.map((r, i) => (
@@ -65,26 +66,9 @@ export function ForkPlay({ question, onResult }: Props) {
           </button>
         ))}
         {burst ? <PlayBurst ok={burst.ok} x={burst.x} y={burst.y} /> : null}
-        {!ready ? (
+        {countdown ? (
           <PlayCountdown resetKey={question.id} onReady={onReady} />
         ) : null}
-      </div>
-      <div className="play-pick-panel">
-        <div className="play-pick-grid cols-3">
-          {roads.map((r, i) => (
-            <button
-              key={`pick-${question.id}-${i}`}
-              type="button"
-              className={`play-pick-btn ${
-                flash === i ? (r.correct ? 'is-ok' : 'is-bad') : ''
-              }`}
-              disabled={busy}
-              onClick={() => pick(i)}
-            >
-              {r.label}
-            </button>
-          ))}
-        </div>
       </div>
     </div>
   )

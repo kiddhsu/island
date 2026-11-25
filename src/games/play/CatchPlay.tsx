@@ -25,10 +25,11 @@ type Falling = {
 type Props = {
   question: ChoiceQuestion
   onResult: PlayResultHandler
+  introCountdown?: boolean
 }
 
-export function CatchPlay({ question, onResult }: Props) {
-  const { ready, onReady } = usePlayReady(question.id)
+export function CatchPlay({ question, onResult, introCountdown = false }: Props) {
+  const { ready, onReady, countdown } = usePlayReady(question.id, introCountdown)
   const [heroX, setHeroX] = useState(50)
   const [items, setItems] = useState<Falling[]>([])
   const [locked, setLocked] = useState(false)
@@ -186,7 +187,7 @@ export function CatchPlay({ question, onResult }: Props) {
           style={{ left: `calc(${heroX}% - 28px)` }}
         />
         {burst ? <PlayBurst ok={burst.ok} x={burst.x} y={burst.y} /> : null}
-        {!ready ? (
+        {countdown ? (
           <PlayCountdown resetKey={question.id} onReady={onReady} />
         ) : null}
       </div>

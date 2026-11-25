@@ -10,11 +10,12 @@ import type { PlayResultHandler } from './types'
 type Props = {
   question: ChoiceQuestion
   onResult: PlayResultHandler
+  introCountdown?: boolean
 }
 
 /** 自然島：把正確答案投進分類桶 */
-export function BinsPlay({ question, onResult }: Props) {
-  const { ready, onReady } = usePlayReady(question.id)
+export function BinsPlay({ question, onResult, introCountdown = false }: Props) {
+  const { ready, onReady, countdown } = usePlayReady(question.id, introCountdown)
   const items = useMemo(() => pickPlayChoices(question, 4), [question])
   const [selected, setSelected] = useState<number | null>(null)
   const [locked, setLocked] = useState(false)
@@ -81,7 +82,7 @@ export function BinsPlay({ question, onResult }: Props) {
           <small>{selected == null ? '先選答案' : '點我投入'}</small>
         </button>
         {burst != null ? <PlayBurst ok={burst} y="58%" /> : null}
-        {!ready ? (
+        {countdown ? (
           <PlayCountdown resetKey={question.id} onReady={onReady} />
         ) : null}
       </div>

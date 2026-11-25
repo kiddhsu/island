@@ -11,10 +11,11 @@ import type { PlayResultHandler } from './types'
 type Props = {
   question: ChoiceQuestion
   onResult: PlayResultHandler
+  introCountdown?: boolean
 }
 
-export function JumpPlay({ question, onResult }: Props) {
-  const { ready, onReady } = usePlayReady(question.id)
+export function JumpPlay({ question, onResult, introCountdown = false }: Props) {
+  const { ready, onReady, countdown } = usePlayReady(question.id, introCountdown)
   const slots = useMemo(() => {
     const picks = pickPlayChoices(question, 4)
     const n = Math.max(picks.length, 1)
@@ -63,7 +64,7 @@ export function JumpPlay({ question, onResult }: Props) {
       <p className="play-prompt">{question.prompt}</p>
       <div className="play-stage grounded">
         <p className="play-stage-tip">
-          {ready ? '點平台或下方答案跳上去' : '先看清楚再跳'}
+          {ready ? '點正確的平台跳上去' : '先看清楚再跳'}
         </p>
         <PlayHero
           pose="jump"
@@ -84,26 +85,9 @@ export function JumpPlay({ question, onResult }: Props) {
           </button>
         ))}
         {burst ? <PlayBurst ok={burst.ok} x={burst.x} y={burst.y} /> : null}
-        {!ready ? (
+        {countdown ? (
           <PlayCountdown resetKey={question.id} onReady={onReady} />
         ) : null}
-      </div>
-      <div className="play-pick-panel">
-        <div className="play-pick-grid">
-          {slots.map((s, i) => (
-            <button
-              key={`pick-${question.id}-${i}`}
-              type="button"
-              className={`play-pick-btn ${
-                flash === i ? (s.correct ? 'is-ok' : 'is-bad') : ''
-              }`}
-              disabled={busy}
-              onClick={() => jumpTo(i)}
-            >
-              {s.label}
-            </button>
-          ))}
-        </div>
       </div>
     </div>
   )

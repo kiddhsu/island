@@ -23,8 +23,10 @@ export function HomeMap() {
   if (!activeProfile) return <Navigate to="/profiles" replace />
 
   return (
-    <div className="app-shell map-shell">
-      <header className="map-topbar">
+    <div className="app-shell map-shell map-shell--bleed">
+      <IslandWorld3D starsMap={starsMap} />
+
+      <header className="map-topbar map-topbar--float">
         <div>
           <p className="map-kicker">ISLAND QUEST</p>
           <h1 className="map-heading">今天想去哪一座？</h1>
@@ -60,8 +62,6 @@ export function HomeMap() {
           </button>
         </div>
       </header>
-
-      <IslandWorld3D starsMap={starsMap} />
 
       {listOpen ? (
         <aside className="map-list-panel" aria-label="島嶼清單">

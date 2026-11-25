@@ -22,6 +22,8 @@ type Props = {
   mode: PlayMode
   question: Question
   onResult: PlayResultHandler
+  /** 僅整輪第一題需要開場倒數 */
+  introCountdown?: boolean
 }
 
 function withChoice(
@@ -37,11 +39,23 @@ function withChoice(
   return <Fallback modeHint={modeHint} onResult={onResult} />
 }
 
-export function PlayStage({ mode, question, onResult }: Props) {
+export function PlayStage({
+  mode,
+  question,
+  onResult,
+  introCountdown = false,
+}: Props) {
   if (mode === 'jump') {
     return withChoice(
       question,
-      (q) => <JumpPlay key={q.id} question={q} onResult={onResult} />,
+      (q) => (
+        <JumpPlay
+          key={q.id}
+          question={q}
+          onResult={onResult}
+          introCountdown={introCountdown}
+        />
+      ),
       '跳躍',
       onResult,
     )
@@ -50,7 +64,14 @@ export function PlayStage({ mode, question, onResult }: Props) {
   if (mode === 'catch') {
     return withChoice(
       question,
-      (q) => <CatchPlay key={q.id} question={q} onResult={onResult} />,
+      (q) => (
+        <CatchPlay
+          key={q.id}
+          question={q}
+          onResult={onResult}
+          introCountdown={introCountdown}
+        />
+      ),
       '接物',
       onResult,
     )
@@ -59,7 +80,14 @@ export function PlayStage({ mode, question, onResult }: Props) {
   if (mode === 'fork') {
     return withChoice(
       question,
-      (q) => <ForkPlay key={q.id} question={q} onResult={onResult} />,
+      (q) => (
+        <ForkPlay
+          key={q.id}
+          question={q}
+          onResult={onResult}
+          introCountdown={introCountdown}
+        />
+      ),
       '岔路',
       onResult,
     )
@@ -77,14 +105,30 @@ export function PlayStage({ mode, question, onResult }: Props) {
     const order = asOrder(question)
     if (order) return <PipePlay key={order.id} question={order} onResult={onResult} />
     const choice = asChoice(question)
-    if (choice) return <ForkPlay key={choice.id} question={choice} onResult={onResult} />
+    if (choice) {
+      return (
+        <ForkPlay
+          key={choice.id}
+          question={choice}
+          onResult={onResult}
+          introCountdown={introCountdown}
+        />
+      )
+    }
     return <Fallback modeHint="水管" onResult={onResult} />
   }
 
   if (mode === 'gauge') {
     return withChoice(
       question,
-      (q) => <GaugePlay key={q.id} question={q} onResult={onResult} />,
+      (q) => (
+        <GaugePlay
+          key={q.id}
+          question={q}
+          onResult={onResult}
+          introCountdown={introCountdown}
+        />
+      ),
       '量尺',
       onResult,
     )
@@ -93,7 +137,14 @@ export function PlayStage({ mode, question, onResult }: Props) {
   if (mode === 'traffic') {
     return withChoice(
       question,
-      (q) => <TrafficPlay key={q.id} question={q} onResult={onResult} />,
+      (q) => (
+        <TrafficPlay
+          key={q.id}
+          question={q}
+          onResult={onResult}
+          introCountdown={introCountdown}
+        />
+      ),
       '紅綠燈',
       onResult,
     )
@@ -102,7 +153,14 @@ export function PlayStage({ mode, question, onResult }: Props) {
   if (mode === 'bins') {
     return withChoice(
       question,
-      (q) => <BinsPlay key={q.id} question={q} onResult={onResult} />,
+      (q) => (
+        <BinsPlay
+          key={q.id}
+          question={q}
+          onResult={onResult}
+          introCountdown={introCountdown}
+        />
+      ),
       '分類桶',
       onResult,
     )
@@ -111,7 +169,14 @@ export function PlayStage({ mode, question, onResult }: Props) {
   if (mode === 'pack') {
     return withChoice(
       question,
-      (q) => <PackPlay key={q.id} question={q} onResult={onResult} />,
+      (q) => (
+        <PackPlay
+          key={q.id}
+          question={q}
+          onResult={onResult}
+          introCountdown={introCountdown}
+        />
+      ),
       '背包',
       onResult,
     )
@@ -120,7 +185,14 @@ export function PlayStage({ mode, question, onResult }: Props) {
   if (mode === 'pop') {
     return withChoice(
       question,
-      (q) => <PopPlay key={q.id} question={q} onResult={onResult} />,
+      (q) => (
+        <PopPlay
+          key={q.id}
+          question={q}
+          onResult={onResult}
+          introCountdown={introCountdown}
+        />
+      ),
       '氣球',
       onResult,
     )

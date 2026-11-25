@@ -213,15 +213,15 @@ a {
   margin: 0;
   padding: 8px 12px;
   border-radius: var(--mv-radius-sm);
-  background: color-mix(in srgb, var(--mv-paper) 92%, white);
-  border: 1px solid color-mix(in srgb, var(--mv-stone) 80%, white);
+  background: color-mix(in srgb, var(--mv-paper) 72%, transparent);
+  border: 0;
   color: var(--muted);
   font-weight: 800;
   font-size: 0.82rem;
   line-height: 1.4;
   pointer-events: none;
   text-align: center;
-  box-shadow: var(--mv-shadow);
+  box-shadow: none;
 }
 
 .play-stage {
@@ -230,21 +230,11 @@ a {
   margin: 0 auto;
   aspect-ratio: 4 / 3;
   max-height: min(52dvh, 520px);
-  background:
-    radial-gradient(
-      circle at 78% 12%,
-      color-mix(in srgb, var(--soft) 55%, transparent),
-      transparent 42%
-    ),
-    linear-gradient(
-      165deg,
-      color-mix(in srgb, var(--soft) 55%, var(--mv-sky-1)) 0%,
-      color-mix(in srgb, var(--accent) 22%, var(--mv-sky-2)) 55%,
-      color-mix(in srgb, var(--deep) 18%, var(--mv-sky-3)) 100%
-    );
-  border-radius: var(--mv-radius);
-  border: 1px solid color-mix(in srgb, var(--mv-stone) 75%, white);
-  box-shadow: var(--mv-shadow);
+  /* 與頁面同色延伸，去掉卡片邊框／陰影 */
+  background: transparent;
+  border-radius: 0;
+  border: 0;
+  box-shadow: none;
   overflow: hidden;
   touch-action: manipulation;
   user-select: none;
@@ -263,9 +253,9 @@ a {
   background:
     linear-gradient(
       180deg,
-      color-mix(in srgb, var(--soft) 40%, var(--mv-sky-2)) 0 54%,
-      color-mix(in srgb, var(--mv-mint) 45%, var(--mv-stone)) 54% 64%,
-      color-mix(in srgb, var(--mv-coral) 28%, var(--mv-stone)) 64% 100%
+      transparent 0 48%,
+      color-mix(in srgb, var(--mv-mint) 28%, transparent) 48% 60%,
+      color-mix(in srgb, var(--mv-coral) 18%, transparent) 60% 100%
     );
 }
 
@@ -756,8 +746,8 @@ a {
   inset: 0;
   background: linear-gradient(
     180deg,
-    color-mix(in srgb, var(--soft) 45%, var(--mv-sky-2)) 0 55%,
-    color-mix(in srgb, var(--mv-mint) 40%, var(--mv-stone)) 55% 100%
+    transparent 0 50%,
+    color-mix(in srgb, var(--mv-mint) 32%, transparent) 50% 100%
   );
 }
 
@@ -1365,12 +1355,7 @@ a {
 
 /* ---- 新玩法：量尺 / 紅綠燈 / 分類桶 / 背包 / 氣球 ---- */
 .pop-stage {
-  background: linear-gradient(
-    180deg,
-    color-mix(in srgb, var(--soft) 70%, var(--mv-sky-1)) 0%,
-    color-mix(in srgb, var(--accent) 35%, var(--mv-sky-2)) 55%,
-    color-mix(in srgb, var(--deep) 20%, var(--mv-sky-3)) 100%
-  );
+  background: transparent;
 }
 
 .pop-balloon {
@@ -1456,9 +1441,9 @@ a {
 .traffic-stage {
   background: linear-gradient(
     180deg,
-    color-mix(in srgb, var(--soft) 50%, var(--mv-sky-2)) 0 52%,
-    color-mix(in srgb, var(--mv-ink) 35%, var(--mv-stone)) 52% 62%,
-    color-mix(in srgb, var(--mv-stone) 70%, var(--mv-ink)) 62% 100%
+    transparent 0 50%,
+    color-mix(in srgb, var(--mv-ink) 22%, transparent) 50% 58%,
+    color-mix(in srgb, var(--mv-stone) 45%, transparent) 58% 100%
   );
 }
 
@@ -1518,12 +1503,7 @@ a {
 }
 
 .bins-stage {
-  background: linear-gradient(
-    180deg,
-    color-mix(in srgb, var(--soft) 65%, var(--mv-sky-1)) 0%,
-    color-mix(in srgb, var(--mv-mint) 35%, var(--mv-stone)) 48%,
-    color-mix(in srgb, var(--accent) 30%, var(--mv-mint)) 100%
-  );
+  background: transparent;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1618,11 +1598,7 @@ a {
 }
 
 .pack-stage {
-  background: linear-gradient(
-    180deg,
-    color-mix(in srgb, var(--soft) 60%, var(--mv-paper)) 0%,
-    color-mix(in srgb, var(--accent) 25%, var(--mv-stone)) 100%
-  );
+  background: transparent;
   display: grid;
   place-items: center;
   padding-top: 36px;
@@ -1678,11 +1654,7 @@ a {
 }
 
 .gauge-stage {
-  background: linear-gradient(
-    180deg,
-    color-mix(in srgb, var(--soft) 65%, var(--mv-sky-1)) 0%,
-    color-mix(in srgb, var(--accent) 35%, var(--mv-sky-2)) 100%
-  );
+  background: transparent;
 }
 
 .gauge-rail {

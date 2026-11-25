@@ -220,7 +220,12 @@ function GameSessionInner() {
         </div>
       </header>
 
-      <PlayStage mode={island.playMode} question={q} onResult={onResult} />
+      <PlayStage
+        mode={island.playMode}
+        question={q}
+        onResult={onResult}
+        introCountdown={index === 0}
+      />
       <p className="play-help session-help">{island.howToPlay}</p>
     </div>
   )

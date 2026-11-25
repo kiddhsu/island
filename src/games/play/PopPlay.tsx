@@ -10,11 +10,12 @@ import type { PlayResultHandler } from './types'
 type Props = {
   question: ChoiceQuestion
   onResult: PlayResultHandler
+  introCountdown?: boolean
 }
 
 /** 心情島：點破正確的心情氣球 */
-export function PopPlay({ question, onResult }: Props) {
-  const { ready, onReady } = usePlayReady(question.id)
+export function PopPlay({ question, onResult, introCountdown = false }: Props) {
+  const { ready, onReady, countdown } = usePlayReady(question.id, introCountdown)
   const balloons = useMemo(() => pickPlayChoices(question, 4), [question])
   const [locked, setLocked] = useState(false)
   const [burst, setBurst] = useState<{ ok: boolean; x: string; y: string } | null>(
@@ -66,7 +67,7 @@ export function PopPlay({ question, onResult }: Props) {
           </button>
         ))}
         {burst ? <PlayBurst ok={burst.ok} x={burst.x} y={burst.y} /> : null}
-        {!ready ? (
+        {countdown ? (
           <PlayCountdown resetKey={question.id} onReady={onReady} />
         ) : null}
       </div>

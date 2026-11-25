@@ -10,11 +10,12 @@ import type { PlayResultHandler } from './types'
 type Props = {
   question: ChoiceQuestion
   onResult: PlayResultHandler
+  introCountdown?: boolean
 }
 
 /** 量尺島：在量尺／刻度上點正確答案 */
-export function GaugePlay({ question, onResult }: Props) {
-  const { ready, onReady } = usePlayReady(question.id)
+export function GaugePlay({ question, onResult, introCountdown = false }: Props) {
+  const { ready, onReady, countdown } = usePlayReady(question.id, introCountdown)
   const marks = useMemo(() => pickPlayChoices(question, 4), [question])
   const [locked, setLocked] = useState(false)
   const [picked, setPicked] = useState<number | null>(null)
@@ -74,26 +75,9 @@ export function GaugePlay({ question, onResult }: Props) {
           ))}
         </div>
         {burst != null ? <PlayBurst ok={burst} y="36%" /> : null}
-        {!ready ? (
+        {countdown ? (
           <PlayCountdown resetKey={question.id} onReady={onReady} />
         ) : null}
-      </div>
-      <div className="play-pick-panel">
-        <div className="play-pick-grid">
-          {marks.map((m, i) => (
-            <button
-              key={`${question.id}-gp-${i}`}
-              type="button"
-              className={`play-pick-btn ${
-                picked === i ? (m.correct ? 'is-ok' : 'is-bad') : ''
-              }`}
-              disabled={!ready || locked}
-              onClick={() => pick(i)}
-            >
-              {m.label}
-            </button>
-          ))}
-        </div>
       </div>
     </div>
   )

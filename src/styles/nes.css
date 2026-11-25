@@ -7,12 +7,45 @@
     linear-gradient(165deg, var(--mv-sky-1) 0%, var(--mv-sky-2) 46%, var(--mv-sky-3) 100%);
 }
 
+/* 全寬沉浸：3D 鋪滿視窗，頂欄浮在場景上 */
+.map-shell--bleed {
+  --map-chrome-h: 108px;
+  position: relative;
+  padding: 0;
+  min-height: 100dvh;
+  height: 100dvh;
+  overflow: hidden;
+  background: var(--mv-sky-3);
+  animation: none;
+}
+
 .map-topbar {
   display: flex;
   justify-content: space-between;
   gap: 12px;
   align-items: flex-start;
   margin-bottom: 10px;
+}
+
+.map-topbar--float {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 55;
+  margin: 0;
+  padding: calc(10px + env(safe-area-inset-top, 0px)) 12px 14px;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--mv-sky-1) 82%, transparent) 0%,
+    color-mix(in srgb, var(--mv-sky-2) 35%, transparent) 70%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+.map-topbar--float > * {
+  pointer-events: auto;
 }
 
 .map-kicker {
@@ -61,6 +94,14 @@
   box-shadow: var(--mv-shadow);
 }
 
+.map-shell--bleed .map-3d-wrap {
+  height: 100%;
+  min-height: 100dvh;
+  border-radius: 0;
+  border: 0;
+  box-shadow: none;
+}
+
 .map-3d-wrap::after {
   content: '';
   position: absolute;
@@ -70,6 +111,23 @@
   background:
     radial-gradient(ellipse at center, transparent 42%, rgba(42, 36, 56, 0.22) 100%),
     linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent 28%);
+}
+
+.map-shell--bleed .map-3d-wrap::after {
+  background: radial-gradient(
+    ellipse at center,
+    transparent 48%,
+    rgba(42, 36, 56, 0.18) 100%
+  );
+}
+
+/* 浮層頂欄已有標題；隱藏框內品牌卡避免重複 */
+.map-shell--bleed .map-brand-chip {
+  display: none;
+}
+
+.map-shell--bleed .map-float-tools {
+  top: calc(var(--map-chrome-h) + env(safe-area-inset-top, 0px));
 }
 
 .map-3d-wrap canvas {
@@ -180,11 +238,37 @@
   appearance: none;
   -webkit-appearance: none;
   touch-action: manipulation;
+  transition: padding 0.18s ease, min-height 0.18s ease, opacity 0.18s ease;
 }
 
 .map-pill.is-on {
   outline: 2px solid var(--mv-coral);
   outline-offset: 1px;
+}
+
+/* 遠處置為小點，降低手機標籤壅擠 */
+.map-pill.is-dot {
+  gap: 0;
+  padding: 0;
+  min-height: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  justify-content: center;
+  opacity: 0.88;
+}
+
+.map-pill.is-dot .map-pill-body {
+  display: none;
+}
+
+.map-pill.is-dot .map-pill-num {
+  min-width: 0;
+  font-size: 0.78rem;
+}
+
+.map-pill.is-expanded {
+  opacity: 1;
 }
 
 .map-pill-num {
@@ -342,8 +426,8 @@
 }
 
 @media (max-width: 720px) {
-  .map-3d-wrap {
-    height: min(68dvh, 640px);
+  .map-shell--bleed {
+    --map-chrome-h: 96px;
   }
 
   .map-detail {
@@ -371,5 +455,9 @@
 
   .map-brand-chip {
     max-width: calc(100% - 120px);
+  }
+
+  .map-topbar--float .map-heading {
+    font-size: clamp(1.25rem, 6vw, 1.7rem);
   }
 }

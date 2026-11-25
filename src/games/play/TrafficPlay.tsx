@@ -11,11 +11,12 @@ import type { PlayResultHandler } from './types'
 type Props = {
   question: ChoiceQuestion
   onResult: PlayResultHandler
+  introCountdown?: boolean
 }
 
 /** 安全島：看燈號，選最安全的做法 */
-export function TrafficPlay({ question, onResult }: Props) {
-  const { ready, onReady } = usePlayReady(question.id)
+export function TrafficPlay({ question, onResult, introCountdown = false }: Props) {
+  const { ready, onReady, countdown } = usePlayReady(question.id, introCountdown)
   const roads = useMemo(() => pickPlayChoices(question, 3), [question])
   const [light, setLight] = useState<'red' | 'yellow' | 'green'>('red')
   const [locked, setLocked] = useState(false)
@@ -67,7 +68,7 @@ export function TrafficPlay({ question, onResult }: Props) {
         <div className="traffic-crosswalk" />
         <PlayHero pose="fork" style={{ left: '50%', bottom: '18%' }} />
         {burst != null ? <PlayBurst ok={burst} y="48%" /> : null}
-        {!ready ? (
+        {countdown ? (
           <PlayCountdown resetKey={question.id} onReady={onReady} />
         ) : null}
       </div>

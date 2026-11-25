@@ -10,11 +10,12 @@ import type { PlayResultHandler } from './types'
 type Props = {
   question: ChoiceQuestion
   onResult: PlayResultHandler
+  introCountdown?: boolean
 }
 
 /** 自理島：把正確的習慣／物品裝進背包 */
-export function PackPlay({ question, onResult }: Props) {
-  const { ready, onReady } = usePlayReady(question.id)
+export function PackPlay({ question, onResult, introCountdown = false }: Props) {
+  const { ready, onReady, countdown } = usePlayReady(question.id, introCountdown)
   const items = useMemo(() => pickPlayChoices(question, 4), [question])
   const [packed, setPacked] = useState<number | null>(null)
   const [locked, setLocked] = useState(false)
@@ -54,7 +55,7 @@ export function PackPlay({ question, onResult }: Props) {
           </div>
         </div>
         {burst != null ? <PlayBurst ok={burst} y="40%" /> : null}
-        {!ready ? (
+        {countdown ? (
           <PlayCountdown resetKey={question.id} onReady={onReady} />
         ) : null}
       </div>

@@ -56,6 +56,9 @@ const ISO_POS: [number, number, number] = [9.2, 9.2, 9.2]
 const ISO_TARGET: [number, number, number] = [0, 0.4, 0]
 const FRUSTUM = 8.4
 const LABEL_Y = 1.95
+/** 同時展開的標籤數（含選中會強制展開） */
+const MAX_EXPANDED_LABELS = 4
+const FOCUS_FRAMES = 48
 
 const ISLAND_INDEX = Object.fromEntries(
   ISLANDS.map((island, i) => [island.id, String(i + 1).padStart(2, '0')]),
@@ -400,47 +403,129 @@ function CameraRig({
       enablePan={false}
       enableDamping
       dampingFactor={0.07}
-      minPolarAngle={0.9}
-      maxPolarAngle={1.12}
-      minAzimuthAngle={-0.45}
-      maxAzimuthAngle={0.45}
-      minZoom={0.8}
-      maxZoom={1.45}
+      /* 左右自由 360°；上下只留輕微俯仰 */
+      minPolarAngle={0.72}
+      maxPolarAngle={1.28}
+      minZoom={0.75}
+      maxZoom={1.55}
       target={ISO_TARGET}
     />
   )
 }
 
-/** 把 3D 座標投影到 DOM，直接改 style（避免每幀 setState） */
+/** 點島時鏡頭輕推近該島；關閉選取則緩緩回中心（保留目前方位） */
+function FocusCam({
+  selectedId,
+  controlsRef,
+  focusGen,
+}: {
+  selectedId: string | null
+  controlsRef: MutableRefObject<ControlsApi | null>
+  focusGen: number
+}) {
+  const goalTarget = useMemo(() => new THREE.Vector3(...ISO_TARGET), [])
+  const goalPos = useMemo(() => new THREE.Vector3(...ISO_POS), [])
+  const framesLeft = useRef(0)
+
+  useEffect(() => {
+    const c = controlsRef.current
+    if (!c) return
+    const offset = new THREE.Vector3().subVectors(c.object.position, c.target)
+    const dist = Math.max(10, offset.length())
+
+    if (!selectedId) {
+      goalTarget.set(...ISO_TARGET)
+      goalPos.copy(goalTarget).add(offset.normalize().multiplyScalar(dist))
+    } else {
+      const island = ISLANDS.find((i) => i.id === selectedId)
+      if (!island) return
+      const [x, , z] = islandPosition(island)
+      goalTarget.set(x * 0.52, 0.55, z * 0.52)
+      goalPos.copy(goalTarget).add(offset.normalize().multiplyScalar(dist * 0.82))
+    }
+    framesLeft.current = FOCUS_FRAMES
+  }, [selectedId, focusGen, controlsRef, goalTarget, goalPos])
+
+  useFrame(() => {
+    if (framesLeft.current <= 0) return
+    const c = controlsRef.current
+    if (!c) return
+    framesLeft.current -= 1
+    const t = 0.1
+    c.target.lerp(goalTarget, t)
+    c.object.position.lerp(goalPos, t)
+    c.update()
+  })
+
+  return null
+}
+
+/** 把 3D 座標投影到 DOM；只展開近鏡頭／選中標籤，其餘縮成點 */
 function LabelSync({
   labelRefs,
+  selectedRef,
 }: {
   labelRefs: RefObject<Record<string, HTMLButtonElement | null>>
+  selectedRef: RefObject<string | null>
 }) {
   const { camera, size } = useThree()
   const tmp = useMemo(() => new THREE.Vector3(), [])
+  const world = useMemo(() => new THREE.Vector3(), [])
 
   useFrame(() => {
     const refs = labelRefs.current
     if (!refs) return
+    const selectedId = selectedRef.current
+    const ranked: { id: string; dist: number; el: HTMLButtonElement; sx: number; sy: number; z: number }[] =
+      []
+
     for (const island of ISLANDS) {
       const el = refs[island.id]
       if (!el) continue
       const [x, y, z] = islandPosition(island)
-      tmp.set(x, y + LABEL_Y, z)
-      tmp.project(camera)
+      world.set(x, y + LABEL_Y, z)
+      const dist = camera.position.distanceTo(world)
+      tmp.copy(world).project(camera)
       const sx = (tmp.x * 0.5 + 0.5) * size.width
       const sy = (-tmp.y * 0.5 + 0.5) * size.height
       const onScreen =
         tmp.z > -1 &&
         tmp.z < 1 &&
-        sx > -40 &&
-        sy > -40 &&
-        sx < size.width + 40 &&
-        sy < size.height + 40
+        sx > -48 &&
+        sy > -48 &&
+        sx < size.width + 48 &&
+        sy < size.height + 48
+
       el.style.transform = `translate(-50%, -100%) translate(${sx}px, ${sy}px)`
-      el.style.visibility = onScreen ? 'visible' : 'hidden'
-      el.style.zIndex = onScreen ? String(30 + Math.round((1 - tmp.z) * 10)) : '0'
+      if (!onScreen) {
+        el.style.visibility = 'hidden'
+        el.style.zIndex = '0'
+        el.classList.add('is-dot')
+        el.classList.remove('is-expanded')
+        continue
+      }
+      ranked.push({ id: island.id, dist, el, sx, sy, z: tmp.z })
+    }
+
+    ranked.sort((a, b) => a.dist - b.dist)
+    const expanded = new Set(
+      ranked.slice(0, MAX_EXPANDED_LABELS).map((r) => r.id),
+    )
+    if (selectedId) expanded.add(selectedId)
+
+    for (const row of ranked) {
+      const open = expanded.has(row.id)
+      row.el.style.visibility = 'visible'
+      row.el.style.zIndex = String(
+        (open ? 40 : 28) + Math.round((1 - row.z) * 12),
+      )
+      row.el.classList.toggle('is-dot', !open)
+      row.el.classList.toggle('is-expanded', open)
+      if (open) {
+        row.el.style.transform = `translate(-50%, -100%) translate(${row.sx}px, ${row.sy}px)`
+      } else {
+        row.el.style.transform = `translate(-50%, -50%) translate(${row.sx}px, ${row.sy}px)`
+      }
     }
   })
 
@@ -458,9 +543,12 @@ function timeFromLocalClock(date = new Date()): TimeMode {
 export function IslandWorld3D({ starsMap }: { starsMap: Record<string, number> }) {
   const navigate = useNavigate()
   const [selectedId, setSelectedId] = useState<string | null>(null)
+  const [focusGen, setFocusGen] = useState(0)
   const [time, setTime] = useState<TimeMode>(() => timeFromLocalClock())
   const controlsRef = useRef<ControlsApi | null>(null)
   const labelRefs = useRef<Record<string, HTMLButtonElement | null>>({})
+  const selectedRef = useRef<string | null>(null)
+  selectedRef.current = selectedId
   const selected = ISLANDS.find((i) => i.id === selectedId) ?? null
   const preset = TIME_PRESETS[time]
   const reduceMotion = useMemo(
@@ -508,6 +596,7 @@ export function IslandWorld3D({ starsMap }: { starsMap: Record<string, number> }
   function selectIsland(id: string) {
     playSfx('tap', 0.35)
     setSelectedId(id)
+    setFocusGen((n) => n + 1)
   }
 
   return (
@@ -536,7 +625,12 @@ export function IslandWorld3D({ starsMap }: { starsMap: Record<string, number> }
           />
         ))}
         <CameraRig controlsRef={controlsRef} />
-        <LabelSync labelRefs={labelRefs} />
+        <FocusCam
+          selectedId={selectedId}
+          controlsRef={controlsRef}
+          focusGen={focusGen}
+        />
+        <LabelSync labelRefs={labelRefs} selectedRef={selectedRef} />
       </Canvas>
 
       <div className="map-label-layer" aria-hidden={false}>
@@ -544,11 +638,12 @@ export function IslandWorld3D({ starsMap }: { starsMap: Record<string, number> }
           <button
             key={island.id}
             type="button"
-            className={`map-pill map-pill-float${selectedId === island.id ? ' is-on' : ''}`}
+            className={`map-pill map-pill-float is-dot${selectedId === island.id ? ' is-on' : ''}`}
             ref={(el) => {
               labelRefs.current[island.id] = el
             }}
             style={{ visibility: 'hidden' }}
+            aria-label={island.name}
             onClick={() => selectIsland(island.id)}
           >
             <span className="map-pill-num" style={{ color: island.accent }}>
@@ -578,9 +673,9 @@ export function IslandWorld3D({ starsMap }: { starsMap: Record<string, number> }
 
       {!selected ? (
         <div className="map-hint">
-          輕轉視角・捏合縮放
+          左右滑可繞島一圈・捏合縮放
           <br />
-          點小島或標籤即可選擇
+          點小島或前方標籤即可選擇
         </div>
       ) : null}
 
