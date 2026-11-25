@@ -11,7 +11,7 @@ const MODE_LABEL: Record<string, string> = {
   flip: '翻牌配對',
   pipe: '水管排序',
   clock: '鐘面點選',
-  traffic: '紅綠燈過關',
+  traffic: '安全選擇',
   bins: '分類投放',
   pack: '背包收拾',
   pop: '氣球點破',

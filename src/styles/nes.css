@@ -167,10 +167,15 @@
 .map-tool {
   min-height: 48px;
   padding: 0 16px;
-  border-radius: var(--radius-cut);
-  border: 1px solid color-mix(in srgb, var(--mv-stone) 85%, var(--ink));
-  background: color-mix(in srgb, var(--mv-paper) 94%, white);
-  box-shadow: var(--mv-shadow);
+  border-radius: 0;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+  border: 0;
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--mv-paper) 94%, white),
+    color-mix(in srgb, var(--mv-stone) 75%, var(--mv-coral))
+  );
+  box-shadow: 4px 5px 0 color-mix(in srgb, var(--mv-ink) 10%, transparent);
   font-weight: 800;
   color: var(--ink);
   cursor: pointer;
@@ -182,11 +187,16 @@
   top: 12px;
   left: 12px;
   z-index: 40;
-  background: color-mix(in srgb, var(--mv-paper) 94%, white);
-  border-radius: var(--mv-radius-sm);
-  border: 1px solid color-mix(in srgb, var(--mv-stone) 80%, white);
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--mv-paper) 94%, white),
+    color-mix(in srgb, var(--mv-stone) 80%, white)
+  );
+  border-radius: 0;
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  border: 0;
   padding: 10px 12px;
-  box-shadow: var(--mv-shadow);
+  box-shadow: 4px 5px 0 color-mix(in srgb, var(--mv-ink) 10%, transparent);
   display: grid;
   gap: 2px;
   max-width: min(220px, calc(100% - 120px));
@@ -211,12 +221,17 @@
   z-index: 30;
   font-size: 0.82rem;
   line-height: 1.5;
-  background: color-mix(in srgb, var(--mv-paper) 92%, white);
-  border-radius: var(--mv-radius-sm);
-  border: 1px solid color-mix(in srgb, var(--mv-stone) 80%, white);
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--mv-paper) 94%, white),
+    color-mix(in srgb, var(--mv-stone) 80%, white)
+  );
+  border-radius: 0;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+  border: 0;
   padding: 10px 12px;
   max-width: min(70%, 280px);
-  box-shadow: var(--mv-shadow);
+  box-shadow: 4px 5px 0 color-mix(in srgb, var(--mv-ink) 10%, transparent);
   color: var(--ink);
 }
 
@@ -224,14 +239,19 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  background: color-mix(in srgb, var(--mv-paper) 95%, white);
-  border-radius: var(--radius-cut);
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--mv-paper) 95%, white) 0 50%,
+    color-mix(in srgb, var(--mv-stone) 75%, var(--mv-coral)) 50% 100%
+  );
+  border-radius: 0;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
   padding: 8px 12px 8px 10px;
   min-height: 44px;
-  box-shadow: var(--mv-shadow);
+  box-shadow: 3px 4px 0 color-mix(in srgb, var(--mv-ink) 10%, transparent);
   white-space: nowrap;
   pointer-events: auto;
-  border: 1px solid color-mix(in srgb, var(--mv-stone) 85%, white);
+  border: 0;
   cursor: pointer;
   font: inherit;
   color: inherit;
@@ -246,16 +266,24 @@
   outline-offset: 1px;
 }
 
-/* 遠處置為小點，降低手機標籤壅擠 */
+/* 遠處置為切角石標，降低手機標籤壅擠（禁止正圓） */
 .map-pill.is-dot {
   gap: 0;
   padding: 0;
   min-height: 0;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  border-radius: 0;
+  clip-path: polygon(20% 0, 80% 0, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0 80%, 0 20%);
   justify-content: center;
-  opacity: 0.88;
+  opacity: 0.9;
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--mv-paper) 92%, white),
+    color-mix(in srgb, var(--mv-stone) 70%, var(--mv-coral))
+  );
+  box-shadow: 3px 4px 0 color-mix(in srgb, var(--mv-ink) 12%, transparent);
+  border: 0;
 }
 
 .map-pill.is-dot .map-pill-body {
@@ -303,11 +331,16 @@
   width: auto;
   max-width: 400px;
   margin-left: auto;
-  background: color-mix(in srgb, var(--mv-paper) 97%, white);
-  border-radius: var(--mv-radius);
-  border: 1px solid color-mix(in srgb, var(--mv-coral) 55%, white);
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--mv-paper) 96%, white) 0 55%,
+    color-mix(in srgb, var(--mv-stone) 75%, var(--mv-coral)) 55% 100%
+  );
+  border-radius: 0;
+  clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 18px 100%, 0 calc(100% - 18px));
+  border: 0;
   padding: 14px;
-  box-shadow: var(--mv-shadow);
+  box-shadow: 6px 8px 0 color-mix(in srgb, var(--mv-ink) 10%, transparent);
   color: var(--ink);
   pointer-events: auto;
 }
@@ -328,8 +361,9 @@
   width: 36px;
   height: 36px;
   border: 0;
-  border-radius: var(--mv-radius-sm);
-  background: var(--mv-stone);
+  border-radius: 0;
+  clip-path: polygon(12% 0, 100% 0, 88% 100%, 0 100%);
+  background: color-mix(in srgb, var(--mv-stone) 80%, var(--mv-ink));
   color: var(--ink);
   font-size: 1.4rem;
   line-height: 1;
@@ -362,12 +396,17 @@
   bottom: 0;
   width: min(360px, 92vw);
   z-index: 80;
-  background: color-mix(in srgb, var(--mv-paper) 97%, white);
-  box-shadow: -12px 0 40px rgba(42, 36, 56, 0.16);
+  background: linear-gradient(
+    165deg,
+    color-mix(in srgb, var(--mv-paper) 96%, white) 0 50%,
+    color-mix(in srgb, var(--mv-stone) 80%, var(--mv-sky-2)) 50% 100%
+  );
+  box-shadow: -8px 0 0 color-mix(in srgb, var(--mv-ink) 10%, transparent);
   padding: 16px;
   overflow: auto;
   color: var(--ink);
-  border-left: 1px solid color-mix(in srgb, var(--mv-stone) 80%, white);
+  border-left: 0;
+  clip-path: polygon(14px 0, 100% 0, 100% 100%, 0 100%, 0 14px);
 }
 
 .map-list-head {
@@ -400,9 +439,15 @@
   color: inherit;
   min-height: 56px;
   padding: 10px 12px;
-  border-radius: var(--mv-radius-sm);
-  background: var(--mv-stone);
-  border: 1px solid color-mix(in srgb, var(--mv-stone) 70%, white);
+  border-radius: 0;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+  background: linear-gradient(
+    120deg,
+    color-mix(in srgb, var(--mv-paper) 92%, white) 0 55%,
+    color-mix(in srgb, var(--mv-stone) 70%, var(--mv-coral)) 55% 100%
+  );
+  border: 0;
+  box-shadow: 3px 4px 0 color-mix(in srgb, var(--mv-ink) 8%, transparent);
 }
 
 .map-list-panel strong {

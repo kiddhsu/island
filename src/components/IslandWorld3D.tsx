@@ -81,10 +81,14 @@ function ThemeDecor({
 }) {
   if (id === 'zhuyin') {
     return (
-      <mesh position={[0.28, 1.05, 0.12]} rotation={[0, 0.4, 0]}>
-        <torusGeometry args={[0.16, 0.04, 4, 12]} />
-        <ToneMat color={left} />
-      </mesh>
+      <ThreeToneBox
+        args={[0.22, 0.22, 0.22]}
+        position={[0.26, 1.08, 0.1]}
+        rotation={[0, Math.PI / 5, 0]}
+        top={top}
+        left={left}
+        right={left}
+      />
     )
   }
   if (id === 'chars') {
@@ -309,15 +313,16 @@ function SoftCloud({ position }: { position: [number, number, number] }) {
 }
 
 function SeaDisk({ tint }: { tint: string }) {
+  /* 低分段圓 ≈ 切角台地，避免 48 段完美圓盤 */
   return (
     <>
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.05, 0]} receiveShadow>
-        <circleGeometry args={[11, 48]} />
-        <meshStandardMaterial color={tint} flatShading roughness={0.55} metalness={0.02} />
+        <circleGeometry args={[11, 8]} />
+        <meshStandardMaterial color={tint} flatShading roughness={0.62} metalness={0.02} />
       </mesh>
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.01, 0]}>
-        <ringGeometry args={[8.1, 8.35, 48]} />
-        <meshBasicMaterial color="#ffffff" transparent opacity={0.14} />
+        <ringGeometry args={[8.0, 8.4, 8]} />
+        <meshBasicMaterial color="#f7f2ea" transparent opacity={0.16} />
       </mesh>
       <ThreeToneBox
         args={[0.7, 0.7, 0.7]}

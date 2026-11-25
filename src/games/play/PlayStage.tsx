@@ -145,7 +145,7 @@ export function PlayStage({
           introCountdown={introCountdown}
         />
       ),
-      '紅綠燈',
+      '安全選擇',
       onResult,
     )
   }

@@ -15,36 +15,23 @@ type Props = {
   introCountdown?: boolean
 }
 
-/** 安全島：看燈號，選最安全的做法 */
+/** 安全島：通用守護場景，選最安全的做法（適用交通／校園／生活） */
 export function TrafficPlay({ question, onResult, introCountdown = false }: Props) {
   const { ready, onReady, countdown } = usePlayReady(question.id, introCountdown)
   const roads = useMemo(() => pickPlayChoices(question, 3), [question])
-  const [light, setLight] = useState<'red' | 'yellow' | 'green'>('red')
   const [locked, setLocked] = useState(false)
   const [flash, setFlash] = useState<number | null>(null)
   const [burst, setBurst] = useState<boolean | null>(null)
   const [mood, setMood] = useState<HeroMood>('idle')
-  const [heroBottom, setHeroBottom] = useState('18%')
+  const [heroBottom, setHeroBottom] = useState('16%')
 
   useEffect(() => {
     setLocked(false)
     setFlash(null)
     setBurst(null)
-    setLight('red')
     setMood('idle')
-    setHeroBottom('18%')
+    setHeroBottom('16%')
   }, [question.id])
-
-  useEffect(() => {
-    if (!ready) return
-    setLight('red')
-    const t1 = window.setTimeout(() => setLight('yellow'), 700)
-    const t2 = window.setTimeout(() => setLight('green'), 1400)
-    return () => {
-      window.clearTimeout(t1)
-      window.clearTimeout(t2)
-    }
-  }, [ready, question.id])
 
   function pick(i: number) {
     if (!ready || locked) return
@@ -53,7 +40,7 @@ export function TrafficPlay({ question, onResult, introCountdown = false }: Prop
     const ok = roads[i]?.correct ?? false
     setBurst(ok)
     setMood(ok ? 'cheer' : 'oops')
-    if (ok) setHeroBottom('28%')
+    if (ok) setHeroBottom('34%')
     playSfx(ok ? 'correct' : 'wrong', ok ? 0.55 : 0.45)
     window.setTimeout(() => onResult(ok), 780)
   }
@@ -64,26 +51,36 @@ export function TrafficPlay({ question, onResult, introCountdown = false }: Prop
     <div className="play-wrap">
       <p className="play-prompt">{question.prompt}</p>
       <div className="play-stage traffic-stage">
-        <div className={`traffic-light is-${light}`} aria-hidden>
-          <span className="tl red" />
-          <span className="tl yellow" />
-          <span className="tl green" />
+        <div className="safety-scene" aria-hidden>
+          <span className="safety-mesa m1" />
+          <span className="safety-mesa m2" />
+          <span className="safety-gate left" />
+          <span className="safety-gate right" />
+          <span className="safety-path" />
+          <span className="safety-shield">
+            <span className="safety-shield-core">
+              <span className="safety-shield-mark">◆</span>
+            </span>
+          </span>
         </div>
         <p className="play-stage-tip">
-          {ready ? '選最安全的做法過馬路' : '先讀題，燈亮再選'}
+          {ready ? '想清楚，選最安全的做法' : '先讀題再選'}
         </p>
-        <div className="traffic-crosswalk" />
         <PlayHero
           pose="fork"
           mood={mood}
+          className={!locked && ready && mood === 'idle' ? 'is-stroll' : ''}
           style={{ left: '50%', bottom: heroBottom }}
         />
-        {burst != null ? <PlayBurst ok={burst} y="48%" /> : null}
+        {burst != null ? <PlayBurst ok={burst} y="42%" /> : null}
         {countdown ? (
           <PlayCountdown resetKey={question.id} onReady={onReady} />
         ) : null}
       </div>
       <div className="play-pick-panel">
+        <p className="play-pick-hint">
+          {locked ? (burst ? '這樣最安全' : '再想想更安全的做法') : '哪一個最安全？'}
+        </p>
         <div className="play-pick-grid cols-3">
           {roads.map((r, i) => (
             <motion.button
@@ -96,7 +93,7 @@ export function TrafficPlay({ question, onResult, introCountdown = false }: Prop
               onClick={() => pick(i)}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.05 * i, type: 'spring', stiffness: 380, damping: 24 }}
+              transition={{ delay: 0.05 * i, duration: 0.2 }}
               whileTap={{ scale: 0.96 }}
             >
               {r.label}

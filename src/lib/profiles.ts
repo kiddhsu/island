@@ -30,7 +30,7 @@ export const PROFILE_COLORS = [
 ] as const
 
 /** 記號頭像：幾何符號，不再用表情／動物 emoji；仍存進 profile.emoji 欄位以相容舊資料 */
-export const PROFILE_MARKS = ['◆', '●', '▲', '■', '◈', '◇', '✦', '⬡'] as const
+export const PROFILE_MARKS = ['◆', '▲', '■', '◈', '◇', '✦', '⬡', '▣'] as const
 /** @deprecated 改用 PROFILE_MARKS */
 export const PROFILE_EMOJIS = PROFILE_MARKS
 
