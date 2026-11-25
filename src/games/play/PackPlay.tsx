@@ -62,7 +62,9 @@ export function PackPlay({ question, onResult, introCountdown = false }: Props) 
           }`}
         >
           <div className="pack-bag-body">
-            <span className="pack-bag-pocket" />
+            <span className="geo-pack-lid" aria-hidden />
+            <span className="geo-pack-buckle" aria-hidden />
+            <span className="pack-bag-pocket" aria-hidden />
             {packed != null ? (
               <span className="pack-bag-item">{items[packed]?.label}</span>
             ) : (

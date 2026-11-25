@@ -177,7 +177,7 @@ function GameSessionInner() {
 
   return (
     <div
-      className="app-shell"
+      className="app-shell app-shell--session"
       style={{
         ['--accent' as string]: island.accent,
         ['--soft' as string]: island.soft,
@@ -197,7 +197,7 @@ function GameSessionInner() {
         </div>
         <div className="app-chip-row">
           {streak >= 2 ? (
-            <span className="app-chip streak-chip" key={streak}>
+            <span className="app-chip streak-chip" key={`streak-${streak}`}>
               連擊 ×{streak}
             </span>
           ) : null}

@@ -10,7 +10,10 @@ type Props = {
   mood?: HeroMood
 }
 
-/** 關卡探險小人：柔霧幾何造型＋情緒動作（純表現，不影響判定） */
+/**
+ * 柔霧幾何探險者：切角斗篷＋錐帽（自繪，不依賴外部素材）。
+ * 純表現，不影響關卡判定。
+ */
 export function PlayHero({
   className = '',
   style,
@@ -18,7 +21,15 @@ export function PlayHero({
   mood = 'idle',
 }: Props) {
   const moodClass =
-    mood === 'idle' ? '' : mood === 'leap' ? 'is-leap' : mood === 'fall' ? 'is-fall' : mood === 'cheer' ? 'is-cheer' : 'is-oops'
+    mood === 'idle'
+      ? ''
+      : mood === 'leap'
+        ? 'is-leap'
+        : mood === 'fall'
+          ? 'is-fall'
+          : mood === 'cheer'
+            ? 'is-cheer'
+            : 'is-oops'
 
   return (
     <div
@@ -32,12 +43,11 @@ export function PlayHero({
         <span className="play-hero-head">
           <span className="play-hero-eye left" />
           <span className="play-hero-eye right" />
-          <span className="play-hero-cheek left" />
-          <span className="play-hero-cheek right" />
-          <span className="play-hero-smile" />
         </span>
-        <span className="play-hero-scarf" />
-        <span className="play-hero-torso" />
+        <span className="play-hero-cloak">
+          <span className="play-hero-cloak-l" />
+          <span className="play-hero-cloak-r" />
+        </span>
         <span className="play-hero-arm left" />
         <span className="play-hero-arm right" />
         <span className="play-hero-leg left" />

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { memo, useEffect, useMemo, useState } from 'react'
 import { motion } from 'motion/react'
 import type { ChoiceQuestion } from '../../types'
 import { playSfx } from '../../lib/sfx'
@@ -14,21 +14,26 @@ type Props = {
   introCountdown?: boolean
 }
 
-/** 量尺島：在量尺／刻度上點正確答案 */
-export function GaugePlay({ question, onResult, introCountdown = false }: Props) {
-  const { ready, onReady, countdown } = usePlayReady(question.id, introCountdown)
-  const marks = useMemo(() => pickPlayChoices(question, 4), [question])
-  const [locked, setLocked] = useState(false)
-  const [picked, setPicked] = useState<number | null>(null)
-  const [burst, setBurst] = useState<boolean | null>(null)
+const GaugeNeedle = memo(function GaugeNeedle({
+  locked,
+  ready,
+  pickIndex,
+}: {
+  locked: boolean
+  ready: boolean
+  pickIndex: number | null
+}) {
   const [needle, setNeedle] = useState(8)
 
   useEffect(() => {
-    setLocked(false)
-    setPicked(null)
-    setBurst(null)
     setNeedle(8)
-  }, [question.id])
+  }, [ready])
+
+  useEffect(() => {
+    if (pickIndex != null) {
+      setNeedle(14 + pickIndex * 24)
+    }
+  }, [pickIndex])
 
   useEffect(() => {
     if (!ready || locked) return
@@ -36,7 +41,34 @@ export function GaugePlay({ question, onResult, introCountdown = false }: Props)
       setNeedle((n) => (n >= 92 ? 8 : n + 2.2))
     }, 40)
     return () => window.clearInterval(timer)
-  }, [ready, question.id, locked])
+  }, [ready, locked])
+
+  return (
+    <motion.div
+      className="gauge-needle"
+      animate={{ left: `${needle}%` }}
+      transition={
+        locked
+          ? { type: 'spring', stiffness: 280, damping: 20 }
+          : { duration: 0.04, ease: 'linear' }
+      }
+    />
+  )
+})
+
+/** 量尺島：在量尺／刻度上點正確答案 */
+export function GaugePlay({ question, onResult, introCountdown = false }: Props) {
+  const { ready, onReady, countdown } = usePlayReady(question.id, introCountdown)
+  const marks = useMemo(() => pickPlayChoices(question, 4), [question])
+  const [locked, setLocked] = useState(false)
+  const [picked, setPicked] = useState<number | null>(null)
+  const [burst, setBurst] = useState<boolean | null>(null)
+
+  useEffect(() => {
+    setLocked(false)
+    setPicked(null)
+    setBurst(null)
+  }, [question.id])
 
   function pick(i: number) {
     if (!ready || locked) return
@@ -44,8 +76,6 @@ export function GaugePlay({ question, onResult, introCountdown = false }: Props)
     setPicked(i)
     const ok = marks[i]?.correct ?? false
     setBurst(ok)
-    // 指針停在選中刻度附近（純表現）
-    setNeedle(14 + i * 24)
     playSfx(ok ? 'correct' : 'wrong', ok ? 0.55 : 0.45)
     window.setTimeout(() => onResult(ok), 780)
   }
@@ -59,15 +89,7 @@ export function GaugePlay({ question, onResult, introCountdown = false }: Props)
         </p>
         <div className="gauge-rail" aria-hidden>
           <div className="gauge-track" />
-          <motion.div
-            className="gauge-needle"
-            animate={{ left: `${needle}%` }}
-            transition={
-              locked
-                ? { type: 'spring', stiffness: 280, damping: 20 }
-                : { duration: 0.04, ease: 'linear' }
-            }
-          />
+          <GaugeNeedle locked={locked} ready={ready} pickIndex={picked} />
         </div>
         <div className="gauge-marks">
           {marks.map((m, i) => (
@@ -77,13 +99,12 @@ export function GaugePlay({ question, onResult, introCountdown = false }: Props)
               className={`gauge-mark ${
                 picked === i ? (m.correct ? 'is-ok' : 'is-bad') : ''
               }`}
-              style={{ left: `${14 + i * 24}%` }}
               disabled={!ready || locked}
               onClick={() => pick(i)}
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.05 * i, type: 'spring', stiffness: 360, damping: 22 }}
-              whileTap={{ scale: 0.96 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.04 * i, duration: 0.2 }}
+              whileTap={{ scale: 0.97 }}
             >
               {m.label}
             </motion.button>

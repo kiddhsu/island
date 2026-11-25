@@ -70,10 +70,9 @@ export function PipePlay({ question, onResult }: Props) {
               className={`pipe-slot ${filled[i] ? 'is-filled' : ''} ${
                 i === filled.length && !locked ? 'is-next' : ''
               } ${justFilled === i ? 'is-filled' : ''}`}
-              layout
               animate={
                 justFilled === i
-                  ? { scale: [0.94, 1.05, 1], backgroundColor: undefined }
+                  ? { scale: [0.94, 1.05, 1] }
                   : { scale: 1 }
               }
               transition={{ type: 'spring', stiffness: 420, damping: 22 }}
@@ -97,7 +96,7 @@ export function PipePlay({ question, onResult }: Props) {
             : `點選第 ${filled.length + 1} 步${nextHint ? '（想想：什麼要先做？）' : ''}`}
         </p>
         <div className="pipe-options">
-          <AnimatePresence mode="popLayout">
+          <AnimatePresence initial={false}>
             {remain.map((item) => (
               <motion.button
                 key={item}
@@ -105,12 +104,11 @@ export function PipePlay({ question, onResult }: Props) {
                 className="pipe-chip"
                 disabled={locked}
                 onClick={() => pick(item)}
-                layout
-                initial={{ opacity: 0, scale: 0.85, y: 8 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.7, y: -16 }}
-                transition={{ type: 'spring', stiffness: 380, damping: 24 }}
-                whileTap={{ scale: 0.95 }}
+                initial={{ opacity: 0, scale: 0.92 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.88 }}
+                transition={{ duration: 0.16 }}
+                whileTap={{ scale: 0.97 }}
               >
                 {item}
               </motion.button>

@@ -39,6 +39,44 @@ a {
   animation: mv-shell-in 0.42s var(--ease-mv) both;
 }
 
+/* 關卡頁：頂欄＋題目＋舞台＋選項吃滿剩餘視窗高 */
+.app-shell--session {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  max-height: 100dvh;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.app-shell--session .session-topbar {
+  flex-shrink: 0;
+}
+
+.app-shell--session .play-wrap {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-shell--session .play-prompt {
+  flex-shrink: 0;
+}
+
+.app-shell--session .play-stage {
+  flex: 1 1 auto;
+  aspect-ratio: auto;
+  max-height: none;
+  min-height: 0;
+}
+
+.app-shell--session .play-pick-panel,
+.app-shell--session .catch-ctrl-panel,
+.app-shell--session .session-help {
+  flex-shrink: 0;
+}
+
 @keyframes mv-shell-in {
   0% {
     clip-path: circle(8% at 50% 42%);
@@ -999,14 +1037,15 @@ a {
 }
 
 .pipe-options {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 8px;
   align-items: stretch;
 }
 
 .pipe-options .pipe-chip {
-  flex: 1 1 auto;
+  width: 100%;
+  min-width: 0;
 }
 
 .pipe-chip {
@@ -1695,27 +1734,41 @@ a {
 
 .gauge-marks {
   position: absolute;
-  left: 0;
-  right: 0;
-  top: 58%;
-  height: 30%;
+  left: 8%;
+  right: 8%;
+  top: 56%;
+  bottom: 8%;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  align-content: start;
+  z-index: 2;
+}
+
+@media (min-width: 480px) {
+  .gauge-marks {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
 }
 
 .gauge-mark {
-  position: absolute;
-  transform: translateX(-50%);
-  width: 22%;
+  position: relative;
+  width: 100%;
   min-height: var(--touch-lg);
   border: 1px solid color-mix(in srgb, var(--mv-stone) 80%, white);
   border-radius: var(--radius-cut);
   background: color-mix(in srgb, var(--mv-paper) 94%, white);
   color: var(--ink);
   font-weight: 800;
-  font-size: clamp(0.75rem, 2vw, 0.9rem);
-  padding: 8px;
+  font-size: clamp(0.78rem, 2.2vw, 0.95rem);
+  padding: 8px 6px;
   cursor: pointer;
   box-shadow: var(--mv-shadow);
   touch-action: manipulation;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  line-height: 1.25;
 }
 
 .gauge-mark.is-ok {
@@ -1759,14 +1812,29 @@ a {
     max-height: min(42dvh, 360px);
   }
 
+  .app-shell--session .play-stage {
+    aspect-ratio: auto;
+    max-height: none;
+  }
+
   .play-stage-cards {
     min-height: 240px;
     max-height: min(48dvh, 400px);
   }
 
+  .app-shell--session .play-stage-cards {
+    min-height: 0;
+    max-height: none;
+  }
+
   .pipe-stage {
     min-height: 180px;
     max-height: min(34dvh, 280px);
+  }
+
+  .app-shell--session .pipe-stage {
+    min-height: 120px;
+    max-height: none;
   }
 
   .fork-choice {
@@ -1812,6 +1880,10 @@ a {
     max-height: min(50dvh, 480px);
   }
 
+  .app-shell--session .play-stage {
+    max-height: none;
+  }
+
   .play-pick-btn,
   .pipe-chip {
     min-height: 60px;
@@ -1838,6 +1910,11 @@ a {
   .play-stage {
     max-height: min(58dvh, 460px);
     aspect-ratio: 16 / 9;
+  }
+
+  .app-shell--session .play-stage {
+    max-height: none;
+    aspect-ratio: auto;
   }
 
   .session-help {
