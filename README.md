@@ -43,13 +43,8 @@ https://kiddhsu.github.io/island/
 
 音量請用裝置自行調整。
 
-## 答題特效（tsParticles + Lottie）
+## 答題特效（tsParticles＋幾何光暈）
 
-關卡與結果頁使用 `@tsparticles/slim` 粒子與 `lottie-react` 短片強化成就感；地圖頁不載入。系統開啟「減少動態效果」時只保留 CSS 回饋。
+關卡與結果頁用 `@tsparticles/slim` 做低飽和石材色方塊粒子，連擊／結算改 CSS 菱形光暈（等軸測幾何、柔霧色調）；地圖頁不載入。系統開啟「減少動態效果」時只保留 CSS 回饋。
 
-Lottie 來源（[Lottie Simple License](https://lottiefiles.com/page/license)，可商用）：
-
-| 檔案 | 用途 | 來源 |
-| --- | --- | --- |
-| `src/assets/lottie/streak.json` | 連擊 5／8 短慶祝 | Sparkle Stars（via titlekit／LottieFiles） |
-| `src/assets/lottie/result.json` | 結算頒獎粒子片 | Confetti tall（via titlekit／LottieFiles） |
+`src/assets/lottie/` 仍保留可商用 JSON（[Lottie Simple License](https://lottiefiles.com/page/license)），目前預設不播放。

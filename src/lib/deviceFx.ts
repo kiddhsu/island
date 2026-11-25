@@ -22,21 +22,21 @@ const OFF: FxBudget = {
   lottieMaxWidth: '0px',
 }
 
-/** iPhone 17／iPad mini 以上：高階預設檔 */
+/** iPhone 17／iPad mini：柔霧幾何氣質——粒子更少、更短 */
 const IOS_HIGH: FxBudget = {
   tier: 'iosHigh',
   fpsLimit: 60,
-  correct: 72,
-  streak3: 110,
-  streak5: 130,
-  streak8: 160,
+  correct: 36,
+  streak3: 52,
+  streak5: 64,
+  streak8: 80,
   result: (stars) => {
-    if (stars >= 3) return 220
-    if (stars >= 2) return 160
-    if (stars >= 1) return 120
-    return 40
+    if (stars >= 3) return 110
+    if (stars >= 2) return 80
+    if (stars >= 1) return 56
+    return 24
   },
-  lottieMaxWidth: 'min(420px, 70vw)',
+  lottieMaxWidth: 'min(280px, 52vw)',
 }
 
 function prefersReducedMotion() {

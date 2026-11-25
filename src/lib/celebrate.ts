@@ -1,7 +1,8 @@
 import type { ISourceOptions } from '@tsparticles/engine'
 import { getFxBudget } from './deviceFx'
 
-const COLORS = ['#f0c420', '#ff6b6b', '#4ecdc4', '#2b8cff', '#ffe66d', '#ff8fab', '#ffffff']
+/** 與 tokens 對齊：珊瑚／梅紫／薄荷／石米／霧藍 */
+const COLORS = ['#e07a5f', '#7b5ea7', '#6fbfa0', '#e8dcc8', '#f7f2ea', '#9bb8e8', '#c4a890']
 
 function baseOptions(count: number, fpsLimit: number): ISourceOptions {
   return {
@@ -11,32 +12,36 @@ function baseOptions(count: number, fpsLimit: number): ISourceOptions {
     particles: {
       number: { value: 0 },
       color: { value: COLORS },
-      shape: { type: ['circle', 'square', 'star'] },
+      shape: { type: ['square', 'circle'] },
       opacity: {
-        value: { min: 0.55, max: 1 },
+        value: { min: 0.4, max: 0.88 },
         animation: {
           enable: true,
-          speed: 0.8,
+          speed: 0.55,
           sync: false,
           startValue: 'max',
           destroy: 'min',
         },
       },
-      size: { value: { min: 3, max: 8 } },
-      life: { duration: { sync: true, value: 0.85 }, count: 1 },
+      size: { value: { min: 2.5, max: 6 } },
+      rotate: {
+        value: { min: 0, max: 90 },
+        animation: { enable: true, speed: 8, sync: false },
+      },
+      life: { duration: { sync: true, value: 0.65 }, count: 1 },
       move: {
         enable: true,
-        gravity: { enable: true, acceleration: 12 },
-        speed: { min: 12, max: 28 },
-        decay: 0.08,
+        gravity: { enable: true, acceleration: 8 },
+        speed: { min: 6, max: 16 },
+        decay: 0.1,
         direction: 'none',
         outModes: { default: 'destroy' },
       },
     },
     emitters: {
-      position: { x: 50, y: 38 },
-      rate: { quantity: count, delay: 0.08 },
-      life: { count: 1, duration: 0.12 },
+      position: { x: 50, y: 36 },
+      rate: { quantity: count, delay: 0.1 },
+      life: { count: 1, duration: 0.1 },
       size: { width: 0, height: 0 },
     },
     interactivity: { detectsOn: 'window', events: {} },
@@ -44,21 +49,21 @@ function baseOptions(count: number, fpsLimit: number): ISourceOptions {
 }
 
 function dualEmitters(count: number, fpsLimit: number): ISourceOptions {
-  const half = Math.max(20, Math.floor(count / 2))
+  const half = Math.max(14, Math.floor(count / 2))
   const base = baseOptions(half, fpsLimit)
   return {
     ...base,
     emitters: [
       {
-        position: { x: 18, y: 42 },
-        rate: { quantity: half, delay: 0.08 },
-        life: { count: 1, duration: 0.14 },
+        position: { x: 22, y: 40 },
+        rate: { quantity: half, delay: 0.1 },
+        life: { count: 1, duration: 0.1 },
         size: { width: 0, height: 0 },
       },
       {
-        position: { x: 82, y: 42 },
-        rate: { quantity: half, delay: 0.08 },
-        life: { count: 1, duration: 0.14 },
+        position: { x: 78, y: 40 },
+        rate: { quantity: half, delay: 0.1 },
+        life: { count: 1, duration: 0.1 },
         size: { width: 0, height: 0 },
       },
     ],
@@ -71,34 +76,34 @@ function resultOptions(count: number, fpsLimit: number): ISourceOptions {
     ...base,
     particles: {
       ...base.particles,
-      life: { duration: { sync: true, value: 1.35 }, count: 1 },
-      size: { value: { min: 3, max: 10 } },
+      life: { duration: { sync: true, value: 0.95 }, count: 1 },
+      size: { value: { min: 2.5, max: 7 } },
       move: {
         enable: true,
-        gravity: { enable: true, acceleration: 9 },
-        speed: { min: 10, max: 32 },
-        decay: 0.05,
+        gravity: { enable: true, acceleration: 6.5 },
+        speed: { min: 5, max: 14 },
+        decay: 0.08,
         direction: 'none',
         outModes: { default: 'destroy' },
       },
     },
     emitters: [
       {
-        position: { x: 50, y: 28 },
-        rate: { quantity: Math.floor(count * 0.45), delay: 0.1 },
-        life: { count: 1, duration: 0.18 },
-        size: { width: 12, height: 0 },
+        position: { x: 50, y: 30 },
+        rate: { quantity: Math.floor(count * 0.5), delay: 0.12 },
+        life: { count: 1, duration: 0.12 },
+        size: { width: 10, height: 0 },
       },
       {
-        position: { x: 22, y: 55 },
-        rate: { quantity: Math.floor(count * 0.28), delay: 0.12 },
-        life: { count: 1, duration: 0.16 },
+        position: { x: 28, y: 52 },
+        rate: { quantity: Math.floor(count * 0.25), delay: 0.14 },
+        life: { count: 1, duration: 0.1 },
         size: { width: 0, height: 0 },
       },
       {
-        position: { x: 78, y: 55 },
-        rate: { quantity: Math.floor(count * 0.28), delay: 0.12 },
-        life: { count: 1, duration: 0.16 },
+        position: { x: 72, y: 52 },
+        rate: { quantity: Math.floor(count * 0.25), delay: 0.14 },
+        life: { count: 1, duration: 0.1 },
         size: { width: 0, height: 0 },
       },
     ],
@@ -111,8 +116,10 @@ export type CelebratePayload = {
   kind: CelebrateKind
   stars?: number
   options: ISourceOptions | null
+  /** 已改為 CSS 菱形光暈，不再載入街機風 Lottie */
   showLottie: boolean
   lottie: 'streak' | 'result' | null
+  showGem: boolean
   durationMs: number
 }
 
@@ -124,6 +131,7 @@ export function buildCorrectBurst(): CelebratePayload {
       options: null,
       showLottie: false,
       lottie: null,
+      showGem: false,
       durationMs: 0,
     }
   }
@@ -132,7 +140,8 @@ export function buildCorrectBurst(): CelebratePayload {
     options: baseOptions(budget.correct, budget.fpsLimit),
     showLottie: false,
     lottie: null,
-    durationMs: 900,
+    showGem: false,
+    durationMs: 700,
   }
 }
 
@@ -146,7 +155,8 @@ export function buildStreakBurst(n: number): CelebratePayload | null {
       options: null,
       showLottie: false,
       lottie: null,
-      durationMs: 900,
+      showGem: n >= 5,
+      durationMs: 800,
     }
   }
   if (n === 3) {
@@ -155,24 +165,27 @@ export function buildStreakBurst(n: number): CelebratePayload | null {
       options: baseOptions(budget.streak3, budget.fpsLimit),
       showLottie: false,
       lottie: null,
-      durationMs: 1000,
+      showGem: false,
+      durationMs: 800,
     }
   }
   if (n === 5) {
     return {
       kind: 'streak5',
       options: baseOptions(budget.streak5, budget.fpsLimit),
-      showLottie: true,
-      lottie: 'streak',
-      durationMs: 1200,
+      showLottie: false,
+      lottie: null,
+      showGem: true,
+      durationMs: 1000,
     }
   }
   return {
     kind: 'streak8',
     options: dualEmitters(budget.streak8, budget.fpsLimit),
-    showLottie: true,
-    lottie: 'streak',
-    durationMs: 1200,
+    showLottie: false,
+    lottie: null,
+    showGem: true,
+    durationMs: 1100,
   }
 }
 
@@ -185,6 +198,7 @@ export function buildResultBurst(stars: number): CelebratePayload {
       options: null,
       showLottie: false,
       lottie: null,
+      showGem: stars >= 1,
       durationMs: 0,
     }
   }
@@ -193,9 +207,10 @@ export function buildResultBurst(stars: number): CelebratePayload {
     kind: 'result',
     stars,
     options: resultOptions(count, budget.fpsLimit),
-    showLottie: stars >= 1,
-    lottie: 'result',
-    durationMs: stars >= 2 ? 1800 : 1400,
+    showLottie: false,
+    lottie: null,
+    showGem: stars >= 1,
+    durationMs: stars >= 2 ? 1200 : 900,
   }
 }
 

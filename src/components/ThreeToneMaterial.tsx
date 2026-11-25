@@ -33,7 +33,7 @@ type Props = {
   right: string
 }
 
-/** 紀念碑谷式三面純色著色（頂／左／右） */
+/** 等軸測插畫式三面純色著色（頂／左／右） */
 export function ThreeToneMaterial({ top, left, right }: Props) {
   const uniforms = useMemo(
     () => ({

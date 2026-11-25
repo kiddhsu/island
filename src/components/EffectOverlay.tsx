@@ -1,9 +1,7 @@
-import { lazy, Suspense, useEffect, useMemo, useState, type CSSProperties } from 'react'
+import { lazy, Suspense, useEffect, useState, type CSSProperties } from 'react'
 import type { CelebratePayload } from '../lib/celebrate'
-import { getFxBudget } from '../lib/deviceFx'
 
 const ParticlesHost = lazy(() => import('./ParticlesHost'))
-const LottieHost = lazy(() => import('./LottieHost'))
 
 type Props = {
   effect: CelebratePayload | null
@@ -11,44 +9,24 @@ type Props = {
 }
 
 export function EffectOverlay({ effect, effectKey }: Props) {
-  const budget = useMemo(() => getFxBudget(), [])
   const [showParticles, setShowParticles] = useState(false)
-  const [showLottie, setShowLottie] = useState(false)
-  const [lottieData, setLottieData] = useState<object | null>(null)
+  const [showGem, setShowGem] = useState(false)
 
   useEffect(() => {
     if (!effect) {
       setShowParticles(false)
-      setShowLottie(false)
-      setLottieData(null)
+      setShowGem(false)
       return
     }
     setShowParticles(Boolean(effect.options))
-    const wantLottie = Boolean(effect.showLottie && effect.lottie)
-    setShowLottie(wantLottie)
-
-    let cancelled = false
-    if (wantLottie && effect.lottie) {
-      const loader =
-        effect.lottie === 'streak'
-          ? import('../assets/lottie/streak.json')
-          : import('../assets/lottie/result.json')
-      void loader.then((mod) => {
-        if (!cancelled) setLottieData(mod.default ?? mod)
-      })
-    } else {
-      setLottieData(null)
-    }
+    setShowGem(Boolean(effect.showGem))
 
     if (effect.durationMs <= 0) return
     const t = window.setTimeout(() => {
       setShowParticles(false)
-      setShowLottie(false)
+      setShowGem(false)
     }, effect.durationMs)
-    return () => {
-      cancelled = true
-      window.clearTimeout(t)
-    }
+    return () => window.clearTimeout(t)
   }, [effect, effectKey])
 
   if (!effect) return null
@@ -64,15 +42,10 @@ export function EffectOverlay({ effect, effectKey }: Props) {
           <ParticlesHost key={`p-${effectKey}`} options={effect.options} />
         </Suspense>
       ) : null}
-      {showLottie && lottieData ? (
-        <div className="fx-lottie" style={{ maxWidth: budget.lottieMaxWidth }}>
-          <Suspense fallback={null}>
-            <LottieHost
-              key={`l-${effectKey}`}
-              animationData={lottieData}
-              loop={false}
-            />
-          </Suspense>
+      {showGem ? (
+        <div className={`fx-gem fx-gem--${effect.kind}`} key={`g-${effectKey}`}>
+          <span className="fx-gem-core" />
+          <span className="fx-gem-ring" />
         </div>
       ) : null}
     </div>
