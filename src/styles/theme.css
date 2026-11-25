@@ -569,6 +569,17 @@ a {
   text-shadow: 0 2px 0 rgba(120, 30, 10, 0.25);
 }
 
+.play-burst-plus {
+  position: absolute;
+  top: -28px;
+  font-weight: 900;
+  font-size: 1.15rem;
+  color: var(--ok);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+  animation: burst-plus 0.7s cubic-bezier(0.2, 1.2, 0.4, 1) both;
+  pointer-events: none;
+}
+
 .play-burst-label {
   position: absolute;
   top: 36px;
@@ -665,6 +676,20 @@ a {
   100% {
     transform: translateY(0);
     opacity: 1;
+  }
+}
+
+@keyframes burst-plus {
+  0% {
+    transform: translateY(8px) scale(0.6);
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-18px) scale(1);
+    opacity: 0;
   }
 }
 
@@ -1107,6 +1132,63 @@ a {
   letter-spacing: 0.14em;
   color: var(--coin);
   margin: 8px 0;
+  display: flex;
+  justify-content: center;
+  gap: 0.12em;
+}
+
+.result-title {
+  margin: 0 0 4px;
+  font-weight: 900;
+  font-size: clamp(1.25rem, 4vw, 1.6rem);
+  color: var(--deep);
+  text-align: center;
+}
+
+.result-star {
+  display: inline-block;
+  opacity: 0.35;
+  transform: scale(0.85);
+  transition: none;
+}
+
+.result-star.is-lit {
+  opacity: 1;
+  animation: result-star-pop 0.45s cubic-bezier(0.2, 1.4, 0.4, 1) both;
+}
+
+@keyframes result-star-pop {
+  0% {
+    transform: scale(0.2);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.result-actions {
+  opacity: 0.72;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.result-actions.is-ready {
+  opacity: 1;
+  animation: result-cta-ready 0.5s ease both;
+}
+
+@keyframes result-cta-ready {
+  0% {
+    transform: translateY(6px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 
 .profiles-wrap .profile-grid {
@@ -1698,5 +1780,129 @@ a {
 
   .session-help {
     display: block;
+  }
+}
+
+/* —— 答題成就感：特效層／連擊 HUD —— */
+.fx-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.fx-particles {
+  position: absolute !important;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  pointer-events: none !important;
+}
+
+.fx-lottie {
+  position: absolute;
+  left: 50%;
+  top: calc(18% + env(safe-area-inset-top));
+  transform: translateX(-50%);
+  width: min(420px, 70vw);
+  max-height: 42dvh;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.fx-banner {
+  position: fixed;
+  left: 50%;
+  top: calc(72px + env(safe-area-inset-top));
+  transform: translateX(-50%);
+  z-index: 85;
+  pointer-events: none;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-weight: 900;
+  font-size: clamp(1rem, 3.6vw, 1.2rem);
+  color: var(--deep);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 10px 28px rgba(30, 60, 90, 0.18);
+  animation: fx-banner-in 0.45s cubic-bezier(0.2, 1.2, 0.4, 1) both;
+  white-space: nowrap;
+}
+
+@keyframes fx-banner-in {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-12px) scale(0.92);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+}
+
+.app-chip.streak-chip {
+  background: color-mix(in srgb, #f0c420 35%, white);
+  color: #7a5200;
+  border-color: color-mix(in srgb, #f0c420 55%, #fff);
+  animation: streak-chip-pop 0.4s cubic-bezier(0.2, 1.3, 0.4, 1) both;
+}
+
+.app-chip.score.is-pop {
+  animation: score-pop 0.45s cubic-bezier(0.2, 1.3, 0.4, 1) both;
+}
+
+.app-chip.lives.is-pulse {
+  animation: lives-pulse 0.5s ease both;
+}
+
+@keyframes streak-chip-pop {
+  0% {
+    transform: scale(0.7);
+  }
+  70% {
+    transform: scale(1.12);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes score-pop {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.18);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes lives-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  35% {
+    transform: scale(1.14);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fx-overlay,
+  .fx-banner,
+  .fx-lottie,
+  .play-burst-plus,
+  .result-star.is-lit,
+  .result-actions.is-ready,
+  .app-chip.streak-chip,
+  .app-chip.score.is-pop,
+  .app-chip.lives.is-pulse {
+    animation: none !important;
+  }
+
+  .fx-overlay {
+    display: none;
   }
 }

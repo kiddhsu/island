@@ -1,0 +1,7 @@
+Lottie assets in this folder are used under the Lottie Simple License
+(https://lottiefiles.com/page/license).
+
+- streak.json — Sparkle Stars (LottieFiles / packaged via titlekit elements)
+- result.json — Confetti tall (LottieFiles / packaged via titlekit elements)
+
+Commercial use is permitted; redistributions should keep the same license terms.

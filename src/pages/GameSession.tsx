@@ -1,5 +1,9 @@
 import { useCallback, useMemo, useState } from 'react'
 import { Link, Navigate, useNavigate, useParams } from 'react-router-dom'
+import {
+  CelebrationProvider,
+  useCelebration,
+} from '../context/CelebrationContext'
 import { useAuthProfile } from '../context/AuthProfileContext'
 import { getBank } from '../data/banks'
 import { getIsland } from '../data/islands'
@@ -10,11 +14,21 @@ import { drawRound, drawRoundDiversePrompt } from '../lib/shuffle'
 
 const ROUND_SIZE = 8
 
-export function GameSession() {
+function GameSessionInner() {
   const { islandId = '' } = useParams()
   const navigate = useNavigate()
   const { ready, activeProfile } = useAuthProfile()
   const island = getIsland(islandId)
+  const {
+    streak,
+    setStreak,
+    scorePulse,
+    livesPulse,
+    bumpScore,
+    bumpLives,
+    burstCorrect,
+    burstStreak,
+  } = useCelebration()
 
   const roundKey = `${island?.id ?? ''}:${activeProfile?.id ?? ''}:${activeProfile?.grade ?? ''}`
   const questions = useMemo(() => {
@@ -42,7 +56,6 @@ export function GameSession() {
     if (island.playMode === 'pipe') {
       const orders = bank.filter((q) => q.engine === 'order')
       const others = bank.filter(isChoiceLike)
-      // 順序題優先抽不同情境，避免整輪都是刷牙／洗手
       const orderPick = drawRoundDiversePrompt(
         orders,
         Math.min(6, orders.length),
@@ -57,7 +70,6 @@ export function GameSession() {
     }
     const playable = bank.filter(isChoiceLike)
     const pool = playable.length ? playable : bank
-    // 情境／選擇題也優先換不同題幹，避免同一輪感覺都在刷同一題
     return drawRoundDiversePrompt(pool, ROUND_SIZE, opts)
   }, [roundKey, island, activeProfile])
 
@@ -96,11 +108,24 @@ export function GameSession() {
       const nextWrong = ok ? wrongIds : [...wrongIds, q.id]
       const nextOk = ok ? [...correctIds, q.id] : correctIds
       const nextLives = ok ? lives : lives - 1
+      const nextStreak = ok ? streak + 1 : 0
 
       setCorrectCount(nextCorrect)
       setWrongIds(nextWrong)
       setCorrectIds(nextOk)
       setLives(nextLives)
+      setStreak(nextStreak)
+
+      if (ok) {
+        bumpScore()
+        if (nextStreak === 3 || nextStreak === 5 || nextStreak === 8) {
+          burstStreak(nextStreak)
+        } else {
+          burstCorrect()
+        }
+      } else {
+        bumpLives()
+      }
 
       if (nextLives <= 0) {
         finishRound(nextCorrect, nextWrong, nextOk)
@@ -120,6 +145,12 @@ export function GameSession() {
       wrongIds,
       correctIds,
       lives,
+      streak,
+      setStreak,
+      bumpScore,
+      bumpLives,
+      burstCorrect,
+      burstStreak,
       finishRound,
     ],
   )
@@ -159,8 +190,23 @@ export function GameSession() {
           </p>
         </div>
         <div className="app-chip-row">
-          <span className="app-chip lives">♥ {Math.max(0, lives)}</span>
-          <span className="app-chip score">得分 {correctCount}</span>
+          {streak >= 2 ? (
+            <span className="app-chip streak-chip" key={streak}>
+              連擊 ×{streak}
+            </span>
+          ) : null}
+          <span
+            className={`app-chip lives${livesPulse ? ' is-pulse' : ''}`}
+            key={`lives-${livesPulse}`}
+          >
+            ♥ {Math.max(0, lives)}
+          </span>
+          <span
+            className={`app-chip score${scorePulse ? ' is-pop' : ''}`}
+            key={`score-${scorePulse}`}
+          >
+            得分 {correctCount}
+          </span>
           <Link
             to={`/island/${island.id}`}
             className="app-btn soft"
@@ -174,5 +220,13 @@ export function GameSession() {
       <PlayStage mode={island.playMode} question={q} onResult={onResult} />
       <p className="play-help session-help">{island.howToPlay}</p>
     </div>
+  )
+}
+
+export function GameSession() {
+  return (
+    <CelebrationProvider>
+      <GameSessionInner />
+    </CelebrationProvider>
   )
 }

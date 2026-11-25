@@ -42,3 +42,14 @@ https://kiddhsu.github.io/island/
 | `public/sounds/enter.mp3`   | 進島／開始   | Dialog Pop      |
 
 音量請用裝置自行調整。
+
+## 答題特效（tsParticles + Lottie）
+
+關卡與結果頁使用 `@tsparticles/slim` 粒子與 `lottie-react` 短片強化成就感；地圖頁不載入。系統開啟「減少動態效果」時只保留 CSS 回饋。
+
+Lottie 來源（[Lottie Simple License](https://lottiefiles.com/page/license)，可商用）：
+
+| 檔案 | 用途 | 來源 |
+| --- | --- | --- |
+| `src/assets/lottie/streak.json` | 連擊 5／8 短慶祝 | Sparkle Stars（via titlekit／LottieFiles） |
+| `src/assets/lottie/result.json` | 結算頒獎粒子片 | Confetti tall（via titlekit／LottieFiles） |
