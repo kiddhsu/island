@@ -51,8 +51,15 @@ const TIME_PRESETS: Record<
   },
 }
 
-/** 等軸測視角 */
-const ISO_POS: [number, number, number] = [9.2, 9.2, 9.2]
+/** 等軸測視角：對準第一島（注音島）外側，一進地圖就先看到 01 */
+const ISO_HEIGHT = 9.2
+const ISO_RADIUS = 9.2 * Math.SQRT2 // 等同舊 [9.2, 9.2, 9.2] 的水平距離
+const FIRST_ISLAND_RAD = ((ISLANDS[0]?.angle ?? 210) * Math.PI) / 180
+const ISO_POS: [number, number, number] = [
+  Math.cos(FIRST_ISLAND_RAD) * ISO_RADIUS,
+  ISO_HEIGHT,
+  Math.sin(FIRST_ISLAND_RAD) * ISO_RADIUS,
+]
 const ISO_TARGET: [number, number, number] = [0, 0.4, 0]
 const FRUSTUM = 8.4
 const LABEL_Y = 1.95
@@ -373,6 +380,36 @@ type ControlsApi = {
   update: () => void
 }
 
+/** 僅縮放偏離預設時才顯示「重置視角」 */
+const DRIFT_ZOOM = 0.06
+
+function isViewDrifted(controls: ControlsApi): boolean {
+  const zoom = typeof controls.object.zoom === 'number' ? controls.object.zoom : 1
+  return Math.abs(zoom - 1) > DRIFT_ZOOM
+}
+
+/** 監聽鏡頭是否離開預設俯瞰；需要時才露出重置按鈕 */
+function ViewDriftWatch({
+  controlsRef,
+  onDriftChange,
+}: {
+  controlsRef: MutableRefObject<ControlsApi | null>
+  onDriftChange: (drifted: boolean) => void
+}) {
+  const driftedRef = useRef(false)
+
+  useFrame(() => {
+    const c = controlsRef.current
+    if (!c) return
+    const drifted = isViewDrifted(c)
+    if (drifted === driftedRef.current) return
+    driftedRef.current = drifted
+    onDriftChange(drifted)
+  })
+
+  return null
+}
+
 function OrthoFit() {
   const { camera, size } = useThree()
   useLayoutEffect(() => {
@@ -545,6 +582,7 @@ export function IslandWorld3D({ starsMap }: { starsMap: Record<string, number> }
   const navigate = useNavigate()
   const [selectedId, setSelectedId] = useState<string | null>(null)
   const [focusGen, setFocusGen] = useState(0)
+  const [showReset, setShowReset] = useState(false)
   const [time, setTime] = useState<TimeMode>(() => timeFromLocalClock())
   const controlsRef = useRef<ControlsApi | null>(null)
   const labelRefs = useRef<Record<string, HTMLButtonElement | null>>({})
@@ -583,6 +621,7 @@ export function IslandWorld3D({ starsMap }: { starsMap: Record<string, number> }
 
   function resetView() {
     playSfx('tap', 0.3)
+    setSelectedId(null)
     const c = controlsRef.current
     if (!c) return
     c.object.position.set(...ISO_POS)
@@ -592,6 +631,7 @@ export function IslandWorld3D({ starsMap }: { starsMap: Record<string, number> }
       c.object.updateProjectionMatrix?.()
     }
     c.update()
+    setShowReset(false)
   }
 
   function selectIsland(id: string) {
@@ -631,6 +671,7 @@ export function IslandWorld3D({ starsMap }: { starsMap: Record<string, number> }
           controlsRef={controlsRef}
           focusGen={focusGen}
         />
+        <ViewDriftWatch controlsRef={controlsRef} onDriftChange={setShowReset} />
         <LabelSync labelRefs={labelRefs} selectedRef={selectedRef} />
       </Canvas>
 
@@ -661,11 +702,13 @@ export function IslandWorld3D({ starsMap }: { starsMap: Record<string, number> }
         ))}
       </div>
 
-      <div className="map-float-tools" aria-label="地圖操作">
-        <button type="button" className="map-tool" onClick={resetView}>
-          全景
-        </button>
-      </div>
+      {showReset ? (
+        <div className="map-float-tools" aria-label="地圖操作">
+          <button type="button" className="map-tool" onClick={resetView}>
+            重置視角
+          </button>
+        </div>
+      ) : null}
 
       <div className="map-brand-chip">
         <strong>ISLAND QUEST</strong>
