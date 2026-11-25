@@ -43,21 +43,58 @@ export function loadProfileStore(): ProfileStore {
     const raw = localStorage.getItem(STORE_KEY)
     if (!raw) return defaultStore()
     const parsed = JSON.parse(raw) as ProfileStore
-    return {
-      profiles: Array.isArray(parsed.profiles)
-        ? parsed.profiles.map(normalizeProfile)
-        : [],
+    const source = Array.isArray(parsed.profiles) ? parsed.profiles : []
+    const profiles = source.map(normalizeProfile)
+    const store: ProfileStore = {
+      profiles,
       activeProfileId: parsed.activeProfileId ?? null,
     }
+    const migrated = profiles.some((p, i) => {
+      const o = source[i]
+      return !o || o.emoji !== p.emoji || o.color !== p.color || o.grade !== p.grade
+    })
+    if (migrated) saveProfileStore(store)
+    return store
   } catch {
     return defaultStore()
   }
+}
+
+const COLOR_SET = new Set<string>(PROFILE_COLORS)
+const MARK_SET = new Set<string>(PROFILE_MARKS)
+
+/** 舊玩具色 → 柔霧票 */
+const LEGACY_COLOR_MAP: Record<string, string> = {
+  '#3aa0ff': PROFILE_COLORS[0],
+  '#ffc107': PROFILE_COLORS[5],
+  '#ff7eb3': PROFILE_COLORS[1],
+  '#3dce9a': PROFILE_COLORS[2],
+  '#9b7bff': PROFILE_COLORS[3],
+  '#ff8a4c': PROFILE_COLORS[1],
+}
+
+/** 顯示／儲存用：非幾何記號一律回落預設 ◆ */
+export function resolveProfileMark(emoji: string | undefined | null) {
+  if (emoji && MARK_SET.has(emoji)) return emoji
+  return PROFILE_MARKS[0]
+}
+
+/** 顯示／儲存用：非柔霧色票則對應或回落霧藍 */
+export function resolveProfileColor(color: string | undefined | null) {
+  if (color && COLOR_SET.has(color)) return color
+  if (color && LEGACY_COLOR_MAP[color.toLowerCase()]) {
+    return LEGACY_COLOR_MAP[color.toLowerCase()]!
+  }
+  if (color && LEGACY_COLOR_MAP[color]) return LEGACY_COLOR_MAP[color]!
+  return PROFILE_COLORS[0]
 }
 
 function normalizeProfile(p: PlayerProfile): PlayerProfile {
   return {
     ...p,
     grade: p.grade === 2 ? 2 : 1,
+    color: resolveProfileColor(p.color),
+    emoji: resolveProfileMark(p.emoji),
   }
 }
 
@@ -93,10 +130,12 @@ function ensureSingleDefaultFlag(profiles: PlayerProfile[]) {
 export function ensureDefaultProfile() {
   const store = loadProfileStore()
   if (store.profiles.length > 0) {
+    const migrated = store.profiles.map(normalizeProfile)
     const next = {
       ...store,
-      profiles: ensureSingleDefaultFlag(store.profiles),
+      profiles: ensureSingleDefaultFlag(migrated),
     }
+    // 寫回：把舊 emoji／亮色頭像升級成柔霧幾何
     if (JSON.stringify(next) !== JSON.stringify(store)) saveProfileStore(next)
     return next
   }

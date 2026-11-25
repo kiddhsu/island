@@ -115,7 +115,7 @@ export function FlipPlay({ question, onResult }: Props) {
                 ]
                   .filter(Boolean)
                   .join(' ')}
-                style={{ animationDelay: `${i * 45}ms` }}
+                style={{ animationDelay: `${i * 45}ms`, ['--i' as string]: i }}
                 onClick={() => click(c)}
               >
                 <span className="flip-card-inner">

@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { motion } from 'motion/react'
 import type { ChoiceQuestion } from '../../types'
 import { playSfx } from '../../lib/sfx'
 import { pickPlayChoices } from './choiceUtils'
@@ -40,7 +41,7 @@ export function RevealPlay({ question, onResult }: Props) {
           {cards.map((c, i) => {
             const isPicked = picked === i
             return (
-              <button
+              <motion.button
                 key={`${question.id}-rev-${i}-${c.label}`}
                 type="button"
                 className={[
@@ -52,9 +53,13 @@ export function RevealPlay({ question, onResult }: Props) {
                 ]
                   .filter(Boolean)
                   .join(' ')}
-                style={{ animationDelay: `${i * 50}ms` }}
+                style={{ ['--i' as string]: i }}
                 disabled={locked}
                 onClick={() => open(i)}
+                initial={{ opacity: 0, y: 14, scale: 0.92 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ delay: 0.05 * i, type: 'spring', stiffness: 360, damping: 22 }}
+                whileTap={{ scale: 0.97 }}
               >
                 <span className="flip-card-inner">
                   <span className="flip-card-face back" aria-hidden>
@@ -62,7 +67,7 @@ export function RevealPlay({ question, onResult }: Props) {
                   </span>
                   <span className="flip-card-face front">{c.label}</span>
                 </span>
-              </button>
+              </motion.button>
             )
           })}
         </div>

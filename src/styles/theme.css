@@ -1002,6 +1002,11 @@ a {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+  align-items: stretch;
+}
+
+.pipe-options .pipe-chip {
+  flex: 1 1 auto;
 }
 
 .pipe-chip {
@@ -1338,6 +1343,10 @@ a {
   border-radius: var(--radius-cut);
   border: 0;
   cursor: pointer;
+}
+
+.auth-row--logout {
+  justify-content: flex-end;
 }
 
 .auth-row {

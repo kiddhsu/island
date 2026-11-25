@@ -8,6 +8,10 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
+      workbox: {
+        // three／玩法動畫包體較大；略提高 precache 上限
+        maximumFileSizeToCacheInBytes: 3 * 1024 * 1024,
+      },
       includeAssets: [
         'favicon.svg',
         'apple-touch-icon.png',

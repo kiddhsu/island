@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react'
+import { lazy, Suspense, useCallback, useMemo, useState } from 'react'
 import { Link, Navigate, useNavigate, useParams } from 'react-router-dom'
 import {
   CelebrationProvider,
@@ -7,10 +7,13 @@ import {
 import { useAuthProfile } from '../context/AuthProfileContext'
 import { getBank } from '../data/banks'
 import { getIsland } from '../data/islands'
-import { PlayStage } from '../games/play/PlayStage'
 import { loadProgress, recordRoundResult } from '../lib/progress'
 import { playSfx } from '../lib/sfx'
 import { drawRound, drawRoundDiversePrompt } from '../lib/shuffle'
+
+const PlayStage = lazy(() =>
+  import('../games/play/PlayStage').then((m) => ({ default: m.PlayStage })),
+)
 
 const ROUND_SIZE = 8
 
@@ -220,12 +223,14 @@ function GameSessionInner() {
         </div>
       </header>
 
-      <PlayStage
-        mode={island.playMode}
-        question={q}
-        onResult={onResult}
-        introCountdown={index === 0}
-      />
+      <Suspense fallback={<p className="play-help">關卡載入中…</p>}>
+        <PlayStage
+          mode={island.playMode}
+          question={q}
+          onResult={onResult}
+          introCountdown={index === 0}
+        />
+      </Suspense>
       <p className="play-help session-help">{island.howToPlay}</p>
     </div>
   )

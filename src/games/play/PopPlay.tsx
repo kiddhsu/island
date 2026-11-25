@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
+import { motion } from 'motion/react'
 import type { ChoiceQuestion } from '../../types'
 import { playSfx } from '../../lib/sfx'
 import { pickPlayChoices } from './choiceUtils'
@@ -43,7 +44,7 @@ export function PopPlay({ question, onResult, introCountdown = false }: Props) {
     const left = 18 + (i % 4) * 20
     setBurst({ ok, x: `${left}%`, y: '42%' })
     playSfx(ok ? 'correct' : 'wrong', ok ? 0.55 : 0.45)
-    window.setTimeout(() => onResult(ok), 750)
+    window.setTimeout(() => onResult(ok), 780)
   }
 
   return (
@@ -54,17 +55,30 @@ export function PopPlay({ question, onResult, introCountdown = false }: Props) {
           {ready ? '點破正確的氣球！' : '先看清楚再點'}
         </p>
         {balloons.map((b, i) => (
-          <button
+          <motion.button
             key={`${question.id}-pop-${i}-${b.label}`}
             type="button"
             className={`pop-balloon n${i} ${gone === i ? (b.correct ? 'is-ok' : 'is-bad') : ''}`}
             style={{ ['--i' as string]: i }}
             disabled={!ready || locked}
             onClick={() => pick(i)}
+            initial={{ opacity: 0, scale: 0.6, y: 24 }}
+            animate={
+              gone === i
+                ? { opacity: 0, scale: 1.35, y: -20 }
+                : { opacity: 1, scale: 1, y: 0 }
+            }
+            transition={{
+              delay: gone === i ? 0 : 0.06 * i,
+              type: 'spring',
+              stiffness: 340,
+              damping: 18,
+            }}
+            whileTap={{ scale: 1.08 }}
           >
             <span className="pop-balloon-body">{b.label}</span>
             <span className="pop-balloon-string" />
-          </button>
+          </motion.button>
         ))}
         {burst ? <PlayBurst ok={burst.ok} x={burst.x} y={burst.y} /> : null}
         {countdown ? (

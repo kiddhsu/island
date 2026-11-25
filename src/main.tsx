@@ -7,6 +7,7 @@ import './styles/tokens.css'
 import './styles/app.css'
 import './styles/theme.css'
 import './styles/nes.css'
+import './styles/play-ux.css'
 
 document.body.classList.add('app-world')
 preloadSfx()

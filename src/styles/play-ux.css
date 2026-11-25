@@ -1,0 +1,500 @@
+/* 關卡互動動效（不改判定邏輯；尊重減少動態） */
+
+.play-wrap {
+  --play-pop: cubic-bezier(0.22, 1.2, 0.36, 1);
+}
+
+.play-prompt {
+  animation: play-fade-up 0.35s var(--play-pop) both;
+}
+
+.play-pick-panel {
+  animation: play-fade-up 0.4s var(--play-pop) 0.06s both;
+}
+
+.play-pick-btn,
+.pipe-chip,
+.bins-chip,
+.ctrl-pad,
+.gauge-mark,
+.jump-platform,
+.fork-choice {
+  transition:
+    transform 0.18s var(--play-pop),
+    box-shadow 0.18s ease,
+    background 0.2s ease,
+    border-color 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.play-pick-btn:not(:disabled):active,
+.pipe-chip:not(:disabled):active,
+.bins-chip:not(:disabled):active,
+.ctrl-pad:not(:disabled):active,
+.gauge-mark:not(:disabled):active,
+.jump-platform:not(:disabled):active,
+.fork-choice:not(:disabled):active {
+  transform: scale(0.96) translateY(1px);
+}
+
+.play-pick-btn.is-ok,
+.pipe-chip.is-ok,
+.bins-chip.is-ok {
+  animation: play-ok-pulse 0.55s var(--play-pop);
+}
+
+.play-pick-btn.is-bad,
+.bins-chip.is-bad {
+  animation: play-bad-shake 0.45s ease;
+}
+
+/* —— 探險小人 —— */
+.play-hero {
+  width: 64px;
+  height: 84px;
+  filter: drop-shadow(0 6px 10px rgba(42, 36, 56, 0.18));
+  transition:
+    left 0.45s var(--play-pop),
+    bottom 0.45s var(--play-pop),
+    transform 0.35s var(--play-pop);
+}
+
+.play-hero.is-leap .play-hero-figure {
+  animation: hero-leap 0.55s var(--play-pop);
+}
+
+.play-hero.is-fall .play-hero-figure {
+  animation: hero-fall 0.65s ease-in both;
+}
+
+.play-hero.is-cheer .play-hero-figure {
+  animation: hero-cheer 0.6s var(--play-pop);
+}
+
+.play-hero.is-oops .play-hero-figure {
+  animation: hero-oops 0.5s ease;
+}
+
+.play-hero-shadow {
+  width: 40px;
+  height: 12px;
+  background: radial-gradient(ellipse, rgba(42, 36, 56, 0.28), transparent 70%);
+  border-radius: 50%;
+  bottom: 0;
+}
+
+.play-hero-hat {
+  left: 16px;
+  top: 0;
+  width: 32px;
+  height: 14px;
+  border-radius: 14px 14px 4px 4px;
+  background: linear-gradient(180deg, var(--mv-coral), color-mix(in srgb, var(--mv-coral) 70%, var(--mv-ink)));
+}
+
+.play-hero-hat::after {
+  left: -6px;
+  bottom: -3px;
+  width: 44px;
+  height: 8px;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--mv-coral) 75%, var(--mv-ink));
+}
+
+.play-hero-head {
+  left: 15px;
+  top: 12px;
+  width: 34px;
+  height: 34px;
+  border-radius: 14px;
+  background: linear-gradient(
+    160deg,
+    color-mix(in srgb, var(--mv-paper) 85%, white),
+    var(--sand)
+  );
+  border: 2px solid color-mix(in srgb, var(--mv-stone) 70%, white);
+}
+
+.play-hero-eye {
+  top: 12px;
+  width: 6px;
+  height: 8px;
+  border-radius: 3px;
+  background: var(--mv-ink);
+  box-shadow: 1px -1px 0 1px color-mix(in srgb, var(--mv-paper) 80%, white);
+}
+
+.play-hero-eye.left {
+  left: 8px;
+}
+
+.play-hero-eye.right {
+  right: 8px;
+}
+
+.play-hero.is-oops .play-hero-eye {
+  height: 3px;
+  top: 14px;
+  border-radius: 2px;
+}
+
+.play-hero-cheek {
+  position: absolute;
+  top: 18px;
+  width: 7px;
+  height: 5px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--mv-coral) 45%, transparent);
+}
+
+.play-hero-cheek.left {
+  left: 3px;
+}
+
+.play-hero-cheek.right {
+  right: 3px;
+}
+
+.play-hero-smile {
+  left: 11px;
+  bottom: 7px;
+  width: 12px;
+  height: 6px;
+  border: 2.5px solid var(--mv-coral);
+  border-top: 0;
+  border-radius: 0 0 12px 12px;
+}
+
+.play-hero.is-cheer .play-hero-smile {
+  width: 14px;
+  left: 10px;
+  border-color: var(--mv-mint);
+}
+
+.play-hero.is-oops .play-hero-smile {
+  width: 10px;
+  height: 4px;
+  border-radius: 0;
+  border: 0;
+  border-top: 2.5px solid var(--mv-coral);
+  bottom: 8px;
+}
+
+.play-hero-torso {
+  left: 18px;
+  top: 44px;
+  width: 28px;
+  height: 22px;
+  border-radius: 10px 10px 8px 8px;
+  background: linear-gradient(
+    160deg,
+    color-mix(in srgb, var(--accent) 70%, white),
+    color-mix(in srgb, var(--deep) 55%, var(--accent))
+  );
+  border: 2px solid color-mix(in srgb, var(--mv-paper) 70%, white);
+}
+
+.play-hero-scarf {
+  position: absolute;
+  left: 20px;
+  top: 42px;
+  width: 24px;
+  height: 8px;
+  border-radius: 6px;
+  background: var(--mv-plum);
+  z-index: 2;
+}
+
+.play-hero-arm {
+  top: 46px;
+  width: 9px;
+  height: 18px;
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--sand) 85%, var(--mv-paper));
+  border: 1px solid color-mix(in srgb, var(--mv-stone) 75%, white);
+}
+
+.play-hero-leg {
+  bottom: 2px;
+  width: 10px;
+  height: 16px;
+  border-radius: 5px 5px 4px 4px;
+  background: color-mix(in srgb, var(--deep) 75%, var(--mv-ink));
+  border: 1px solid color-mix(in srgb, var(--mv-stone) 55%, white);
+}
+
+.play-hero--catch .play-hero-arm.left {
+  transform: rotate(-48deg);
+}
+
+.play-hero--catch .play-hero-arm.right {
+  transform: rotate(48deg);
+}
+
+.play-hero--jump.is-leap .play-hero-arm.left {
+  transform: rotate(-70deg);
+}
+
+.play-hero--jump.is-leap .play-hero-arm.right {
+  transform: rotate(70deg);
+}
+
+/* —— 背包飛入 —— */
+.pack-fly {
+  position: absolute;
+  left: 50%;
+  bottom: 8%;
+  z-index: 8;
+  transform: translateX(-50%);
+  padding: 10px 14px;
+  border-radius: var(--radius-cut);
+  background: color-mix(in srgb, var(--mv-paper) 96%, white);
+  border: 1px solid color-mix(in srgb, var(--mv-stone) 80%, white);
+  font-weight: 800;
+  box-shadow: var(--mv-shadow);
+  pointer-events: none;
+  animation: pack-fly-in 0.55s var(--play-pop) forwards;
+}
+
+.pack-bag.is-catching {
+  animation: pack-catch 0.45s var(--play-pop);
+}
+
+.pack-bag-item {
+  animation: play-pop-in 0.35s var(--play-pop) both;
+}
+
+/* —— 水管推進 —— */
+.pipe-slot {
+  transition:
+    transform 0.25s var(--play-pop),
+    background 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.pipe-slot.is-filled {
+  animation: pipe-fill-pop 0.4s var(--play-pop);
+}
+
+.pipe-slot.is-next {
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--mv-coral) 45%, transparent);
+}
+
+.pipe-chip.is-leaving {
+  animation: pipe-chip-leave 0.28s ease forwards;
+}
+
+/* —— 分類桶投擲 —— */
+.bins-chip.is-tossing {
+  animation: bins-toss 0.5s var(--play-pop) forwards;
+  z-index: 6;
+}
+
+.bins-target.is-catching .bins-target-lid {
+  animation: bins-lid 0.45s var(--play-pop);
+}
+
+/* —— 氣球 —— */
+.pop-balloon {
+  transition: transform 0.2s var(--play-pop);
+}
+
+.pop-balloon:not(:disabled):hover {
+  transform: scale(1.06);
+}
+
+/* —— 翻牌入場 —— */
+.flip-card {
+  animation: play-fade-up 0.35s var(--play-pop) both;
+  animation-delay: calc(var(--i, 0) * 45ms);
+}
+
+@keyframes play-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes play-pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes play-ok-pulse {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes play-bad-shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+@keyframes hero-leap {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  40% {
+    transform: translateY(-18px) scale(1.05, 0.95);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes hero-fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    transform: translateY(12px) rotate(12deg);
+  }
+}
+
+@keyframes hero-cheer {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes hero-oops {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  30% {
+    transform: translateX(-4px);
+  }
+  60% {
+    transform: translateX(4px);
+  }
+}
+
+@keyframes pack-fly-in {
+  0% {
+    opacity: 0.2;
+    transform: translateX(-50%) translateY(40px) scale(0.85);
+  }
+  55% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-70px) scale(1.05);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-110px) scale(0.7);
+  }
+}
+
+@keyframes pack-catch {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.08);
+  }
+}
+
+@keyframes pipe-fill-pop {
+  0% {
+    transform: scale(0.94);
+  }
+  50% {
+    transform: scale(1.04);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes pipe-chip-leave {
+  to {
+    opacity: 0;
+    transform: scale(0.7) translateY(-12px);
+  }
+}
+
+@keyframes bins-toss {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  70% {
+    transform: translateY(72px) scale(0.85);
+    opacity: 0.85;
+  }
+  100% {
+    transform: translateY(96px) scale(0.5);
+    opacity: 0;
+  }
+}
+
+@keyframes bins-lid {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .play-prompt,
+  .play-pick-panel,
+  .flip-card,
+  .pack-fly,
+  .pack-bag.is-catching,
+  .pack-bag-item,
+  .pipe-slot.is-filled,
+  .pipe-chip.is-leaving,
+  .bins-chip.is-tossing,
+  .bins-target.is-catching .bins-target-lid,
+  .play-hero.is-leap .play-hero-figure,
+  .play-hero.is-fall .play-hero-figure,
+  .play-hero.is-cheer .play-hero-figure,
+  .play-hero.is-oops .play-hero-figure,
+  .play-pick-btn.is-ok,
+  .play-pick-btn.is-bad {
+    animation: none !important;
+  }
+
+  .play-hero,
+  .play-pick-btn,
+  .pipe-chip,
+  .bins-chip,
+  .jump-platform,
+  .fork-choice {
+    transition: none !important;
+  }
+}

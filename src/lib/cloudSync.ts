@@ -17,6 +17,8 @@ import {
 import type { PlayerProfile } from './profiles'
 import {
   DEFAULT_PROFILE_NAME,
+  resolveProfileColor,
+  resolveProfileMark,
   loadProfileStore,
   progressKeyForProfile,
   replaceLocalProfiles,
@@ -40,8 +42,8 @@ export async function pullCloudProfiles(db: Firestore, uid: string) {
     profiles.push({
       id: d.id,
       name: data.name || '使用者',
-      color: data.color || '#9bb8e8',
-      emoji: data.emoji || '◆',
+      color: resolveProfileColor(data.color),
+      emoji: resolveProfileMark(data.emoji),
       grade: data.grade === 2 ? 2 : 1,
       isDefault: data.isDefault === true,
       createdAt: data.createdAt || Date.now(),

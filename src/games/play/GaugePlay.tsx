@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
+import { motion } from 'motion/react'
 import type { ChoiceQuestion } from '../../types'
 import { playSfx } from '../../lib/sfx'
 import { pickPlayChoices } from './choiceUtils'
@@ -30,7 +31,7 @@ export function GaugePlay({ question, onResult, introCountdown = false }: Props)
   }, [question.id])
 
   useEffect(() => {
-    if (!ready) return
+    if (!ready || locked) return
     const timer = window.setInterval(() => {
       setNeedle((n) => (n >= 92 ? 8 : n + 2.2))
     }, 40)
@@ -43,8 +44,10 @@ export function GaugePlay({ question, onResult, introCountdown = false }: Props)
     setPicked(i)
     const ok = marks[i]?.correct ?? false
     setBurst(ok)
+    // 指針停在選中刻度附近（純表現）
+    setNeedle(14 + i * 24)
     playSfx(ok ? 'correct' : 'wrong', ok ? 0.55 : 0.45)
-    window.setTimeout(() => onResult(ok), 750)
+    window.setTimeout(() => onResult(ok), 780)
   }
 
   return (
@@ -56,11 +59,19 @@ export function GaugePlay({ question, onResult, introCountdown = false }: Props)
         </p>
         <div className="gauge-rail" aria-hidden>
           <div className="gauge-track" />
-          <div className="gauge-needle" style={{ left: `${needle}%` }} />
+          <motion.div
+            className="gauge-needle"
+            animate={{ left: `${needle}%` }}
+            transition={
+              locked
+                ? { type: 'spring', stiffness: 280, damping: 20 }
+                : { duration: 0.04, ease: 'linear' }
+            }
+          />
         </div>
         <div className="gauge-marks">
           {marks.map((m, i) => (
-            <button
+            <motion.button
               key={`${question.id}-g-${i}`}
               type="button"
               className={`gauge-mark ${
@@ -69,9 +80,13 @@ export function GaugePlay({ question, onResult, introCountdown = false }: Props)
               style={{ left: `${14 + i * 24}%` }}
               disabled={!ready || locked}
               onClick={() => pick(i)}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.05 * i, type: 'spring', stiffness: 360, damping: 22 }}
+              whileTap={{ scale: 0.96 }}
             >
               {m.label}
-            </button>
+            </motion.button>
           ))}
         </div>
         {burst != null ? <PlayBurst ok={burst} y="36%" /> : null}

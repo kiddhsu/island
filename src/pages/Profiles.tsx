@@ -83,10 +83,9 @@ export function Profiles() {
         </header>
 
         {cloudEnabled ? (
-          <section className="app-card" style={{ marginBottom: 12 }}>
+          <section className="app-card auth-card" style={{ marginBottom: 12 }}>
             {user ? (
-              <div className="auth-row">
-                <span>已登入：{user.displayName || user.email}</span>
+              <div className="auth-row auth-row--logout">
                 <button
                   type="button"
                   className="app-btn soft"
@@ -131,7 +130,11 @@ export function Profiles() {
                 disabled={busy}
                 onClick={() => void onSelect(p.id)}
               >
-                <span className="avatar" style={{ background: p.color }}>
+                <span
+                  className="avatar"
+                  style={{ background: p.color }}
+                  aria-hidden
+                >
                   {p.emoji}
                 </span>
                 <strong>{p.name}</strong>

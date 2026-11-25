@@ -1,10 +1,11 @@
 import { useEffect, useMemo, useState } from 'react'
+import { motion } from 'motion/react'
 import type { ChoiceQuestion } from '../../types'
 import { playSfx } from '../../lib/sfx'
 import { pickPlayChoices } from './choiceUtils'
 import { PlayBurst } from './PlayBurst'
 import { PlayCountdown } from './PlayCountdown'
-import { PlayHero } from './PlayHero'
+import { PlayHero, type HeroMood } from './PlayHero'
 import { usePlayReady } from './usePlayReady'
 import type { PlayResultHandler } from './types'
 
@@ -22,12 +23,16 @@ export function TrafficPlay({ question, onResult, introCountdown = false }: Prop
   const [locked, setLocked] = useState(false)
   const [flash, setFlash] = useState<number | null>(null)
   const [burst, setBurst] = useState<boolean | null>(null)
+  const [mood, setMood] = useState<HeroMood>('idle')
+  const [heroBottom, setHeroBottom] = useState('18%')
 
   useEffect(() => {
     setLocked(false)
     setFlash(null)
     setBurst(null)
     setLight('red')
+    setMood('idle')
+    setHeroBottom('18%')
   }, [question.id])
 
   useEffect(() => {
@@ -47,8 +52,10 @@ export function TrafficPlay({ question, onResult, introCountdown = false }: Prop
     setFlash(i)
     const ok = roads[i]?.correct ?? false
     setBurst(ok)
+    setMood(ok ? 'cheer' : 'oops')
+    if (ok) setHeroBottom('28%')
     playSfx(ok ? 'correct' : 'wrong', ok ? 0.55 : 0.45)
-    window.setTimeout(() => onResult(ok), 750)
+    window.setTimeout(() => onResult(ok), 780)
   }
 
   const busy = !ready || locked
@@ -66,7 +73,11 @@ export function TrafficPlay({ question, onResult, introCountdown = false }: Prop
           {ready ? '選最安全的做法過馬路' : '先讀題，燈亮再選'}
         </p>
         <div className="traffic-crosswalk" />
-        <PlayHero pose="fork" style={{ left: '50%', bottom: '18%' }} />
+        <PlayHero
+          pose="fork"
+          mood={mood}
+          style={{ left: '50%', bottom: heroBottom }}
+        />
         {burst != null ? <PlayBurst ok={burst} y="48%" /> : null}
         {countdown ? (
           <PlayCountdown resetKey={question.id} onReady={onReady} />
@@ -75,7 +86,7 @@ export function TrafficPlay({ question, onResult, introCountdown = false }: Prop
       <div className="play-pick-panel">
         <div className="play-pick-grid cols-3">
           {roads.map((r, i) => (
-            <button
+            <motion.button
               key={`${question.id}-tr-${i}`}
               type="button"
               className={`play-pick-btn ${
@@ -83,9 +94,13 @@ export function TrafficPlay({ question, onResult, introCountdown = false }: Prop
               }`}
               disabled={busy}
               onClick={() => pick(i)}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.05 * i, type: 'spring', stiffness: 380, damping: 24 }}
+              whileTap={{ scale: 0.96 }}
             >
               {r.label}
-            </button>
+            </motion.button>
           ))}
         </div>
       </div>

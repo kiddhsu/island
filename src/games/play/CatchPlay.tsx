@@ -10,7 +10,7 @@ import { playSfx } from '../../lib/sfx'
 import { pickPlayChoices } from './choiceUtils'
 import { PlayBurst } from './PlayBurst'
 import { PlayCountdown } from './PlayCountdown'
-import { PlayHero } from './PlayHero'
+import { PlayHero, type HeroMood } from './PlayHero'
 import { usePlayReady } from './usePlayReady'
 import type { PlayResultHandler } from './types'
 
@@ -36,6 +36,7 @@ export function CatchPlay({ question, onResult, introCountdown = false }: Props)
   const [burst, setBurst] = useState<{ ok: boolean; x: string; y: string } | null>(
     null,
   )
+  const [mood, setMood] = useState<HeroMood>('idle')
   const ended = useRef(false)
   const dragging = useRef(false)
   const stageRef = useRef<HTMLDivElement>(null)
@@ -49,6 +50,7 @@ export function CatchPlay({ question, onResult, introCountdown = false }: Props)
     ended.current = false
     setLocked(false)
     setBurst(null)
+    setMood('idle')
     setHeroX(50)
     setItems(
       pack.map((p, i) => ({
@@ -75,13 +77,14 @@ export function CatchPlay({ question, onResult, introCountdown = false }: Props)
     ended.current = true
     setLocked(true)
     dragging.current = false
+    setMood(ok ? 'cheer' : 'oops')
     setBurst({
       ok,
       x: `${x}%`,
       y: `${Math.min(78, Math.max(28, y))}%`,
     })
     playSfx(ok ? 'correct' : 'wrong', ok ? 0.55 : 0.45)
-    window.setTimeout(() => onResultRef.current(ok), ok ? 700 : 750)
+    window.setTimeout(() => onResultRef.current(ok), ok ? 720 : 780)
   }
 
   useEffect(() => {
@@ -184,7 +187,8 @@ export function CatchPlay({ question, onResult, introCountdown = false }: Props)
         ))}
         <PlayHero
           pose="catch"
-          style={{ left: `calc(${heroX}% - 28px)` }}
+          mood={mood}
+          style={{ left: `calc(${heroX}% - 32px)` }}
         />
         {burst ? <PlayBurst ok={burst.ok} x={burst.x} y={burst.y} /> : null}
         {countdown ? (

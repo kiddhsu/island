@@ -1,10 +1,11 @@
 import { useMemo, useState } from 'react'
+import { motion } from 'motion/react'
 import type { ChoiceQuestion } from '../../types'
 import { playSfx } from '../../lib/sfx'
 import { pickPlayChoices } from './choiceUtils'
 import { PlayBurst } from './PlayBurst'
 import { PlayCountdown } from './PlayCountdown'
-import { PlayHero } from './PlayHero'
+import { PlayHero, type HeroMood } from './PlayHero'
 import { usePlayReady } from './usePlayReady'
 import type { PlayResultHandler } from './types'
 
@@ -29,6 +30,7 @@ export function JumpPlay({ question, onResult, introCountdown = false }: Props) 
 
   const [heroLeft, setHeroLeft] = useState('50%')
   const [heroBottom, setHeroBottom] = useState('28%')
+  const [mood, setMood] = useState<HeroMood>('idle')
   const [flash, setFlash] = useState<number | null>(null)
   const [locked, setLocked] = useState(false)
   const [burst, setBurst] = useState<{ ok: boolean; x: string; y: string } | null>(
@@ -40,8 +42,9 @@ export function JumpPlay({ question, onResult, introCountdown = false }: Props) 
     if (busy) return
     setLocked(true)
     const slot = slots[i]!
+    setMood('leap')
     setHeroLeft(slot.mid)
-    setHeroBottom('38%')
+    setHeroBottom('42%')
     playSfx('tap', 0.35)
     window.setTimeout(() => {
       setFlash(i)
@@ -49,14 +52,16 @@ export function JumpPlay({ question, onResult, introCountdown = false }: Props) 
       setBurst({ ok, x: slot.mid, y: '36%' })
       if (ok) {
         playSfx('correct', 0.55)
-        setHeroBottom('48%')
-        window.setTimeout(() => onResult(true), 750)
+        setMood('cheer')
+        setHeroBottom('50%')
+        window.setTimeout(() => onResult(true), 820)
       } else {
         playSfx('wrong', 0.45)
+        setMood('fall')
         setHeroBottom('8%')
-        window.setTimeout(() => onResult(false), 800)
+        window.setTimeout(() => onResult(false), 880)
       }
-    }, 280)
+    }, 320)
   }
 
   return (
@@ -68,10 +73,11 @@ export function JumpPlay({ question, onResult, introCountdown = false }: Props) 
         </p>
         <PlayHero
           pose="jump"
+          mood={mood}
           style={{ left: heroLeft, bottom: heroBottom }}
         />
         {slots.map((s, i) => (
-          <button
+          <motion.button
             key={`${question.id}-${i}-${s.label}`}
             type="button"
             className={`jump-platform ${
@@ -80,9 +86,13 @@ export function JumpPlay({ question, onResult, introCountdown = false }: Props) 
             style={{ left: s.left, width: s.width, minWidth: s.width }}
             disabled={busy}
             onClick={() => jumpTo(i)}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.04 * i, type: 'spring', stiffness: 360, damping: 22 }}
+            whileTap={{ scale: 0.97 }}
           >
             {s.label}
-          </button>
+          </motion.button>
         ))}
         {burst ? <PlayBurst ok={burst.ok} x={burst.x} y={burst.y} /> : null}
         {countdown ? (
