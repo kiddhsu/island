@@ -346,7 +346,7 @@ function buildReading(grade) {
   return qs.slice(0, 45)
 }
 
-// —— 數學數感 ——
+// —— 加減／位值 ——
 function buildNumber(grade) {
   const qs = []
   let n = 0
@@ -438,7 +438,7 @@ function buildNumber(grade) {
   return qs.slice(0, 55)
 }
 
-// —— 量尺 ——
+// —— 時鐘／時間 ——
 function buildMeasure(grade) {
   const qs = []
   let n = 0

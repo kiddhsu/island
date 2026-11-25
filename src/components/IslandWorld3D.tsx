@@ -121,14 +121,10 @@ function ThemeDecor({
   }
   if (id === 'measure') {
     return (
-      <ThreeToneBox
-        args={[0.42, 0.07, 0.07]}
-        position={[0.18, 1.1, 0.12]}
-        rotation={[0, 0, 0.35]}
-        top={top}
-        left={left}
-        right={left}
-      />
+      <mesh position={[0, 1.18, 0]} rotation={[Math.PI / 2, 0, 0]}>
+        <cylinderGeometry args={[0.16, 0.16, 0.05, 6]} />
+        <ToneMat color={top} />
+      </mesh>
     )
   }
   if (id === 'safety') {

@@ -658,5 +658,29 @@
       "4"
     ],
     "answerIndex": 3
+  },
+  {
+    "id": "number-2-money-49",
+    "engine": "choice",
+    "prompt": "10 元＋5 元＝多少元？",
+    "choices": [
+      "10",
+      "15",
+      "5",
+      "10"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "number-2-money-50",
+    "engine": "choice",
+    "prompt": "50 元＋10 元＝多少元？",
+    "choices": [
+      "10",
+      "50",
+      "70",
+      "60"
+    ],
+    "answerIndex": 3
   }
 ]

@@ -34,5 +34,10 @@ const BANKS: Record<IslandId, Record<Grade, Question[]>> = {
 }
 
 export function getBank(islandId: IslandId, grade: Grade): Question[] {
-  return BANKS[islandId][grade] ?? []
+  const bank = BANKS[islandId][grade] ?? []
+  // 時鐘島只抽時間題（錢幣／形狀已併入加減島題庫）
+  if (islandId === 'measure') {
+    return bank.filter((q) => q.id.includes('-time-'))
+  }
+  return bank
 }

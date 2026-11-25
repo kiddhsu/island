@@ -5,7 +5,9 @@ venv/
 node_modules/
 __pycache__/
 *.log
-.cursor/
+.cursor/*
+!.cursor/rules/
+!.cursor/rules/**
 dist/
 .DS_Store
 *.local

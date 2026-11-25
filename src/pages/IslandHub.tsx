@@ -10,7 +10,7 @@ const MODE_LABEL: Record<string, string> = {
   fork: '岔路冒險',
   flip: '翻牌配對',
   pipe: '水管排序',
-  gauge: '量尺點選',
+  clock: '鐘面點選',
   traffic: '紅綠燈過關',
   bins: '分類投放',
   pack: '背包收拾',

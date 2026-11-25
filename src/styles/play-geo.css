@@ -375,7 +375,7 @@
   box-shadow: 4px 5px 0 color-mix(in srgb, var(--mv-ink) 10%, transparent);
 }
 
-/* 岔路路牌：切角石板；數感平台改由 theme 三面體造型 */
+/* 岔路路牌：切角石板；加減島平台改由 theme 三面體造型 */
 .fork-choice {
   border-radius: 0;
   clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));

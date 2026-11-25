@@ -1589,7 +1589,7 @@ a {
   font-weight: 700;
 }
 
-/* ---- 新玩法：量尺 / 紅綠燈 / 分類桶 / 背包 / 氣球 ---- */
+/* ---- 新玩法：時鐘 / 紅綠燈 / 分類桶 / 背包 / 氣球 ---- */
 .pop-stage {
   position: relative;
   background:
@@ -2026,84 +2026,235 @@ a {
   z-index: 1;
 }
 
-.gauge-stage {
-  background: transparent;
+.clock-stage {
+  display: grid;
+  place-items: center;
+  padding: 36px 12px 20px;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--soft) 40%, var(--mv-sky-1)) 0%,
+      transparent 48%,
+      color-mix(in srgb, var(--deep) 12%, transparent) 78%,
+      color-mix(in srgb, var(--mv-stone) 35%, transparent) 100%
+    );
 }
 
-.gauge-rail {
+.clock-face {
+  position: relative;
+  width: min(58vw, 228px);
+  aspect-ratio: 1;
+  z-index: 2;
+  margin-bottom: 18px;
+}
+
+/* 階地底座：柔霧幾何量體，不是懸空圓鐘 */
+.clock-pedestal {
   position: absolute;
-  left: 8%;
-  right: 8%;
-  top: 38%;
-  height: 18px;
+  left: 12%;
+  right: 12%;
+  bottom: -18%;
+  height: 28%;
+  background: linear-gradient(
+    160deg,
+    color-mix(in srgb, var(--accent) 40%, var(--mv-paper)) 0 42%,
+    color-mix(in srgb, var(--deep) 60%, var(--accent)) 42% 100%
+  );
+  clip-path: polygon(8% 0, 92% 0, 100% 100%, 0 100%);
+  box-shadow: 5px 6px 0 color-mix(in srgb, var(--mv-ink) 10%, transparent);
+  z-index: 0;
 }
 
-.gauge-track {
+.clock-face-ring {
+  position: absolute;
+  inset: -8%;
+  z-index: 1;
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--mv-paper) 70%, var(--accent)) 0 40%,
+    color-mix(in srgb, var(--accent) 50%, var(--deep)) 40% 70%,
+    color-mix(in srgb, var(--deep) 75%, var(--mv-ink)) 70% 100%
+  );
+  /* 切角八角框，避免完美圓 */
+  clip-path: polygon(
+    30% 0%,
+    70% 0%,
+    100% 30%,
+    100% 70%,
+    70% 100%,
+    30% 100%,
+    0% 70%,
+    0% 30%
+  );
+  box-shadow: 7px 9px 0 color-mix(in srgb, var(--mv-ink) 11%, transparent);
+}
+
+.clock-face-disc {
   position: absolute;
   inset: 0;
-  border-radius: var(--mv-radius-sm);
-  background: color-mix(in srgb, var(--mv-paper) 88%, white);
-  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--mv-ink) 12%, transparent);
+  z-index: 2;
+  border-radius: 0;
+  clip-path: polygon(
+    28% 0%,
+    72% 0%,
+    100% 28%,
+    100% 72%,
+    72% 100%,
+    28% 100%,
+    0% 72%,
+    0% 28%
+  );
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--mv-paper) 94%, white) 0 46%,
+    color-mix(in srgb, var(--soft) 55%, var(--mv-stone)) 46% 100%
+  );
+  overflow: hidden;
 }
 
-.gauge-needle {
+.clock-face-shade-l,
+.clock-face-shade-r {
   position: absolute;
-  top: -10px;
-  width: 6px;
-  height: 38px;
-  margin-left: -3px;
-  border-radius: 4px;
-  background: var(--danger);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
 }
 
-.gauge-marks {
+.clock-face-shade-l {
+  background: linear-gradient(
+    105deg,
+    color-mix(in srgb, var(--mv-plum) 12%, transparent) 0 34%,
+    transparent 34% 100%
+  );
+}
+
+.clock-face-shade-r {
+  background: linear-gradient(
+    250deg,
+    color-mix(in srgb, var(--mv-ink) 14%, transparent) 0 36%,
+    transparent 36% 100%
+  );
+}
+
+.clock-tick {
   position: absolute;
-  left: 8%;
-  right: 8%;
-  top: 56%;
-  bottom: 8%;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 8px;
-  align-content: start;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  margin-left: -1px;
+  transform-origin: 50% 50%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.clock-tick::before {
+  content: '';
+  position: absolute;
+  top: 10%;
+  left: 0;
+  width: 100%;
+  height: 7px;
+  background: color-mix(in srgb, var(--mv-ink) 22%, transparent);
+  clip-path: polygon(20% 0, 80% 0, 100% 100%, 0 100%);
+}
+
+.clock-tick.is-major {
+  width: 4px;
+  margin-left: -2px;
+}
+
+.clock-tick.is-major::before {
+  height: 11px;
+  background: color-mix(in srgb, var(--deep) 65%, var(--accent));
+}
+
+.clock-num {
+  position: absolute;
+  z-index: 1;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: var(--deep);
+  line-height: 1;
+  min-width: 1.2em;
+  text-align: center;
+}
+
+.clock-num.n12 {
+  left: 50%;
+  top: 11%;
+  transform: translateX(-50%);
+}
+
+.clock-num.n3 {
+  right: 12%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.clock-num.n6 {
+  left: 50%;
+  bottom: 11%;
+  transform: translateX(-50%);
+}
+
+.clock-num.n9 {
+  left: 12%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* 楔形指針：幾何塊，不要細圓棒 */
+.clock-hand {
+  position: absolute;
+  left: 50%;
+  bottom: 50%;
+  transform-origin: 50% 100%;
+  border-radius: 0;
   z-index: 2;
 }
 
-@media (min-width: 480px) {
-  .gauge-marks {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
+.clock-hand.hour {
+  width: 14px;
+  height: 28%;
+  margin-left: -7px;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--accent) 45%, var(--mv-paper)) 0 35%,
+    color-mix(in srgb, var(--deep) 70%, var(--accent)) 35% 100%
+  );
+  clip-path: polygon(35% 0, 65% 0, 100% 100%, 0 100%);
 }
 
-.gauge-mark {
-  position: relative;
-  width: 100%;
-  min-height: var(--touch-lg);
-  border: 1px solid color-mix(in srgb, var(--mv-stone) 80%, white);
-  border-radius: var(--radius-cut);
-  background: color-mix(in srgb, var(--mv-paper) 94%, white);
-  color: var(--ink);
-  font-weight: 800;
-  font-size: clamp(0.78rem, 2.2vw, 0.95rem);
-  padding: 8px 6px;
-  cursor: pointer;
-  box-shadow: var(--mv-shadow);
-  touch-action: manipulation;
-  display: grid;
-  place-items: center;
-  text-align: center;
-  line-height: 1.25;
+.clock-hand.minute {
+  width: 10px;
+  height: 40%;
+  margin-left: -5px;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--mv-coral) 55%, var(--mv-paper)) 0 30%,
+    color-mix(in srgb, var(--deep) 55%, var(--mv-coral)) 30% 100%
+  );
+  clip-path: polygon(40% 0, 60% 0, 100% 100%, 0 100%);
 }
 
-.gauge-mark.is-ok {
-  background: var(--ok);
-  color: #fff;
-}
-
-.gauge-mark.is-bad {
-  background: var(--danger);
-  color: #fff;
+.clock-hub {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  margin: -7px 0 0 -7px;
+  border-radius: 0;
+  clip-path: polygon(20% 0, 80% 0, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0 80%, 0 20%);
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--mv-coral) 50%, white),
+    color-mix(in srgb, var(--deep) 60%, var(--mv-coral))
+  );
+  box-shadow: 2px 2px 0 color-mix(in srgb, var(--mv-ink) 12%, transparent);
+  z-index: 3;
 }
 
 .session-topbar {

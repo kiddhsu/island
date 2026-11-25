@@ -19,7 +19,7 @@ export type PlayMode =
   | 'fork'
   | 'flip'
   | 'pipe'
-  | 'gauge'
+  | 'clock'
   | 'traffic'
   | 'bins'
   | 'pack'

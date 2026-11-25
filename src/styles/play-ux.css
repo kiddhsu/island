@@ -15,7 +15,6 @@
 .play-pick-btn,
 .pipe-chip,
 .ctrl-pad,
-.gauge-mark,
 .jump-platform,
 .fork-choice {
   /* 不做 transform／background 過渡：與 motion whileTap、答對變色疊加會閃 */

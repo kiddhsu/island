@@ -4,7 +4,7 @@ import { BinsPlay } from './BinsPlay'
 import { CatchPlay } from './CatchPlay'
 import { FlipPlay } from './FlipPlay'
 import { ForkPlay } from './ForkPlay'
-import { GaugePlay } from './GaugePlay'
+import { ClockPlay } from './ClockPlay'
 import { JumpPlay } from './JumpPlay'
 import { PackPlay } from './PackPlay'
 import { PipePlay } from './PipePlay'
@@ -118,18 +118,18 @@ export function PlayStage({
     return <Fallback modeHint="水管" onResult={onResult} />
   }
 
-  if (mode === 'gauge') {
+  if (mode === 'clock') {
     return withChoice(
       question,
       (q) => (
-        <GaugePlay
+        <ClockPlay
           key={q.id}
           question={q}
           onResult={onResult}
           introCountdown={introCountdown}
         />
       ),
-      '量尺',
+      '時鐘',
       onResult,
     )
   }
