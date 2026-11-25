@@ -43,45 +43,34 @@ export function CatchPlay({ question, onResult, introCountdown = false }: Props)
   const onResultRef = useRef(onResult)
   onResultRef.current = onResult
 
-  const pack = useMemo(() => pickPlayChoices(question, 4), [question])
+  /** 一對一錯，兩顆一波 */
+  const pack = useMemo(() => pickPlayChoices(question, 2), [question])
   const busy = !ready || locked
 
-  /** 打亂水平航道，避免永遠左→右同一排 */
-  function shuffleLanes(count: number) {
-    const base = [14, 32, 50, 68, 84].slice(0, Math.max(count, 1))
-    while (base.length < count) base.push(20 + base.length * 15)
-    for (let i = base.length - 1; i > 0; i--) {
+  function shufflePairLanes(): [number, number] {
+    const lanes = [22, 50, 78]
+    for (let i = lanes.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1))
-      const tmp = base[i]!
-      base[i] = base[j]!
-      base[j] = tmp
+      const tmp = lanes[i]!
+      lanes[i] = lanes[j]!
+      lanes[j] = tmp
     }
-    return base
+    return [lanes[0]!, lanes[1]!]
   }
 
-  function spawnItems(
-    source: typeof pack,
-    qid: string,
-  ): Falling[] {
-    const lanes = shuffleLanes(source.length)
-    const order = source.map((_, i) => i)
-    for (let i = order.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1))
-      const tmp = order[i]!
-      order[i] = order[j]!
-      order[j] = tmp
-    }
-    return order.map((idx, wave) => {
-      const p = source[idx]!
-      return {
-        id: `${qid}-${idx}-${wave}-${Math.random().toString(36).slice(2, 6)}`,
-        label: p.label,
-        correct: p.correct,
-        x: lanes[wave] ?? 50,
-        // 錯落高度，開始後才落下
-        y: -10 - wave * 22 - Math.floor(Math.random() * 10),
-      }
-    })
+  function spawnWave(source: typeof pack, qid: string): Falling[] {
+    const [x0, x1] = shufflePairLanes()
+    const xs = [x0, x1]
+    // 垂直拉開約半屏，較少同時擠在接區
+    const ys = [-8, -52]
+    if (Math.random() > 0.5) ys.reverse()
+    return source.map((p, i) => ({
+      id: `${qid}-${i}-${Math.random().toString(36).slice(2, 6)}`,
+      label: p.label,
+      correct: p.correct,
+      x: xs[i] ?? 50,
+      y: ys[i] ?? -8,
+    }))
   }
 
   useEffect(() => {
@@ -90,13 +79,13 @@ export function CatchPlay({ question, onResult, introCountdown = false }: Props)
     setBurst(null)
     setMood('idle')
     setHeroX(50)
-    setItems(spawnItems(pack, question.id))
+    setItems(spawnWave(pack, question.id))
   }, [pack, question.id])
 
   useEffect(() => {
     if (!ready || locked) return
     const timer = window.setInterval(() => {
-      setItems((prev) => prev.map((it) => ({ ...it, y: it.y + 0.75 })))
+      setItems((prev) => prev.map((it) => ({ ...it, y: it.y + 0.8 })))
     }, 50)
     return () => window.clearInterval(timer)
   }, [ready, locked, question.id])
@@ -121,13 +110,13 @@ export function CatchPlay({ question, onResult, introCountdown = false }: Props)
 
     for (const it of items) {
       if (it.y < 72 || it.y > 92) continue
-      if (Math.abs(it.x - heroX) > 18) continue
+      if (Math.abs(it.x - heroX) > 16) continue
       finish(it.correct, it.x, it.y)
       return
     }
 
     if (items.length && items.every((it) => it.y > 108) && !ended.current) {
-      setItems(spawnItems(pack, question.id))
+      setItems(spawnWave(pack, question.id))
     }
   }, [items, heroX, locked, ready, pack, question.id])
 
@@ -194,7 +183,9 @@ export function CatchPlay({ question, onResult, introCountdown = false }: Props)
         onPointerCancel={onPointerUp}
       >
         <p className="play-stage-tip">
-          {ready ? '拖移畫面或點掉落物；也可按下方左右鍵' : '倒數結束後開始接！'}
+          {ready
+            ? '兩顆一波（一對一錯）：點對的，或移過去接'
+            : '倒數結束後開始接！'}
         </p>
         {items.map((it) => (
           <button

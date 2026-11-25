@@ -74,18 +74,15 @@ export function Profiles() {
   return (
     <div className="app-shell">
       <div className="profiles-wrap">
-        <header className="app-topbar">
+        <header className="app-topbar profiles-topbar">
           <div>
             <p className="app-kicker">學習島</p>
             <h1 className="app-heading">誰要去探險？</h1>
             <p className="app-sub">選探險家，年級會決定題庫</p>
           </div>
-        </header>
-
-        {cloudEnabled ? (
-          <section className="app-card auth-card" style={{ marginBottom: 12 }}>
-            {user ? (
-              <div className="auth-row auth-row--logout">
+          <div className="profiles-auth-inline">
+            {cloudEnabled ? (
+              user ? (
                 <button
                   type="button"
                   className="app-btn soft"
@@ -93,13 +90,11 @@ export function Profiles() {
                 >
                   登出
                 </button>
-              </div>
-            ) : (
-              <div className="auth-row">
-                <span>用 Google 登入，進度可同步到其他裝置</span>
+              ) : (
                 <button
                   type="button"
                   className="app-btn"
+                  title="用 Google 登入，進度可同步到其他裝置"
                   onClick={() =>
                     void signInWithGoogle().catch(() =>
                       setErr('登入失敗，請確認已設定 Firebase'),
@@ -108,14 +103,16 @@ export function Profiles() {
                 >
                   Google 登入
                 </button>
-              </div>
+              )
+            ) : (
+              <span className="app-muted profiles-auth-hint">本機進度</span>
             )}
-            {syncing ? <p className="app-muted">同步中…</p> : null}
-            {syncError ? <p className="error">{syncError}</p> : null}
-          </section>
-        ) : (
-          <p className="app-muted">尚未設定雲端，進度只會存在這台裝置。</p>
-        )}
+          </div>
+        </header>
+        {cloudEnabled && syncing ? (
+          <p className="app-muted">同步中…</p>
+        ) : null}
+        {cloudEnabled && syncError ? <p className="error">{syncError}</p> : null}
 
         <section className="profile-grid">
           {profiles.map((p) => (
