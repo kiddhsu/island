@@ -9,8 +9,11 @@ export type IslandMeta = {
   /** 3D 地圖極座標：角度（度）、半徑 */
   angle: number
   radius: number
+  /** 頂面／亮面 */
   accent: string
+  /** 左側面 */
   soft: string
+  /** 右側面／暗面 */
   deep: string
   playMode: PlayMode
 }
@@ -24,9 +27,9 @@ export const ISLANDS: IslandMeta[] = [
     howToPlay: '左右移動角色，接住正確答案；接到錯的會扣命。',
     angle: 210,
     radius: 4.2,
-    accent: '#2b8cff',
-    soft: '#d7ecff',
-    deep: '#0b4f9c',
+    accent: '#9bb8e8',
+    soft: '#c5d6f0',
+    deep: '#4a628a',
     playMode: 'catch',
   },
   {
@@ -37,9 +40,9 @@ export const ISLANDS: IslandMeta[] = [
     howToPlay: '一般題：點正確卡牌。配對題：翻兩張成對的牌（限 4 次失誤）。',
     angle: 245,
     radius: 4.6,
-    accent: '#f08a24',
-    soft: '#ffe6c8',
-    deep: '#9a4b05',
+    accent: '#e8a878',
+    soft: '#f2d4b8',
+    deep: '#8a5230',
     playMode: 'flip',
   },
   {
@@ -50,9 +53,9 @@ export const ISLANDS: IslandMeta[] = [
     howToPlay: '看上方故事，點左／中／右路前進。',
     angle: 280,
     radius: 4.1,
-    accent: '#2f9e5b',
-    soft: '#d9f5e4',
-    deep: '#146338',
+    accent: '#7dba92',
+    soft: '#c5e4d0',
+    deep: '#3a6b4c',
     playMode: 'fork',
   },
   {
@@ -63,9 +66,9 @@ export const ISLANDS: IslandMeta[] = [
     howToPlay: '點要跳的平台；跳對加分，跳錯掉下去。',
     angle: 315,
     radius: 4.5,
-    accent: '#e6b800',
-    soft: '#fff3b0',
-    deep: '#8a6a00',
+    accent: '#e0c46a',
+    soft: '#f0e4b0',
+    deep: '#8a7030',
     playMode: 'jump',
   },
   {
@@ -76,9 +79,9 @@ export const ISLANDS: IslandMeta[] = [
     howToPlay: '看題目後點刻度或下方答案；也可點移動中的刻度標籤。',
     angle: 350,
     radius: 4.0,
-    accent: '#1aa6a0',
-    soft: '#d4f5f3',
-    deep: '#0b6b67',
+    accent: '#6eb8b0',
+    soft: '#c2e4e0',
+    deep: '#2f6b66',
     playMode: 'gauge',
   },
   {
@@ -89,9 +92,9 @@ export const ISLANDS: IslandMeta[] = [
     howToPlay: '倒數後看燈號變化，再點最安全的做法。',
     angle: 25,
     radius: 4.4,
-    accent: '#e4572e',
-    soft: '#ffd8cc',
-    deep: '#8f2a10',
+    accent: '#e07a5f',
+    soft: '#f0c4b4',
+    deep: '#8a3a28',
     playMode: 'traffic',
   },
   {
@@ -102,9 +105,9 @@ export const ISLANDS: IslandMeta[] = [
     howToPlay: '先點正確答案，再點分類桶投入。',
     angle: 60,
     radius: 4.2,
-    accent: '#4caf50',
-    soft: '#dff5e0',
-    deep: '#1b5e20',
+    accent: '#6fbfa0',
+    soft: '#c8e8d8',
+    deep: '#2f6b52',
     playMode: 'bins',
   },
   {
@@ -115,9 +118,9 @@ export const ISLANDS: IslandMeta[] = [
     howToPlay: '依正確順序點選下一步推進。',
     angle: 95,
     radius: 3.9,
-    accent: '#00a896',
-    soft: '#d2f5ef',
-    deep: '#06685d',
+    accent: '#5eb8a8',
+    soft: '#bce8e0',
+    deep: '#2a6b60',
     playMode: 'pipe',
   },
   {
@@ -128,8 +131,8 @@ export const ISLANDS: IslandMeta[] = [
     howToPlay: '想清楚後，點正確的選項裝進背包。',
     angle: 130,
     radius: 4.3,
-    accent: '#c4a484',
-    soft: '#f3ebe1',
+    accent: '#c4a890',
+    soft: '#e8dcc8',
     deep: '#6d5238',
     playMode: 'pack',
   },
@@ -141,9 +144,9 @@ export const ISLANDS: IslandMeta[] = [
     howToPlay: '倒數後點破正確的氣球；點錯會扣命。',
     angle: 165,
     radius: 4.0,
-    accent: '#c77dff',
-    soft: '#f0e0ff',
-    deep: '#6b2d9b',
+    accent: '#b894d4',
+    soft: '#e0d0f0',
+    deep: '#5a3a7a',
     playMode: 'pop',
   },
 ]

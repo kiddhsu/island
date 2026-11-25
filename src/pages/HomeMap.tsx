@@ -26,7 +26,7 @@ export function HomeMap() {
     <div className="app-shell map-shell">
       <header className="map-topbar">
         <div>
-          <p className="map-kicker">學習島</p>
+          <p className="map-kicker">ISLAND QUEST</p>
           <h1 className="map-heading">今天想去哪一座？</h1>
           <p className="map-sub">
             {activeProfile.emoji} {activeProfile.name}・小

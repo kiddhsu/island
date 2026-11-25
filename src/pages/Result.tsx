@@ -60,6 +60,9 @@ function ResultInner() {
         ['--accent' as string]: island.accent,
         ['--soft' as string]: island.soft,
         ['--deep' as string]: island.deep,
+        ['--tone-top' as string]: island.soft,
+        ['--tone-left' as string]: island.accent,
+        ['--tone-right' as string]: island.deep,
       }}
     >
       <div className="result-wrap">

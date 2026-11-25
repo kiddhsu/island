@@ -1,7 +1,8 @@
-import { Canvas, useFrame } from '@react-three/fiber'
-import { Float, Html, Line, OrbitControls, Sky, Sparkles } from '@react-three/drei'
+import { Canvas, useThree } from '@react-three/fiber'
+import { Float, Html, Line, OrbitControls } from '@react-three/drei'
 import {
   useEffect,
+  useLayoutEffect,
   useMemo,
   useRef,
   useState,
@@ -10,6 +11,7 @@ import {
 import { useNavigate } from 'react-router-dom'
 import { ISLANDS, islandPosition, type IslandMeta } from '../data/islands'
 import { playSfx } from '../lib/sfx'
+import { ThreeToneMaterial } from './ThreeToneMaterial'
 import * as THREE from 'three'
 
 type TimeMode = 'dawn' | 'day' | 'dusk' | 'night'
@@ -20,127 +22,134 @@ const TIME_PRESETS: Record<
 > = {
   dawn: {
     label: '清晨',
-    sun: [4, 3, 6],
-    amb: 0.7,
-    fog: '#f7d6b8',
-    bg: '#f3c9a5',
+    sun: [5, 6, 5],
+    amb: 0.85,
+    fog: '#f0d8d0',
+    bg: '#e8cfc8',
   },
   day: {
     label: '白天',
-    sun: [6, 10, 4],
+    sun: [6, 8, 4],
     amb: 0.95,
-    fog: '#cfe8ff',
-    bg: '#8ec8ff',
+    fog: '#d4dce8',
+    bg: '#c5d2e4',
   },
   dusk: {
     label: '黃昏',
-    sun: [-4, 2.5, 5],
-    amb: 0.65,
-    fog: '#ffb38a',
-    bg: '#f08a5a',
+    sun: [-4, 5, 5],
+    amb: 0.75,
+    fog: '#e8c4b0',
+    bg: '#d9a890',
   },
   night: {
     label: '夜晚',
-    sun: [-2, 6, -4],
-    amb: 0.35,
-    fog: '#1a1c4b',
-    bg: '#0d1230',
+    sun: [-2, 7, -3],
+    amb: 0.55,
+    fog: '#3a3558',
+    bg: '#2a2648',
   },
 }
+
+const ISO_POS: [number, number, number] = [9.2, 9.2, 9.2]
+const ISO_TARGET: [number, number, number] = [0, 0.4, 0]
 
 const ISLAND_INDEX = Object.fromEntries(
   ISLANDS.map((island, i) => [island.id, String(i + 1).padStart(2, '0')]),
 ) as Record<string, string>
 
-function ThemeDecor({ id }: { id: IslandMeta['id'] }) {
+function ThemeDecor({
+  id,
+  top,
+  left,
+  right,
+}: {
+  id: IslandMeta['id']
+  top: string
+  left: string
+  right: string
+}) {
   if (id === 'zhuyin') {
     return (
-      <mesh position={[0.35, 0.85, 0.2]}>
-        <torusGeometry args={[0.18, 0.05, 8, 16]} />
-        <meshStandardMaterial color="#ffe08a" flatShading />
+      <mesh position={[0.28, 1.05, 0.12]} rotation={[0, 0.4, 0]}>
+        <torusGeometry args={[0.16, 0.04, 4, 12]} />
+        <ThreeToneMaterial top={top} left={left} right={right} />
       </mesh>
     )
   }
   if (id === 'chars') {
     return (
-      <mesh position={[-0.25, 0.9, 0.15]}>
-        <boxGeometry args={[0.28, 0.35, 0.08]} />
-        <meshStandardMaterial color="#fff4df" flatShading />
+      <mesh position={[-0.22, 1.08, 0.1]} rotation={[0, 0.3, 0]}>
+        <boxGeometry args={[0.26, 0.32, 0.08]} />
+        <ThreeToneMaterial top={top} left={left} right={right} />
       </mesh>
     )
   }
   if (id === 'reading') {
     return (
-      <>
-        <mesh position={[0.3, 0.75, -0.1]} rotation={[0.2, 0.4, 0]}>
-          <boxGeometry args={[0.35, 0.08, 0.28]} />
-          <meshStandardMaterial color="#7ad19a" flatShading />
-        </mesh>
-        <mesh position={[0.3, 0.86, -0.1]} rotation={[0.2, 0.4, 0]}>
-          <boxGeometry args={[0.32, 0.06, 0.25]} />
-          <meshStandardMaterial color="#fff" flatShading />
-        </mesh>
-      </>
+      <mesh position={[0.26, 0.98, -0.08]} rotation={[0.15, 0.35, 0]}>
+        <boxGeometry args={[0.34, 0.08, 0.26]} />
+        <ThreeToneMaterial top={top} left={left} right={right} />
+      </mesh>
     )
   }
   if (id === 'number') {
     return (
-      <mesh position={[0, 1.05, 0]}>
-        <octahedronGeometry args={[0.22, 0]} />
-        <meshStandardMaterial color="#ffe566" flatShading emissive="#c9a000" emissiveIntensity={0.25} />
+      <mesh position={[0, 1.2, 0]} rotation={[0, Math.PI / 4, 0]}>
+        <octahedronGeometry args={[0.2, 0]} />
+        <ThreeToneMaterial top={top} left={left} right={right} />
       </mesh>
     )
   }
   if (id === 'measure') {
     return (
-      <mesh position={[0.2, 0.95, 0.15]} rotation={[0, 0, 0.4]}>
-        <boxGeometry args={[0.45, 0.08, 0.08]} />
-        <meshStandardMaterial color="#dff" flatShading />
+      <mesh position={[0.18, 1.1, 0.12]} rotation={[0, 0, 0.35]}>
+        <boxGeometry args={[0.42, 0.07, 0.07]} />
+        <ThreeToneMaterial top={top} left={left} right={right} />
       </mesh>
     )
   }
   if (id === 'safety') {
     return (
-      <mesh position={[0, 0.95, 0]}>
-        <coneGeometry args={[0.16, 0.35, 4]} />
-        <meshStandardMaterial color="#ff5a3c" flatShading />
+      <mesh position={[0, 1.15, 0]}>
+        <coneGeometry args={[0.14, 0.32, 4]} />
+        <ThreeToneMaterial top={top} left={left} right={right} />
       </mesh>
     )
   }
   if (id === 'nature') {
     return (
       <>
-        <mesh position={[-0.25, 0.85, 0.1]}>
-          <coneGeometry args={[0.22, 0.45, 5]} />
-          <meshStandardMaterial color="#2f9e5b" flatShading />
+        <mesh position={[-0.22, 1.05, 0.08]}>
+          <coneGeometry args={[0.18, 0.4, 4]} />
+          <ThreeToneMaterial top={top} left={left} right={right} />
         </mesh>
-        <mesh position={[0.2, 0.8, -0.15]}>
-          <coneGeometry args={[0.18, 0.38, 5]} />
-          <meshStandardMaterial color="#4caf50" flatShading />
+        <mesh position={[0.2, 0.98, -0.12]}>
+          <coneGeometry args={[0.15, 0.34, 4]} />
+          <ThreeToneMaterial top={top} left={left} right={right} />
         </mesh>
       </>
     )
   }
   if (id === 'health') {
     return (
-      <mesh position={[0.15, 0.9, 0.1]}>
-        <cylinderGeometry args={[0.12, 0.12, 0.35, 8]} />
-        <meshStandardMaterial color="#7ff0df" flatShading />
+      <mesh position={[0.12, 1.08, 0.08]}>
+        <cylinderGeometry args={[0.1, 0.1, 0.32, 6]} />
+        <ThreeToneMaterial top={top} left={left} right={right} />
       </mesh>
     )
   }
   if (id === 'selfcare') {
     return (
-      <mesh position={[0, 0.88, 0.15]}>
-        <boxGeometry args={[0.32, 0.22, 0.22]} />
-        <meshStandardMaterial color="#d9b896" flatShading />
+      <mesh position={[0, 1.05, 0.12]} rotation={[0, 0.25, 0]}>
+        <boxGeometry args={[0.3, 0.2, 0.2]} />
+        <ThreeToneMaterial top={top} left={left} right={right} />
       </mesh>
     )
   }
   return (
-    <mesh position={[0.1, 0.95, 0]}>
-      <sphereGeometry args={[0.16, 8, 8]} />
-      <meshStandardMaterial color="#e7b6ff" flatShading emissive="#c77dff" emissiveIntensity={0.3} />
+    <mesh position={[0.1, 1.12, 0]} rotation={[0, Math.PI / 5, 0]}>
+      <boxGeometry args={[0.22, 0.22, 0.22]} />
+      <ThreeToneMaterial top={top} left={left} right={right} />
     </mesh>
   )
 }
@@ -159,12 +168,17 @@ function IslandMesh({
   onSelect: () => void
 }) {
   const pos = useMemo(() => islandPosition(island), [island])
-  const color = useMemo(() => new THREE.Color(island.accent), [island.accent])
-  const soft = useMemo(() => new THREE.Color(island.soft), [island.soft])
-  const sand = useMemo(() => new THREE.Color('#f0d7a8'), [])
+  const top = island.soft
+  const left = island.accent
+  const right = island.deep
+  const stoneTop = '#e8dcc8'
+  const stoneLeft = '#d4c4a8'
+  const stoneRight = '#a89070'
+  const reduceMotion =
+    typeof window !== 'undefined' &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
-  return (
-    <Float speed={1.2 + (island.angle % 40) / 40} rotationIntensity={0.12} floatIntensity={0.55}>
+  const body = (
       <group
         position={pos}
         onClick={(e) => {
@@ -178,39 +192,35 @@ function IslandMesh({
           document.body.style.cursor = 'default'
         }}
       >
-        {/* 水下倒影底座 */}
-        <mesh position={[0, -0.08, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-          <circleGeometry args={[1.25, 20]} />
-          <meshStandardMaterial color={color} transparent opacity={0.22} />
+        <mesh position={[0, -0.06, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+          <circleGeometry args={[1.15, 6]} />
+          <meshBasicMaterial color={left} transparent opacity={0.18} />
         </mesh>
-        <mesh position={[0, 0.08, 0]} castShadow receiveShadow>
-          <cylinderGeometry args={[1.05, 1.35, 0.35, 7]} />
-          <meshStandardMaterial color={sand} flatShading />
+        {/* 階台底座 */}
+        <mesh position={[0, 0.12, 0]} castShadow receiveShadow>
+          <boxGeometry args={[1.7, 0.28, 1.7]} />
+          <ThreeToneMaterial top={stoneTop} left={stoneLeft} right={stoneRight} />
         </mesh>
-        <mesh position={[0, 0.38, 0]} castShadow>
-          <cylinderGeometry args={[0.85, 1.05, 0.42, 6]} />
-          <meshStandardMaterial color={color} flatShading />
+        <mesh position={[0, 0.42, 0]} castShadow>
+          <boxGeometry args={[1.25, 0.36, 1.25]} />
+          <ThreeToneMaterial top={top} left={left} right={right} />
         </mesh>
-        <mesh position={[0, 0.72, 0]} castShadow>
-          <icosahedronGeometry args={[0.48, 0]} />
-          <meshStandardMaterial color={soft} flatShading />
+        <mesh position={[0, 0.78, 0]} castShadow rotation={[0, Math.PI / 8, 0]}>
+          <boxGeometry args={[0.78, 0.42, 0.78]} />
+          <ThreeToneMaterial top={top} left={left} right={right} />
         </mesh>
-        <ThemeDecor id={island.id} />
+        <ThemeDecor id={island.id} top={top} left={left} right={right} />
         {selected ? (
-          <mesh position={[0, 1.45, 0]}>
-            <sphereGeometry args={[0.12, 10, 10]} />
-            <meshStandardMaterial
-              color="#f8d878"
-              emissive="#f8d878"
-              emissiveIntensity={1}
-            />
+          <mesh position={[0, 1.55, 0]}>
+            <octahedronGeometry args={[0.1, 0]} />
+            <meshBasicMaterial color="#f0d878" />
           </mesh>
         ) : null}
         <Html
-          position={[0, 2.35, 0]}
+          position={[0, 2.2, 0]}
           center
           sprite
-          distanceFactor={10}
+          distanceFactor={12}
           zIndexRange={[8, 0]}
           style={{ pointerEvents: 'none' }}
         >
@@ -237,6 +247,17 @@ function IslandMesh({
           </button>
         </Html>
       </group>
+  )
+
+  if (reduceMotion) return body
+
+  return (
+    <Float
+      speed={0.55 + (island.angle % 40) / 80}
+      rotationIntensity={0.04}
+      floatIntensity={0.22}
+    >
+      {body}
     </Float>
   )
 }
@@ -245,7 +266,7 @@ function ConnectionRings() {
   const points = useMemo(() => {
     const pts = ISLANDS.map((island) => {
       const [x, , z] = islandPosition(island)
-      return [x, 0.12, z] as [number, number, number]
+      return [x, 0.08, z] as [number, number, number]
     })
     return [...pts, pts[0]!]
   }, [])
@@ -255,70 +276,47 @@ function ConnectionRings() {
       points={points}
       color="#ffffff"
       transparent
-      opacity={0.3}
-      lineWidth={2}
+      opacity={0.22}
+      lineWidth={1.5}
       dashed={false}
     />
   )
 }
 
-function Cloud({ position }: { position: [number, number, number] }) {
-  const ref = useRef<THREE.Group>(null)
-  useFrame((_, dt) => {
-    if (!ref.current) return
-    ref.current.position.x += dt * 0.15
-    if (ref.current.position.x > 11) ref.current.position.x = -11
-  })
+function SoftCloud({ position }: { position: [number, number, number] }) {
   return (
-    <group ref={ref} position={position}>
+    <group position={position}>
       <mesh>
-        <sphereGeometry args={[0.55, 8, 8]} />
-        <meshStandardMaterial color="#fff" flatShading />
+        <boxGeometry args={[1.1, 0.28, 0.55]} />
+        <meshBasicMaterial color="#f4eee6" transparent opacity={0.55} />
       </mesh>
       <mesh position={[0.45, 0.05, 0]}>
-        <sphereGeometry args={[0.4, 8, 8]} />
-        <meshStandardMaterial color="#fff" flatShading />
-      </mesh>
-      <mesh position={[-0.4, 0, 0.1]}>
-        <sphereGeometry args={[0.35, 8, 8]} />
-        <meshStandardMaterial color="#fff" flatShading />
+        <boxGeometry args={[0.55, 0.22, 0.4]} />
+        <meshBasicMaterial color="#f4eee6" transparent opacity={0.45} />
       </mesh>
     </group>
   )
 }
 
 function SeaDisk({ tint }: { tint: string }) {
-  const ref = useRef<THREE.Mesh>(null)
-  useFrame(({ clock }) => {
-    if (!ref.current) return
-    ref.current.rotation.z = Math.sin(clock.elapsedTime * 0.2) * 0.02
-  })
   return (
     <>
-      <mesh
-        ref={ref}
-        rotation={[-Math.PI / 2, 0, 0]}
-        position={[0, -0.05, 0]}
-        receiveShadow
-      >
-        <circleGeometry args={[11, 64]} />
-        <meshStandardMaterial color={tint} flatShading roughness={0.35} metalness={0.05} />
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.05, 0]} receiveShadow>
+        <circleGeometry args={[11, 48]} />
+        <meshBasicMaterial color={tint} />
       </mesh>
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.01, 0]}>
-        <ringGeometry args={[8.2, 8.45, 64]} />
-        <meshStandardMaterial color="#ffffff" transparent opacity={0.2} />
+        <ringGeometry args={[8.1, 8.35, 48]} />
+        <meshBasicMaterial color="#ffffff" transparent opacity={0.14} />
       </mesh>
-      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.04, 0]}>
-        <circleGeometry args={[1.7, 6]} />
-        <meshStandardMaterial color="#f2d7a2" flatShading />
+      {/* 中心碑石 */}
+      <mesh position={[0, 0.35, 0]} castShadow rotation={[0, Math.PI / 5, 0]}>
+        <boxGeometry args={[0.7, 0.7, 0.7]} />
+        <ThreeToneMaterial top="#f0e4d4" left="#e07a5f" right="#6d3a32" />
       </mesh>
-      <mesh position={[0, 0.55, 0]} castShadow>
-        <boxGeometry args={[0.55, 1.1, 0.55]} />
-        <meshStandardMaterial color="#e52521" flatShading />
-      </mesh>
-      <mesh position={[0, 1.2, 0]}>
-        <boxGeometry args={[0.18, 0.35, 0.18]} />
-        <meshStandardMaterial color="#fff" flatShading />
+      <mesh position={[0, 0.85, 0]} rotation={[0, Math.PI / 5, 0]}>
+        <boxGeometry args={[0.28, 0.35, 0.28]} />
+        <ThreeToneMaterial top="#f7f2ea" left="#d9c8b0" right="#8a7060" />
       </mesh>
     </>
   )
@@ -329,35 +327,49 @@ function SceneLights({ time }: { time: TimeMode }) {
   return (
     <>
       <color attach="background" args={[preset.bg]} />
-      <fog attach="fog" args={[preset.fog, 12, 28]} />
+      <fog attach="fog" args={[preset.fog, 10, 22]} />
       <ambientLight intensity={preset.amb} />
       <directionalLight
         castShadow
         position={preset.sun}
-        intensity={time === 'night' ? 0.55 : 1.35}
+        intensity={time === 'night' ? 0.45 : 0.85}
         shadow-mapSize={[1024, 1024]}
-        color={time === 'dusk' ? '#ffb07a' : '#ffffff'}
+        color={time === 'dusk' ? '#ffc09a' : '#fff5e8'}
       />
       <hemisphereLight
-        intensity={0.35}
-        color={time === 'night' ? '#6a7dff' : '#ffe9c8'}
-        groundColor="#2a5a8a"
+        intensity={0.28}
+        color={time === 'night' ? '#8a90c8' : '#f5e8dc'}
+        groundColor="#5a6a7a"
       />
-      {time === 'night' ? null : (
-        <Sky
-          sunPosition={preset.sun}
-          turbidity={time === 'dusk' ? 8 : 4}
-          rayleigh={time === 'dawn' ? 3 : 1.2}
-        />
-      )}
     </>
   )
 }
 
 type ControlsApi = {
-  object: THREE.Object3D & { position: THREE.Vector3 }
+  object: THREE.Object3D & { zoom?: number; updateProjectionMatrix?: () => void }
   target: THREE.Vector3
   update: () => void
+}
+
+function OrthoFit() {
+  const { camera, size } = useThree()
+  useLayoutEffect(() => {
+    const cam = camera as THREE.OrthographicCamera
+    if (!(cam instanceof THREE.OrthographicCamera)) return
+    const aspect = size.width / Math.max(1, size.height)
+    const frustum = 7.2
+    cam.left = (-frustum * aspect) / 2
+    cam.right = (frustum * aspect) / 2
+    cam.top = frustum / 2
+    cam.bottom = -frustum / 2
+    cam.near = 0.1
+    cam.far = 80
+    cam.zoom = 1
+    cam.position.set(...ISO_POS)
+    cam.lookAt(...ISO_TARGET)
+    cam.updateProjectionMatrix()
+  }, [camera, size.width, size.height])
+  return null
 }
 
 function CameraRig({
@@ -369,12 +381,15 @@ function CameraRig({
     <OrbitControls
       ref={controlsRef as never}
       enablePan={false}
-      minDistance={6.5}
-      maxDistance={16}
-      maxPolarAngle={Math.PI / 2.2}
-      target={[0, 0.5, 0]}
       enableDamping
-      dampingFactor={0.06}
+      dampingFactor={0.07}
+      minPolarAngle={0.85}
+      maxPolarAngle={1.15}
+      minAzimuthAngle={-0.55}
+      maxAzimuthAngle={0.55}
+      minZoom={0.75}
+      maxZoom={1.55}
+      target={ISO_TARGET}
     />
   )
 }
@@ -395,7 +410,13 @@ export function IslandWorld3D({ starsMap }: { starsMap: Record<string, number> }
   const selected = ISLANDS.find((i) => i.id === selectedId) ?? null
   const preset = TIME_PRESETS[time]
   const seaTint =
-    time === 'night' ? '#243a7a' : time === 'dusk' ? '#4f7db8' : time === 'dawn' ? '#6ea7d8' : '#3f8fe0'
+    time === 'night'
+      ? '#3a4570'
+      : time === 'dusk'
+        ? '#6a88a8'
+        : time === 'dawn'
+          ? '#8aacc8'
+          : '#7a9bb8'
 
   useEffect(() => {
     const sync = () => setTime(timeFromLocalClock())
@@ -415,32 +436,31 @@ export function IslandWorld3D({ starsMap }: { starsMap: Record<string, number> }
     playSfx('tap', 0.3)
     const c = controlsRef.current
     if (!c) return
-    c.object.position.set(0, 7.8, 10.2)
-    c.target.set(0, 0.5, 0)
+    c.object.position.set(...ISO_POS)
+    c.target.set(...ISO_TARGET)
+    if (typeof c.object.zoom === 'number') {
+      c.object.zoom = 1
+      c.object.updateProjectionMatrix?.()
+    }
     c.update()
   }
 
   return (
     <div className={`map-3d-wrap time-${time}`}>
       <Canvas
+        orthographic
         shadows
-        camera={{ position: [0, 7.8, 10.2], fov: 40 }}
+        camera={{ position: ISO_POS, zoom: 1, near: 0.1, far: 80 }}
         dpr={[1, 1.75]}
+        gl={{ antialias: true }}
       >
+        <OrthoFit />
         <SceneLights time={time} />
         <SeaDisk tint={seaTint} />
         <ConnectionRings />
-        <Cloud position={[-6, 4.2, -3]} />
-        <Cloud position={[3, 5.1, -5]} />
-        <Cloud position={[7, 3.8, 2]} />
-        <Sparkles
-          count={time === 'night' ? 60 : 28}
-          scale={[16, 6, 16]}
-          size={time === 'night' ? 3 : 2}
-          speed={0.35}
-          opacity={0.45}
-          color={time === 'night' ? '#fff7b0' : '#ffffff'}
-        />
+        <SoftCloud position={[-5.5, 4.2, -3]} />
+        <SoftCloud position={[4.2, 4.8, -4.5]} />
+        <SoftCloud position={[6.5, 3.6, 1.5]} />
         {ISLANDS.map((island) => (
           <IslandMesh
             key={island.id}
@@ -470,14 +490,14 @@ export function IslandWorld3D({ starsMap }: { starsMap: Record<string, number> }
 
       {!selected ? (
         <div className="map-hint">
-          拖曳旋轉・捏合縮放
+          輕轉視角・捏合縮放
           <br />
-          點小島或上方標題即可選擇
+          點小島或標籤即可選擇
         </div>
       ) : null}
 
       {selected ? (
-        <aside className="map-detail" style={{ borderColor: selected.accent }}>
+        <aside className="map-detail">
           <div className="map-detail-top">
             <span className="map-pill-num" style={{ color: selected.accent }}>
               {ISLAND_INDEX[selected.id]}
@@ -518,4 +538,3 @@ export function IslandWorld3D({ starsMap }: { starsMap: Record<string, number> }
     </div>
   )
 }
-

@@ -37,6 +37,9 @@ export function IslandHub() {
         ['--accent' as string]: island.accent,
         ['--soft' as string]: island.soft,
         ['--deep' as string]: island.deep,
+        ['--tone-top' as string]: island.soft,
+        ['--tone-left' as string]: island.accent,
+        ['--tone-right' as string]: island.deep,
       }}
     >
       <div className="hub-wrap">
@@ -57,8 +60,9 @@ export function IslandHub() {
           </Link>
         </header>
 
-        <div className="app-card">
-          <p style={{ lineHeight: 1.7, marginTop: 0 }}>{island.blurb}</p>
+        <div className="app-card hub-card-body">
+          <div className="hub-diamond" aria-hidden />
+          <p className="hub-blurb">{island.blurb}</p>
           <p className="app-muted">
             玩法：{MODE_LABEL[island.playMode] ?? island.playMode}
             <br />
@@ -69,7 +73,7 @@ export function IslandHub() {
           <button
             type="button"
             className="app-btn block"
-            style={{ marginTop: 14 }}
+            style={{ marginTop: 16 }}
             onClick={() => {
               playSfx('enter', 0.5)
               navigate(`/island/${island.id}/play`)

@@ -1,20 +1,56 @@
 :root {
-  --font-display: 'Fredoka', 'Noto Sans TC', sans-serif;
+  /* Monument Valley × 學習島 */
+  --mv-ink: #2a2438;
+  --mv-muted: #6e6578;
+  --mv-paper: #f7f2ea;
+  --mv-stone: #ebe3d6;
+  --mv-sky-1: #f3e4ef;
+  --mv-sky-2: #d9e4f2;
+  --mv-sky-3: #b8c9e0;
+  --mv-coral: #e07a5f;
+  --mv-plum: #7b5ea7;
+  --mv-mint: #6fbfa0;
+  --mv-shadow: 0 8px 22px rgba(42, 36, 56, 0.12);
+  --mv-radius: 18px;
+  --mv-radius-sm: 12px;
+  --radius-cut: 4px 18px 18px 4px;
+
+  --font-display: 'Fraunces', 'Noto Sans TC', serif;
   --font-body: 'Noto Sans TC', sans-serif;
-  --ink: #1c2a3a;
-  --muted: #5a6b7d;
-  --paper: #f7fbff;
-  --sea-1: #b8e4ff;
-  --sea-2: #dff3ff;
-  --sea-3: #9fd4f5;
-  --sand: #ffe8c2;
-  --card: rgba(255, 255, 255, 0.92);
-  --shadow: 0 14px 36px rgba(28, 64, 96, 0.16);
-  --radius: 22px;
+
+  /* 相容別名（theme／元件沿用） */
+  --ink: var(--mv-ink);
+  --muted: var(--mv-muted);
+  --paper: var(--mv-paper);
+  --sea-1: var(--mv-sky-2);
+  --sea-2: var(--mv-sky-1);
+  --sea-3: var(--mv-sky-3);
+  --sky-1: var(--mv-sky-1);
+  --sky-2: var(--mv-sky-2);
+  --sky-3: var(--mv-sky-3);
+  --sand: #e8dcc8;
+  --card: color-mix(in srgb, var(--mv-paper) 92%, white);
+  --shadow: var(--mv-shadow);
+  --radius: var(--mv-radius);
+
+  --accent: #7b9ecf;
+  --soft: #e8eef6;
+  --deep: #3d4f6f;
+  --tone-top: var(--soft);
+  --tone-left: var(--accent);
+  --tone-right: var(--deep);
+
+  --danger: var(--mv-coral);
+  --ok: var(--mv-mint);
+  --coin: #c9a227;
+
   --touch: 52px;
-  --island-accent: #2b8cff;
-  --island-soft: #d7ecff;
-  --island-deep: #0b4f9c;
+  --touch-lg: 56px;
+  --island-accent: var(--accent);
+  --island-soft: var(--soft);
+  --island-deep: var(--deep);
+
+  --ease-mv: cubic-bezier(0.22, 1.2, 0.36, 1);
 }
 
 * {
@@ -31,7 +67,7 @@ body {
   margin: 0;
   color: var(--ink);
   font-family: var(--font-body);
-  background: var(--sea-2);
+  background: var(--mv-sky-2);
   -webkit-tap-highlight-color: transparent;
 }
 

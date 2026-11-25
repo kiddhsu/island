@@ -1,44 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@600;700;900&display=swap');
-
-:root {
-  --ink: #1c2a3a;
-  --muted: #5a6b7d;
-  --paper: #ffffff;
-  --sky-1: #dff1ff;
-  --sky-2: #b7d9ff;
-  --sky-3: #8ebfff;
-  --accent: #2b8cff;
-  --soft: #d7ecff;
-  --deep: #0b4f9c;
-  --danger: #e4572e;
-  --ok: #2f9e5b;
-  --coin: #d4a017;
-  --shadow: 0 14px 36px rgba(40, 80, 120, 0.16);
-  --radius: 22px;
-  --font-body: 'Noto Sans TC', sans-serif;
-  /* 手機／平板共用最小觸控高度（建議 ≥ 44~48px） */
-  --touch: 48px;
-  --touch-lg: 56px;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-html,
-body,
-#root {
-  min-height: 100%;
-}
+/* 色票／字型見 tokens.css */
 
 body.app-world {
   margin: 0;
   color: var(--ink);
   font-family: var(--font-body);
   background:
-    radial-gradient(circle at 18% 8%, rgba(255, 255, 255, 0.55), transparent 42%),
-    linear-gradient(165deg, var(--sky-1) 0%, var(--sky-2) 48%, var(--sky-3) 100%);
+    radial-gradient(circle at 12% 8%, rgba(255, 255, 255, 0.5), transparent 40%),
+    radial-gradient(circle at 88% 0%, color-mix(in srgb, var(--mv-plum) 12%, transparent), transparent 38%),
+    linear-gradient(165deg, var(--mv-sky-1) 0%, var(--mv-sky-2) 48%, var(--mv-sky-3) 100%);
   -webkit-tap-highlight-color: transparent;
+  user-select: none;
 }
 
 button,
@@ -53,18 +24,30 @@ a {
   padding: 12px 12px calc(18px + env(safe-area-inset-bottom));
   background:
     radial-gradient(
-      circle at 80% 0%,
-      color-mix(in srgb, var(--soft) 70%, white),
+      circle at 82% 0%,
+      color-mix(in srgb, var(--soft) 55%, transparent),
       transparent 42%
     ),
-    radial-gradient(circle at 18% 8%, rgba(255, 255, 255, 0.55), transparent 42%),
+    radial-gradient(circle at 14% 10%, rgba(255, 255, 255, 0.45), transparent 40%),
     linear-gradient(
       165deg,
-      color-mix(in srgb, var(--soft) 55%, #dff1ff) 0%,
-      #b7d9ff 48%,
-      #8ebfff 100%
+      color-mix(in srgb, var(--soft) 40%, var(--mv-sky-1)) 0%,
+      var(--mv-sky-2) 48%,
+      var(--mv-sky-3) 100%
     );
   color: var(--ink);
+  animation: mv-shell-in 0.42s var(--ease-mv) both;
+}
+
+@keyframes mv-shell-in {
+  0% {
+    clip-path: circle(8% at 50% 42%);
+    opacity: 0.85;
+  }
+  100% {
+    clip-path: circle(140% at 50% 42%);
+    opacity: 1;
+  }
 }
 
 .app-topbar {
@@ -78,16 +61,19 @@ a {
 
 .app-kicker {
   margin: 0;
-  font-weight: 900;
-  letter-spacing: 0.06em;
-  color: var(--accent);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--mv-coral);
+  font-size: 0.85rem;
 }
 
 .app-heading {
   margin: 2px 0 4px;
-  font-size: clamp(1.35rem, 4.4vw, 1.9rem);
-  font-weight: 900;
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 4.6vw, 2rem);
+  font-weight: 700;
   line-height: 1.2;
+  color: var(--ink);
 }
 
 .app-sub,
@@ -110,9 +96,10 @@ a {
   gap: 6px;
   min-height: 40px;
   padding: 0 12px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.92);
-  box-shadow: 0 8px 18px rgba(30, 60, 90, 0.1);
+  border-radius: var(--mv-radius-sm);
+  background: color-mix(in srgb, var(--mv-paper) 92%, white);
+  border: 1px solid color-mix(in srgb, var(--mv-stone) 80%, transparent);
+  box-shadow: var(--mv-shadow);
   font-weight: 800;
   font-size: 0.9rem;
 }
@@ -127,18 +114,23 @@ a {
 
 .app-btn {
   min-height: var(--touch);
-  padding: 0 16px;
-  border: 0;
-  border-radius: 999px;
+  padding: 0 18px;
+  border: 1px solid color-mix(in srgb, var(--deep) 22%, transparent);
+  border-radius: var(--radius-cut);
   background: var(--accent);
   color: #fff;
   font-weight: 800;
-  box-shadow: var(--shadow);
+  box-shadow: var(--mv-shadow);
   cursor: pointer;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  transition: transform 0.22s var(--ease-mv), box-shadow 0.22s ease;
+}
+
+.app-btn:active {
+  transform: translateY(1px) scale(0.98);
 }
 
 .app-btn:disabled {
@@ -147,14 +139,15 @@ a {
 }
 
 .app-btn.soft {
-  background: rgba(255, 255, 255, 0.92);
+  background: color-mix(in srgb, var(--mv-paper) 94%, white);
   color: var(--deep);
+  border-color: color-mix(in srgb, var(--mv-stone) 90%, var(--deep));
 }
 
 .app-btn.ghost {
   background: transparent;
   box-shadow: none;
-  border: 2px solid rgba(28, 42, 58, 0.12);
+  border: 1px solid color-mix(in srgb, var(--ink) 14%, transparent);
   color: var(--ink);
 }
 
@@ -163,18 +156,20 @@ a {
 }
 
 .app-card {
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: var(--radius);
-  border: 1px solid rgba(255, 255, 255, 0.85);
-  box-shadow: var(--shadow);
-  padding: 16px;
+  background: color-mix(in srgb, var(--mv-paper) 94%, white);
+  border-radius: var(--mv-radius);
+  border: 1px solid color-mix(in srgb, var(--mv-stone) 85%, white);
+  box-shadow: var(--mv-shadow);
+  padding: 18px;
   overflow: hidden;
   max-width: 100%;
+  position: relative;
 }
 
 .app-card h1,
 .app-card h2 {
   margin: 0 0 8px;
+  font-family: var(--font-display);
 }
 
 .app-prompt {
@@ -1139,10 +1134,36 @@ a {
 
 .result-title {
   margin: 0 0 4px;
-  font-weight: 900;
-  font-size: clamp(1.25rem, 4vw, 1.6rem);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.3rem, 4vw, 1.7rem);
   color: var(--deep);
   text-align: center;
+}
+
+.hub-diamond {
+  width: 28px;
+  height: 28px;
+  margin: 0 auto 12px;
+  background: linear-gradient(
+    135deg,
+    var(--soft),
+    var(--accent) 55%,
+    var(--deep)
+  );
+  transform: rotate(45deg);
+  border-radius: 4px;
+  box-shadow: var(--mv-shadow);
+}
+
+.hub-card-body {
+  text-align: left;
+}
+
+.hub-card-body .hub-blurb {
+  margin: 0 0 10px;
+  line-height: 1.7;
+  font-size: 1.02rem;
 }
 
 .result-star {
@@ -1199,11 +1220,11 @@ a {
 }
 
 .profiles-wrap .profile-card {
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 18px;
-  border: 3px solid #ddd;
+  background: color-mix(in srgb, var(--mv-paper) 94%, white);
+  border-radius: var(--mv-radius);
+  border: 1px solid color-mix(in srgb, var(--mv-stone) 85%, white);
   overflow: hidden;
-  box-shadow: var(--shadow);
+  box-shadow: var(--mv-shadow);
 }
 
 .profiles-wrap .profile-main {
@@ -1235,10 +1256,11 @@ a {
 .profiles-wrap .profile-tools button {
   flex: 1;
   border: 0;
-  background: #f3f7fb;
+  background: var(--mv-stone);
   min-height: 40px;
   cursor: pointer;
   font-weight: 700;
+  color: var(--ink);
 }
 
 .profiles-wrap .field {
@@ -1256,10 +1278,10 @@ a {
   min-width: 0;
   box-sizing: border-box;
   min-height: var(--touch);
-  border-radius: 14px;
-  border: 2px solid rgba(0, 0, 0, 0.08);
+  border-radius: var(--mv-radius-sm);
+  border: 1px solid color-mix(in srgb, var(--mv-stone) 90%, var(--ink));
   padding: 0 14px;
-  background: #fff;
+  background: color-mix(in srgb, var(--mv-paper) 96%, white);
   color: var(--ink);
 }
 
@@ -1272,9 +1294,9 @@ a {
 .profiles-wrap .emoji-pick {
   min-height: 44px;
   min-width: 64px;
-  border-radius: 12px;
-  border: 2px solid rgba(0, 0, 0, 0.08);
-  background: #fff;
+  border-radius: var(--mv-radius-sm);
+  border: 1px solid color-mix(in srgb, var(--mv-stone) 90%, var(--ink));
+  background: color-mix(in srgb, var(--mv-paper) 96%, white);
   cursor: pointer;
   font-weight: 800;
 }
@@ -1819,13 +1841,14 @@ a {
   z-index: 85;
   pointer-events: none;
   padding: 10px 18px;
-  border-radius: 999px;
+  border-radius: var(--radius-cut);
   font-weight: 900;
   font-size: clamp(1rem, 3.6vw, 1.2rem);
   color: var(--deep);
-  background: rgba(255, 255, 255, 0.96);
-  box-shadow: 0 10px 28px rgba(30, 60, 90, 0.18);
-  animation: fx-banner-in 0.45s cubic-bezier(0.2, 1.2, 0.4, 1) both;
+  background: color-mix(in srgb, var(--mv-paper) 96%, white);
+  border: 1px solid color-mix(in srgb, var(--mv-coral) 45%, white);
+  box-shadow: var(--mv-shadow);
+  animation: fx-banner-in 0.45s var(--ease-mv) both;
   white-space: nowrap;
 }
 
@@ -1890,6 +1913,7 @@ a {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .app-shell,
   .fx-overlay,
   .fx-banner,
   .fx-lottie,
@@ -1900,6 +1924,10 @@ a {
   .app-chip.score.is-pop,
   .app-chip.lives.is-pulse {
     animation: none !important;
+  }
+
+  .app-shell {
+    clip-path: none;
   }
 
   .fx-overlay {
