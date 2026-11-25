@@ -452,12 +452,12 @@ a {
 
 .jump-platform {
   position: absolute;
-  min-height: 72px;
-  padding: 0 0 18px;
+  min-height: 64px;
+  padding: 0 0 10px;
   border: 0;
   border-radius: 0;
   background: transparent;
-  color: var(--ink);
+  color: var(--mv-ink);
   font-weight: 800;
   font-size: clamp(0.72rem, 1.9vw, 0.9rem);
   line-height: 1.25;
@@ -467,110 +467,147 @@ a {
   box-shadow: none;
   touch-action: manipulation;
   z-index: 2;
-  filter: drop-shadow(4px 6px 0 color-mix(in srgb, var(--mv-ink) 10%, transparent));
+  filter: drop-shadow(5px 7px 0 color-mix(in srgb, var(--mv-ink) 11%, transparent));
 }
 
-.jump-plat-leg {
+/* 浮空陰影：取代細腳柱，避免告示牌感 */
+.jump-plat-shadow {
   position: absolute;
-  left: 42%;
-  right: 42%;
-  top: 52%;
+  left: 18%;
+  right: 18%;
   bottom: 0;
-  background: linear-gradient(
-    180deg,
-    color-mix(in srgb, var(--deep) 70%, var(--accent)),
-    color-mix(in srgb, var(--deep) 55%, transparent)
-  );
-  clip-path: polygon(15% 0, 85% 0, 100% 100%, 0 100%);
+  height: 10px;
   z-index: 0;
+  background: color-mix(in srgb, var(--mv-ink) 16%, transparent);
+  border-radius: 50%;
+  pointer-events: none;
 }
 
 .jump-plat-block {
   position: relative;
   display: block;
   width: 100%;
-  height: 52px;
+  height: 54px;
   z-index: 1;
 }
 
+/* 崖體底層：寬切角量體，不是一根桿 */
+.jump-plat-cliff {
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  top: 38%;
+  bottom: 0;
+  z-index: 0;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--deep) 75%, var(--accent)),
+    color-mix(in srgb, var(--deep) 55%, var(--mv-ink))
+  );
+  clip-path: polygon(6% 0, 94% 0, 82% 100%, 18% 100%);
+}
+
+/* 可走石台頂面 */
 .jump-plat-top {
   position: absolute;
-  inset: 0 0 18px 0;
+  inset: 0 0 22px 0;
+  z-index: 1;
   background: linear-gradient(
-    145deg,
-    color-mix(in srgb, var(--mv-paper) 92%, white) 0 45%,
-    color-mix(in srgb, var(--accent) 35%, var(--mv-stone)) 45% 100%
+    152deg,
+    color-mix(in srgb, var(--mv-paper) 82%, var(--sand)) 0 48%,
+    color-mix(in srgb, var(--mv-stone) 65%, var(--accent)) 48% 100%
   );
   clip-path: polygon(8% 100%, 92% 100%, 100% 0, 0 0);
-  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--mv-paper) 80%, white);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--mv-paper) 65%, transparent);
 }
 
 .jump-plat-side-l {
   position: absolute;
   left: 0;
-  right: 55%;
-  top: 34%;
-  bottom: 0;
-  background: color-mix(in srgb, var(--accent) 45%, var(--soft));
-  clip-path: polygon(0 0, 100% 18%, 100% 100%, 14% 100%);
+  right: 52%;
+  top: 28%;
+  bottom: 8px;
+  z-index: 1;
+  background: color-mix(in srgb, var(--accent) 48%, var(--soft));
+  clip-path: polygon(0 0, 100% 22%, 88% 100%, 12% 100%);
 }
 
 .jump-plat-side-r {
   position: absolute;
-  left: 45%;
+  left: 48%;
   right: 0;
-  top: 34%;
-  bottom: 0;
-  background: color-mix(in srgb, var(--deep) 65%, var(--accent));
-  clip-path: polygon(0 18%, 100% 0, 86% 100%, 0 100%);
+  top: 28%;
+  bottom: 8px;
+  z-index: 1;
+  background: color-mix(in srgb, var(--deep) 68%, var(--accent));
+  clip-path: polygon(0 22%, 100% 0, 88% 100%, 12% 100%);
 }
 
+/* 數字直接刻在頂面，不另開底板 */
 .jump-plat-label {
   position: absolute;
-  left: 8%;
-  right: 8%;
-  top: 4px;
+  left: 6%;
+  right: 6%;
+  top: 2px;
   z-index: 2;
   display: grid;
   place-items: center;
-  min-height: 34px;
-  padding: 4px 6px;
-  font-size: clamp(0.95rem, 3.2vw, 1.2rem);
-  font-weight: 900;
-  line-height: 1.15;
+  min-height: 28px;
+  padding: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.08rem, 3.5vw, 1.38rem);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1;
   color: var(--mv-ink);
-  background: color-mix(in srgb, var(--mv-paper) 92%, white);
-  clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
-  box-shadow: 2px 2px 0 color-mix(in srgb, var(--mv-ink) 12%, transparent);
-  text-shadow: none;
+  background: transparent;
+  clip-path: none;
+  box-shadow: none;
+  text-shadow:
+    0 1px 0 color-mix(in srgb, var(--mv-paper) 85%, white),
+    0 -1px 0 color-mix(in srgb, var(--deep) 20%, transparent);
 }
 
 .jump-platform.correct-flash .jump-plat-top {
   background: linear-gradient(
-    145deg,
-    color-mix(in srgb, var(--mv-mint) 45%, white),
-    var(--mv-mint)
+    152deg,
+    color-mix(in srgb, var(--mv-mint) 35%, var(--mv-paper)),
+    color-mix(in srgb, var(--mv-mint) 55%, var(--accent))
+  );
+}
+
+.jump-platform.correct-flash .jump-plat-cliff {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--mv-mint) 40%, var(--deep)),
+    color-mix(in srgb, var(--deep) 70%, var(--mv-ink))
   );
 }
 
 .jump-platform.correct-flash .jump-plat-label {
-  color: #fff;
-  background: color-mix(in srgb, var(--mv-mint) 55%, var(--deep));
-  text-shadow: none;
+  color: color-mix(in srgb, var(--deep) 70%, var(--mv-ink));
+  background: transparent;
 }
 
 .jump-platform.wrong-flash .jump-plat-top {
   background: linear-gradient(
-    145deg,
-    color-mix(in srgb, var(--mv-coral) 40%, white),
-    var(--mv-coral)
+    152deg,
+    color-mix(in srgb, var(--mv-coral) 30%, var(--mv-paper)),
+    color-mix(in srgb, var(--mv-coral) 50%, var(--accent))
+  );
+}
+
+.jump-platform.wrong-flash .jump-plat-cliff {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--mv-coral) 35%, var(--deep)),
+    color-mix(in srgb, var(--deep) 70%, var(--mv-ink))
   );
 }
 
 .jump-platform.wrong-flash .jump-plat-label {
-  color: #fff;
-  background: color-mix(in srgb, var(--mv-coral) 55%, var(--deep));
-  text-shadow: none;
+  color: color-mix(in srgb, var(--deep) 55%, var(--mv-ink));
+  background: transparent;
 }
 
 /* 探險小人 */
@@ -2460,12 +2497,16 @@ a {
   }
 
   .jump-platform {
-    min-height: 64px;
+    min-height: 58px;
     font-size: 0.72rem;
   }
 
   .jump-plat-block {
-    height: 48px;
+    height: 50px;
+  }
+
+  .jump-plat-label {
+    font-size: clamp(1rem, 4.2vw, 1.22rem);
   }
 
   .play-pick-grid.cols-3 {

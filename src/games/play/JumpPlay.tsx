@@ -101,13 +101,14 @@ export function JumpPlay({ question, onResult, introCountdown = false }: Props) 
             transition={{ delay: 0.05 * i, type: 'spring', stiffness: 320, damping: 20 }}
             whileTap={{ scale: 0.97 }}
           >
-            <span className="jump-plat-leg" aria-hidden />
-            <span className="jump-plat-block" aria-hidden>
-              <span className="jump-plat-top" />
-              <span className="jump-plat-side-l" />
-              <span className="jump-plat-side-r" />
+            <span className="jump-plat-shadow" aria-hidden />
+            <span className="jump-plat-block">
+              <span className="jump-plat-cliff" aria-hidden />
+              <span className="jump-plat-top" aria-hidden />
+              <span className="jump-plat-side-l" aria-hidden />
+              <span className="jump-plat-side-r" aria-hidden />
+              <span className="jump-plat-label">{s.label}</span>
             </span>
-            <span className="jump-plat-label">{s.label}</span>
           </motion.button>
         ))}
         {burst ? <PlayBurst ok={burst.ok} x={burst.x} y={burst.y} /> : null}
